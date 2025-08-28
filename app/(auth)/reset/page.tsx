@@ -17,9 +17,9 @@ const page = ({
 			<Box>
 				<Stack>
 					<Stack>
-						<h3>
+						<h1>
 							Hey Vishnu !
-						</h3>
+						</h1>
 						<p>
 							Please reset and confirm your password
 						</p>

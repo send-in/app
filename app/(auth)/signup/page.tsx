@@ -19,9 +19,9 @@ const page = ({
 			<Box>
 				<Stack>
 					<Stack>
-						<h3>
+						<h1>
 							Hey !
-						</h3>
+						</h1>
 						<p>
 							Create your
 							<span>

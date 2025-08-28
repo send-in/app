@@ -5,12 +5,11 @@ import Logo from "@/components/Icons/Logo"
 import Link from "next/link"
 
 import {
-    Box,
+	Box,
 	Button, 
 	Input,
-    Stack,
+	Stack,
 } from "@mui/material"
-
 // #endregion
 
 const page = ({
@@ -20,14 +19,14 @@ const page = ({
 			<Box>
 				<Stack>
 					<Stack>
-						<h3>
+						<h1>
 							Welcome !
-						</h3>
+						</h1>
 						<p>
 							Log into your
 							<span>
-                                {" "}SendIn{" "}
-                            </span> 
+								{" "}SendIn{" "}
+							</span> 
 							account
 						</p>
 					</Stack>
@@ -88,8 +87,8 @@ const page = ({
 					</Stack>
 				</Stack>
 			</Box>
-
-            <AuthSidePanel/>
+			
+			<AuthSidePanel/>
 		</main>
 	)
 }
