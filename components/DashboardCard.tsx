@@ -2,7 +2,7 @@
 import {
     Icon,
 	IconButton,
-	Stack,
+	Button,
 } from "@mui/material"
 import Image from "next/image"
 // #endregion
@@ -21,7 +21,7 @@ const DashboardCard = ({
     scheduleTime: Date,
 }) => {
 	return (
-		<Stack>
+		<Button>
             <Image/>
             <p></p>
 
@@ -31,7 +31,7 @@ const DashboardCard = ({
             <p></p>
 
             <IconButton/>
-		</Stack>
+		</Button>
 	)
 }
 

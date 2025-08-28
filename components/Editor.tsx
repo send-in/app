@@ -1,5 +1,6 @@
 // #region imports
 import {
+    Button,
 	Input, 
 	Stack,
 } from "@mui/material"
@@ -22,6 +23,10 @@ const Editor = ({
             }
 
             {/* Text editor here */}
+
+            <Button>
+                {/* copy to clipboard */}
+            </Button>
 		</Stack>
 	)
 }
