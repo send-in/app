@@ -63,3 +63,7 @@ body {
 	color: var(--foreground);
 	font-family: Mada, sans-serif;
 }
+
+button {
+    box-shadow: none !important;
+}
