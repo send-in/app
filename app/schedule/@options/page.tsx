@@ -1,7 +1,8 @@
 // #region imports
+import DateTime from "@/components/DateTime"
 import OptionsCard from "@/components/OptionsCard"
 import Search from "@/components/Search"
-import Sort from "@/components/Sort"
+import Templates from "@/components/Templates"
 
 import { 
 	Button,
@@ -11,7 +12,6 @@ import {
 	Stack,
 	ToggleButtonGroup,
 	ToggleButton,
-	FormGroup
 } from "@mui/material"
 
 // #endregion
@@ -20,37 +20,43 @@ import {
 const page = () => {
 	return (
 		<Box>
-			<FormGroup>
-			</FormGroup>
-
 			<Stack>
 				<Stack>
 					<Radio/>
 					<Search/>
-					<ToggleButtonGroup>
-						<ToggleButton value=""/>
-						<ToggleButton value=""/>
-						<ToggleButton value=""/>
-					</ToggleButtonGroup>
-					<Sort/>
 				</Stack>
 
 				<Stack>
-					{
-						<OptionsCard
-							name=""
-							picture=""
-							template=""
-							scheduleTime={new Date()}
-						/>
-					}
+					<Templates/>
+					<DateTime/>
+					<Button/>
 				</Stack>
+			</Stack>
 
+			<Stack>
+				{
+					<OptionsCard
+						name=""
+						picture=""
+						template=""
+						scheduleTime={new Date()}
+					/>
+				}
+			</Stack>
+
+			<Stack>
 				<Stack>
 					<Button></Button>
-					<p></p>
-					<Pagination/>
+					<Button></Button>
 				</Stack>
+
+				<Pagination/>
+
+					<ToggleButtonGroup>
+					<ToggleButton value=""/>
+					<ToggleButton value=""/>
+					<ToggleButton value=""/>
+				</ToggleButtonGroup>
 			</Stack>
 		</Box>
 	)

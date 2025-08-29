@@ -1,8 +1,8 @@
 // #region imports
 import ConnectionCard from "@/components/ConnectionCard"
-import DateTime from "@/components/DateTime"
+import Filters from "@/components/Filters"
 import Search from "@/components/Search"
-import Templates from "@/components/Templates"
+import Sort from "@/components/Sort"
 
 import { 
 	Button,
@@ -20,43 +20,35 @@ import {
 const page = () => {
 	return (
 		<Box>
+            <Filters/>
 			<Stack>
 				<Stack>
 					<Radio/>
 					<Search/>
-				</Stack>
-
-				<Stack>
-					<Templates/>
-					<DateTime/>
-					<Button/>
-				</Stack>
-			</Stack>
-
-			<Stack>
-				{
-					<ConnectionCard
-						name=""
-						picture=""
-						template=""
-						scheduleTime={new Date()}
-					/>
-				}
-			</Stack>
-
-			<Stack>
-				<Stack>
-					<Button></Button>
-					<Button></Button>
-				</Stack>
-
-				<Pagination/>
-
 					<ToggleButtonGroup>
-					<ToggleButton value=""/>
-					<ToggleButton value=""/>
-					<ToggleButton value=""/>
-				</ToggleButtonGroup>
+						<ToggleButton value=""/>
+						<ToggleButton value=""/>
+						<ToggleButton value=""/>
+					</ToggleButtonGroup>
+					<Sort/>
+				</Stack>
+
+				<Stack>
+					{
+						<ConnectionCard
+							name=""
+							picture=""
+							template=""
+							scheduleTime={new Date()}
+						/>
+					}
+				</Stack>
+
+				<Stack>
+					<Button></Button>
+					<p></p>
+					<Pagination/>
+				</Stack>
 			</Stack>
 		</Box>
 	)
