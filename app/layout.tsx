@@ -2,7 +2,7 @@
 // import Footer from "@/components/Footer"
 // import Navbar from "@/components/Navbar"
 
-import "@/styles//globals.css"
+import "@/styles/globals.css"
 
 import { Mada } from "next/font/google"
 import type { Metadata } from "next"
@@ -42,7 +42,6 @@ export default async function RootLayout({
 			>
 				{/* <Navbar/>*/}
 				{children}
-
 				{/* <Footer/> */}
 			</body>
 		</html>
