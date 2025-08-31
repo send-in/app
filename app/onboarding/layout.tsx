@@ -1,7 +1,5 @@
 // #region imports
 import { ReactNode } from "react"
-import { Box } from "@mui/material"
-
 import OnboardingSidePanel from "@/components/OnboardingSidePanel"
 // #endregion
 
@@ -17,17 +15,21 @@ const layout = ({
 	completed: ReactNode,
 }>) => {
 
-	// logic for steps
 	return (
-		<main>
-			<Box>
+		<main
+			className="h-screen flex items-center justify-between p-8"
+		>
+			<section
+				className=""
+			>
 				{extension}
-				{linkedin}
-				{template}
-				{completed}
-			</Box>
+				{/* {linkedin} */}
+				{/* {template} */}
+				{/* {completed} */}
+			</section>
 
 			<OnboardingSidePanel
+				selected={3}
 			/>
 		</main>
 	)

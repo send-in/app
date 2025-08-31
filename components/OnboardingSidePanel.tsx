@@ -21,12 +21,12 @@ const OnboardingSidePanel = ({
 	<section
 		className="
 			bg-blue-100 rounded-3xl p-10 
-			relative h-full w-[30%] flex items-center
-			justify-start text-white text-xl
+			relative h-full min-w-[30%] flex items-center
+			justify-center text-white text-base
 		"
 	>
 		<ul
-			className="space-y-20 pl-32"
+			className="space-y-16"
 		>
 
 			{
@@ -82,8 +82,8 @@ const OnboardingSidePanel = ({
 			className="absolute top-5 right-5"
 			src="/icons/logo.svg"
 			alt="sendin"
-			height={80}
-			width={80}
+			height={60}
+			width={60}
 		/>
 	</section>
 )
