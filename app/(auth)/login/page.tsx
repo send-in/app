@@ -13,15 +13,15 @@ import AuthSidePanel from "@/components/AuthSidePanel"
 // #endregion
 
 const buttonClass = `
-	rounded-full text-white px-6 py-1 w-full
+	rounded-full text-white px-6 w-full
 	gap-2 font-mada font-medium normal-case
 	transition-all ease-in-out delay-100 text-lg
-	tracking-tight
+	tracking-tight h-fit
 `
 
 const inputClass = `
-	font-mada px-3 py-0 bg-grey-100 rounded-lg 
-	font-medium text-lg tracking-tight
+	font-mada px-3 bg-grey-100 rounded-lg 
+	font-medium text-lg tracking-tight h-fit
 `
 
 const dividerClass = `
@@ -51,7 +51,7 @@ const page = ({
 								Welcome !
 							</h1>
 							<p
-								className="text-2xl font-semibold"
+								className="text-2xl font-semibold mt-1"
 							>
 								Log into your
 								<span
