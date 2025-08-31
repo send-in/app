@@ -5,30 +5,34 @@ import Image from "next/image"
 const AuthSidePanel = () => (
 	<section
 		className="
-			bg-blue-100 rounded-3xl p-10 
+			bg-blue-100 rounded-4xl p-10 
 			relative h-full w-[50%] flex items-center
 			justify-center
 		"
 	>
-		<Image
-			src="/others/timezone.svg" 
-			alt="timezone" 
-			height={300}
-			width={300}
-		/>
-		<Image
-			className="xlarge:right-24 -ml-[20%] -mb-[30%]"
-			src="/others/switch.svg"
-			alt="switch"
-			height={200}
-			width={200}
-		/>
+		<aside
+			className="relative h-fit pr-32"
+		>
+			<Image
+				src="/others/timezone.svg" 
+				alt="timezone" 
+				height={450}
+				width={450}
+			/>
+			<Image
+				className="absolute -bottom-[20%] left-[48%]"
+				src="/others/switch.svg"
+				alt="switch"
+				height={300}
+				width={300}
+			/>
+		</aside>
 		<Image
 			className="absolute top-5 right-5"
 			src="/icons/logo.svg"
 			alt="sendin"
-			height={80}
-			width={80}
+			height={100}
+			width={100}
 		/>
 	</section>
 )

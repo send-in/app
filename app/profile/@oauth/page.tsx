@@ -1,9 +1,9 @@
 // #region imports
-import { 
-    Box,
-    Button,
-    Stack,
-    TextField
+import {
+	Box,
+	Button,
+	Stack,
+	TextField
 } from "@mui/material"
 
 import Image from "next/image"
@@ -16,23 +16,27 @@ const page = ({
 
 	// logic for steps
 	return (
-        <Box>
-            <Image/>
+		<Box>
+			<Image
+				alt=""
+				src="/logo.svg"
+				fill
+			/>
 
-            <Stack>
-                <h1></h1>
-                <TimeZone/>
-            </Stack>
+			<Stack>
+				<h1></h1>
+				<TimeZone/>
+			</Stack>
 
-            <TextField/>
-            <TextField/>
+			<TextField/>
+			<TextField/>
 
-            <Button></Button>
+			<Button></Button>
 
-            <LinkedinConnect/>
+			<LinkedinConnect/>
 
-            <Button></Button>
-        </Box>
+			<Button></Button>
+		</Box>
 	)
 }
 

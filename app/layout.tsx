@@ -3,7 +3,7 @@
 // import Navbar from "@/components/Navbar"
 
 import "@/styles/globals.css"
-
+import { StyledEngineProvider } from "@mui/material/styles"
 import { Mada } from "next/font/google"
 import type { Metadata } from "next"
 // #endregion
@@ -32,18 +32,22 @@ export default async function RootLayout({
 		<html 
 			lang="en"
 		>
-			<body
-				className={`
-					${mada.className} 
-					antialiased 
-					h-screen
-					overflow-y-hidden
-				`}
-			>
-				{/* <Navbar/>*/}
-				{children}
-				{/* <Footer/> */}
-			</body>
+				<body
+					className={`
+						${mada.className} 
+						antialiased 
+						h-screen
+						overflow-y-hidden
+						`}
+				>
+					<StyledEngineProvider 
+						enableCssLayer
+					>
+						{/* <Navbar/>*/}
+						{children}
+						{/* <Footer/> */}
+			 		</StyledEngineProvider>
+				</body>
 		</html>
 	)
 }

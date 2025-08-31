@@ -1,8 +1,5 @@
 // #region imports
-import {
-	Icon, 
-	Stack,
-} from "@mui/material"
+import Information from "./Icons/Information"
 // #endregion
 
 const InformationCard = ({
@@ -11,10 +8,21 @@ const InformationCard = ({
 	description: string
 }) => {
 	return (
-		<Stack>
-			<Icon/>
-			<p>{description}</p>
-		</Stack>
+		<aside
+			className="rounded-2xl bg-purple-100 p-2 px-4 flex items-start gap-4 font-medium justify-center"
+		>
+			<div 
+				className="py-0.5"
+			>
+				<Information/>
+			</div>
+
+			<p
+				className="text-purple-200"
+			>
+				{description}
+			</p>
+		</aside>
 	)
 }
 

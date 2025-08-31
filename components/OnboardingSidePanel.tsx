@@ -1,44 +1,82 @@
 // #region imports
-import { Box, IconButton, Stack } from "@mui/material"
+import { 
+	IconButton 
+} from "@mui/material"
 import Image from "next/image"
+import Arrow from "./Icons/Arrow"
 // #endregion
 
-const OnboardingSidePanel = ({
+const items = [
+	"Connect with Linked In",
+	"Integrate chrome extension",
+	"Create message template ",
+	"Lets schedule !",
+]
 
+const OnboardingSidePanel = ({
+	selected = 0
+}:{
+	selected: number
 }) => (
-	<Box
+	<section
 		className="
 			bg-blue-100 rounded-3xl p-10 
-			relative h-full w-[50%] flex items-center
-			justify-center
+			relative h-full w-[30%] flex items-center
+			justify-start text-white text-xl
 		"
 	>
-		<Stack>
-			<Stack>
-				<Box/>
-				<p></p>
-			</Stack>
+		<ul
+			className="space-y-20 pl-32"
+		>
 
-			<Stack>
-				<Box/>
-				<p></p>
-			</Stack>
+			{
+				items.map(
+					(item,index)=>
+						<li
+							key={index}
+							className={`
+								flex gap-5 items-center
+								${index===selected ? "text-white" : "text-grey-100"}
+								transition-all ease-in-out delay-100
+							`}
+						>
+							<div 
+								className={`
+									w-4 h-4 bg-white p-2 rounded-full
+									${index===selected ? "scale-150" : ""}
+									transition-all ease-in-out delay-100
+								`}
+							/>
+							<p>{item}</p>
+						</li>
+				)
+			}
+		</ul>
 
-			<Stack>
-				<Box/>
-				<p></p>
-			</Stack>
+		<aside
+			className="absolute bottom-5 right-5 flex"
+		>
+			<IconButton 
+				size="medium"
+				className="!w-12 !h-12 flex items-center justify-center"
+			>
+				<Arrow
+					direction="up"
+					active={false}
+				/>
+			</IconButton>
 
-			<Stack>
-				<Box/>
-				<p></p>
-			</Stack>
-		</Stack>
+			<IconButton 
+				size="medium"
+				className="!w-12 !h-12 flex items-center justify-center"
+			>
+				<Arrow
+					direction="down"
+					active={true}
 
-		<Stack>
-			<IconButton/>
-			<IconButton/>
-		</Stack>
+				/>
+			</IconButton>
+		</aside>
 
 		<Image
 			className="absolute top-5 right-5"
@@ -47,7 +85,7 @@ const OnboardingSidePanel = ({
 			height={80}
 			width={80}
 		/>
-	</Box>
+	</section>
 )
 
 export default OnboardingSidePanel

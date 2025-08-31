@@ -1,7 +1,7 @@
 // #region imports
-import ConnectionCard from "@/components/ConnectionCard"
+import ConnectionCard from "@/components/completed/ConnectionCard"
 import Filters from "@/components/Filters"
-import Search from "@/components/Search"
+import Search from "@/components/SearchBar"
 import Sort from "@/components/Sort"
 
 import { 

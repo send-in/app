@@ -1,70 +1,89 @@
 // #region Imports
-import Logo from './Icons/Logo';
+import Image from "next/image"
+import Logo from "./Icons/Logo"
+import Link from "next/link"
 // #endregion
 
-const Navbar = ({
-    bg="bg-white"
-}) => {
+const Navbar = () => {
 
 	return (
 		<nav 
-			className={`
-				p-2 pl-4 min-w-[50%] small:min-w-full xlarge:min-w-[30%] 
-				text-sm xlarge:text-lg mb-4 flex items-center gap-10 small:gap-2 justify-between
-				rounded-full font-medium text-charcoal-100 ${bg} max-w-4xl
-			`}
+			className="
+				p-2 pr-4 min-w-[50%] small:min-w-full xlarge:min-w-[30%] 
+				text-lg mb-4 flex items-center gap-10 small:gap-2 
+				justify-between rounded-full font-medium text-white 
+				max-w-4xl bg-blue-100
+			"
 		>
 			<Logo 
-				size={90}
-				fill="#2F2F2F"
+				size={100}
+				fill="#FFF"
 			/>
 
 			<aside 
 				className="flex gap-5 small:hidden"
 			>
-				<a
-					href="/use-cases"
+				<Link
+					href="/dashboard"
 					className="
 						opacity-70 hover:opacity-100
 						transition-all ease-in-out delay-100 
 						cursor-pointer
 					"
 				>
-					Use Cases
-				</a>
-				<a
-					href="/pricing"
+					Dashboard
+				</Link>
+				<Link
+					href="/connections"
 					className="
 						opacity-70 hover:opacity-100
 						transition-all ease-in-out delay-100 
 						cursor-pointer
 					"
 				>
-					Pricing
-				</a>
-				<a
-					href="/blogs"
+					Connections
+				</Link>
+				<Link
+					href="/templates"
 					className="
 						opacity-70 hover:opacity-100
 						transition-all ease-in-out delay-100 
 						cursor-pointer
 					"
 				>
-					Resources
-				</a>
+					Templates
+				</Link>
 			</aside>
 
-			<a
-				href="/"
-				className="
-					px-6 py-2 rounded-full
-					text-white hover:bg-blue-200 bg-blue-100
-					transition-all ease-in-out delay-100 
-					cursor-pointer 
-				"
+			<aside
+				className="flex gap-5 items-center"
 			>
-				Signup
-			</a>
+				<Link
+					href="/connections"
+					className="
+						px-6 py-1 rounded-full cursor-pointer 
+						text-blue-100 hover:bg-blue-200 hover:text-white bg-white
+						transition-all ease-in-out delay-100
+					"
+				>
+					+ Schedule
+				</Link>
+
+
+				<Link
+					href="/profile"
+					className="border-2 border-white rounded-full"
+				>	
+					<Image
+						className="rounded-full"
+						alt={"profile"}
+						src={"https://media.licdn.com/dms/image/v2/D5603AQH2-Le-GLYQfQ/profile-displayphoto-crop_800_800/B56ZhyEAK4HUAI-/0/1754260309150?e=1759363200&v=beta&t=tSQG_CnXVrLuWg8REMJh1uWrk1NRL7iDLXG_WGKIwYA"}
+						width={40}
+						height={40}
+					/>
+				</Link>
+			</aside>
+
 		</nav>
 	)
 }

@@ -1,37 +1,107 @@
 // #region imports
 import {
-    Icon,
 	IconButton,
-	Button,
 } from "@mui/material"
+
 import Image from "next/image"
+import Trash from "./Icons/Trash"
+import TimeProgress from "./TimeProgress"
+import Link from "next/link"
 // #endregion
 
 const DashboardCard = ({
 	name,
-    picture,
-    template,
-    message,
-    scheduleTime,
+	picture,
+	template,
+	message,
+	profile,
+	scheduleTime,
+	startTime,
 }:{
-    name: string,
-    picture: string,
-    template?: string,
-    message?: string,
-    scheduleTime: Date,
+	name: string,
+	picture: string,
+	template?: string,
+	message?: string,
+	profile: string,
+	scheduleTime: Date,
+	startTime: Date,
 }) => {
+	
+	const formatted = new Intl.DateTimeFormat(
+		"en-US", 
+		{
+			hour: "numeric",
+			minute: "numeric",
+			hour12: true,
+			timeZoneName: "shortGeneric"
+		}
+	).format(scheduleTime)
+
 	return (
-		<Button>
-            <Image/>
-            <p></p>
+		<li
+			className="
+				list-none flex gap-10 text-2xl items-center w-[50%]
+				p-2 pr-4 tracking-tight text-grey-200 hover:text-white
+				bg-grey-100 hover:bg-blue-100 active:bg-blue-200 group justify-between
+				transition-all ease-in-out delay-100 cursor-pointer rounded-full
+			"
+		>
 
-            <p></p>
+			<aside
+				className="flex items-center gap-5 w-[20%]"
+			>
+				<Image
+					className="rounded-full"
+					alt={name ?? "SendIn"}
+					src={picture}
+					width={60}
+					height={60}
+				/>
 
-            <Icon/>
-            <p></p>
+				<Link
+					className="
+						text-charcoal-100 group-hover:text-white
+						transition-all ease-in-out delay-100 
+					"
+					href={profile}
+					target="_blank"			
+					title={name ?? "SendIn"}	
+				>
+					{name}
+				</Link>
+			</aside>
 
-            <IconButton/>
-		</Button>
+			<p>
+				{template ?? message}
+			</p>
+
+			<aside
+				className="flex items-center gap-6"
+			>
+
+				<div className="flex w-fit items-center gap-4">
+					<TimeProgress
+						scheduledTime={scheduleTime}
+						startTime={startTime}
+					/>
+					<p
+						className="
+							text-xl text-blue-100 group-hover:text-white
+							transition-all ease-in-out delay-100 font-medium
+						"
+					>
+						{formatted}
+					</p>
+				</div>
+
+				<IconButton 
+					size="medium"
+				>
+					<Trash/>
+				</IconButton>
+			</aside>
+
+		</li>
 	)
 }
 

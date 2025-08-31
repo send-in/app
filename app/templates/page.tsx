@@ -1,10 +1,12 @@
 // #region imports
+import Editor from "@/components/Editor"
+import TemplateCard from "@/components/TemplateCard"
+
 import { 
     Button,
 	Pagination,
 	Stack 
 } from "@mui/material"
-import Editor from "@/components/Editor"
 // #endregion
 
 

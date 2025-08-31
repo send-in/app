@@ -1,4 +1,5 @@
 // #region Imports
+import Link from "next/link"
 import Logo from "./Icons/Logo"
 // #endregion
 
@@ -86,21 +87,18 @@ const links = [
 	},
 ]
 
-const Footer = ({
-    fixed=true
-}) => {
+const Footer = () => {
 	return (
 		<section
-			className={`
+			className="
                 w-full mt-4 small:mt-0 text-white bottom-0 
                 small:relative z-10 p-4 xlarge:p-8 small:pt-0
-                ${fixed?"fixed":"relative"}
-            `}
+            "
 			id="footer"
 		>
 			<div
 				className="
-					flex flex-col items-center bg-blue-100 bg-cover w-full
+					flex flex-col items-center bg-blue-100 bg-cover
 					rounded-3xl p-10 gap-12 xlarge:gap-24 relative overflow-hidden
 				"
 			>
@@ -128,7 +126,7 @@ const Footer = ({
 							</p>
 
 							{category.items.map((link, idx) => (
-								<a
+								<Link
 									className="
 										transition-all ease-in-out delay-100 
 										cursor-pointer
@@ -139,7 +137,7 @@ const Footer = ({
 									key={idx}
 								>
 									{link.name}
-								</a>
+								</Link>
 							))}
 
 						</div>

@@ -1,3 +1,4 @@
+@layer theme, base, mui, components, utilities;
 @import "tailwindcss";
 
 :root {
@@ -57,6 +58,18 @@
 	.svg-citric > svg {
 		fill: var(--color-citric);
 	}
+	.text-gradient-end {
+		background: linear-gradient(
+			to right,
+			var(--color-grey-300) 0%,
+			var(--color-grey-100) 80%,
+			var(--color-grey-100) 100%
+		);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text; /* fallback */
+		
+	}
 }
 
 body {
@@ -67,3 +80,8 @@ body {
 button {
     box-shadow: none !important;
 }
+
+fieldset{
+	border: none
+}
+

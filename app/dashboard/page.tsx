@@ -1,9 +1,9 @@
 // #region imports
 import Image from "next/image"
 
-import DashboardCard from "@/components/DashboardCard"
+import DashboardCard from "@/components/completed/DashboardCard"
 import Editor from "@/components/Editor"
-import Search from "@/components/Search"
+import Search from "@/components/SearchBar"
 import Sort from "@/components/Sort"
 
 import { 
@@ -43,7 +43,11 @@ const page = () => {
 
 			<Stack>
 				<Stack>
-					<Image/>
+					<Image
+						alt=""
+						src="/logo.svg"
+						fill
+					/>
 					<Stack>
 						<h2></h2>
 						<p></p>
