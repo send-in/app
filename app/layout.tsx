@@ -1,7 +1,4 @@
 // #region imports
-// import Footer from "@/components/Footer"
-// import Navbar from "@/components/Navbar"
-
 import "@/styles/globals.css"
 import { StyledEngineProvider } from "@mui/material/styles"
 import { Mada } from "next/font/google"
@@ -36,16 +33,13 @@ export default async function RootLayout({
 					className={`
 						${mada.className} 
 						antialiased 
-						h-screen
-						overflow-y-hidden
-						`}
+						min-h-screen
+					`}
 				>
 					<StyledEngineProvider 
 						enableCssLayer
 					>
-						{/* <Navbar/>*/}
 						{children}
-						{/* <Footer/> */}
 			 		</StyledEngineProvider>
 				</body>
 		</html>

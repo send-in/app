@@ -1,6 +1,6 @@
 // #region imports
 import AuthSidePanel from "@/components/AuthSidePanel"
-import Logo from "@/components/Icons/Logo"
+import Logo from "@/Icons/Logo"
 
 import Link from "next/link"
 

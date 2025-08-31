@@ -8,7 +8,7 @@ import {
   MenuItem,
 } from "@mui/material"
 import zones from "@/templates/timezones.json"
-import Globe from "./Icons/Globe"
+import Globe from "../Icons/Globe"
 import SearchBar from "./SearchBar"
 // #endregion
 

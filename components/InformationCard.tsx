@@ -1,5 +1,5 @@
 // #region imports
-import Information from "./Icons/Information"
+import Information from "../Icons/Information"
 // #endregion
 
 const InformationCard = ({

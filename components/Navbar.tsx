@@ -1,6 +1,6 @@
 // #region Imports
 import Image from "next/image"
-import Logo from "./Icons/Logo"
+import Logo from "../Icons/Logo"
 import Link from "next/link"
 // #endregion
 
@@ -9,14 +9,14 @@ const Navbar = () => {
 	return (
 		<nav 
 			className="
-				p-2 pr-4 min-w-[50%] small:min-w-full xlarge:min-w-[30%] 
-				text-lg mb-4 flex items-center gap-10 small:gap-2 
+				pl-4 p-1 min-w-[50%] small:min-w-full xlarge:min-w-[30%] 
+				xlarge:text-lg mb-4 flex items-center gap-10 small:gap-2 
 				justify-between rounded-full font-medium text-white 
 				max-w-4xl bg-blue-100
 			"
 		>
 			<Logo 
-				size={100}
+				size={50}
 				fill="#FFF"
 			/>
 

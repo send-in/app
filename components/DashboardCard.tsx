@@ -4,7 +4,7 @@ import {
 } from "@mui/material"
 
 import Image from "next/image"
-import Trash from "./Icons/Trash"
+import Trash from "../Icons/Trash"
 import TimeProgress from "./TimeProgress"
 import Link from "next/link"
 // #endregion

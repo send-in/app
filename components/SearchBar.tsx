@@ -1,5 +1,5 @@
 // #region imports
-import Search from "./Icons/Seach"
+import Search from "../Icons/Seach"
 import {
 	TextField, 
 } from "@mui/material"

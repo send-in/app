@@ -5,8 +5,8 @@ import {
 	Radio,
 } from "@mui/material"
 
-import Globe from "./Icons/Globe"
-import Clock from "./Icons/Clock"
+import Globe from "../Icons/Globe"
+import Clock from "../Icons/Clock"
 import Link from "next/link"
 // #endregion
 
@@ -71,7 +71,7 @@ const ConnectionCard = ({
 
 
 			<p
-				className="w-[20%] text-md font-medium"
+				className="w-[20%] text-base font-medium"
 			>
 				{bio}
 			</p>

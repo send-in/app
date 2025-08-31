@@ -11,28 +11,28 @@ const AuthSidePanel = () => (
 		"
 	>
 		<aside
-			className="relative h-fit pr-32"
+			className="relative h-fit pr-12 xlarge:pr-32"
 		>
 			<Image
 				src="/others/timezone.svg" 
 				alt="timezone" 
-				height={450}
-				width={450}
+				height={350}
+				width={350}
 			/>
 			<Image
 				className="absolute -bottom-[20%] left-[48%]"
 				src="/others/switch.svg"
 				alt="switch"
-				height={300}
-				width={300}
+				height={250}
+				width={250}
 			/>
 		</aside>
 		<Image
 			className="absolute top-5 right-5"
 			src="/icons/logo.svg"
 			alt="sendin"
-			height={100}
-			width={100}
+			height={60}
+			width={60}
 		/>
 	</section>
 )

@@ -1,6 +1,6 @@
 // #region Imports
 import Link from "next/link"
-import Logo from "./Icons/Logo"
+import Logo from "../Icons/Logo"
 // #endregion
 
 const links = [
@@ -91,20 +91,21 @@ const Footer = () => {
 	return (
 		<section
 			className="
-                w-full mt-4 small:mt-0 text-white bottom-0 
-                small:relative z-10 p-4 xlarge:p-8 small:pt-0
+                w-full pt-2 text-charcoal-100 bottom-0 
+                small:relative z-10 p-8 xlarge:p-8 small:pt-0
             "
 			id="footer"
 		>
 			<div
 				className="
-					flex flex-col items-center bg-blue-100 bg-cover
+					flex flex-col items-center bg-bluewash bg-cover
 					rounded-3xl p-10 gap-12 xlarge:gap-24 relative overflow-hidden
 				"
 			>
 
 				<Logo
-					size={110}
+                    fill="#2F2F2F"
+					size={50}
 				/>
 
 				<aside 
@@ -117,7 +118,7 @@ const Footer = () => {
 					{links.map((category, index) => (
 						<div 
 							key={index} 
-							className="text-md xlarge:text-lg flex flex-col items-start small:w-fit"
+							className="text-base xlarge:text-lg flex flex-col items-start small:w-fit"
 						>
 							<p 
 								className="text-2xl small:text-xl xlarge:text-3xl"

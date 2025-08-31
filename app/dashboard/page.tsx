@@ -1,7 +1,7 @@
 // #region imports
 import Image from "next/image"
 
-import DashboardCard from "@/components/completed/DashboardCard"
+import DashboardCard from "@/components/DashboardCard"
 import Editor from "@/components/Editor"
 import Search from "@/components/SearchBar"
 import Sort from "@/components/Sort"
@@ -23,16 +23,18 @@ const page = () => {
 			<Stack>
 				<Stack>
 					<Search/>
-					<Sort/>
+					{/* <Sort/> */}
 				</Stack>
 
 				<Stack>
 					{
 						<DashboardCard
 							name=""
-							picture=""
+							picture="/"
 							template=""
+                            profile=""
 							scheduleTime={new Date()}
+							startTime={new Date()}
 						/>
 					}
 				</Stack>

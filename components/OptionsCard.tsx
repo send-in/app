@@ -7,10 +7,10 @@ import Link from "next/link"
 import Image from "next/image"
 import Templates from "./Templates"
 import DateTime from "./DateTime"
-import Clock from "./Icons/Clock"
-import Globe from "./Icons/Globe"
-import Trash from "./Icons/Trash"
-import Logo from "./Icons/Logo"
+import Clock from "../Icons/Clock"
+import Globe from "../Icons/Globe"
+import Trash from "../Icons/Trash"
+import Logo from "../Icons/Logo"
 // #endregion
 
 const OptionsCard = ({

@@ -3,7 +3,7 @@ import {
 	IconButton 
 } from "@mui/material"
 import Image from "next/image"
-import Arrow from "./Icons/Arrow"
+import Arrow from "../Icons/Arrow"
 // #endregion
 
 const items = [

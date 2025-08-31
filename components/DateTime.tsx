@@ -10,7 +10,7 @@ import {
 } from "@mui/material"
 
 import Image from "next/image"
-import Clock from "./Icons/Clock"
+import Clock from "../Icons/Clock"
 import TimeZone from "./TimeZone"
 import InformationCard from "./InformationCard"
 // #endregion
