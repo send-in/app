@@ -11,7 +11,7 @@ const LinkedinConnect = () => {
 		<div
 			className="
 				flex items-center w-full p-2 px-4 bg-grey-100 
-				rounded-full
+				rounded-full 
 			"
 		>
 			<Image
@@ -29,7 +29,7 @@ const LinkedinConnect = () => {
 				slotProps={{
 					input:{
 						disableUnderline: true,
-						className: "font-mada text-2xl px-4 text-gradient-end"
+						className: "font-mada text-xl px-4 text-gradient-end"
 					}
 				}}
 			/>
@@ -38,7 +38,7 @@ const LinkedinConnect = () => {
 				// onClick={handleClick}
 				className="
 					rounded-full bg-blue-100 hover:bg-blue-200 text-white 
-					gap-2 text-lg font-mada font-normal normal-case tracking-tight
+					gap-2 text-base font-mada font-normal normal-case tracking-tight
 					transition-all ease-in-out delay-100 px-6 min-w-fit
 				"
 			>

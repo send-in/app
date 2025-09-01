@@ -1,8 +1,6 @@
 // #region imports
 import { 
-	Box,
 	Button,
-	Stack,
 	TextField
 } from "@mui/material"
 
@@ -11,32 +9,121 @@ import TimeZone from "@/components/TimeZone"
 import LinkedinConnect from "@/components/LinkedinConnect"
 // #endregion
 
+const inputClass = `
+	font-mada px-3 bg-grey-100 rounded-lg 
+	font-normal text-lg tracking-tight h-fit
+`
+
+const buttonClass = `
+	rounded-full text-white px-8 w-[25%]
+	gap-2 font-mada font-medium normal-case
+	transition-all ease-in-out delay-100 text-lg
+	tracking-tight h-fit
+`
+
 const page = ({
 }) => {
 
 	// logic for steps
 	return (
-		<Box>
+		<section
+			className="flex flex-col gap-4 w-[80%]"
+		>
 			<Image
-				alt=""
-				src="/logo.svg"
-				fill
+				className="rounded-full"
+				alt={"SendIn"}
+				src={"https://media.licdn.com/dms/image/v2/D5603AQH2-Le-GLYQfQ/profile-displayphoto-crop_800_800/B56ZhyEAK4HUAI-/0/1754260309150?e=1759363200&v=beta&t=tSQG_CnXVrLuWg8REMJh1uWrk1NRL7iDLXG_WGKIwYA"}
+				width={80}
+				height={80}
 			/>
 
-			<Stack>
-				<h1></h1>
-				<TimeZone/>
-			</Stack>
+			<aside
+				className="flex justify-between items-center "
+			>
+				<h1
+					className="text-2xl text-blue-100 font-semibold tracking-tighter"
+				>
+					Hey, Vishnu !
+				</h1>
+				<TimeZone inPopUp/>
+			</aside>
 
-			<TextField/>
-			<TextField/>
-			<TextField/>
-			<TextField/>
+
+			<TextField
+				disabled={true}
+				variant="standard"
+				value="Vishnu Shon"
+				label="Full Name" 
+				fullWidth
+				slotProps={{
+					input: {
+						disableUnderline: true,
+						className: inputClass
+					},
+					inputLabel:{
+						shrink: true
+					}
+				}}
+			/>
+			<TextField
+				disabled={true}
+				variant="standard"
+				value="vshon447@gmail.com"
+				label="Email"
+				fullWidth
+				slotProps={{
+					input: {
+						disableUnderline: true,
+						className: inputClass
+					}
+				}}
+			/>
+			<TextField
+				disabled={true}
+				variant="standard"
+				type="password"
+				value="ananyab4ya"
+				label="Password"
+				fullWidth
+				slotProps={{
+					input: {
+						disableUnderline: true,
+						className: inputClass
+					}
+				}}
+			/>
+			<TextField
+				disabled={true}
+				variant="standard"
+				type="password"
+				value="ananyab4ya"
+				label="Confirm Password"
+				fullWidth
+				slotProps={{
+					input: {
+						disableUnderline: true,
+						className: `${inputClass} mb-8`
+					}
+				}}
+			/>
 
 			<LinkedinConnect/>
 
-			<Button></Button>
-		</Box>
+			<p
+				className="text-sm text-grey-200"
+			>
+				We take your li_at cookie and user agent information, 
+				If you have the extension installed you can update your cookie 
+				for it too. You can manually enter your cookie using chrome dev tools
+			</p>
+
+			<Button
+                // disabled={true}
+				className={`bg-charcoal-100 hover:bg-charcoal-200 ${buttonClass}`}
+			>
+				Save
+			</Button>
+		</section>
 	)
 }
 

@@ -32,7 +32,7 @@ const page = ({
 				"
 			>
 				<section
-					className="w-[24%] flex flex-col gap-6 ml-[5%]"
+					className="w-[24%] flex flex-col gap-6 "
 				>
 					<div
 						className="space-y-6 p-2 tracking-tighter"

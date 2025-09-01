@@ -71,9 +71,9 @@ const TimeZone = ({
 				}
 				className={`
 					rounded-full bg-blue-100 hover:bg-blue-200 text-white 
-					gap-2 text-lg font-mada font-normal normal-case
-					transition-all ease-in-out delay-100 py-2 w-max
-					${inPopUp ? "py-0 px-3" : "px-4"}
+					gap-2 text-base font-mada font-normal normal-case
+					transition-all ease-in-out delay-100 w-max
+					${inPopUp ? "py-1 px-3" : "px-4 py-2"} tracking-tight
 				`}
 			>
 				{
