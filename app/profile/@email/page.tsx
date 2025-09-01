@@ -1,20 +1,22 @@
 // #region imports
 import Image from "next/image"
 
-import { 
+import {
 	Button,
 	TextField
 } from "@mui/material"
 
-import { 
-    TimeZone, 
-    LinkedinConnect
+import {
+	TimeZone,
+	LinkedinConnect
 } from "@/components"
 // #endregion
 
 const inputClass = `
-	font-mada px-3 bg-grey-100 rounded-lg 
+	font-mada px-3 bg-grey-100 rounded-lg
 	font-normal text-lg tracking-tight h-fit
+    focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-inset
+    transition-all ease-in-out delay-100 cursor-pointer
 `
 
 const buttonClass = `
@@ -56,7 +58,7 @@ const page = ({
 				disabled={true}
 				variant="standard"
 				value="Vishnu Shon"
-				label="Full Name" 
+				label="Full Name"
 				fullWidth
 				slotProps={{
 					input: {
@@ -115,13 +117,13 @@ const page = ({
 			<p
 				className="text-sm text-grey-200"
 			>
-				We take your li_at cookie and user agent information, 
-				If you have the extension installed you can update your cookie 
+				We take your li_at cookie and user agent information,
+				If you have the extension installed you can update your cookie
 				for it too. You can manually enter your cookie using chrome dev tools
 			</p>
 
 			<Button
-                // disabled={true}
+				// disabled={true}
 				className={`bg-charcoal-100 hover:bg-charcoal-200 ${buttonClass}`}
 			>
 				Save

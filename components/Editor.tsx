@@ -13,14 +13,17 @@ import {
 	Strike,
 	Emoji,
 	Link,
-	Undo,
-	Redo,
 	Bullets,
 	Numbers,
+	Copy,
 } from "@/Icons"
+
+import { 
+	IconButton,
+	TextField,
+} from "@mui/material"
 // #endregion
 
-// #region --- Unicode Transformers ---
 const toBold = (text: string) =>
 	text.replace(/[A-Za-z0-9]/g, (c) => {
 		const code = c.charCodeAt(0)
@@ -39,14 +42,20 @@ const toUnderline = (text: string) =>
 const toStrike = (text: string) => 
 	text.split("").map((c) => c + "\u0336").join("")
 
-// #endregion
-
 const EMOJI_OPTIONS = [
 	"😊", "😂", "❤️", "👍", "👏", "🎉", "🔥", "💪", "🙏", "✅", 
 	"🚀", "💡", "⭐", "👑", "🎯", "💯", "🤝", "💼", "📈", "🏆"
 ]
 
-const Editor = () => {
+const buttonClass = `
+	bg-grey-100 rounded-md w-10 h-8
+`
+
+const Editor = ({
+	noTemplate = false
+}:{
+	noTemplate: boolean
+}) => {
 	const editorRef = useRef<HTMLDivElement>(null)
 
 	const [activeFormats, setActiveFormats] = useState({
@@ -223,179 +232,204 @@ const Editor = () => {
 	}
 
 	return (
-		<section 
-			className="w-full rounded-lg border border-gray-200 bg-white shadow-sm font-sans relative"
-		>
-			
-			<aside className="flex items-center gap-1 bg-gray-50 px-3 py-2 border-b border-gray-200 rounded-t-lg">
-				{/* Text Formatting */}
-				<button
-					onClick={() => {
-						toggleFormat('bold')
-						const selection = window.getSelection()
-						if (selection && selection.toString()) {
-							applyToSelection(toBold)
-						}
-					}}
-					className={`p-2 rounded hover:bg-gray-200 transition-colors ${
-						activeFormats.bold ? 'bg-blue-100 text-blue-600' : 'text-gray-600'
-					}`}
-					title="Bold"
+		<>
+			{
+				!noTemplate && 
+				<section
+					className="
+						flex items-center w-full p-2 px-6 bg-grey-100 
+						rounded-xl mb-5 focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-inset
+						transition-all ease-in-out delay-100 cursor-pointer
+					"
 				>
-					<Bold/>
-				</button>
-				
-				<button
-					onClick={() => {
-						toggleFormat('italic')
-						const selection = window.getSelection()
-						if (selection && selection.toString()) {
-							applyToSelection(toItalic)
-						}
-					}}
-					className={`p-2 rounded hover:bg-gray-200 transition-colors ${
-						activeFormats.italic ? 'bg-blue-100 text-blue-600' : 'text-gray-600'
-					}`}
-					title="Italic"
-				>
-					<Italic/>
-				</button>
-				
-				<button
-					onClick={() => {
-						toggleFormat('underline')
-						const selection = window.getSelection()
-						if (selection && selection.toString()) {
-							applyToSelection(toUnderline)
-						}
-					}}
-					className={`p-2 rounded hover:bg-gray-200 transition-colors ${
-						activeFormats.underline ? 'bg-blue-100 text-blue-600' : 'text-gray-600'
-					}`}
-					title="Underline"
-				>
-					<Underline/>
-				</button>
-				
-				<button
-					onClick={() => {
-						toggleFormat('strike')
-						const selection = window.getSelection()
-						if (selection && selection.toString()) {
-							applyToSelection(toStrike)
-						}
-					}}
-					className={`p-2 rounded hover:bg-gray-200 transition-colors ${
-						activeFormats.strike ? 'bg-blue-100 text-blue-600' : 'text-gray-600'
-					}`}
-					title="Strikethrough"
-				>
-					<Strike/>
-				</button>
+					<TextField
+						variant="standard"
+						placeholder="Appreciation & Connection"
+						fullWidth
+						slotProps={{
+							input:{
+								disableUnderline: true,
+								className: "font-mada tracking-tight"
+							}
+						}}
+					/>
+				</section>
 
-				<div className="w-px h-6 bg-gray-300 mx-1" />
+			}
 
-				<div className="relative">
-					<button
-						onClick={() => setShowEmojis(!showEmojis)}
-						className="p-2 rounded hover:bg-gray-200 transition-colors text-gray-600"
-						title="Insert Emoji"
+			<section 
+				className="
+					w-full rounded-2xl group
+					bg-white font-sans relative
+				"
+			>
+				
+				<aside 
+					className="
+						flex items-center gap-2 bg-white w-fit
+						px-3 py-2 absolute top-4 left-4 rounded-xl
+					"
+				>
+					<IconButton
+						className={buttonClass}
+						onClick={() => {
+							toggleFormat('bold')
+							const selection = window.getSelection()
+							if (selection && selection.toString()) {
+								applyToSelection(toBold)
+							}
+						}}
+						title="Bold"
 					>
-						<Emoji/>
-					</button>
+						<Bold/>
+					</IconButton>
 					
-					{showEmojis && (
-						<div className="absolute top-full left-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-50 p-2 grid grid-cols-5 gap-1 w-48">
-							{EMOJI_OPTIONS.map((emoji, index) => (
-								<button
-									key={index}
-									onClick={() => insertEmoji(emoji)}
-									className="p-2 hover:bg-gray-100 rounded text-lg"
-									title={emoji}
-								>
-									{emoji}
-								</button>
-							))}
-						</div>
-					)}
-				</div>
-
-				<button
-					onClick={handleLinkInsert}
-					className="p-2 rounded hover:bg-gray-200 transition-colors text-gray-600"
-					title="Insert Link"
-				>
-					<Link/>
-				</button>
-
-				<div className="w-px h-6 bg-gray-300 mx-1" />
-
-				{/* Undo/Redo */}
-				<button
-					onClick={handleUndo}
-					disabled={historyIndex <= 0}
-					className="p-2 rounded hover:bg-gray-200 transition-colors text-gray-600 disabled:opacity-50 disabled:cursor-not-allowed"
-					title="Undo"
-				>
-					<Undo/>
-				</button>
-				
-				<button
-					onClick={handleRedo}
-					disabled={historyIndex >= history.length - 1}
-					className="p-2 rounded hover:bg-gray-200 transition-colors text-gray-600 disabled:opacity-50 disabled:cursor-not-allowed"
-					title="Redo"
-				>
-					<Redo/>
-				</button>
-
-				<div className="w-px h-6 bg-gray-300 mx-1" />
-
-				{/* Lists */}
-				<button
-					onClick={startBulletList}
-					className={`p-2 rounded hover:bg-gray-200 transition-colors ${
-						listType === 'bullet' ? 'bg-blue-100 text-blue-600' : 'text-gray-600'
-					}`}
-					title="Bullet List"
-				>
-					<Bullets/>
-				</button>
-				
-				<button
-					onClick={startNumberList}
-					className={`p-2 rounded hover:bg-gray-200 transition-colors ${
-						listType === 'number' ? 'bg-blue-100 text-blue-600' : 'text-gray-600'
-					}`}
-					title="Numbered List"
-				>
-					<Numbers/>
-				</button>
-			</aside>
+					<IconButton
+						className={buttonClass}
+						onClick={() => {
+							toggleFormat('italic')
+							const selection = window.getSelection()
+							if (selection && selection.toString())
+								applyToSelection(toItalic)
+						}}
+						title="Italic"
+					>
+						<Italic/>
+					</IconButton>
 					
-			<aside
-				ref={editorRef}
-				contentEditable
-				suppressContentEditableWarning
-				onKeyDown={handleKeyDown}
-				onInput={saveToHistory}
-				className="min-h-[200px] p-4 text-[15px] leading-relaxed outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset rounded-b-lg"
-				data-placeholder="Start typing your message..."
-				style={{ 
-					whiteSpace: 'pre-wrap',
-					wordWrap: 'break-word'
-				}}
-			/>
+					<IconButton
+						className={buttonClass}
+						onClick={() => {
+							toggleFormat('underline')
+							const selection = window.getSelection()
+							if (selection && selection.toString()) {
+								applyToSelection(toUnderline)
+							}
+						}}
+						title="Underline"
+					>
+						<Underline/>
+					</IconButton>
+					
+					<IconButton
+						className={buttonClass}
+						onClick={() => {
+							toggleFormat('strike')
+							const selection = window.getSelection()
+							if (selection && selection.toString()) {
+								applyToSelection(toStrike)
+							}
+						}}
+						title="Strikethrough"
+					>
+						<Strike/>
+					</IconButton>
 
-			{showEmojis && (
-				<div 
-					className="fixed inset-0 z-40" 
-					onClick={
-						() => setShowEmojis(false)
-					}
+					<div className="w-[1.5px] h-6 bg-grey-200 mx-2 rounded-full" />
+
+					<div className="relative">
+						<IconButton
+							className={buttonClass}
+							onClick={() => setShowEmojis(!showEmojis)}
+							title="Insert Emoji"
+						>
+							<Emoji/>
+						</IconButton>
+						
+						{showEmojis && (
+							<div 
+								className="
+									absolute top-full left-0 mt-1 bg-white border 
+									border-grey-200 rounded-lg shadow-lg z-50 p-2 
+									grid grid-cols-5 gap-1 w-48
+								"
+							>
+								{EMOJI_OPTIONS.map((emoji, index) => (
+									<IconButton
+										key={index}
+										onClick={() => insertEmoji(emoji)}
+										title={emoji}
+										size="small"
+										className="text-black"
+									>
+										{emoji}
+									</IconButton>
+								))}
+							</div>
+						)}
+					</div>
+
+					<IconButton
+						className={buttonClass}
+						onClick={handleLinkInsert}
+						// className="p-2 rounded hover:bg-grey-200 transition-colors text-grey-600"
+						title="Insert Link"
+					>
+						<Link/>
+					</IconButton>
+
+					<div className="w-[1.5px] h-6 bg-grey-200 mx-2 rounded-full" />
+
+					<IconButton
+						className={buttonClass}
+						onClick={startBulletList}
+						title="Bullet List"
+					>
+						<Bullets/>
+					</IconButton>
+
+					<IconButton
+						className={buttonClass} 
+						onClick={startNumberList}
+						title="Numbered List"
+						size="medium"
+					>
+						<Numbers/>
+					</IconButton>
+				</aside>
+						
+				<aside
+					ref={editorRef}
+					contentEditable
+					suppressContentEditableWarning
+					onKeyDown={handleKeyDown}
+					onInput={saveToHistory}
+					className="
+						bg-grey-100 rounded-2xl tracking-tight text-grey-200
+						focus:text-charcoal-100 w-full peer
+						min-h-[60vh] p-4 pt-20 text-base leading-relaxed outline-none 
+						focus:ring-2 focus:ring-blue-500 focus:ring-inset
+						transition-all ease-in-out delay-100 cursor-pointer
+					"
+					data-placeholder="Hi {{username}}, I really admire the work you’re doing at {{company}}. I’d love to connect and stay updated on your journey!"
+					style={{ 
+						whiteSpace: 'pre-wrap',
+						wordWrap: 'break-word'
+					}}
 				/>
-			)}
-		</section>
+
+				{showEmojis && (
+					<div
+						onClick={
+							() => setShowEmojis(false)
+						}
+					/>
+				)}
+
+				<IconButton
+					className="
+						bg-blue-100 rounded-full p-3
+						flex items-center justify-center
+						absolute bottom-5 right-5
+					"
+					onClick={startNumberList}
+					title="Copy"
+					size="medium"
+				>
+					<Copy/>
+				</IconButton>
+			</section>
+		</>
 	)
 }
 

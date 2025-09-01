@@ -33,7 +33,7 @@ export default async function RootLayout({
 					className={`
 						${mada.className} 
 						antialiased 
-						min-h-screen
+						max-h-screen
 					`}
 				>
 					<StyledEngineProvider 

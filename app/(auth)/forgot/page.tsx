@@ -21,7 +21,9 @@ const buttonClass = `
 
 const inputClass = `
 	font-mada px-3 bg-grey-100 rounded-lg 
-	font-medium text-lg tracking-tight h-fit
+	font-medium text-lg tracking-tight h-fit focus-within:ring-2 
+    focus-within:ring-blue-500 focus-within:ring-inset
+    transition-all ease-in-out delay-100 cursor-pointer
 `
 
 const page = ({

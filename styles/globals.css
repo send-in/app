@@ -88,11 +88,11 @@ fieldset{
 /* Editor placeholder styles */
 [contenteditable][data-placeholder]:empty::before {
 	content: attr(data-placeholder);
-	color: #9ca3af;
+	color: var(--color-grey-200);
 	pointer-events: none;
 }
 
 [contenteditable][data-placeholder]:empty:focus::before {
-	color: #6b7280;
+	color: var(--color-grey-200);
 }
 
