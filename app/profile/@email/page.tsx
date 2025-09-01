@@ -1,12 +1,15 @@
 // #region imports
+import Image from "next/image"
+
 import { 
 	Button,
 	TextField
 } from "@mui/material"
 
-import Image from "next/image"
-import TimeZone from "@/components/TimeZone"
-import LinkedinConnect from "@/components/LinkedinConnect"
+import { 
+    TimeZone, 
+    LinkedinConnect
+} from "@/components"
 // #endregion
 
 const inputClass = `

@@ -1,19 +1,24 @@
 // #region imports
 import Image from "next/image"
 
-import DashboardCard from "@/components/DashboardCard"
-import Editor from "@/components/Editor"
-import Search from "@/components/SearchBar"
-import Sort from "@/components/Sort"
+import { 
+	DashboardCard, 
+	Editor, 
+	SearchBar as Search, 
+	Sort 
+} from "@/components"
 
 import { 
 	Button,
 	Pagination,
 	Stack 
 } from "@mui/material"
-import Templates from "@/components/Templates"
-import DateTime from "@/components/DateTime"
-import TimeZone from "@/components/TimeZone"
+
+import { 
+    Templates, 
+    DateTime, 
+    TimeZone 
+} from "@/components"
 // #endregion
 
 

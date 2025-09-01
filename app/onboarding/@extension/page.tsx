@@ -1,6 +1,12 @@
 // #region imports
-import InformationCard from "@/components/InformationCard"
-import Google from "@/Icons/Google"
+import { 
+    InformationCard 
+} from "@/components"
+
+import { 
+    Google 
+} from "@/Icons"
+
 import {
 	Button,
 	Stack,

@@ -1,6 +1,9 @@
 // #region imports
-import InformationCard from "@/components/InformationCard"
-import LinkedinConnect from "@/components/LinkedinConnect"
+import { 
+    InformationCard, 
+    LinkedinConnect 
+} from "@/components"
+
 import {
 	Button,
 } from "@mui/material"

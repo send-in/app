@@ -1,8 +1,10 @@
 // #region imports
-import DateTime from "@/components/DateTime"
-import OptionsCard from "@/components/OptionsCard"
-import Search from "@/components/SearchBar"
-import Templates from "@/components/Templates"
+import { 
+	DateTime, 
+	OptionsCard, 
+	SearchBar as Search, 
+	Templates 
+} from "@/components"
 
 import { 
 	Button,

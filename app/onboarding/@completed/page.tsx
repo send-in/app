@@ -1,5 +1,8 @@
 // #region imports
-import Linkedin from "@/Icons/Linkedin"
+import { 
+    Linkedin 
+} from "@/Icons"
+
 import {
 	Button,
 } from "@mui/material"

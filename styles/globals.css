@@ -85,3 +85,14 @@ fieldset{
 	border: none
 }
 
+/* Editor placeholder styles */
+[contenteditable][data-placeholder]:empty::before {
+	content: attr(data-placeholder);
+	color: #9ca3af;
+	pointer-events: none;
+}
+
+[contenteditable][data-placeholder]:empty:focus::before {
+	color: #6b7280;
+}
+

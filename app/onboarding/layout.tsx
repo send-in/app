@@ -1,6 +1,9 @@
 // #region imports
 import { ReactNode } from "react"
-import OnboardingSidePanel from "@/components/OnboardingSidePanel"
+
+import { 
+    OnboardingSidePanel 
+} from "@/components"
 // #endregion
 
 const layout = ({

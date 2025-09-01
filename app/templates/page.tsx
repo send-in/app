@@ -1,6 +1,8 @@
 // #region imports
-import Editor from "@/components/Editor"
-import TemplateCard from "@/components/TemplateCard"
+import { 
+    Editor, 
+    TemplateCard 
+} from "@/components"
 
 import { 
     Button,
@@ -13,7 +15,7 @@ import {
 const page = () => {
 	return (
 		<main>
-			<Stack>
+			{/* <Stack>
                 {
                     <TemplateCard
                         template=""
@@ -24,16 +26,16 @@ const page = () => {
                     <Button></Button>
 				    <Pagination/>
 				</Stack>
-			</Stack>
+			</Stack> */}
 
-			<Stack>
 				<Editor/>
+			<section>
 
-				<Stack>
+				{/* <aside>
 					<Button></Button>
 					<Button></Button>
-				</Stack>
-			</Stack>
+				</aside> */}
+			</section>
 		</main>
 	)
 }

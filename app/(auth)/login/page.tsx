@@ -1,15 +1,20 @@
 // #region imports
 import Link from "next/link"
+
 import {
 	Button, 
 	TextField,
 } from "@mui/material"
 
-import Google from "@/Icons/Google"
-import Linkedin from "@/Icons/Linkedin"
+import { 
+    Google, 
+    Linkedin 
+} from "@/Icons"
 
-import Footer from "@/components/Footer"
-import AuthSidePanel from "@/components/AuthSidePanel"
+import { 
+    Footer, 
+    AuthSidePanel 
+} from "@/components"
 // #endregion
 
 const buttonClass = `

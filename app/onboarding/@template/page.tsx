@@ -1,6 +1,9 @@
 // #region imports
-import Editor from "@/components/Editor"
-import InformationCard from "@/components/InformationCard"
+import { 
+    Editor, 
+    InformationCard
+} from "@/components"
+
 import {
 	Button,
 } from "@mui/material"

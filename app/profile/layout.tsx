@@ -1,10 +1,15 @@
 // #region imports
+import Image from "next/image"
+
 import { ReactNode } from "react"
+
 import { 
 	Button
 } from "@mui/material"
-import Image from "next/image"
-import Navbar from "@/components/Navbar"
+
+import { 
+    Navbar 
+} from "@/components"
 // #endregion
 
 const layout = ({
