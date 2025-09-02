@@ -10,7 +10,7 @@ const SearchBar = ({
 }) => (
 	<div 
 		className="
-			flex items-center w-full p-2 px-6 bg-grey-100 
+			flex items-center w-[50%] p-1 px-6 bg-grey-100 
 			rounded-full focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-inset
             transition-all ease-in-out delay-100 cursor-pointer
 		"

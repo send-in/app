@@ -17,7 +17,7 @@ import InformationCard from "./InformationCard"
 
 const buttonClassname = `
 	rounded-full text-charcoal-100 bg-grey-100 
-	hover:bg-blue-100 hover:text-white 
+	hover:bg-blue-100 hover:text-white tracking-tight
 	px-4 gap-2 text-lg font-mada font-normal 
 	normal-case py-1 justify-between w-full
 	transition-all ease-in-out delay-50
@@ -74,13 +74,13 @@ const DateTime = ({
 				onClick={handleClick}
 				variant="contained"
 				className="
-					rounded-full bg-grey-100 hover:bg-grey-200 text-charcoal-100 
-					px-6 py-1 gap-2 text-lg font-mada font-normal
-					transition-all ease-in-out delay-100 
+					rounded-full bg-blue-100 hover:bg-blue-200 text-white-100 
+					px-4 py-1 gap-2 text-base font-mada font-normal
+					transition-all ease-in-out delay-100 tracking-tighter
 				"
 				startIcon={
 					<Clock
-						fill="#2F2F2F"
+						fill="#FFF"
 					/>
 				}
 			>
@@ -97,7 +97,7 @@ const DateTime = ({
 						className: "top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
 					},
                     paper: { 
-						className: "p-4 rounded-3xl shadow-lg bg-white text-gray-800 w-fit h-fit space-y-5" 
+						className: "p-4 rounded-3xl shadow-lg bg-white text-gray-800 w-fit h-fit space-y-5 tracking-tight" 
 					}
                 }}
 			>
@@ -161,7 +161,7 @@ const DateTime = ({
 				</aside>
 
 				<aside
-					className="text-lg flex justify-between gap-8 items-center"
+					className="text-base flex justify-between gap-8 items-center text-grey-200 px-2"
 				>
 					<p>
 						Custom Date/Time
@@ -170,7 +170,7 @@ const DateTime = ({
 					<Button
 						className="
 							rounded-full bg-grey-100 hover:bg-grey-200 text-charcoal-100 
-							px-4 py-1 gap-2 text-lg font-mada font-normal normal-case
+							px-4 py-1 gap-2 text-lg font-mada font-normal normal-case tracking-tight
 						"
 						startIcon={
 							<Clock

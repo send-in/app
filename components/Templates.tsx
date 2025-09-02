@@ -40,9 +40,14 @@ const Templates = ({
 	}
 
 	return (
-		<FormControl className="w-max">
+		<FormControl 
+            className="w-max"
+        >
 			<Select
-				className="bg-grey-100 text-charcoal-100 rounded-full px-4 py-5 w-max h-[1rem] font-mada text-lg"
+				className="
+                    bg-blue-100 text-white rounded-full 
+                    px-4 py-4 w-max h-[1rem] font-mada text-lg tracking-tighter
+                "
 				value={value || ""}
 				onChange={handleChange}
 				displayEmpty
@@ -57,7 +62,7 @@ const Templates = ({
 				}
 				sx={{
 					".MuiSelect-icon": {
-						color: "var(--color-charcoal-100)",
+						color: "var(--color-white)",
 					},
 				}}
 			>

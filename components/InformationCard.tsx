@@ -9,7 +9,7 @@ const InformationCard = ({
 }) => {
 	return (
 		<aside
-			className="rounded-2xl bg-purple-100 p-4 px-4 flex items-start gap-4 font-medium justify-center max-w-full"
+			className="rounded-2xl bg-purple-100 p-2 px-4 flex items-start gap-4 font-medium justify-center max-w-full"
 		>
 			<div 
 				className="py-0.5"
