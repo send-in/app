@@ -22,7 +22,6 @@ const buttonClass = `
 	tracking-tighter
 `
 
-
 const dividerClass = `
 	bg-grey-100 rounded-full h-[50vh] w-[2px]
 `
@@ -54,6 +53,7 @@ const page = () => {
 					<Search/>
 
 					<PaginationResults/>
+
 					<Sort
 						options={[]}
 						styles="bg-grey-100"

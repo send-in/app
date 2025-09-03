@@ -2,6 +2,7 @@
 import { 
 	DateTime, 
 	OptionsCard, 
+	PaginationResults, 
 	SearchBar as Search, 
 	Templates 
 } from "@/components"
@@ -9,33 +10,55 @@ import {
 import { 
 	Button,
 	Radio,
-	Box,
 	Pagination,
-	Stack,
-	ToggleButtonGroup,
-	ToggleButton,
 } from "@mui/material"
-
 // #endregion
 
+const buttonClass = `
+	rounded-full px-8 min-w-[10%]
+	gap-2 font-mada font-medium normal-case
+	transition-all ease-in-out delay-100 text-base
+	tracking-tighter
+`
 
 const page = () => {
 	return (
-		<Box>
-			<Stack>
-				<Stack>
+		<section
+			className="w-full"
+		>
+			<aside
+				className="flex w-full justify-between px-2 items-center"
+			>
+				<div
+					className="space-x-4"
+				>
 					<Radio/>
-					<Search/>
-				</Stack>
+					Select all
+				</div>
 
-				<Stack>
-					<Templates/>
+				<Search/>
+
+				<aside 
+					className="flex gap-10"
+				>
+					<Templates
+						value="Outreach Template"
+					/>
 					<DateTime/>
-					<Button/>
-				</Stack>
-			</Stack>
 
-			<Stack>
+					<Button
+						// disabled={true}
+						className={`bg-orange hover:bg-orange-700 ml-14 ${buttonClass} text-white`}
+					>
+						Delete
+					</Button>
+				
+				</aside>
+			</aside>
+
+			<aside
+				className="space-y-4 my-4 w-full"
+			>
 				{
 					[...new Array(7)].map(
 						(_,index) =>
@@ -49,23 +72,37 @@ const page = () => {
 						/>
 					)
 				}
-			</Stack>
+			</aside>
 
-			<Stack>
-				<Stack>
-					<Button></Button>
-					<Button></Button>
-				</Stack>
+			<aside
+				className="flex items-center w-full justify-between"
+			>
+				<div
+					className="flex gap-4 items-center"
+				>
+					<Button
+						// disabled={true}
+						className={`bg-blue-100 hover:bg-blue-200 text-white ${buttonClass}`}
+					>
+						Schedule All
+					</Button>
+					<Button
+						// disabled={true}
+						className={`bg-grey-100 hover:bg-grey-200 text-grey-200 ${buttonClass}`}
+					>
+						Add Connection +
+					</Button>
+				</div>
 
-				<Pagination/>
-
-					<ToggleButtonGroup>
-					<ToggleButton value=""/>
-					<ToggleButton value=""/>
-					<ToggleButton value=""/>
-				</ToggleButtonGroup>
-			</Stack>
-		</Box>
+				<Pagination
+					page={2}
+					count={10}
+					siblingCount={0}
+					size="small"
+				/>
+				<PaginationResults/>
+			</aside>
+		</section>
 	)
 }
 

@@ -75,7 +75,7 @@ const DateTime = ({
 				variant="contained"
 				className="
 					rounded-full bg-blue-100 hover:bg-blue-200 text-white-100 
-					px-4 py-1 gap-2 text-base font-mada font-normal
+					px-4 py-1 gap-2 text-base font-mada font-normal w-fit shrink-0
 					transition-all ease-in-out delay-100 tracking-tighter
 				"
 				startIcon={

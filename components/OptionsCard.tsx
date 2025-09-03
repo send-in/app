@@ -19,18 +19,13 @@ const OptionsCard = ({
 	company,
 	country,
 	profile,
-	template,
-	message,
-	scheduleTime,
+
 }:{
 	name: string,
 	picture: string,
 	company: string,
 	country: string,
 	profile: string,
-	template?: string,
-	message?: string,
-	scheduleTime?: Date,
 }) => {
 	return (
 		<li
@@ -40,12 +35,12 @@ const OptionsCard = ({
 			"
 		>	
 			<aside
-				className="flex items-center gap-10"
+				className="flex items-center gap-8"
 			>
 				<Radio/>
 
 				<Link
-					className="flex gap-5 items-center group"
+					className="flex shrink-0 gap-4 items-center group"
 					href={profile}
 					target="_blank"			
 					title={name ?? "SendIn"}		
@@ -54,14 +49,14 @@ const OptionsCard = ({
 						className="rounded-full"
 						alt={name ?? "SendIn"}
 						src={picture}
-						width={60}
-						height={60}
+						width={45}
+						height={45}
 					/>
 
 					<aside>
 						<h3
 							className="
-								text-3xl text-blue-100 group-hover:text-blue-200
+								text-xl text-blue-100 group-hover:text-blue-200
 								transition-all ease-in-out delay-100 
 							"
 						>
@@ -76,27 +71,31 @@ const OptionsCard = ({
 				</Link>
 			</aside>
 
-			<aside 
-				className="text-xl text-charcoal-100 flex gap-10"
+            <aside 
+				className="text-base text-charcoal-100 flex gap-10"
 			>
 				<div
 					className="flex gap-3 items-center "
 				>
-					<Globe/>
+					<Globe
+                        size={16}
+                    />
 					IST
 				</div>
 
 				<div
 					className="flex gap-3 items-center"
 				>
-					<Clock/>
+					<Clock
+                        size={16}
+                    />
 					Afternoon
 				</div>
 			</aside>
 
 
 			<aside 
-				className="flex gap-10 ml-[10%]"
+				className="flex gap-10 ml-24"
 			>
 				<Templates
 					value="Outreach Template"
