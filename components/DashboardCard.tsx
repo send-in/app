@@ -48,7 +48,7 @@ const DashboardCard = ({
 		>
 
 			<aside
-				className="flex items-center gap-5 w-[20%]"
+				className="flex items-center gap-5 w-fit"
 			>
 				<Image
 					className="rounded-full"

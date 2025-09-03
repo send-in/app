@@ -1,23 +1,22 @@
 // #region imports
 import Image from "next/image"
 
-import { 
-	DashboardCard, 
-	Editor, 
-	Navbar, 
-	SearchBar as Search, 
-	Sort 
+import {
+	DashboardCard,
+	Editor,
+	Navbar,
+	SearchBar as Search,
 } from "@/components"
 
-import { 
+import {
 	Button,
 	Pagination,
 } from "@mui/material"
 
-import { 
-	Templates, 
-	DateTime, 
-	TimeZone 
+import {
+	Templates,
+	DateTime,
+	TimeZone
 } from "@/components"
 // #endregion
 
@@ -34,12 +33,12 @@ const page = () => {
 		<main
 			className="
 				p-8 px-16 pt-[8%] flex items-start justify-center
-				tracking-tighter text-grey-200 text-base gap-12
+				tracking-tighter text-grey-200 text-base gap-8
 			"
 		>
 
 			<Navbar/>
-			
+
 			<section
 				className="w-[45%] flex flex-col items-center gap-4 overflow-clip"
 			>
@@ -53,7 +52,7 @@ const page = () => {
 							(_,index) =>
 								<DashboardCard
 									key={index}
-									name="Vishnu"
+									name="Vishnu Shon"
 									picture="https://media.licdn.com/dms/image/v2/D5603AQH2-Le-GLYQfQ/profile-displayphoto-crop_800_800/B56ZhyEAK4HUAI-/0/1754260309150?e=1759363200&v=beta&t=tSQG_CnXVrLuWg8REMJh1uWrk1NRL7iDLXG_WGKIwYA"
 									template="( Job Opportunity )"
 									profile=""
@@ -67,8 +66,8 @@ const page = () => {
 				<Pagination
 					page={2}
 					count={10}
-                    siblingCount={0}
-                    size="small"
+					siblingCount={0}
+					size="small"
 				/>
 			</section>
 
@@ -111,13 +110,13 @@ const page = () => {
 					</div>
 				</aside>
 
-                <aside
-                    className="h-[55vh]"
-                >
-                    <Editor
-                        noTemplate
-                    />
-                </aside>
+				<aside
+					className="h-[55vh]"
+				>
+					<Editor
+						noTemplate
+					/>
+				</aside>
 
 				<aside
 					className="mt-2 flex gap-2"

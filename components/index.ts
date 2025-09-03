@@ -17,4 +17,5 @@ export { default as TemplateCard } from "./TemplateCard"
 export { default as Templates } from "./Templates"
 export { default as TimeProgress } from "./TimeProgress"
 export { default as TimeZone } from "./TimeZone"
+export { default as PaginationResults } from "./PaginationResults"
 // #endregion

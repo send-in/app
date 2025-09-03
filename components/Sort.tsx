@@ -38,7 +38,7 @@ const Sort = ({
 			<Select
 				className={`
                     bg-blue-100 rounded-full 
-                    px-4 py-5 w-max h-[1rem] ${styles}
+                    px-4 py-4 h-2 ${styles}
                 `}
 				value={value || ""}
 				onChange={handleChange}

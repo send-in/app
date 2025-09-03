@@ -28,17 +28,17 @@ const ConnectionCard = ({
 	return (
 		<li
 			className="
-				list-none flex gap-10 text-base items-center
+				list-none flex gap-10 text-base items-center w-full
 				p-2 tracking-tighter text-grey-200 justify-between
 			"
 		>	
 			<aside
-				className="flex items-center gap-10"
+				className="flex items-center gap-8"
 			>
 				<Radio/>
 
 				<Link
-					className="flex gap-5 items-center group"
+					className="flex gap-4 items-center group"
 					href={profile}
 					target="_blank"			
 					title={name ?? "SendIn"}		
@@ -47,14 +47,14 @@ const ConnectionCard = ({
 						className="rounded-full"
 						alt={name ?? "SendIn"}
 						src={picture}
-						width={60}
-						height={60}
+						width={45}
+						height={45}
 					/>
 
 					<aside>
 						<h3
 							className="
-								text-3xl text-blue-100 group-hover:text-blue-200
+								text-xl text-blue-100 group-hover:text-blue-200
 								transition-all ease-in-out delay-100 
 							"
 						>
@@ -71,25 +71,29 @@ const ConnectionCard = ({
 
 
 			<p
-				className="w-[20%] text-base font-medium"
+				className="w-[30%] text-sm font-medium"
 			>
 				{bio}
 			</p>
 
 			<aside 
-				className="text-xl text-charcoal-100 flex gap-10"
+				className="text-base text-charcoal-100 flex gap-10"
 			>
 				<div
 					className="flex gap-3 items-center "
 				>
-					<Globe/>
+					<Globe
+                        size={16}
+                    />
 					IST
 				</div>
 
 				<div
 					className="flex gap-3 items-center"
 				>
-					<Clock/>
+					<Clock
+                        size={16}
+                    />
 					Afternoon
 				</div>
 			</aside>

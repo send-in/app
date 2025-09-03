@@ -25,13 +25,13 @@ const page = () => {
 		<main
 			className="
 				p-8 px-16 pt-[8%] flex items-start justify-center 
-				tracking-tighter text-charcoal-100 text-base gap-12
+				tracking-tighter text-charcoal-100 text-base gap-8
 			"
 		>
 			<Navbar/>
 
 			<section
-				className="flex flex-col gap-4 w-[40%] h-full"
+				className="flex flex-col gap-4 w-[45%] h-full"
 			>
 				{
 					templates.map(
@@ -57,26 +57,26 @@ const page = () => {
 
 					<Pagination
 						page={2}
-                        count={10}
-                        siblingCount={0}
-                        size="small"
+						count={10}
+						siblingCount={0}
+						size="small"
 					/>
 				</div>
 			</section>
 
 			<section
-				className="flex flex-col w-[55%] h-full"
+				className="flex flex-col w-[50%] h-full gap-4"
 			>
 
-                <aside
-                    className="h-[60vh]"
-                >
-                    <Editor
-                    />
-                </aside>
+				<aside
+					className="h-[60vh]"
+				>
+					<Editor
+					/>
+				</aside>
 
 				<aside
-					className="space-x-2 mt-24"
+					className="space-x-2 mt-20"
 				>
 					<Button
 						// disabled={true}
