@@ -2,7 +2,7 @@ interface TrashProps {
 	size?: string | number
 }
 
-const Trash = ({ size = "0.85em" }: TrashProps) => {
+const Trash = ({ size = 18 }: TrashProps) => {
 	return (
 		<svg
 			width={size}

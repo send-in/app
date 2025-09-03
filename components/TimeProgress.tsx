@@ -16,7 +16,7 @@ type TimeProgressProps = {
 const TimeProgress = ({
 	startTime,
 	scheduledTime,
-	size = 22
+	size = 18
 }: TimeProgressProps) => {
 
 	const [progress, setProgress] = useState<number>(0)

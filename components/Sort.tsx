@@ -12,12 +12,14 @@ interface SortProps {
 	value: string
 	onChange: (selected: string) => void
 	options: string[]
+    styles: string
 }
 
 const Sort = ({ 
 	value,
 	onChange,
-	options
+	options,
+    styles
 }: SortProps) => {
 
 	const handleChange = (event) => {
@@ -34,7 +36,10 @@ const Sort = ({
 	return (
 		<FormControl className="w-max">
 			<Select
-				className="bg-blue-100 text-white rounded-full px-4 py-5 w-max h-[1rem]"
+				className={`
+                    bg-blue-100 rounded-full 
+                    px-4 py-5 w-max h-[1rem] ${styles}
+                `}
 				value={value || ""}
 				onChange={handleChange}
 				displayEmpty
@@ -47,11 +52,6 @@ const Sort = ({
 					selected =>
 						selected ? selected : "Sort"
 				}
-				sx={{
-					".MuiSelect-icon": {
-						color: "white",
-					},
-				}}
 			>
 
 				{

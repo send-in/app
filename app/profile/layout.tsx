@@ -33,8 +33,8 @@ const layout = ({
 			<section
                 className="ml-[5%] mt-10"
             >
-				{/* {email} */}
-				{oauth}
+				{email}
+				{/* {oauth} */}
 			</section>
 
 			<section

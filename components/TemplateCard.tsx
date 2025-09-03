@@ -12,17 +12,12 @@ const TemplateCard = ({
 		<li
 			className="
 				list-none flex gap-10 text-base items-center w-full
-				p-3 px-6 tracking-tighter text-grey-200 hover:text-white
+				p-3 rounded-xl tracking-tighter text-charcoal-100 hover:text-white
 				bg-grey-100 hover:bg-blue-100 active:bg-blue-200 group justify-between
-				transition-all ease-in-out delay-100 cursor-pointer rounded-full
+				transition-all ease-in-out delay-100 cursor-pointer
 			"
 		>
-			<p
-				className="
-					text-charcoal-100 group-hover:text-white
-					transition-all ease-in-out delay-100  font-medium
-				"
-			>
+			<p>
 				{name}
 			</p>
 		</li>

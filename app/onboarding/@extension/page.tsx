@@ -38,6 +38,7 @@ const page = ({
 					install our chrome extension ! Bulk scheduling is only accessible 
 					via the web application. Otherwise feel free to skip this step.
 				"
+                styles="py-4"
 			/>
 
 			<aside
@@ -51,9 +52,9 @@ const page = ({
 				</Button>
 				<Button
 					variant="text"
-					className="tracking-tighter normal-case font-mada text-grey-200 rounded-full underline underline-offset-4 text-base font-normal"
+					className="tracking-tighter normal-case font-mada text-grey-200 rounded-full text-base font-normal"
 				>
-					Skip
+					Skip this step
 				</Button>
 			</aside>
 		</section>

@@ -33,27 +33,20 @@ const page = () => {
 		<>
 		<main
 			className="
-				p-8 pt-[8%] flex items-start justify-center
-				tracking-tighter text-charcoal-100 text-base gap-12
+				p-8 px-16 pt-[8%] flex items-start justify-center
+				tracking-tighter text-grey-200 text-base gap-12
 			"
 		>
 
 			<Navbar/>
 			
 			<section
-				className="w-[45%] space-y-4 overflow-clip"
+				className="w-[45%] flex flex-col items-center gap-4 overflow-clip"
 			>
-				<aside
-					className="flex justify-between w-full items-center"
-				>
-					<Search/>
-					<Sort
-						options={[]}
-					/>
-				</aside>
+				<Search/>
 
 				<aside
-					className="space-y-4 mt-8"
+					className="space-y-4 my-4 w-full"
 				>
 					{
 						[...new Array(8)].map(
@@ -62,7 +55,7 @@ const page = () => {
 									key={index}
 									name="Vishnu"
 									picture="https://media.licdn.com/dms/image/v2/D5603AQH2-Le-GLYQfQ/profile-displayphoto-crop_800_800/B56ZhyEAK4HUAI-/0/1754260309150?e=1759363200&v=beta&t=tSQG_CnXVrLuWg8REMJh1uWrk1NRL7iDLXG_WGKIwYA"
-									template="Job Opportunity"
+									template="( Job Opportunity )"
 									profile=""
 									scheduleTime={new Date()}
 									startTime={new Date()}
@@ -74,6 +67,8 @@ const page = () => {
 				<Pagination
 					page={2}
 					count={10}
+                    siblingCount={0}
+                    size="small"
 				/>
 			</section>
 
@@ -82,14 +77,14 @@ const page = () => {
 				className="flex flex-col gap-4 w-[50%]"
 			>
 				<aside
-					className="flex gap-5 items-center"
+					className="flex gap-2 items-center"
 				>
 					<Image
 						className="rounded-full"
 						alt={"SendIn"}
 						src={"https://media.licdn.com/dms/image/v2/D5603AQH2-Le-GLYQfQ/profile-displayphoto-crop_800_800/B56ZhyEAK4HUAI-/0/1754260309150?e=1759363200&v=beta&t=tSQG_CnXVrLuWg8REMJh1uWrk1NRL7iDLXG_WGKIwYA"}
-						width={60}
-						height={60}
+						width={50}
+						height={50}
 					/>
 					<div>
 						<h2
@@ -116,9 +111,13 @@ const page = () => {
 					</div>
 				</aside>
 
-				<Editor
-					noTemplate
-				/>
+                <aside
+                    className="h-[55vh]"
+                >
+                    <Editor
+                        noTemplate
+                    />
+                </aside>
 
 				<aside
 					className="mt-2 flex gap-2"

@@ -16,12 +16,12 @@ const Navbar = () => {
 			"
 		>
 			<Logo 
-				size={40}
+				size={35}
 				fill="#FFF"
 			/>
 
 			<aside 
-				className="flex gap-5 small:hidden"
+				className="flex gap-5 small:hidden text-sm"
 			>
 				<Link
 					href="/dashboard"

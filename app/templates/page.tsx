@@ -17,14 +17,14 @@ const buttonClass = `
 	rounded-full text-white px-8 min-w-[25%]
 	gap-2 font-mada font-medium normal-case
 	transition-all ease-in-out delay-100 text-base
-	tracking-tighter h-fit
+	tracking-tighter
 `
 
 const page = () => {
 	return (
 		<main
 			className="
-				p-8 pt-[8%] flex items-start justify-center
+				p-8 px-16 pt-[8%] flex items-start justify-center 
 				tracking-tighter text-charcoal-100 text-base gap-12
 			"
 		>
@@ -46,7 +46,7 @@ const page = () => {
 				}
 
 				<div
-					className="flex w-full justify-between mt-5"
+					className="flex w-full justify-between mt-2 items-center"
 				>
 					<Button
 						// disabled={true}
@@ -56,8 +56,10 @@ const page = () => {
 					</Button>
 
 					<Pagination
-						count={10}
 						page={2}
+                        count={10}
+                        siblingCount={0}
+                        size="small"
 					/>
 				</div>
 			</section>
@@ -66,10 +68,15 @@ const page = () => {
 				className="flex flex-col w-[55%] h-full"
 			>
 
-				<Editor/>
+                <aside
+                    className="h-[60vh]"
+                >
+                    <Editor
+                    />
+                </aside>
 
 				<aside
-					className="mt-6 flex gap-2"
+					className="space-x-2 mt-24"
 				>
 					<Button
 						// disabled={true}

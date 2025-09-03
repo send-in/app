@@ -41,9 +41,9 @@ const DashboardCard = ({
 		<li
 			className="
 				list-none flex gap-10 text-base items-center w-full
-				p-1 pr-4 tracking-tighter text-grey-200 hover:text-white
+				py-2 px-3 rounded-xl tracking-tighter text-grey-200 hover:text-white
 				bg-grey-100 hover:bg-blue-100 active:bg-blue-200 group justify-between
-				transition-all ease-in-out delay-100 cursor-pointer rounded-full
+				transition-all ease-in-out delay-100 cursor-pointer
 			"
 		>
 
@@ -54,8 +54,8 @@ const DashboardCard = ({
 					className="rounded-full"
 					alt={name ?? "SendIn"}
 					src={picture}
-					width={50}
-					height={50}
+					width={40}
+					height={40}
 				/>
 
 				<Link
@@ -86,7 +86,7 @@ const DashboardCard = ({
 					/>
 					<p
 						className="
-							text-base text-blue-100 group-hover:text-white
+							text-blue-100 group-hover:text-white
 							transition-all ease-in-out delay-100 font-medium
 						"
 					>

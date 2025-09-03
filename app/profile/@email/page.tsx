@@ -13,17 +13,17 @@ import {
 // #endregion
 
 const inputClass = `
-	font-mada px-3 bg-grey-100 rounded-lg
-	font-normal text-base tracking-tighter h-fit
+	font-mada px-3 py-1 bg-grey-100 rounded-xl 
+	font-normal text-base tracking-tighter h-fit text-lg
     focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-inset
     transition-all ease-in-out delay-100 cursor-pointer
 `
 
 const buttonClass = `
-	rounded-full text-white px-8 w-[25%]
+	rounded-full text-white px-8 w-[30%]
 	gap-2 font-mada font-medium normal-case
 	transition-all ease-in-out delay-100 text-base
-	tracking-tighter h-fit
+	tracking-tighter h-fit my-4
 `
 
 const page = ({
@@ -46,11 +46,11 @@ const page = ({
 				className="flex justify-between items-center "
 			>
 				<h1
-					className="text-2xl text-blue-100 font-semibold tracking-tighter"
+					className="text-3xl text-blue-100 font-semibold tracking-tighter"
 				>
 					Hey, Vishnu !
 				</h1>
-				<TimeZone inPopUp/>
+				<TimeZone/>
 			</aside>
 
 
@@ -126,7 +126,7 @@ const page = ({
 				// disabled={true}
 				className={`bg-charcoal-100 hover:bg-charcoal-200 ${buttonClass}`}
 			>
-				Save
+				Save Changes
 			</Button>
 		</section>
 	)

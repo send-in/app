@@ -20,7 +20,7 @@ const page = ({
 }) => {
 	return (
 		<section
-			className="w-[70%] space-y-2 tracking-tighter ml-[5%]"
+			className="w-[70%] flex flex-col gap-2 tracking-tighter ml-[5%] h-full"
 		>
 			<h1
 				className="text-5xl text-blue-100 font-semibold mb-6"
@@ -29,13 +29,26 @@ const page = ({
 			</h1>
 
 			<InformationCard
-				description="If you are not bulk scheduling, you are all set and can skip onboarding ! We use variables for templates, currently only {{company_name}} and {{username}} are supported."
+				description="
+                    If you are not bulk scheduling, 
+                    you are all set and can skip onboarding ! 
+                    We use variables for templates, 
+                    currently only {{company_name}} 
+                    and {{username}} are supported.
+                "
+                styles="py-4"
 			/>
 
-			{/* <Editor/> */}
+			<aside
+                className="w-full h-[30vh] my-5 mb-[15%]"
+            >
+                <Editor
+                    noCopy
+                />
+            </aside>
 
 			<aside
-				className="flex flex-col items-start gap-2 mt-8"
+				className="flex items-start gap-2"
 			>
 				<Button
 					className={`bg-charcoal-100 hover:bg-charcoal-200 ${buttonClass}`}
@@ -45,9 +58,9 @@ const page = ({
 
 				<Button
 					variant="text"
-					className="tracking-tighter normal-case font-mada text-grey-200 rounded-full underline underline-offset-4 text-base font-normal"
+					className="tracking-tighter normal-case font-mada text-grey-200 rounded-full text-base font-normal"
 				>
-					Skip
+					Skip this step
 				</Button>
 			</aside>
 		</section>

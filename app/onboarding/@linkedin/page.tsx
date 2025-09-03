@@ -10,7 +10,7 @@ import {
 // #endregion
 
 const buttonClass = `
-	rounded-full text-white px-8 w-[25%]
+	rounded-full text-white px-8 w-[30%]
 	gap-2 font-mada font-medium normal-case
 	transition-all ease-in-out delay-100 text-base
 	tracking-tighter h-fit

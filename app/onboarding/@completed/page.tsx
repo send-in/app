@@ -19,18 +19,18 @@ const page = ({
 }) => {
 	return (
 		<section
-			className="w-[70%] space-y-2 tracking-tighter ml-[5%]"
+			className="w-fit space-y-2 tracking-tighter ml-[5%]"
 		>
 			<h1
 				className="text-5xl text-blue-100 font-semibold"
 			>
-				You are all set, Vishnu !
+				You&apos;re all set, Vishnu !
 			</h1>
 
 			<p
-				className="text-base leading-6 w-[80%]"
+				className="text-base leading-6 w-[80%] text-grey-300"
 			>
-				Now head over to your connections page for bulk scheduling or open linked In for manual message !
+				Now head over to your connections page for bulk scheduling or open linkedIn for manual message !
 			</p>
 
 			<aside

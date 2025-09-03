@@ -25,9 +25,9 @@ const layout = ({
 			<section
 				className="p-8"
 			>
-				{linkedin}
+				{/* {linkedin} */}
 				{/* {extension} */}
-				{/* {template} */}
+				{template}
 				{/* {completed} */}
 			</section>
 

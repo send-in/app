@@ -52,9 +52,11 @@ const buttonClass = `
 `
 
 const Editor = ({
-	noTemplate = false
+	noTemplate = false,
+	noCopy = false
 }:{
-	noTemplate: boolean
+	noTemplate?: boolean
+	noCopy?: boolean
 }) => {
 	const editorRef = useRef<HTMLDivElement>(null)
 
@@ -259,7 +261,7 @@ const Editor = ({
 
 			<section 
 				className="
-					w-full rounded-2xl group
+					w-full rounded-2xl group h-full
 					bg-white font-sans relative
 				"
 			>
@@ -397,7 +399,7 @@ const Editor = ({
 					className="
 						bg-grey-100 rounded-2xl tracking-tighter text-grey-200
 						focus:text-charcoal-100 w-full peer
-						min-h-[60vh] p-4 pt-20 text-base leading-relaxed outline-none 
+						h-full p-4 pt-20 text-base leading-relaxed outline-none 
 						focus:ring-2 focus:ring-blue-500 focus:ring-inset
 						transition-all ease-in-out delay-100 cursor-pointer
 					"
@@ -416,18 +418,21 @@ const Editor = ({
 					/>
 				)}
 
-				<IconButton
-					className="
-						bg-blue-100 rounded-full p-3
-						flex items-center justify-center
-						absolute bottom-5 right-5
-					"
-					onClick={startNumberList}
-					title="Copy"
-					size="medium"
-				>
-					<Copy/>
-				</IconButton>
+                {
+                   !noCopy &&
+                    <IconButton
+                        className="
+                            bg-blue-100 rounded-full p-3
+                            flex items-center justify-center
+                            absolute bottom-5 right-5
+                        "
+                        onClick={startNumberList}
+                        title="Copy"
+                        size="medium"
+                    >
+                        <Copy/>
+                    </IconButton>
+                }
 			</section>
 		</>
 	)

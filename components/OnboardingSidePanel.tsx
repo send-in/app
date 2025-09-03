@@ -26,7 +26,7 @@ const OnboardingSidePanel = ({
 		"
 	>
 		<ul
-			className="space-y-16"
+			className="space-y-20"
 		>
 
 			{
@@ -42,7 +42,7 @@ const OnboardingSidePanel = ({
 						>
 							<div 
 								className={`
-									w-4 h-4 bg-white p-2 rounded-full
+									w-3 h-3 bg-white rounded-full
 									${index===selected ? "scale-150" : ""}
 									transition-all ease-in-out delay-100
 								`}
