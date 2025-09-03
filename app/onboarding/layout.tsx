@@ -7,13 +7,13 @@ import {
 // #endregion
 
 const layout = ({
-	extension,
 	linkedin,
+	extension,
 	template,
 	completed,
 }: Readonly<{
-	extension: ReactNode,
 	linkedin: ReactNode,
+	extension: ReactNode,
 	template: ReactNode,
 	completed: ReactNode,
 }>) => {
@@ -23,10 +23,10 @@ const layout = ({
 			className="h-screen flex items-center justify-between p-8"
 		>
 			<section
-				className=""
+				className="p-8"
 			>
-				{extension}
-				{/* {linkedin} */}
+				{linkedin}
+				{/* {extension} */}
 				{/* {template} */}
 				{/* {completed} */}
 			</section>

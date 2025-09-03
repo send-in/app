@@ -11,8 +11,8 @@ import {
 const buttonClass = `
 	rounded-full text-white px-6 w-[70%]
 	gap-2 font-mada font-medium normal-case
-	transition-all ease-in-out delay-100 text-lg
-	tracking-tight h-fit
+	transition-all ease-in-out delay-100 text-base
+	tracking-tighter h-fit
 `
 
 const page = ({
@@ -28,7 +28,7 @@ const page = ({
 			</h1>
 
 			<p
-				className="text-lg leading-6 w-[80%]"
+				className="text-base leading-6 w-[80%]"
 			>
 				Now head over to your connections page for bulk scheduling or open linked In for manual message !
 			</p>

@@ -14,8 +14,8 @@ const layout = ({
 
 	return (
 		<main>
-			{connections}
-            {options}
+			{/* {connections} */}
+            {/* {options} */}
 		</main>
 	)
 }

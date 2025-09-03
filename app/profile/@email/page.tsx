@@ -14,7 +14,7 @@ import {
 
 const inputClass = `
 	font-mada px-3 bg-grey-100 rounded-lg
-	font-normal text-lg tracking-tight h-fit
+	font-normal text-base tracking-tighter h-fit
     focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-inset
     transition-all ease-in-out delay-100 cursor-pointer
 `
@@ -22,8 +22,8 @@ const inputClass = `
 const buttonClass = `
 	rounded-full text-white px-8 w-[25%]
 	gap-2 font-mada font-medium normal-case
-	transition-all ease-in-out delay-100 text-lg
-	tracking-tight h-fit
+	transition-all ease-in-out delay-100 text-base
+	tracking-tighter h-fit
 `
 
 const page = ({

@@ -16,8 +16,8 @@ import {
 const buttonClass = `
 	rounded-full text-white px-6 w-[40%]
 	gap-2 font-mada font-medium normal-case
-	transition-all ease-in-out delay-100 text-lg
-	tracking-tight h-fit
+	transition-all ease-in-out delay-100 text-base
+	tracking-tighter h-fit
 `
 
 const page = ({
@@ -51,7 +51,7 @@ const page = ({
 				</Button>
 				<Button
 					variant="text"
-					className="tracking-tight normal-case font-mada text-grey-200 rounded-full underline underline-offset-4 text-lg font-normal"
+					className="tracking-tighter normal-case font-mada text-grey-200 rounded-full underline underline-offset-4 text-base font-normal"
 				>
 					Skip
 				</Button>

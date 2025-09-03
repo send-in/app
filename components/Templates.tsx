@@ -46,7 +46,7 @@ const Templates = ({
 			<Select
 				className="
                     bg-blue-100 text-white rounded-full 
-                    px-4 py-4 w-max h-[1rem] font-mada text-lg tracking-tighter
+                    px-4 py-4 w-max h-[1rem] font-mada text-base tracking-tighter
                 "
 				value={value || ""}
 				onChange={handleChange}

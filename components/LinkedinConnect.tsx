@@ -10,7 +10,7 @@ const LinkedinConnect = () => {
 	return (
 		<div
 			className="
-				flex items-center w-full p-2 px-4 bg-grey-100 
+				flex items-center w-full p-2 bg-grey-100 
 				rounded-full focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-inset
                 transition-all ease-in-out delay-100 cursor-pointer
 			"
@@ -39,7 +39,7 @@ const LinkedinConnect = () => {
 				// onClick={handleClick}
 				className="
 					rounded-full bg-blue-100 hover:bg-blue-200 text-white 
-					gap-2 text-base font-mada font-normal normal-case tracking-tight
+					gap-2 text-base font-mada font-normal normal-case tracking-tighter
 					transition-all ease-in-out delay-100 px-6 min-w-fit
 				"
 			>

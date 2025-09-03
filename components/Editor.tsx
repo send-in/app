@@ -249,7 +249,7 @@ const Editor = ({
 						slotProps={{
 							input:{
 								disableUnderline: true,
-								className: "font-mada tracking-tight"
+								className: "font-mada tracking-tighter"
 							}
 						}}
 					/>
@@ -395,7 +395,7 @@ const Editor = ({
 					onKeyDown={handleKeyDown}
 					onInput={saveToHistory}
 					className="
-						bg-grey-100 rounded-2xl tracking-tight text-grey-200
+						bg-grey-100 rounded-2xl tracking-tighter text-grey-200
 						focus:text-charcoal-100 w-full peer
 						min-h-[60vh] p-4 pt-20 text-base leading-relaxed outline-none 
 						focus:ring-2 focus:ring-blue-500 focus:ring-inset

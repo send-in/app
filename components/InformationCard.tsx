@@ -3,13 +3,19 @@ import Information from "../Icons/Information"
 // #endregion
 
 const InformationCard = ({
-	description
+	description,
+    styles,
 }:{
 	description: string
+    styles?: string
 }) => {
 	return (
 		<aside
-			className="rounded-2xl bg-purple-100 p-2 px-4 flex items-start gap-4 font-medium justify-center max-w-full"
+			className={`
+                rounded-2xl bg-purple-100 p-2 px-4 
+                flex items-start gap-4 font-medium 
+                justify-center max-w-full ${styles}
+            `}
 		>
 			<div 
 				className="py-0.5"

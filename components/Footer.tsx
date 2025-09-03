@@ -118,7 +118,7 @@ const Footer = () => {
 					{links.map((category, index) => (
 						<div 
 							key={index} 
-							className="text-base xlarge:text-lg flex flex-col items-start small:w-fit"
+							className="text-base xlarge:text-base flex flex-col items-start small:w-fit"
 						>
 							<p 
 								className="text-2xl small:text-xl xlarge:text-3xl"

@@ -17,7 +17,7 @@ const buttonClass = `
 	rounded-full text-white px-8 min-w-[25%]
 	gap-2 font-mada font-medium normal-case
 	transition-all ease-in-out delay-100 text-base
-	tracking-tight h-fit
+	tracking-tighter h-fit
 `
 
 const page = () => {
@@ -25,7 +25,7 @@ const page = () => {
 		<main
 			className="
 				p-8 pt-[8%] flex items-start justify-center
-				tracking-tight text-charcoal-100 text-lg gap-12
+				tracking-tighter text-charcoal-100 text-base gap-12
 			"
 		>
 			<Navbar/>

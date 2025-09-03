@@ -25,7 +25,7 @@ const layout = ({
 		<main
 			className="
 				p-8 flex items-center justify-center h-screen 
-				tracking-tight text-charcoal-100 text-lg
+				tracking-tighter text-charcoal-100 text-base
 			"
 		>
             <Navbar/>
@@ -46,7 +46,7 @@ const layout = ({
 			>
 				<Button
 					variant="text"
-					className="tracking-tight normal-case font-mada text-white rounded-full underline underline-offset-4 text-lg font-normal"
+					className="tracking-tighter normal-case font-mada text-white rounded-full underline underline-offset-4 text-base font-normal"
 				>
 					Log out ?
 				</Button>

@@ -10,7 +10,7 @@ const Navbar = () => {
 		<nav 
 			className="
 				pl-4 p-1 min-w-[50%] small:min-w-full xlarge:min-w-[30%] 
-				xlarge:text-lg mb-4 flex items-center gap-10 small:gap-2 
+				xlarge:text-base mb-4 flex items-center gap-10 small:gap-2 
 				justify-between rounded-full font-medium text-white 
 				max-w-4xl bg-blue-100 fixed top-5 text-base
 			"

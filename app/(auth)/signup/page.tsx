@@ -20,13 +20,13 @@ import {
 const buttonClass = `
 	rounded-full text-white px-6 w-full
 	gap-2 font-mada font-medium normal-case
-	transition-all ease-in-out delay-100 text-lg
-	tracking-tight h-fit
+	transition-all ease-in-out delay-100 text-base
+	tracking-tighter h-fit
 `
 
 const inputClass = `
 	font-mada px-3 bg-grey-100 rounded-lg 
-	font-medium text-lg tracking-tight h-fit 
+	font-medium text-base tracking-tighter h-fit 
     focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-inset
     transition-all ease-in-out delay-100 cursor-pointer
 `
@@ -42,7 +42,7 @@ const page = ({
 			<main
 				className="
 					p-8 flex items-center justify-between h-screen 
-					tracking-tight text-charcoal-100 text-lg
+					tracking-tighter text-charcoal-100 text-base
 				"
 			>
 				<section

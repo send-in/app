@@ -35,8 +35,8 @@ const OptionsCard = ({
 	return (
 		<li
 			className="
-				list-none flex gap-10 text-lg items-center
-				p-2 tracking-tight text-grey-200 justify-between
+				list-none flex gap-10 text-base items-center
+				p-2 tracking-tighter text-grey-200 justify-between
 			"
 		>	
 			<aside
@@ -68,7 +68,7 @@ const OptionsCard = ({
 							{name}
 						</h3>
 						<p
-							className="text-lg font-medium"
+							className="text-base font-medium"
 						>
 							{company}, {country}
 						</p>
