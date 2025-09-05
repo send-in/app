@@ -7,6 +7,7 @@ import {
 } from "react"
 
 import {
+	IconButton,
 	TextField
 } from "@/base"
 
@@ -21,10 +22,6 @@ import {
 	Numbers,
 	Copy,
 } from "@/Icons"
-
-import {
-	IconButton,
-} from "@mui/material"
 // #endregion
 
 const toBold = (text: string) =>
@@ -49,10 +46,6 @@ const EMOJI_OPTIONS = [
 	"😊", "😂", "❤️", "👍", "👏", "🎉", "🔥", "💪", "🙏", "✅",
 	"🚀", "💡", "⭐", "👑", "🎯", "💯", "🤝", "💼", "📈", "🏆"
 ]
-
-const buttonClass = `
-	bg-grey-100 rounded-md w-10 h-8
-`
 
 const Editor = ({
 	noTemplate = false,
@@ -263,7 +256,7 @@ const Editor = ({
 					"
 				>
 					<IconButton
-						className={buttonClass}
+						variant="neutral"
 						onClick={() => {
 							toggleFormat('bold')
 							const selection = window.getSelection()
@@ -277,7 +270,7 @@ const Editor = ({
 					</IconButton>
 
 					<IconButton
-						className={buttonClass}
+						variant="neutral"
 						onClick={() => {
 							toggleFormat('italic')
 							const selection = window.getSelection()
@@ -290,7 +283,7 @@ const Editor = ({
 					</IconButton>
 
 					<IconButton
-						className={buttonClass}
+						variant="neutral"
 						onClick={() => {
 							toggleFormat('underline')
 							const selection = window.getSelection()
@@ -304,7 +297,7 @@ const Editor = ({
 					</IconButton>
 
 					<IconButton
-						className={buttonClass}
+						variant="neutral"
 						onClick={() => {
 							toggleFormat('strike')
 							const selection = window.getSelection()
@@ -321,7 +314,7 @@ const Editor = ({
 
 					<div className="relative">
 						<IconButton
-							className={buttonClass}
+							variant="neutral"
 							onClick={() => setShowEmojis(!showEmojis)}
 							title="Insert Emoji"
 						>
@@ -352,7 +345,7 @@ const Editor = ({
 					</div>
 
 					<IconButton
-						className={buttonClass}
+						variant="neutral"
 						onClick={handleLinkInsert}
 						// className="p-2 rounded hover:bg-grey-200 transition-colors text-grey-600"
 						title="Insert Link"
@@ -363,7 +356,7 @@ const Editor = ({
 					<div className="w-[1.5px] h-6 bg-grey-200 mx-2 rounded-full" />
 
 					<IconButton
-						className={buttonClass}
+						variant="neutral"
 						onClick={startBulletList}
 						title="Bullet List"
 					>
@@ -371,10 +364,9 @@ const Editor = ({
 					</IconButton>
 
 					<IconButton
-						className={buttonClass}
+						variant="neutral"
 						onClick={startNumberList}
 						title="Numbered List"
-						size="medium"
 					>
 						<Numbers/>
 					</IconButton>
@@ -418,7 +410,6 @@ const Editor = ({
                         "
                         onClick={startNumberList}
                         title="Copy"
-                        size="medium"
                     >
                         <Copy/>
                     </IconButton>

@@ -1,11 +1,12 @@
 // #region imports
 import {
 	IconButton
-} from "@mui/material"
+} from "@/base"
 
-import Arrow from "../Icons/Arrow"
-
-import { Logo } from "@/Icons"
+import {
+	Logo,
+	Arrow
+} from "@/Icons"
 // #endregion
 
 const items = [
@@ -58,20 +59,14 @@ const OnboardingSidePanel = ({
 		<aside
 			className="absolute bottom-5 right-5 flex"
 		>
-			<IconButton
-				size="medium"
-				className="!w-12 !h-12 flex items-center justify-center"
-			>
+			<IconButton>
 				<Arrow
 					direction="up"
 					active={false}
 				/>
 			</IconButton>
 
-			<IconButton
-				size="medium"
-				className="!w-12 !h-12 flex items-center justify-center"
-			>
+			<IconButton>
 				<Arrow
 					direction="down"
 					active={true}

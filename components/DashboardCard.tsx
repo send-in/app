@@ -1,7 +1,7 @@
 // #region imports
 import {
 	IconButton,
-} from "@mui/material"
+} from "@/base"
 
 import Image from "next/image"
 import Trash from "../Icons/Trash"
@@ -26,9 +26,9 @@ const DashboardCard = ({
 	scheduleTime: Date,
 	startTime: Date,
 }) => {
-	
+
 	const formatted = new Intl.DateTimeFormat(
-		"en-US", 
+		"en-US",
 		{
 			hour: "numeric",
 			minute: "numeric",
@@ -61,11 +61,11 @@ const DashboardCard = ({
 				<Link
 					className="
 						text-charcoal-100 group-hover:text-white
-						transition-all ease-in-out delay-100 
+						transition-all ease-in-out delay-100
 					"
 					href={profile}
-					target="_blank"			
-					title={name ?? "SendIn"}	
+					target="_blank"
+					title={name ?? "SendIn"}
 				>
 					{name}
 				</Link>
@@ -94,8 +94,9 @@ const DashboardCard = ({
 					</p>
 				</div>
 
-				<IconButton 
-					size="medium"
+				<IconButton
+					variant="danger"
+					size="sm"
 				>
 					<Trash/>
 				</IconButton>

@@ -1,16 +1,26 @@
 // #region imports
 import {
 	Radio,
-	IconButton,
 } from "@mui/material"
+
 import Link from "next/link"
 import Image from "next/image"
-import Templates from "./Templates"
-import DateTime from "./DateTime"
-import Clock from "../Icons/Clock"
-import Globe from "../Icons/Globe"
-import Trash from "../Icons/Trash"
-import Logo from "../Icons/Logo"
+
+import {
+	Templates,
+	DateTime
+} from "@/components"
+
+import {
+	Clock,
+	Globe,
+	Trash,
+	Logo
+} from "@/Icons"
+
+import {
+	IconButton
+} from "@/base"
 // #endregion
 
 const OptionsCard = ({
@@ -108,19 +118,15 @@ const OptionsCard = ({
 			>
 
 				<IconButton
-					size="medium"
-					className="!w-12 !h-12 flex items-center justify-center"
+					variant="primary"
 				>
 					<Logo
 						size={55}
-						fill="#4285F4"
 					/>
 				</IconButton>
 
 				<IconButton
-					size="medium"
-					className="!w-12 !h-12 flex items-center justify-center"
-
+					variant="danger"
 				>
 					<Trash
 						size={25}

@@ -54,7 +54,7 @@ const layout = ({
 				</Button>
 
 				<Logo
-					className="absolute top-8 right-5"
+					className="absolute top-8 right-5 fill-white"
 					size={40}
 				/>
 			</section>

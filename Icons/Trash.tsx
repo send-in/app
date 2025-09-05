@@ -11,8 +11,7 @@ const Trash = ({ size = 18 }: TrashProps) => {
 			fill="none"
 			xmlns="http://www.w3.org/2000/svg"
 			className="
-					transition-colors 
-					fill-orange
+					transition-colors
 					group-hover:fill-white
 					ease-in-out delay-100
 			"
