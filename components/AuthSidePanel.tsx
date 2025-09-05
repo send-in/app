@@ -1,11 +1,12 @@
 // #region imports
+import { Logo } from "@/Icons"
 import Image from "next/image"
 // #endregion
 
 const AuthSidePanel = () => (
 	<section
 		className="
-			bg-blue-100 rounded-4xl p-10 
+			bg-blue-100 rounded-4xl p-10
 			relative h-full w-[50%] flex items-center
 			justify-center
 		"
@@ -14,8 +15,8 @@ const AuthSidePanel = () => (
 			className="relative h-fit pr-12 xlarge:pr-32"
 		>
 			<Image
-				src="/others/timezone.svg" 
-				alt="timezone" 
+				src="/others/timezone.svg"
+				alt="timezone"
 				height={350}
 				width={350}
 			/>
@@ -27,12 +28,10 @@ const AuthSidePanel = () => (
 				width={250}
 			/>
 		</aside>
-		<Image
-			className="absolute top-5 right-5"
-			src="/icons/logo.svg"
-			alt="sendin"
-			height={60}
-			width={60}
+
+		<Logo
+			className="absolute top-8 right-5"
+			size={50}
 		/>
 	</section>
 )

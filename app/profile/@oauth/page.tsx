@@ -1,33 +1,29 @@
 // #region imports
 import Image from "next/image"
 
-import { 
-	Button,
+import {
 	TextField
 } from "@mui/material"
 
-import { 
-    TimeZone, 
-    LinkedinConnect 
+import {
+	Button
+} from "@/base"
+
+import {
+    TimeZone,
+    LinkedinConnect
 } from "@/components"
 
-import { 
-    Google 
+import {
+    Google
 } from "@/Icons"
 // #endregion
 
 const inputClass = `
-	font-mada px-3 py-1 bg-grey-100 rounded-xl 
+	font-mada px-3 py-1 bg-grey-100 rounded-xl
 	font-normal text-base tracking-tighter h-fit text-lg
     focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-inset
     transition-all ease-in-out delay-100 cursor-pointer
-`
-
-const buttonClass = `
-	rounded-full text-white px-8 w-[30%]
-	gap-2 font-mada font-medium normal-case
-	transition-all ease-in-out delay-100 text-base
-	tracking-tighter h-fit my-4
 `
 
 const page = ({
@@ -36,7 +32,7 @@ const page = ({
 	// logic for steps
 	return (
 		<section
-			className="flex flex-col gap-4 w-[80%]"
+			className="flex flex-col gap-4 w-[80%] items-start"
 		>
 			<Image
 				className="rounded-full"
@@ -47,13 +43,14 @@ const page = ({
 			/>
 
 			<aside
-				className="flex justify-between items-center "
+				className="flex justify-between items-center w-full"
 			>
 				<h1
 					className="text-3xl text-blue-100 font-semibold tracking-tighter"
 				>
 					Hey, Vishnu !
 				</h1>
+
 				<TimeZone/>
 			</aside>
 
@@ -62,7 +59,7 @@ const page = ({
 				disabled={true}
 				variant="standard"
 				value="Vishnu Shon"
-				label="Full Name" 
+				label="Full Name"
 				fullWidth
 				slotProps={{
 					input: {
@@ -90,24 +87,25 @@ const page = ({
 
 			<Button
 				startIcon={<Google/>}
-				className={`bg-charcoal-100 hover:bg-charcoal-200 w-fit ${buttonClass}`}
+				variant="secondary"
+				className="mb-6 my-2"
 			>
 				Switch account
 			</Button>
-			
+
 			<LinkedinConnect/>
 
 			<p
 				className="text-sm text-grey-200"
 			>
-				We take your li_at cookie and user agent information, 
-				If you have the extension installed you can update your cookie 
+				We take your li_at cookie and user agent information,
+				If you have the extension installed you can update your cookie
 				for it too. You can manually enter your cookie using chrome dev tools
 			</p>
 
 			<Button
 				disabled
-				className={`bg-charcoal-100 hover:bg-charcoal-200 ${buttonClass}`}
+				variant="secondary"
 			>
 				Save Changes
 			</Button>

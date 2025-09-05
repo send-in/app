@@ -3,10 +3,14 @@
 // #region imports
 import { useState } from "react"
 import {
-  Button,
-  Menu,
-  MenuItem,
+	Menu,
+	MenuItem,
 } from "@mui/material"
+
+import {
+	Button
+} from "@/base"
+
 import zones from "@/templates/timezones.json"
 import Globe from "../Icons/Globe"
 import SearchBar from "./SearchBar"
@@ -26,7 +30,7 @@ const getAbbreviation = (
 		const parts = formatter.formatToParts(date)
 		const abbr = parts.find((p) => p.type === "timeZoneName")?.value
 		return abbr ?? timezone
-	} 
+	}
 	catch {
 		return timezone
 	}
@@ -48,10 +52,10 @@ const TimeZone = ({
 
 	const [open, setIsOpen] = useState<boolean>(false)
 
-	const handleClick = () => 
+	const handleClick = () =>
 		setIsOpen(true)
 
-	const handleClose = () => 
+	const handleClose = () =>
 		setIsOpen(false)
 
 	const handleSelect = (zone: string) => {
@@ -62,23 +66,20 @@ const TimeZone = ({
 	return (
 		<>
 			<Button
+				// loading
+				variant="primary"
+				className={inPopUp ? "!py-1" : ""}
 				onClick={handleClick}
 				startIcon={
-					<Globe 
-						fill="#FFF"
+					<Globe
+						// fill="#FFF"
 						size={inPopUp? 16 : 20}
 					/>
 				}
-				className={`
-					rounded-full bg-blue-100 hover:bg-blue-200 text-white 
-					gap-2 text-base font-mada font-normal normal-case
-					transition-all ease-in-out delay-100 w-max
-					${inPopUp ? "py-1 px-3" : "px-4 py-2"} tracking-tighter
-				`}
 			>
 				{
 					getAbbreviation(
-						value || 
+						value ||
 						currentZone
 					)
 				}

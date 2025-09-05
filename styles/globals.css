@@ -1,10 +1,20 @@
 @layer theme, base, mui, components, utilities;
 @import "tailwindcss";
 
-:root {
-	--background: #7FD1AE;
+@plugin "daisyui" {
+  themes: light --default, dark --prefersdark;
+  root: "#sendInRoot";
+  include: ;
+  exclude: ;
+  prefix: ;
+  logs: true;
+}
+
+.sendInRoot {
+	--background: #FFFFFF !;
 	--foreground: #171717;
 }
+
 
 @theme {
 	/* Colors */
@@ -68,17 +78,13 @@
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
 		background-clip: text; /* fallback */
-		
+
 	}
 }
 
 body {
 	color: var(--foreground);
 	font-family: Mada, sans-serif;
-}
-
-button {
-    box-shadow: none !important;
 }
 
 fieldset{

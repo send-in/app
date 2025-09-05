@@ -2,31 +2,27 @@
 import Link from "next/link"
 
 import {
-	Button, 
 	TextField,
 } from "@mui/material"
 
-import { 
-    Google, 
-    Linkedin 
+import {
+	Button
+} from "@/base"
+
+import {
+    Google,
+    Linkedin
 } from "@/Icons"
 
-import { 
-    Footer, 
-    AuthSidePanel 
+import {
+    Footer,
+    AuthSidePanel
 } from "@/components"
 // #endregion
 
-const buttonClass = `
-	rounded-full text-white px-6 w-full
-	gap-2 font-mada font-medium normal-case
-	transition-all ease-in-out delay-100 text-base
-	tracking-tighter h-fit
-`
-
 const inputClass = `
-	font-mada px-3 bg-grey-100 rounded-lg 
-	font-medium text-base tracking-tighter h-fit 
+	font-mada px-3 bg-grey-100 rounded-lg
+	font-medium text-base tracking-tighter h-fit
     focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-inset
     transition-all ease-in-out delay-100 cursor-pointer
 `
@@ -41,7 +37,7 @@ const page = ({
 		<>
 			<main
 				className="
-					p-8 flex items-center justify-between h-screen 
+					p-8 flex items-center justify-between h-screen
 					tracking-tighter text-charcoal-100 text-base
 				"
 			>
@@ -58,15 +54,15 @@ const page = ({
 								Hey !
 							</h1>
 							<p
-								className="text-2xl font-semibold leading-7 mt-1" 
+								className="text-2xl font-semibold leading-7 mt-1"
 							>
 								Create your
 								<span
 									className="text-blue-100"
 								>
 									{" "}SendIn{" "}
-								</span> 
-								account, No credit-card required  
+								</span>
+								account, No credit-card required
 							</p>
 						</aside>
 
@@ -74,15 +70,17 @@ const page = ({
 							className="flex flex-col items-start gap-2"
 						>
 							<Button
+								variant="secondary"
+								size="full"
 								startIcon={<Google/>}
-								className={`bg-charcoal-100 hover:bg-charcoal-200 ${buttonClass}`}
 							>
 								Continue with Google
 							</Button>
 
 							<Button
+								variant="primary"
+								size="full"
 								startIcon={<Linkedin/>}
-								className={`bg-blue-100 hover:bg-blue-200 ${buttonClass}`}
 							>
 								Continue with LinkedIn
 							</Button>
@@ -94,7 +92,7 @@ const page = ({
 					>
 						<div className={dividerClass}/>
 
-						<p 
+						<p
 							className="text-grey-200 text-sm"
 						>
 							or
@@ -103,7 +101,7 @@ const page = ({
 						<div className={dividerClass}/>
 					</aside>
 
-					<aside 
+					<aside
 						className="flex flex-col gap-2 items-end"
 					>
 						<TextField
@@ -148,7 +146,8 @@ const page = ({
 
 					<aside>
 						<Button
-							className={`bg-charcoal-100 hover:bg-charcoal-200 ${buttonClass}`}
+							size="full"
+							variant="secondary"
 						>
 							Create new account
 						</Button>
@@ -171,7 +170,7 @@ const page = ({
 						</p>
 					</aside>
 				</section>
-				
+
 				<AuthSidePanel/>
 			</main>
 

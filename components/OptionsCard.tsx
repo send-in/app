@@ -33,7 +33,7 @@ const OptionsCard = ({
 				list-none flex  text-base items-center w-full
 				tracking-tighter text-grey-200 justify-between
 			"
-		>	
+		>
 			<aside
 				className="flex items-center gap-2 w-[20%]"
 			>
@@ -50,14 +50,14 @@ const OptionsCard = ({
 				<Link
 					className="group"
 					href={profile}
-					target="_blank"			
-					title={name ?? "SendIn"}		
+					target="_blank"
+					title={name ?? "SendIn"}
 				>
 
 					<h3
 						className="
 							text-xl text-blue-100 group-hover:text-blue-200
-							transition-all ease-in-out delay-100 
+							transition-all ease-in-out delay-100
 						"
 					>
 						{name}
@@ -70,11 +70,11 @@ const OptionsCard = ({
 				</Link>
 			</aside>
 
-			<aside 
+			<aside
 				className="text-base text-charcoal-100 flex gap-10 w-[20%]"
 			>
 				<div
-					className="flex gap-3 items-center "
+					className="flex gap-3 items-center fill-blue-100"
 				>
 					<Globe
 						size={16}
@@ -83,7 +83,7 @@ const OptionsCard = ({
 				</div>
 
 				<div
-					className="flex gap-3 items-center"
+					className="flex gap-3 items-center fill-orange"
 				>
 					<Clock
 						size={16}
@@ -93,21 +93,21 @@ const OptionsCard = ({
 			</aside>
 
 
-			<aside 
+			<aside
 				className="flex gap-10 w-[40%]"
 			>
 				<Templates
 					value="Outreach Template"
 				/>
 				<DateTime/>
-			
+
 			</aside>
 
-			<aside 
+			<aside
 				className="flex gap-2"
 			>
 
-				<IconButton 
+				<IconButton
 					size="medium"
 					className="!w-12 !h-12 flex items-center justify-center"
 				>
@@ -117,7 +117,7 @@ const OptionsCard = ({
 					/>
 				</IconButton>
 
-				<IconButton 
+				<IconButton
 					size="medium"
 					className="!w-12 !h-12 flex items-center justify-center"
 

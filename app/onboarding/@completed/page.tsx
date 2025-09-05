@@ -1,19 +1,13 @@
 // #region imports
-import { 
-    Linkedin 
+import {
+    Linkedin
 } from "@/Icons"
 
 import {
 	Button,
-} from "@mui/material"
+} from "@/base"
 // #endregion
 
-const buttonClass = `
-	rounded-full text-white px-6 w-[70%]
-	gap-2 font-mada font-medium normal-case
-	transition-all ease-in-out delay-100 text-base
-	tracking-tighter h-fit
-`
 
 const page = ({
 }) => {
@@ -34,17 +28,19 @@ const page = ({
 			</p>
 
 			<aside
-				className="flex flex-col items-start gap-2 mt-8"
+				className="flex flex-col items-start gap-2 mt-8 w-[50%]"
 			>
 				<Button
-					className={`bg-charcoal-100 hover:bg-charcoal-200 ${buttonClass}`}
+					size="full"
+					variant="secondary"
 				>
 					Select from connections
 				</Button>
 
 				<Button
+					variant="primary"
+					size="full"
 					startIcon={<Linkedin/>}
-					className={`bg-blue-100 hover:bg-blue-200 ${buttonClass}`}
 				>
 					Continue with LinkedIn
 				</Button>

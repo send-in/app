@@ -1,30 +1,26 @@
 // #region imports
-import { 
-	Editor, 
-	Navbar, 
-	TemplateCard 
+import {
+	Editor,
+	Navbar,
+	TemplateCard
 } from "@/components"
 
-import { 
-	Button,
+import {
 	Pagination,
 } from "@mui/material"
 
+import {
+	Button
+} from "@/base"
+
 import templates from "@/templates/templates.json"
 // #endregion
-
-const buttonClass = `
-	rounded-full text-white px-8 min-w-[25%]
-	gap-2 font-mada font-medium normal-case
-	transition-all ease-in-out delay-100 text-base
-	tracking-tighter
-`
 
 const page = () => {
 	return (
 		<main
 			className="
-				p-8 px-16 pt-[8%] flex items-start justify-center 
+				p-8 px-16 pt-[8%] flex items-start justify-center
 				tracking-tighter text-charcoal-100 text-base gap-8
 			"
 		>
@@ -49,10 +45,10 @@ const page = () => {
 					className="flex w-full justify-between mt-2 items-center"
 				>
 					<Button
+						variant="primary"
 						// disabled={true}
-						className={`bg-blue-100 hover:bg-blue-200 ${buttonClass}`}
 					>
-						+  New template
+						+ New template
 					</Button>
 
 					<Pagination
@@ -65,7 +61,7 @@ const page = () => {
 			</section>
 
 			<section
-				className="flex flex-col w-[50%] h-full gap-4"
+				className="flex flex-col w-[50%] h-full gap-10"
 			>
 
 				<aside
@@ -76,18 +72,20 @@ const page = () => {
 				</aside>
 
 				<aside
-					className="space-x-2 mt-20"
+					className="flex gap-4 mt-12 w-2/3"
 				>
 					<Button
+						variant="secondary"
+						size="full"
 						// disabled={true}
-						className={`bg-charcoal-100 hover:bg-charcoal-200 ${buttonClass}`}
 					>
 						Delete
 					</Button>
 
 					<Button
+						variant="primary"
+						size="full"
 						// disabled={true}
-						className={`bg-blue-100 hover:bg-blue-200 ${buttonClass}`}
 					>
 						Save
 					</Button>

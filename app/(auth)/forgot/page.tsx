@@ -2,26 +2,22 @@
 import Link from "next/link"
 
 import {
-	Button, 
 	TextField,
 } from "@mui/material"
 
-import { 
-    Footer, 
-    AuthSidePanel 
+import {
+	Button
+} from "@/base"
+
+import {
+    Footer,
+    AuthSidePanel
 } from "@/components"
 // #endregion
 
-const buttonClass = `
-	rounded-full text-white px-6 w-full
-	gap-2 font-mada font-medium normal-case
-	transition-all ease-in-out delay-100 text-base
-	tracking-tighter h-fit
-`
-
 const inputClass = `
-	font-mada px-3 bg-grey-100 rounded-lg 
-	font-medium text-base tracking-tighter h-fit focus-within:ring-2 
+	font-mada px-3 bg-grey-100 rounded-lg
+	font-medium text-base tracking-tighter h-fit focus-within:ring-2
     focus-within:ring-blue-500 focus-within:ring-inset
     transition-all ease-in-out delay-100 cursor-pointer
 `
@@ -32,7 +28,7 @@ const page = ({
 		<>
 			<main
 				className="
-					p-8 flex items-center justify-between h-screen 
+					p-8 flex items-center justify-between h-screen
 					tracking-tighter text-charcoal-100 text-base
 				"
 			>
@@ -49,19 +45,19 @@ const page = ({
 								Uh oh !
 							</h1>
 							<p
-								className="text-2xl font-semibold leading-7 mt-1" 
+								className="text-2xl font-semibold leading-7 mt-1"
 							>
-								Forgot password, 
+								Forgot password,
 								<span
 									className="text-blue-100"
 								>
 									{" "}Dont worry !{" "}
-								</span> 
+								</span>
 							</p>
 						</aside>
 					</div>
 
-					<aside 
+					<aside
 						className="flex flex-col gap-2 items-end"
 					>
 						<TextField
@@ -80,7 +76,8 @@ const page = ({
 
 					<aside>
 						<Button
-							className={`bg-charcoal-100 hover:bg-charcoal-200 ${buttonClass}`}
+							variant="secondary"
+							size="full"
 						>
 							Reset password
 						</Button>
@@ -103,7 +100,7 @@ const page = ({
 						</p>
 					</aside>
 				</section>
-				
+
 				<AuthSidePanel/>
 			</main>
 

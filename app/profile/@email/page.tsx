@@ -2,9 +2,12 @@
 import Image from "next/image"
 
 import {
-	Button,
 	TextField
 } from "@mui/material"
+
+import {
+	Button
+} from "@/base"
 
 import {
 	TimeZone,
@@ -13,17 +16,10 @@ import {
 // #endregion
 
 const inputClass = `
-	font-mada px-3 py-1 bg-grey-100 rounded-xl 
+	font-mada px-3 py-1 bg-grey-100 rounded-xl
 	font-normal text-base tracking-tighter h-fit text-lg
     focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-inset
     transition-all ease-in-out delay-100 cursor-pointer
-`
-
-const buttonClass = `
-	rounded-full text-white px-8 w-[30%]
-	gap-2 font-mada font-medium normal-case
-	transition-all ease-in-out delay-100 text-base
-	tracking-tighter h-fit my-4
 `
 
 const page = ({
@@ -32,7 +28,7 @@ const page = ({
 	// logic for steps
 	return (
 		<section
-			className="flex flex-col gap-4 w-[80%]"
+			className="flex flex-col gap-4 w-[80%] items-start"
 		>
 			<Image
 				className="rounded-full"
@@ -43,7 +39,7 @@ const page = ({
 			/>
 
 			<aside
-				className="flex justify-between items-center "
+				className="flex justify-between items-center w-full"
 			>
 				<h1
 					className="text-3xl text-blue-100 font-semibold tracking-tighter"
@@ -123,8 +119,8 @@ const page = ({
 			</p>
 
 			<Button
-				// disabled={true}
-				className={`bg-charcoal-100 hover:bg-charcoal-200 ${buttonClass}`}
+				disabled
+				variant="secondary"
 			>
 				Save Changes
 			</Button>

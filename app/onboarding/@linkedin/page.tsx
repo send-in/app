@@ -1,20 +1,13 @@
 // #region imports
-import { 
-    InformationCard, 
-    LinkedinConnect 
+import {
+    InformationCard,
+    LinkedinConnect
 } from "@/components"
 
 import {
 	Button,
-} from "@mui/material"
+} from "@/base"
 // #endregion
-
-const buttonClass = `
-	rounded-full text-white px-8 w-[30%]
-	gap-2 font-mada font-medium normal-case
-	transition-all ease-in-out delay-100 text-base
-	tracking-tighter h-fit
-`
 
 const page = ({
 }) => {
@@ -30,9 +23,9 @@ const page = ({
 
 			<InformationCard
 				description="
-					To connect your LinkedIn account, we’ll need your session token. 
-					This token lets Send In securely send your messages automatically. 
-					Every time you log out on your browser a new cookie is created for your session, 
+					To connect your LinkedIn account, we’ll need your session token.
+					This token lets Send In securely send your messages automatically.
+					Every time you log out on your browser a new cookie is created for your session,
 					if you log out the cookie expires
 				"
                 styles="py-4"
@@ -44,17 +37,17 @@ const page = ({
 			<p
 				className="text-sm text-grey-200"
 			>
-				We take your li_at cookie and user agent information, 
-				If you have the extension installed you can update your cookie 
+				We take your li_at cookie and user agent information,
+				If you have the extension installed you can update your cookie
 				for it too. You can manually enter your cookie using chrome dev tools
 			</p>
 
 			<Button
-				className={`bg-charcoal-100 hover:bg-charcoal-200 ${buttonClass}`}
+				variant="secondary"
 			>
 				Save
 			</Button>
-			
+
 		</section>
 	)
 }

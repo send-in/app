@@ -1,15 +1,17 @@
 // #region imports
-import Image from "next/image"
-
 import { ReactNode } from "react"
 
-import { 
+import {
 	Button
-} from "@mui/material"
+} from "@/base"
 
-import { 
-    Navbar 
+import {
+    Navbar
 } from "@/components"
+
+import {
+	Logo
+} from "@/Icons"
 // #endregion
 
 const layout = ({
@@ -24,7 +26,7 @@ const layout = ({
 	return (
 		<main
 			className="
-				p-8 flex items-center justify-center h-screen 
+				p-8 flex items-center justify-center h-screen
 				tracking-tighter text-charcoal-100 text-base
 			"
 		>
@@ -45,18 +47,15 @@ const layout = ({
 				"
 			>
 				<Button
-					variant="text"
-					className="tracking-tighter normal-case font-mada text-white rounded-full underline underline-offset-4 text-base font-normal"
+					variant="ghost"
+					className="!text-white hover:!text-charcoal-100"
 				>
 					Log out ?
 				</Button>
 
-				<Image
-					className="absolute top-5 right-5"
-					src="/icons/logo.svg"
-					alt="sendin"
-					height={60}
-					width={60}
+				<Logo
+					className="absolute top-8 right-5"
+					size={40}
 				/>
 			</section>
 		</main>

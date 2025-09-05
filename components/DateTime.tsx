@@ -5,23 +5,18 @@ import { useState } from "react"
 import { DateRangePicker } from "@mui/x-date-pickers-pro"
 
 import {
-	Button,
 	Popover,
 } from "@mui/material"
+
+import {
+	Button
+} from "@/base"
 
 import Image from "next/image"
 import Clock from "../Icons/Clock"
 import TimeZone from "./TimeZone"
 import InformationCard from "./InformationCard"
 // #endregion
-
-const buttonClassname = `
-	rounded-full text-charcoal-100 bg-grey-100 
-	hover:bg-blue-100 hover:text-white tracking-tighter
-	px-4 gap-2 text-base font-mada font-normal 
-	normal-case py-1 justify-between w-full
-	transition-all ease-in-out delay-50
-`
 
 const DateTime = ({
 	scheduledTime,
@@ -35,20 +30,20 @@ const DateTime = ({
 		timezone: string,
 	}
 }) => {
-	
+
 	const [open, setOpen] = useState<boolean>(false)
 
-	const handleClick = () => 
+	const handleClick = () =>
 		setOpen(prev=>!prev)
 
-	const handleClose = () => 
+	const handleClose = () =>
 		setOpen(false)
 
 	const properTime = (
 		scheduledTime ??
 		new Date()
 	)?.toLocaleDateString(
-		"en-GB", 
+		"en-GB",
 		{
 			day: "2-digit",
 			month: "2-digit",
@@ -57,10 +52,10 @@ const DateTime = ({
 	)
 
 	const properDate= (
-		scheduledTime ?? 
+		scheduledTime ??
 		new Date()
 	)?.toLocaleTimeString(
-		"en-US", 
+		"en-US",
 		{
 			hour: "numeric",
 			minute: "2-digit",
@@ -72,23 +67,16 @@ const DateTime = ({
 		<>
 			<Button
 				onClick={handleClick}
-				variant="contained"
-				className="
-					rounded-full bg-blue-100 hover:bg-blue-200 text-white-100 
-					px-4 py-1 gap-2 text-base font-mada font-normal w-fit shrink-0
-					transition-all ease-in-out delay-100 tracking-tighter
-				"
+				variant="primary"
 				startIcon={
-					<Clock
-						fill="#FFF"
-					/>
+					<Clock/>
 				}
 			>
 				{properTime} {" "}
 				{properDate}
 			</Button>
 
-			
+
 			<Popover
 				open={open}
 				onClose={handleClose}
@@ -96,8 +84,8 @@ const DateTime = ({
 					root:{
 						className: "top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
 					},
-                    paper: { 
-						className: "p-4 rounded-3xl shadow-lg bg-white text-gray-800 w-fit h-fit space-y-5 tracking-tighter" 
+                    paper: {
+						className: "p-4 rounded-3xl shadow-lg bg-white text-gray-800 w-fit h-fit space-y-5 tracking-tighter"
 					}
                 }}
 			>
@@ -111,12 +99,12 @@ const DateTime = ({
 						width={60}
 						height={60}
 					/>
-					
+
 					<div
 						className="flex flex-col items-end gap-1 text-2xl"
 					>
 						<p>
-							Aug 13, 8:00 AM 
+							Aug 13, 8:00 AM
 						</p>
 
 						<TimeZone
@@ -133,30 +121,30 @@ const DateTime = ({
 					className="flex flex-col gap-2"
 				>
 					<Button
-						className={buttonClassname}
+						variant="primary"
+						className="!py-1"
+						textClassName="justify-between w-full !flex"
 					>
-						<p>
-							Tomorrow morning
-						</p>
-						<p>{"Aug 14, 8:00 AM"}</p>
+							<span>Tomorrow morning</span>
+							<span>{"Aug 14, 8:00 AM"}</span>
 					</Button>
 
 					<Button
-						className={buttonClassname}
+						variant="neutral"
+						className="!py-1"
+						textClassName="justify-between w-full !flex"
 					>
-						<p>
-							This afternoon
-						</p>
-						<p>{"Aug 14, 8:00 AM"}</p>
+							<span>This afternoon</span>
+							<span>{"Aug 14, 8:00 AM"}</span>
 					</Button>
 
 					<Button
-						className={buttonClassname}
+						variant="neutral"
+						className="!py-1"
+						textClassName="justify-between w-full !flex"
 					>
-						<p>
-							This evening
-						</p>
-						<p>{"Aug 14, 8:00 AM"}</p>
+							<span>This evening</span>
+							<span>{"Aug 14, 8:00 AM"}</span>
 					</Button>
 				</aside>
 
@@ -168,13 +156,10 @@ const DateTime = ({
 					</p>
 
 					<Button
-						className="
-							rounded-full bg-grey-100 hover:bg-grey-200 text-charcoal-100 
-							px-4 py-1 gap-2 text-base font-mada font-normal normal-case tracking-tighter
-						"
+						className="!py-1"
 						startIcon={
 							<Clock
-								fill="#2F2F2F"
+								size={18}
 							/>
 						}
 					>
@@ -182,8 +167,8 @@ const DateTime = ({
 						{properDate}
 					</Button>
 				</aside>
-			</Popover> 
-			
+			</Popover>
+
 		</>
 	)
 }

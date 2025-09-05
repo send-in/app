@@ -1,26 +1,22 @@
 // #region imports
 
-import { 
-	Filters, 
-	SearchBar as Search, 
+import {
+	Filters,
+	SearchBar as Search,
 	Sort,
 	ConnectionCard,
 	PaginationResults
 } from "@/components"
 
-import { 
-	Button,
+import {
 	Radio,
 	Pagination,
 } from "@mui/material"
-// #endregion
 
-const buttonClass = `
-	rounded-full text-white px-8 min-w-[10%]
-	gap-2 font-mada font-medium normal-case
-	transition-all ease-in-out delay-100 text-base
-	tracking-tighter
-`
+import {
+	Button
+} from "@/base"
+// #endregion
 
 const dividerClass = `
 	bg-grey-100 rounded-full h-[50vh] w-[2px]
@@ -50,7 +46,7 @@ const page = () => {
 						Select all
 					</div>
 
-					<Search/>
+					<Search size=""/>
 
 					<PaginationResults/>
 
@@ -79,13 +75,13 @@ const page = () => {
 					}
 				</aside>
 
-				
+
 				<aside
 					className="flex w-full justify-between items-center"
 				>
 					<Button
 						// disabled={true}
-						className={`bg-blue-100 hover:bg-blue-200 ${buttonClass}`}
+						variant="primary"
 					>
 						Save
 					</Button>
@@ -98,8 +94,8 @@ const page = () => {
 						siblingCount={0}
 						size="small"
 					/>
-				</aside> 
-				
+				</aside>
+
 			</section>
 		</div>
 	)

@@ -1,24 +1,16 @@
 // #region imports
-import { 
-    InformationCard 
+import {
+    InformationCard
 } from "@/components"
 
-import { 
-    Google 
+import {
+    Google
 } from "@/Icons"
 
 import {
 	Button,
-	Stack,
-} from "@mui/material"
+} from "@/base"
 // #endregion
-
-const buttonClass = `
-	rounded-full text-white px-6 w-[40%]
-	gap-2 font-mada font-medium normal-case
-	transition-all ease-in-out delay-100 text-base
-	tracking-tighter h-fit
-`
 
 const page = ({
 }) => {
@@ -34,8 +26,8 @@ const page = ({
 
 			<InformationCard
 				description="
-					If you don’t wish to use bulk sending we highly recommend you to 
-					install our chrome extension ! Bulk scheduling is only accessible 
+					If you don’t wish to use bulk sending we highly recommend you to
+					install our chrome extension ! Bulk scheduling is only accessible
 					via the web application. Otherwise feel free to skip this step.
 				"
                 styles="py-4"
@@ -46,13 +38,12 @@ const page = ({
 			>
 				<Button
 					startIcon={<Google/>}
-					className={`bg-charcoal-100 hover:bg-charcoal-200 ${buttonClass}`}
+					variant="secondary"
 				>
 					Install the chrome extension
 				</Button>
 				<Button
-					variant="text"
-					className="tracking-tighter normal-case font-mada text-grey-200 rounded-full text-base font-normal"
+					variant="ghost"
 				>
 					Skip this step
 				</Button>

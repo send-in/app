@@ -1,20 +1,13 @@
 // #region imports
-import { 
-    Editor, 
+import {
+    Editor,
     InformationCard
 } from "@/components"
 
 import {
 	Button,
-} from "@mui/material"
+} from "@/base"
 // #endregion
-
-const buttonClass = `
-	rounded-full text-white px-8 w-[25%]
-	gap-2 font-mada font-medium normal-case
-	transition-all ease-in-out delay-100 text-base
-	tracking-tighter h-fit
-`
 
 const page = ({
 }) => {
@@ -30,10 +23,10 @@ const page = ({
 
 			<InformationCard
 				description="
-                    If you are not bulk scheduling, 
-                    you are all set and can skip onboarding ! 
-                    We use variables for templates, 
-                    currently only {{company_name}} 
+                    If you are not bulk scheduling,
+                    you are all set and can skip onboarding !
+                    We use variables for templates,
+                    currently only {{company_name}}
                     and {{username}} are supported.
                 "
                 styles="py-4"
@@ -51,14 +44,13 @@ const page = ({
 				className="flex items-start gap-2"
 			>
 				<Button
-					className={`bg-charcoal-100 hover:bg-charcoal-200 ${buttonClass}`}
+					variant="secondary"
 				>
 					Save
 				</Button>
 
 				<Button
-					variant="text"
-					className="tracking-tighter normal-case font-mada text-grey-200 rounded-full text-base font-normal"
+					variant="ghost"
 				>
 					Skip this step
 				</Button>

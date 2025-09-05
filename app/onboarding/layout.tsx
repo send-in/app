@@ -1,8 +1,8 @@
 // #region imports
 import { ReactNode } from "react"
 
-import { 
-    OnboardingSidePanel 
+import {
+    OnboardingSidePanel
 } from "@/components"
 // #endregion
 
@@ -27,8 +27,8 @@ const layout = ({
 			>
 				{/* {linkedin} */}
 				{/* {extension} */}
-				{template}
-				{/* {completed} */}
+				{/* {template} */}
+				{completed}
 			</section>
 
 			<OnboardingSidePanel

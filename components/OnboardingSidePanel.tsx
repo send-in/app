@@ -1,9 +1,11 @@
 // #region imports
-import { 
-	IconButton 
+import {
+	IconButton
 } from "@mui/material"
-import Image from "next/image"
+
 import Arrow from "../Icons/Arrow"
+
+import { Logo } from "@/Icons"
 // #endregion
 
 const items = [
@@ -20,7 +22,7 @@ const OnboardingSidePanel = ({
 }) => (
 	<section
 		className="
-			bg-blue-100 rounded-3xl p-10 
+			bg-blue-100 rounded-3xl p-10
 			relative h-full min-w-[30%] flex items-center
 			justify-center text-white text-base
 		"
@@ -40,7 +42,7 @@ const OnboardingSidePanel = ({
 								transition-all ease-in-out delay-100
 							`}
 						>
-							<div 
+							<div
 								className={`
 									w-3 h-3 bg-white rounded-full
 									${index===selected ? "scale-150" : ""}
@@ -56,7 +58,7 @@ const OnboardingSidePanel = ({
 		<aside
 			className="absolute bottom-5 right-5 flex"
 		>
-			<IconButton 
+			<IconButton
 				size="medium"
 				className="!w-12 !h-12 flex items-center justify-center"
 			>
@@ -66,7 +68,7 @@ const OnboardingSidePanel = ({
 				/>
 			</IconButton>
 
-			<IconButton 
+			<IconButton
 				size="medium"
 				className="!w-12 !h-12 flex items-center justify-center"
 			>
@@ -78,12 +80,9 @@ const OnboardingSidePanel = ({
 			</IconButton>
 		</aside>
 
-		<Image
-			className="absolute top-5 right-5"
-			src="/icons/logo.svg"
-			alt="sendin"
-			height={60}
-			width={60}
+		<Logo
+			className="absolute top-8 right-5"
+			size={40}
 		/>
 	</section>
 )

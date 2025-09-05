@@ -1,26 +1,22 @@
 // #region imports
-import { 
-	DateTime, 
-	OptionsCard, 
-	PaginationResults, 
-	SearchBar as Search, 
-	Templates 
+import {
+	DateTime,
+	OptionsCard,
+	PaginationResults,
+	SearchBar as Search,
+	Templates
 } from "@/components"
 
-import { 
-	Button,
+import {
 	Radio,
 	Pagination,
 	FormControlLabel,
 } from "@mui/material"
-// #endregion
 
-const buttonClass = `
-	rounded-full px-8 min-w-[10%]
-	gap-2 font-mada font-medium normal-case
-	transition-all ease-in-out delay-100 text-base
-	tracking-tighter
-`
+import {
+	Button
+} from "@/base"
+// #endregion
 
 const page = () => {
 	return (
@@ -52,7 +48,7 @@ const page = () => {
 					<Search/>
 				</aside>
 
-				<aside 
+				<aside
 					className="flex gap-10 w-[40%] ml-4"
 				>
 					<Templates
@@ -61,17 +57,19 @@ const page = () => {
 
 					<DateTime/>
 
-				
+
 				</aside>
 
 				<Button
 					// disabled={true}
-					className={`bg-orange hover:bg-orange-700 ml-14 ${buttonClass} text-white`}
+					variant="danger"
+					className="!w-[10%]"
+					size="auto"
 				>
 					Delete
 				</Button>
 			</section>
-			
+
 
 			<ul
 				className="flex flex-col justify-between h-full"
@@ -99,13 +97,13 @@ const page = () => {
 				>
 					<Button
 						// disabled={true}
-						className={`bg-blue-100 hover:bg-blue-200 text-white ${buttonClass}`}
+						variant="primary"
 					>
 						Schedule All
 					</Button>
 					<Button
 						// disabled={true}
-						className={`bg-grey-100 hover:bg-grey-200 text-grey-200 ${buttonClass}`}
+						variant="neutral"
 					>
 						Add Connection +
 					</Button>

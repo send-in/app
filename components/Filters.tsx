@@ -2,13 +2,15 @@
 
 // #region imports
 import { useState } from "react"
-import { 
-    ToggleButton, 
-    ToggleButtonGroup, 
-    Checkbox, 
-    FormControlLabel, 
-    Button 
+import {
+    ToggleButton,
+    ToggleButtonGroup,
+    Checkbox,
+    FormControlLabel,
 } from "@mui/material"
+import {
+	Button
+} from "@/base"
 // #endregion
 
 const Filter = () => {
@@ -19,9 +21,9 @@ const Filter = () => {
 	const locationsList = ["India", "Costa Rica", "Australia", "UAE", "USA", "France"]
 
 	return (
-		<section 
+		<section
             className="
-                flex flex-col gap-6 text-xl 
+                flex flex-col gap-6 text-xl
                 text-charcoal-100
             "
         >
@@ -51,7 +53,7 @@ const Filter = () => {
 			{/* Locations */}
 			<aside>
 				<h3>Locations</h3>
-				<div 
+				<div
                     className="grid grid-cols-2 gap-1 p-2"
                 >
 					{locationsList.map((loc) => (
@@ -61,9 +63,9 @@ const Filter = () => {
 								<Checkbox
 									checked={locations.includes(loc)}
 									className={`
-                                        p-1 
-                                        ${locations.includes(loc) ? 
-                                            "text-blue-100" : 
+                                        p-1
+                                        ${locations.includes(loc) ?
+                                            "text-blue-100" :
                                             "text-grey-200"
                                         }
                                     `}
@@ -81,7 +83,7 @@ const Filter = () => {
 
 			<aside>
 				<h3>Locations</h3>
-				<div 
+				<div
                     className="grid grid-cols-2 gap-1 p-2"
                 >
 					{locationsList.map((loc) => (
@@ -91,9 +93,9 @@ const Filter = () => {
 								<Checkbox
 									checked={locations.includes(loc)}
 									className={`
-                                        p-1 
-                                        ${locations.includes(loc) ? 
-                                            "text-blue-100" : 
+                                        p-1
+                                        ${locations.includes(loc) ?
+                                            "text-blue-100" :
                                             "text-grey-200"
                                         }
                                     `}
@@ -111,7 +113,7 @@ const Filter = () => {
 
 			<aside>
 				<h3>Locations</h3>
-				<div 
+				<div
                     className="grid grid-cols-2 gap-1 p-2"
                 >
 					{locationsList.map((loc) => (
@@ -121,9 +123,9 @@ const Filter = () => {
 								<Checkbox
 									checked={locations.includes(loc)}
 									className={`
-                                        p-1 
-                                        ${locations.includes(loc) ? 
-                                            "text-blue-100" : 
+                                        p-1
+                                        ${locations.includes(loc) ?
+                                            "text-blue-100" :
                                             "text-grey-200"
                                         }
                                     `}
@@ -143,21 +145,12 @@ const Filter = () => {
 				className="flex items-start gap-4"
 			>
 				<Button
-					variant="text"
-					className="
-                        tracking-tighter normal-case font-mada 
-                        text-grey-200 rounded-full text-base
-                    "
+					variant="ghost"
 				>
 					Reset
 				</Button>
 				<Button
-					className="
-                        bg-blue-100 hover:bg-blue-200 rounded-full text-white px-6 w-[40%]
-                        gap-2 font-mada font-medium normal-case
-                        transition-all ease-in-out delay-100 text-base
-                        tracking-tighter h-fit
-                    "
+					variant="primary"
 				>
 					Save
 				</Button>

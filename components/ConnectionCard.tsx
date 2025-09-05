@@ -31,7 +31,7 @@ const ConnectionCard = ({
 				list-none flex gap-10 text-base items-center w-full
 				p-2 tracking-tighter text-grey-200 justify-between
 			"
-		>	
+		>
 			<aside
 				className="flex items-center gap-8"
 			>
@@ -40,8 +40,8 @@ const ConnectionCard = ({
 				<Link
 					className="flex gap-4 items-center group"
 					href={profile}
-					target="_blank"			
-					title={name ?? "SendIn"}		
+					target="_blank"
+					title={name ?? "SendIn"}
 				>
 					<Image
 						className="rounded-full"
@@ -55,7 +55,7 @@ const ConnectionCard = ({
 						<h3
 							className="
 								text-xl text-blue-100 group-hover:text-blue-200
-								transition-all ease-in-out delay-100 
+								transition-all ease-in-out delay-100
 							"
 						>
 							{name}
@@ -76,11 +76,11 @@ const ConnectionCard = ({
 				{bio}
 			</p>
 
-			<aside 
+			<aside
 				className="text-base text-charcoal-100 flex gap-10"
 			>
 				<div
-					className="flex gap-3 items-center "
+					className="flex gap-3 items-center fill-blue-100"
 				>
 					<Globe
                         size={16}
@@ -89,7 +89,7 @@ const ConnectionCard = ({
 				</div>
 
 				<div
-					className="flex gap-3 items-center"
+					className="flex gap-3 items-center fill-orange"
 				>
 					<Clock
                         size={16}

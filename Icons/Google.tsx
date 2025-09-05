@@ -1,4 +1,4 @@
-const Google = ({ 
+const Google = ({
 	size = 20
 }) => (
 	<svg
