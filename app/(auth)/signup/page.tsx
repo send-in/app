@@ -2,11 +2,8 @@
 import Link from "next/link"
 
 import {
-	TextField,
-} from "@mui/material"
-
-import {
-	Button
+	Button,
+	TextField
 } from "@/base"
 
 import {
@@ -19,13 +16,6 @@ import {
     AuthSidePanel
 } from "@/components"
 // #endregion
-
-const inputClass = `
-	font-mada px-3 bg-grey-100 rounded-lg
-	font-medium text-base tracking-tighter h-fit
-    focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-inset
-    transition-all ease-in-out delay-100 cursor-pointer
-`
 
 const dividerClass = `
 	bg-grey-100 rounded-full w-full h-[2px]
@@ -105,41 +95,26 @@ const page = ({
 						className="flex flex-col gap-2 items-end"
 					>
 						<TextField
-							variant="standard"
-							placeholder="email"
+							variant="filled"
+							className="!rounded-xl !py-1 !px-4"
+							placeholder="Email"
 							fullWidth
-							slotProps={{
-								input: {
-								disableUnderline: true,
-									className: inputClass
-								}
-							}}
 						/>
 
 						<TextField
-							variant="standard"
-							placeholder="password"
+							variant="filled"
+							className="!rounded-xl !py-1 !px-4"
+							placeholder="Password"
 							type="password"
 							fullWidth
-							slotProps={{
-								input: {
-								disableUnderline: true,
-									className: inputClass
-								}
-							}}
 						/>
 
 						<TextField
-							variant="standard"
-							placeholder="confirm password"
+							variant="filled"
+							className="!rounded-xl !py-1 !px-4"
+							placeholder="Confirm Password"
 							type="password"
 							fullWidth
-							slotProps={{
-								input: {
-								disableUnderline: true,
-									className: inputClass
-								}
-							}}
 						/>
 					</aside>
 

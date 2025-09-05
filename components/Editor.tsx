@@ -1,10 +1,14 @@
 "use client"
 
 // #region imports
-import { 
-	useRef, 
-	useState 
+import {
+	useRef,
+	useState
 } from "react"
+
+import {
+	TextField
+} from "@/base"
 
 import {
 	Bold,
@@ -18,9 +22,8 @@ import {
 	Copy,
 } from "@/Icons"
 
-import { 
+import {
 	IconButton,
-	TextField,
 } from "@mui/material"
 // #endregion
 
@@ -36,14 +39,14 @@ const toItalic = (text: string) =>
 		String.fromCodePoint(c.charCodeAt(0) + (c <= "Z" ? 0x1d608 - 0x41 : 0x1d622 - 0x61))
 	)
 
-const toUnderline = (text: string) => 
+const toUnderline = (text: string) =>
 	text.split("").map((c) => c + "\u0332").join("")
 
-const toStrike = (text: string) => 
+const toStrike = (text: string) =>
 	text.split("").map((c) => c + "\u0336").join("")
 
 const EMOJI_OPTIONS = [
-	"😊", "😂", "❤️", "👍", "👏", "🎉", "🔥", "💪", "🙏", "✅", 
+	"😊", "😂", "❤️", "👍", "👏", "🎉", "🔥", "💪", "🙏", "✅",
 	"🚀", "💡", "⭐", "👑", "🎯", "💯", "🤝", "💼", "📈", "🏆"
 ]
 
@@ -73,11 +76,11 @@ const Editor = ({
 	const [listCounter, setListCounter] = useState(1)
 
 	const [listType, setListType] = useState<
-		"none" | 
-		"bullet" | 
+		"none" |
+		"bullet" |
 		"number"
 	>("none")
-	
+
 	const transformers = {
 		bold: toBold,
 		italic: toItalic,
@@ -99,12 +102,12 @@ const Editor = ({
 	) => {
 		const selection = window.getSelection()
 
-		if (!selection || selection.rangeCount === 0) 
+		if (!selection || selection.rangeCount === 0)
 			return
 
 		const range = selection.getRangeAt(0)
 		const selectedText = range.toString()
-		if (!selectedText) 
+		if (!selectedText)
 			return
 
 		const transformed = transform(selectedText)
@@ -112,7 +115,7 @@ const Editor = ({
 		range.insertNode(
 			document.createTextNode(transformed)
 		)
-		
+
 		saveToHistory()
 	}
 
@@ -137,7 +140,7 @@ const Editor = ({
 		const range = selection.getRangeAt(0)
 		range.deleteContents()
 		range.insertNode(document.createTextNode(text))
-		
+
 		range.setStartAfter(range.endContainer)
 		range.collapse(true)
 		selection.removeAllRanges()
@@ -151,25 +154,25 @@ const Editor = ({
 	) => {
 		if (e.key === 'Enter') {
 			e.preventDefault()
-			
+
 			if (listType === "bullet")
 				insertAtCursor("\n• ")
 			else if (listType === "number") {
 				insertAtCursor(`\n${listCounter + 1}. `)
 				setListCounter(prev => prev + 1)
-			} 
+			}
 			else
 				insertAtCursor("\n")
 			return
 		}
 
 		if (
-			e.key.length === 1 && 
-			!e.ctrlKey && 
+			e.key.length === 1 &&
+			!e.ctrlKey &&
 			!e.metaKey
 		) {
 			let transformedChar = e.key
-			
+
 			Object.entries(activeFormats).forEach(
 				([format, isActive]) => {
 					if (isActive) {
@@ -234,39 +237,26 @@ const Editor = ({
 	}
 
 	return (
-		<>
+		<div className="flex flex-col h-full gap-4">
 			{
-				!noTemplate && 
-				<section
-					className="
-						flex items-center w-full p-2 px-6 bg-grey-100 
-						rounded-xl mb-5 focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-inset
-						transition-all ease-in-out delay-100 cursor-pointer
-					"
-				>
-					<TextField
-						variant="standard"
-						placeholder="Appreciation & Connection"
-						fullWidth
-						slotProps={{
-							input:{
-								disableUnderline: true,
-								className: "font-mada tracking-tighter"
-							}
-						}}
-					/>
-				</section>
+				!noTemplate &&
+				<TextField
+					className="!rounded-xl !text-lg"
+					variant="filled"
+					placeholder="Appreciation & Connection"
+					fullWidth
+				/>
 
 			}
 
-			<section 
+			<section
 				className="
 					w-full rounded-2xl group h-full
 					bg-white font-sans relative
 				"
 			>
-				
-				<aside 
+
+				<aside
 					className="
 						flex items-center gap-2 bg-white w-fit
 						px-3 py-2 absolute top-4 left-4 rounded-xl
@@ -285,7 +275,7 @@ const Editor = ({
 					>
 						<Bold/>
 					</IconButton>
-					
+
 					<IconButton
 						className={buttonClass}
 						onClick={() => {
@@ -298,7 +288,7 @@ const Editor = ({
 					>
 						<Italic/>
 					</IconButton>
-					
+
 					<IconButton
 						className={buttonClass}
 						onClick={() => {
@@ -312,7 +302,7 @@ const Editor = ({
 					>
 						<Underline/>
 					</IconButton>
-					
+
 					<IconButton
 						className={buttonClass}
 						onClick={() => {
@@ -337,12 +327,12 @@ const Editor = ({
 						>
 							<Emoji/>
 						</IconButton>
-						
+
 						{showEmojis && (
-							<div 
+							<div
 								className="
-									absolute top-full left-0 mt-1 bg-white border 
-									border-grey-200 rounded-lg shadow-lg z-50 p-2 
+									absolute top-full left-0 mt-1 bg-white border
+									border-grey-200 rounded-lg shadow-lg z-50 p-2
 									grid grid-cols-5 gap-1 w-48
 								"
 							>
@@ -381,7 +371,7 @@ const Editor = ({
 					</IconButton>
 
 					<IconButton
-						className={buttonClass} 
+						className={buttonClass}
 						onClick={startNumberList}
 						title="Numbered List"
 						size="medium"
@@ -389,7 +379,7 @@ const Editor = ({
 						<Numbers/>
 					</IconButton>
 				</aside>
-						
+
 				<aside
 					ref={editorRef}
 					contentEditable
@@ -399,12 +389,12 @@ const Editor = ({
 					className="
 						bg-grey-100 rounded-2xl tracking-tighter text-grey-200
 						focus:text-charcoal-100 w-full peer
-						h-full p-4 pt-20 text-base leading-relaxed outline-none 
+						h-full p-4 pt-20 text-base leading-relaxed outline-none
 						focus:ring-2 focus:ring-blue-500 focus:ring-inset
 						transition-all ease-in-out delay-100 cursor-pointer
 					"
 					data-placeholder="Hi {{username}}, I really admire the work you’re doing at {{company}}. I’d love to connect and stay updated on your journey!"
-					style={{ 
+					style={{
 						whiteSpace: 'pre-wrap',
 						wordWrap: 'break-word'
 					}}
@@ -434,7 +424,7 @@ const Editor = ({
                     </IconButton>
                 }
 			</section>
-		</>
+		</div>
 	)
 }
 

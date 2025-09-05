@@ -2,11 +2,8 @@
 import Image from "next/image"
 
 import {
+	Button,
 	TextField
-} from "@mui/material"
-
-import {
-	Button
 } from "@/base"
 
 import {
@@ -14,13 +11,6 @@ import {
 	LinkedinConnect
 } from "@/components"
 // #endregion
-
-const inputClass = `
-	font-mada px-3 py-1 bg-grey-100 rounded-xl
-	font-normal text-base tracking-tighter h-fit text-lg
-    focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-inset
-    transition-all ease-in-out delay-100 cursor-pointer
-`
 
 const page = ({
 }) => {
@@ -51,62 +41,36 @@ const page = ({
 
 
 			<TextField
-				disabled={true}
-				variant="standard"
+				className="!rounded-xl !px-4"
+				variant="filled"
 				value="Vishnu Shon"
 				label="Full Name"
 				fullWidth
-				slotProps={{
-					input: {
-						disableUnderline: true,
-						className: inputClass
-					},
-					inputLabel:{
-						shrink: true
-					}
-				}}
 			/>
 			<TextField
-				disabled={true}
-				variant="standard"
+				className="!rounded-xl !px-4"
+				variant="filled"
 				value="vshon447@gmail.com"
 				label="Email"
 				fullWidth
-				slotProps={{
-					input: {
-						disableUnderline: true,
-						className: inputClass
-					}
-				}}
 			/>
 			<TextField
-				disabled={true}
-				variant="standard"
+				className="!rounded-xl !px-4"
+				variant="filled"
 				type="password"
 				value="ananyab4ya"
 				label="Password"
 				fullWidth
-				slotProps={{
-					input: {
-						disableUnderline: true,
-						className: inputClass
-					}
-				}}
 			/>
 			<TextField
-				disabled={true}
-				variant="standard"
+				className="!rounded-xl !px-4 mb-5"
+				variant="filled"
 				type="password"
 				value="ananyab4ya"
 				label="Confirm Password"
 				fullWidth
-				slotProps={{
-					input: {
-						disableUnderline: true,
-						className: `${inputClass} mb-8`
-					}
-				}}
 			/>
+
 
 			<LinkedinConnect/>
 

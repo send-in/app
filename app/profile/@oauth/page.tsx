@@ -2,11 +2,8 @@
 import Image from "next/image"
 
 import {
+	Button,
 	TextField
-} from "@mui/material"
-
-import {
-	Button
 } from "@/base"
 
 import {
@@ -19,17 +16,9 @@ import {
 } from "@/Icons"
 // #endregion
 
-const inputClass = `
-	font-mada px-3 py-1 bg-grey-100 rounded-xl
-	font-normal text-base tracking-tighter h-fit text-lg
-    focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-inset
-    transition-all ease-in-out delay-100 cursor-pointer
-`
-
 const page = ({
 }) => {
 
-	// logic for steps
 	return (
 		<section
 			className="flex flex-col gap-4 w-[80%] items-start"
@@ -54,35 +43,19 @@ const page = ({
 				<TimeZone/>
 			</aside>
 
-
 			<TextField
-				disabled={true}
-				variant="standard"
+				className="!rounded-xl !px-4"
+				variant="filled"
 				value="Vishnu Shon"
 				label="Full Name"
 				fullWidth
-				slotProps={{
-					input: {
-						disableUnderline: true,
-						className: inputClass
-					},
-					inputLabel:{
-						shrink: true
-					}
-				}}
 			/>
 			<TextField
-				disabled={true}
-				variant="standard"
+				className="!rounded-xl !px-4"
+				variant="filled"
 				value="vshon447@gmail.com"
 				label="Email"
 				fullWidth
-				slotProps={{
-					input: {
-						disableUnderline: true,
-						className: inputClass
-					}
-				}}
 			/>
 
 			<Button

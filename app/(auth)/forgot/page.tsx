@@ -2,11 +2,8 @@
 import Link from "next/link"
 
 import {
-	TextField,
-} from "@mui/material"
-
-import {
-	Button
+	Button,
+	TextField
 } from "@/base"
 
 import {
@@ -14,13 +11,6 @@ import {
     AuthSidePanel
 } from "@/components"
 // #endregion
-
-const inputClass = `
-	font-mada px-3 bg-grey-100 rounded-lg
-	font-medium text-base tracking-tighter h-fit focus-within:ring-2
-    focus-within:ring-blue-500 focus-within:ring-inset
-    transition-all ease-in-out delay-100 cursor-pointer
-`
 
 const page = ({
 }) => {
@@ -57,22 +47,12 @@ const page = ({
 						</aside>
 					</div>
 
-					<aside
-						className="flex flex-col gap-2 items-end"
-					>
-						<TextField
-							variant="standard"
-							placeholder="email"
-							fullWidth
-							slotProps={{
-								input: {
-								disableUnderline: true,
-									className: inputClass
-								}
-							}}
-						/>
-					</aside>
-
+					<TextField
+						className="!rounded-xl !py-1 !px-2"
+						variant="filled"
+						placeholder="Email"
+						fullWidth
+					/>
 
 					<aside>
 						<Button

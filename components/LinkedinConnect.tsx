@@ -1,9 +1,7 @@
 // #region imports
 import {
-	TextField,
-} from "@mui/material"
-import {
-	Button
+	Button,
+	TextField
 } from "@/base"
 import Image from "next/image"
 // #endregion
@@ -26,15 +24,10 @@ const LinkedinConnect = () => {
 			/>
 
 			<TextField
+				className="!text-xl text-gradient-end"
 				variant="standard"
 				value="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMj"
 				fullWidth
-				slotProps={{
-					input:{
-						disableUnderline: true,
-						className: "font-mada text-xl px-4 text-gradient-end"
-					}
-				}}
 			/>
 
 			<Button

@@ -30,13 +30,14 @@ const page = () => {
 			className="
 				p-8 px-16 pt-[8%] flex items-start justify-center
 				tracking-tighter text-grey-200 text-base gap-8
+				h-screen
 			"
 		>
 
 			<Navbar/>
 
 			<section
-				className="w-[45%] flex flex-col items-center gap-4 overflow-clip"
+				className="w-[45%] h-full flex flex-col items-center gap-4 overflow-clip"
 			>
 				<Search/>
 
@@ -69,7 +70,7 @@ const page = () => {
 
 
 			<section
-				className="flex flex-col gap-4 w-[50%]"
+				className="flex flex-col gap-4 w-[50%] h-[90%]"
 			>
 				<aside
 					className="flex gap-2 items-center"
@@ -104,13 +105,9 @@ const page = () => {
 					</div>
 				</aside>
 
-				<aside
-					className="h-[55vh]"
-				>
-					<Editor
-						noTemplate
-					/>
-				</aside>
+				<Editor
+					noTemplate
+				/>
 
 				<aside
 					className="mt-2 flex gap-2"

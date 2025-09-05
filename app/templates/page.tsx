@@ -22,6 +22,7 @@ const page = () => {
 			className="
 				p-8 px-16 pt-[8%] flex items-start justify-center
 				tracking-tighter text-charcoal-100 text-base gap-8
+				h-screen
 			"
 		>
 			<Navbar/>
@@ -61,31 +62,24 @@ const page = () => {
 			</section>
 
 			<section
-				className="flex flex-col w-[50%] h-full gap-10"
+				className="flex flex-col w-[50%] h-[90%] gap-4"
 			>
 
-				<aside
-					className="h-[60vh]"
-				>
-					<Editor
-					/>
-				</aside>
+				<Editor/>
 
 				<aside
-					className="flex gap-4 mt-12 w-2/3"
+					className="flex gap-2"
 				>
 					<Button
+						disabled
 						variant="secondary"
-						size="full"
-						// disabled={true}
 					>
 						Delete
 					</Button>
 
 					<Button
+						disabled
 						variant="primary"
-						size="full"
-						// disabled={true}
 					>
 						Save
 					</Button>
