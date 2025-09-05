@@ -11,6 +11,7 @@ import {
 	Button,
 	Radio,
 	Pagination,
+	FormControlLabel,
 } from "@mui/material"
 // #endregion
 
@@ -23,41 +24,57 @@ const buttonClass = `
 
 const page = () => {
 	return (
-		<section
-			className="w-full"
+		<article
+			className="w-full h-full flex flex-col justify-between gap-10"
 		>
-			<aside
-				className="flex w-full justify-between px-2 items-center"
+			<section
+				className="flex w-full justify-between items-center px-4"
 			>
-				<div
-					className="space-x-4"
+				<aside
+					className="flex gap-4 w-[50%]"
 				>
-					<Radio/>
-					Select all
-				</div>
+					<FormControlLabel
+						value="all"
+						control={
+							<Radio
+								className="text-grey-300 p-1"
+								aria-label="Select all"
+							/>
+						}
+						slotProps={{
+							typography:{
+								className:"font-mada tracking-tighter text-grey-300 font-medium"
+							}
+						}}
+						label="Select all"
+					/>
 
-				<Search/>
+					<Search/>
+				</aside>
 
 				<aside 
-					className="flex gap-10"
+					className="flex gap-10 w-[40%] ml-4"
 				>
 					<Templates
 						value="Outreach Template"
 					/>
+
 					<DateTime/>
 
-					<Button
-						// disabled={true}
-						className={`bg-orange hover:bg-orange-700 ml-14 ${buttonClass} text-white`}
-					>
-						Delete
-					</Button>
 				
 				</aside>
-			</aside>
 
-			<aside
-				className="space-y-4 my-4 w-full"
+				<Button
+					// disabled={true}
+					className={`bg-orange hover:bg-orange-700 ml-14 ${buttonClass} text-white`}
+				>
+					Delete
+				</Button>
+			</section>
+			
+
+			<ul
+				className="flex flex-col justify-between h-full"
 			>
 				{
 					[...new Array(7)].map(
@@ -72,12 +89,12 @@ const page = () => {
 						/>
 					)
 				}
-			</aside>
+			</ul>
 
-			<aside
+			<section
 				className="flex items-center w-full justify-between"
 			>
-				<div
+				<aside
 					className="flex gap-4 items-center"
 				>
 					<Button
@@ -92,7 +109,7 @@ const page = () => {
 					>
 						Add Connection +
 					</Button>
-				</div>
+				</aside>
 
 				<Pagination
 					page={2}
@@ -101,8 +118,8 @@ const page = () => {
 					size="small"
 				/>
 				<PaginationResults/>
-			</aside>
-		</section>
+			</section>
+		</article>
 	)
 }
 

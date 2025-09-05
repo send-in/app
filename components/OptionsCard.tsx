@@ -30,56 +30,55 @@ const OptionsCard = ({
 	return (
 		<li
 			className="
-				list-none flex gap-10 text-base items-center
-				p-2 tracking-tighter text-grey-200 justify-between
+				list-none flex  text-base items-center w-full
+				tracking-tighter text-grey-200 justify-between
 			"
 		>	
 			<aside
-				className="flex items-center gap-8"
+				className="flex items-center gap-2 w-[20%]"
 			>
 				<Radio/>
 
+				<Image
+					className="rounded-full"
+					alt={name ?? "SendIn"}
+					src={picture}
+					width={45}
+					height={45}
+				/>
+
 				<Link
-					className="flex shrink-0 gap-4 items-center group"
+					className="group"
 					href={profile}
 					target="_blank"			
 					title={name ?? "SendIn"}		
 				>
-					<Image
-						className="rounded-full"
-						alt={name ?? "SendIn"}
-						src={picture}
-						width={45}
-						height={45}
-					/>
 
-					<aside>
-						<h3
-							className="
-								text-xl text-blue-100 group-hover:text-blue-200
-								transition-all ease-in-out delay-100 
-							"
-						>
-							{name}
-						</h3>
-						<p
-							className="text-base font-medium"
-						>
-							{company}, {country}
-						</p>
-					</aside>
+					<h3
+						className="
+							text-xl text-blue-100 group-hover:text-blue-200
+							transition-all ease-in-out delay-100 
+						"
+					>
+						{name}
+					</h3>
+					<p
+						className="text-base font-medium"
+					>
+						{company}, {country}
+					</p>
 				</Link>
 			</aside>
 
-            <aside 
-				className="text-base text-charcoal-100 flex gap-10"
+			<aside 
+				className="text-base text-charcoal-100 flex gap-10 w-[20%]"
 			>
 				<div
 					className="flex gap-3 items-center "
 				>
 					<Globe
-                        size={16}
-                    />
+						size={16}
+					/>
 					IST
 				</div>
 
@@ -87,15 +86,15 @@ const OptionsCard = ({
 					className="flex gap-3 items-center"
 				>
 					<Clock
-                        size={16}
-                    />
+						size={16}
+					/>
 					Afternoon
 				</div>
 			</aside>
 
 
 			<aside 
-				className="flex gap-10 ml-24"
+				className="flex gap-10 w-[40%]"
 			>
 				<Templates
 					value="Outreach Template"
