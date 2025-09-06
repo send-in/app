@@ -6,7 +6,6 @@ import { useState } from "react"
 import {
 	DateTime,
 	OptionsCard,
-	Templates
 } from "@/components"
 
 import {
@@ -18,6 +17,7 @@ import {
 	TextField,
 	ToggleGroup,
 	Radio,
+	Select
 } from "@/base"
 
 import {
@@ -25,16 +25,32 @@ import {
 } from "@/icons"
 // #endregion
 
+import templates from "@/templates/templates.json"
+const templateOptions = templates.map((t) => ({
+	label: t.name,
+	value: t.name,
+}))
+
 const OptionsPage = () => {
 	const [currentPage, setCurrentPage] = useState(1)
 	const [selectAll, setSelectAll] = useState(false)
 	const [results, setResults] = useState("20")
+	const [template, setTemplate] = useState({ name: "", content: "" })
 
 	const resultOptions = [
 		{ label: "20", value: "20" },
 		{ label: "50", value: "50" },
 		{ label: "All", value: "All" },
 	]
+
+	const handleChange = (selectedValue: string) => {
+		const selectedTemplate = templates.find((t) => t.name === selectedValue)
+		if (selectedTemplate) {
+			setTemplate(selectedTemplate)
+		} else {
+			setTemplate({ name: "", content: "" })
+		}
+	}
 
 	return (
 		<article
@@ -65,8 +81,13 @@ const OptionsPage = () => {
 				<aside
 					className="flex gap-10 w-[40%] ml-4"
 				>
-					<Templates
-						value="Outreach Template"
+					<Select
+						options={templateOptions}
+						value={template.content}
+						placeholder="Select Template"
+						size="md"
+						variant="neutral"
+						onChange={handleChange}
 					/>
 
 					<DateTime/>

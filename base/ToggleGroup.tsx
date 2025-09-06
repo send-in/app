@@ -43,7 +43,6 @@ export interface ToggleOption {
 export interface ToggleGroupProps {
 	options: ToggleOption[]
 	value: string
-	exclusive?: boolean
 	variant?: keyof typeof toggleVariants.variants
 	shape?: keyof typeof toggleVariants.shape
 	className?: string
@@ -55,7 +54,6 @@ const ToggleGroup = forwardRef<HTMLDivElement, ToggleGroupProps>(
 		{
 			options,
 			value,
-			exclusive = false,
 			variant = "primary",
 			shape = "pill",
 			className = "",

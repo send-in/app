@@ -6,11 +6,6 @@ export { default as OptionsCard } from "./cards/OptionsCard"
 export { default as DashboardCard } from "./cards/DashboardCard"
 export { default as TemplateCard } from "./cards/TemplateCard"
 
-// dropdowns
-export { default as Templates } from "./dropdown/Templates"
-export { default as TimeZone } from "./dropdown/TimeZone"
-export { default as Sort } from "./dropdown/Sort"
-
 // panels
 export { default as OnboardingSidePanel } from "./panels/OnboardingSidePanel"
 export { default as ProfileSidePanel } from "./panels/ProfileSidePanel"
@@ -19,6 +14,7 @@ export { default as AuthSidePanel } from "./panels/AuthSidePanel"
 // others
 export { default as Footer } from "./Footer"
 export { default as Navbar } from "./Navbar"
+export { default as TimeZone } from "./TimeZone"
 export { default as DateTime } from "./DateTime"
 export { default as Editor } from "./Editor"
 export { default as Filters } from "./Filters"

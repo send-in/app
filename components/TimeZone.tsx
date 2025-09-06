@@ -17,10 +17,9 @@ import {
 	Search,
 	Globe,
 } from "@/icons"
-
-import zones from "@/templates/timezones.json"
 // #endregion
 
+import zones from "@/templates/timezones.json"
 const currentZone: string = Intl.DateTimeFormat().resolvedOptions().timeZone
 
 const getAbbreviation = (

@@ -5,7 +5,6 @@ import { useState } from "react"
 
 import {
 	Filters,
-	Sort,
 	ConnectionCard,
 } from "@/components"
 
@@ -18,6 +17,7 @@ import {
 	ToggleGroup,
 	TextField,
 	Radio,
+	Select,
 } from "@/base"
 
 import {
@@ -29,17 +29,25 @@ const dividerClass = `
 	bg-grey-100 rounded-full h-[50vh] w-[2px]
 `
 
+const sortOptions = [
+	{ label: "A-Z", value: "A-Z" },
+	{ label: "Z-A", value: "Z-A" },
+	{ label: "Recents", value: "Recents" },
+]
+
+const resultOptions = [
+	{ label: "20", value: "20" },
+	{ label: "50", value: "50" },
+	{ label: "All", value: "All" },
+]
+
 const ConnectionsPage = () => {
 
 	const [currentPage, setCurrentPage] = useState(1)
 	const [selectAll, setSelectAll] = useState(false)
 	const [results, setResults] = useState("20")
+	const [sort, setSort] = useState("")
 
-	const resultOptions = [
-		{ label: "20", value: "20" },
-		{ label: "50", value: "50" },
-		{ label: "All", value: "All" },
-	]
 
 	return (
 		<div
@@ -79,9 +87,13 @@ const ConnectionsPage = () => {
 						onChange={setResults}
 					/>
 
-					<Sort
-						options={[]}
-						styles="bg-grey-100"
+					<Select
+						value={sort}
+						onChange={(val)=>setSort(val)}
+						options={sortOptions}
+						placeholder="Sort"
+						variant="neutral"
+						size="md"
 					/>
 				</aside>
 

@@ -1,3 +1,5 @@
+"use client"
+
 // #region imports
 import Image from "next/image"
 
@@ -12,136 +14,172 @@ import {
 } from "@mui/material"
 
 import {
-	Templates,
 	DateTime,
 	TimeZone
 } from "@/components"
 
 import {
 	Button,
+	Select,
 	TextField
 } from "@/base"
 
 import {
 	Search
 } from "@/icons"
+
+import { useState } from "react"
 // #endregion
 
-const page = () => {
+import templates from "@/templates/templates.json"
+const templateOptions = templates.map((t) => ({
+	label: t.name,
+	value: t.name,
+}))
+
+const DashboardPage = () => {
+
+	const [template, setTemplate] = useState({
+		name: "Networking Template",
+		content: "Networking Template"
+	})
+
+	const resultOptions = [
+		{ label: "20", value: "20" },
+		{ label: "50", value: "50" },
+		{ label: "All", value: "All" },
+	]
+
+	const handleChange = (selectedValue: string) => {
+		const selectedTemplate = templates.find((t) => t.name === selectedValue)
+		if (selectedTemplate) {
+			setTemplate(selectedTemplate)
+		} else {
+			setTemplate({ name: "", content: "" })
+		}
+	}
+
 	return (
 		<>
-		<main
-			className="
-				p-8 px-16 pt-[8%] flex items-start justify-center
-				tracking-tighter text-grey-200 text-base gap-8
-				h-screen
-			"
-		>
-
-			<Navbar/>
-
-			<section
-				className="w-[45%] h-full flex flex-col items-center gap-4 overflow-clip"
+			<main
+				className="
+					p-8 px-16 pt-[8%] flex items-start justify-center
+					tracking-tighter text-grey-200 text-base gap-8
+					h-screen
+				"
 			>
-				<TextField
-					variant="filled"
-					placeholder="Search"
-					fullWidth
-					endIcon={
-						<Search />
-					}
-				/>
 
-				<aside
-					className="space-y-4 my-4 w-full"
+				<Navbar/>
+
+				<section
+					className="w-[45%] h-full flex flex-col items-center gap-4 overflow-clip"
 				>
-					{
-						[...new Array(8)].map(
-							(_,index) =>
-								<DashboardCard
-									key={index}
-									name="Vishnu Shon"
-									picture="https://media.licdn.com/dms/image/v2/D5603AQH2-Le-GLYQfQ/profile-displayphoto-crop_800_800/B56ZhyEAK4HUAI-/0/1754260309150?e=1759363200&v=beta&t=tSQG_CnXVrLuWg8REMJh1uWrk1NRL7iDLXG_WGKIwYA"
-									template="( Job Opportunity )"
-									profile=""
-									scheduleTime={new Date()}
-									startTime={new Date()}
-								/>
-						)
-					}
-				</aside>
-
-				<Pagination
-					page={2}
-					count={10}
-					siblingCount={0}
-					size="small"
-				/>
-			</section>
-
-
-			<section
-				className="flex flex-col gap-4 w-[50%] h-[90%]"
-			>
-				<aside
-					className="flex gap-2 items-center"
-				>
-					<Image
-						className="rounded-full"
-						alt={"SendIn"}
-						src={"https://media.licdn.com/dms/image/v2/D5603AQH2-Le-GLYQfQ/profile-displayphoto-crop_800_800/B56ZhyEAK4HUAI-/0/1754260309150?e=1759363200&v=beta&t=tSQG_CnXVrLuWg8REMJh1uWrk1NRL7iDLXG_WGKIwYA"}
-						width={50}
-						height={50}
+					<TextField
+						variant="filled"
+						placeholder="Search"
+						fullWidth
+						endIcon={
+							<Search />
+						}
 					/>
-					<div>
-						<h2
-							className="text-2xl text-blue-100 tracking-tighter"
+
+					<aside
+						className="space-y-4 my-4 w-full"
+					>
+						{
+							[...new Array(8)].map(
+								(_,index) =>
+									<DashboardCard
+										key={index}
+										name="Vishnu Shon"
+										picture="https://media.licdn.com/dms/image/v2/D5603AQH2-Le-GLYQfQ/profile-displayphoto-crop_800_800/B56ZhyEAK4HUAI-/0/1754260309150?e=1759363200&v=beta&t=tSQG_CnXVrLuWg8REMJh1uWrk1NRL7iDLXG_WGKIwYA"
+										template="( Job Opportunity )"
+										profile=""
+										scheduleTime={new Date()}
+										startTime={new Date()}
+									/>
+							)
+						}
+					</aside>
+
+					<Pagination
+						page={2}
+						count={10}
+						siblingCount={0}
+						size="small"
+					/>
+				</section>
+
+
+				<section
+					className="flex flex-col gap-4 w-[50%] h-[90%]"
+				>
+					<aside
+						className="flex gap-2 items-center"
+					>
+						<Image
+							className="rounded-full"
+							alt={"SendIn"}
+							src={"https://media.licdn.com/dms/image/v2/D5603AQH2-Le-GLYQfQ/profile-displayphoto-crop_800_800/B56ZhyEAK4HUAI-/0/1754260309150?e=1759363200&v=beta&t=tSQG_CnXVrLuWg8REMJh1uWrk1NRL7iDLXG_WGKIwYA"}
+							width={50}
+							height={50}
+						/>
+						<div>
+							<h2
+								className="text-2xl text-blue-100 tracking-tighter"
+							>
+								Vishnu Shon
+							</h2>
+							<p>Predictable Hiring, USA (EST)</p>
+						</div>
+					</aside>
+
+					<aside
+						className="w-full flex justify-between items-center"
+					>
+						<Select
+							options={templateOptions}
+							value={template.name}
+							placeholder="Select Template"
+							size="md"
+							variant="primary"
+							onChange={handleChange}
+						/>
+
+						<div
+							className="flex gap-4"
 						>
-							Vishnu Shon
-						</h2>
-						<p>Predictable Hiring, USA (EST)</p>
-					</div>
-				</aside>
+							<DateTime/>
+							<TimeZone/>
+						</div>
+					</aside>
 
-				<aside
-					className="w-full flex justify-between items-center"
-				>
-					<Templates/>
+					<Editor
+						noTemplate
+					/>
 
-					<div
-						className="flex gap-4"
+					<aside
+						className="mt-2 flex gap-2"
 					>
-						<DateTime/>
-						<TimeZone/>
-					</div>
-				</aside>
+						<Button
+							disabled
+							variant="secondary"
+						>
+							Delete
+						</Button>
 
-				<Editor
-					noTemplate
-				/>
-
-				<aside
-					className="mt-2 flex gap-2"
-				>
-					<Button
-						disabled
-						variant="secondary"
-					>
-						Delete
-					</Button>
-
-					<Button
-						disabled
-						variant="primary"
-					>
-						Reschedule
-					</Button>
-				</aside>
-			</section>
-		</main>
+						<Button
+							disabled
+							variant="primary"
+						>
+							Reschedule
+						</Button>
+					</aside>
+				</section>
+			</main>
 		</>
 
 	)
 }
 
-export default page
+export default DashboardPage

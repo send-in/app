@@ -1,9 +1,10 @@
+"use client"
+
 // #region imports
 import Link from "next/link"
 import Image from "next/image"
 
 import {
-	Templates,
 	DateTime
 } from "@/components"
 
@@ -16,9 +17,18 @@ import {
 
 import {
 	IconButton,
-	Radio
+	Radio,
+	Select
 } from "@/base"
+
+import { useState } from "react"
 // #endregion
+
+import templates from "@/templates/templates.json"
+const templateOptions = templates.map((t) => ({
+	label: t.name,
+	value: t.name,
+}))
 
 const OptionsCard = ({
 	name,
@@ -34,6 +44,20 @@ const OptionsCard = ({
 	country: string,
 	profile: string,
 }) => {
+	const [template, setTemplate] = useState({
+		name: "Networking Template",
+		content: "Networking Template"
+	})
+
+	const handleChange = (selectedValue: string) => {
+		const selectedTemplate = templates.find((t) => t.name === selectedValue)
+		if (selectedTemplate) {
+			setTemplate(selectedTemplate)
+		} else {
+			setTemplate({ name: "", content: "" })
+		}
+	}
+
 	return (
 		<li
 			className="
@@ -103,9 +127,15 @@ const OptionsCard = ({
 			<aside
 				className="flex gap-10 w-[40%]"
 			>
-				<Templates
-					value="Outreach Template"
+				<Select
+					options={templateOptions}
+					value={template.name}
+					placeholder="Select Template"
+					size="md"
+					variant="primary"
+					onChange={handleChange}
 				/>
+
 				<DateTime/>
 
 			</aside>
