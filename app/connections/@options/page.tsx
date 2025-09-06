@@ -9,9 +9,6 @@ import {
 } from "@/components"
 
 import {
-} from "@mui/material"
-
-import {
 	Button,
 	TextField,
 	ToggleGroup,
@@ -32,7 +29,6 @@ const templateOptions = templates.map((t) => ({
 }))
 
 const OptionsPage = () => {
-	const [currentPage, setCurrentPage] = useState(1)
 	const [selectAll, setSelectAll] = useState(false)
 	const [results, setResults] = useState("20")
 	const [template, setTemplate] = useState({ name: "", content: "" })

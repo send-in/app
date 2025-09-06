@@ -1,26 +1,21 @@
 "use client"
 
 // #region imports
-import { useState } from "react"
-
-import {
-	Popover,
-} from "@mui/material"
-
-import {
-	Button
-} from "@/base"
-
 import Image from "next/image"
 
 import {
-	Clock
-} from "@/icons"
+	Popover,
+	Button
+} from "@/base"
 
 import {
 	TimeZone,
 	InformationCard
 } from "@/components"
+
+import {
+	Clock
+} from "@/icons"
 // #endregion
 
 const DateTime = ({
@@ -35,15 +30,6 @@ const DateTime = ({
 		timezone: string,
 	}
 }) => {
-
-	const [open, setOpen] = useState<boolean>(false)
-
-	const handleClick = () =>
-		setOpen(prev=>!prev)
-
-	const handleClose = () =>
-		setOpen(false)
-
 	const properTime = (
 		scheduledTime ??
 		new Date()
@@ -70,29 +56,19 @@ const DateTime = ({
 
 	return (
 		<>
-			<Button
-				onClick={handleClick}
-				variant="primary"
-				startIcon={
-					<Clock/>
-				}
-			>
-				{properTime} {" "}
-				{properDate}
-			</Button>
-
-
 			<Popover
-				open={open}
-				onClose={handleClose}
-				slotProps={{
-					root:{
-						className: "top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-					},
-                    paper: {
-						className: "p-4 rounded-3xl shadow-lg bg-white text-gray-800 w-fit h-fit space-y-5 tracking-tighter"
-					}
-                }}
+				trigger={
+					<Button
+						variant="primary"
+						startIcon={
+							<Clock/>
+						}
+					>
+						{properTime} {" "}
+						{properDate}
+					</Button>
+				}
+				className="top-36 right-0"
 			>
 				<aside
 					className="flex justify-between"
@@ -101,12 +77,12 @@ const DateTime = ({
 						className="rounded-full h-max w-max"
 						alt={profile?.name ?? "SendIn"}
 						src="https://media.licdn.com/dms/image/v2/D5603AQH2-Le-GLYQfQ/profile-displayphoto-crop_800_800/B56ZhyEAK4HUAI-/0/1754260309150?e=1759363200&v=beta&t=tSQG_CnXVrLuWg8REMJh1uWrk1NRL7iDLXG_WGKIwYA"
-						width={60}
-						height={60}
+						width={50}
+						height={50}
 					/>
 
 					<div
-						className="flex flex-col items-end gap-1 text-2xl"
+						className="flex flex-col items-end gap-1 text-xl"
 					>
 						<p>
 							Aug 13, 8:00 AM
@@ -154,7 +130,7 @@ const DateTime = ({
 				</aside>
 
 				<aside
-					className="text-base flex justify-between gap-8 items-center text-grey-200 px-2"
+					className="text-base flex justify-between gap-4 items-center text-grey-200 px-2"
 				>
 					<p>
 						Custom Date/Time
