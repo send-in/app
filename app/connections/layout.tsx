@@ -23,8 +23,8 @@ const layout = ({
         >
             <Navbar/>
 
-			{/* {connections} */}
-            {options}
+			{connections}
+            {/* {options} */}
 		</main>
 	)
 }

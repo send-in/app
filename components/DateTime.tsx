@@ -2,7 +2,6 @@
 
 // #region imports
 import { useState } from "react"
-import { DateRangePicker } from "@mui/x-date-pickers-pro"
 
 import {
 	Popover,
@@ -13,9 +12,15 @@ import {
 } from "@/base"
 
 import Image from "next/image"
-import Clock from "../Icons/Clock"
-import TimeZone from "./TimeZone"
-import InformationCard from "./InformationCard"
+
+import {
+	Clock
+} from "@/icons"
+
+import {
+	TimeZone,
+	InformationCard
+} from "@/components"
 // #endregion
 
 const DateTime = ({

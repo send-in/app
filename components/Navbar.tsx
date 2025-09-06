@@ -1,33 +1,33 @@
 // #region Imports
 import Image from "next/image"
-import Logo from "../Icons/Logo"
+import Logo from "../icons/Logo"
 import Link from "next/link"
 // #endregion
 
 const Navbar = () => {
 
 	return (
-		<nav 
+		<nav
 			className="
-				pl-4 p-1 min-w-[50%] small:min-w-full xlarge:min-w-[30%] 
-				xlarge:text-base mb-4 flex items-center gap-10 small:gap-2 
-				justify-between rounded-full font-medium text-white 
+				pl-4 p-1 min-w-[50%] small:min-w-full xlarge:min-w-[30%]
+				xlarge:text-base mb-4 flex items-center gap-10 small:gap-2
+				justify-between rounded-full font-medium text-white
 				max-w-4xl bg-blue-100 fixed top-5 text-base
 			"
 		>
-			<Logo 
+			<Logo
 				size={35}
 				fill="#FFF"
 			/>
 
-			<aside 
+			<aside
 				className="flex gap-5 small:hidden text-sm"
 			>
 				<Link
 					href="/dashboard"
 					className="
 						opacity-70 hover:opacity-100
-						transition-all ease-in-out delay-100 
+						transition-all ease-in-out delay-100
 						cursor-pointer
 					"
 				>
@@ -37,7 +37,7 @@ const Navbar = () => {
 					href="/connections"
 					className="
 						opacity-70 hover:opacity-100
-						transition-all ease-in-out delay-100 
+						transition-all ease-in-out delay-100
 						cursor-pointer
 					"
 				>
@@ -47,7 +47,7 @@ const Navbar = () => {
 					href="/templates"
 					className="
 						opacity-70 hover:opacity-100
-						transition-all ease-in-out delay-100 
+						transition-all ease-in-out delay-100
 						cursor-pointer
 					"
 				>
@@ -61,7 +61,7 @@ const Navbar = () => {
 				<Link
 					href="/connections"
 					className="
-						px-6 py-1 rounded-full cursor-pointer 
+						px-6 py-1 rounded-full cursor-pointer
 						text-blue-100 hover:bg-blue-200 hover:text-white bg-white
 						transition-all ease-in-out delay-100
 					"
@@ -73,7 +73,7 @@ const Navbar = () => {
 				<Link
 					href="/profile"
 					className="border-2 border-white rounded-full"
-				>	
+				>
 					<Image
 						className="rounded-full"
 						alt={"profile"}

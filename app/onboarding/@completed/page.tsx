@@ -1,7 +1,7 @@
 // #region imports
 import {
     Linkedin
-} from "@/Icons"
+} from "@/icons"
 
 import {
 	Button,

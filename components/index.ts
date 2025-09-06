@@ -1,21 +1,27 @@
 // #region Component Exports
-export { default as AuthSidePanel } from "./AuthSidePanel"
-export { default as ConnectionCard } from "./ConnectionCard"
-export { default as DashboardCard } from "./DashboardCard"
+// cards
+export { default as InformationCard } from "./cards/InformationCard"
+export { default as ConnectionCard } from "./cards/ConnectionCard"
+export { default as OptionsCard } from "./cards/OptionsCard"
+export { default as DashboardCard } from "./cards/DashboardCard"
+export { default as TemplateCard } from "./cards/TemplateCard"
+
+// dropdowns
+export { default as Templates } from "./dropdown/Templates"
+export { default as TimeZone } from "./dropdown/TimeZone"
+export { default as Sort } from "./dropdown/Sort"
+
+// panels
+export { default as OnboardingSidePanel } from "./panels/OnboardingSidePanel"
+export { default as ProfileSidePanel } from "./panels/ProfileSidePanel"
+export { default as AuthSidePanel } from "./panels/AuthSidePanel"
+
+// others
+export { default as Footer } from "./Footer"
+export { default as Navbar } from "./Navbar"
 export { default as DateTime } from "./DateTime"
 export { default as Editor } from "./Editor"
 export { default as Filters } from "./Filters"
-export { default as Footer } from "./Footer"
-export { default as InformationCard } from "./InformationCard"
 export { default as LinkedinConnect } from "./LinkedinConnect"
-export { default as Navbar } from "./Navbar"
-export { default as OnboardingSidePanel } from "./OnboardingSidePanel"
-export { default as OptionsCard } from "./OptionsCard"
-export { default as SearchBar } from "./SearchBar"
-export { default as Sort } from "./Sort"
-export { default as TemplateCard } from "./TemplateCard"
-export { default as Templates } from "./Templates"
 export { default as TimeProgress } from "./TimeProgress"
-export { default as TimeZone } from "./TimeZone"
-export { default as PaginationResults } from "./PaginationResults"
 // #endregion

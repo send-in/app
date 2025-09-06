@@ -21,7 +21,7 @@ import {
 	Bullets,
 	Numbers,
 	Copy,
-} from "@/Icons"
+} from "@/icons"
 // #endregion
 
 const toBold = (text: string) =>

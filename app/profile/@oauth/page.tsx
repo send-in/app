@@ -13,7 +13,7 @@ import {
 
 import {
     Google
-} from "@/Icons"
+} from "@/icons"
 // #endregion
 
 const page = ({

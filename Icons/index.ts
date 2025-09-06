@@ -18,4 +18,5 @@ export { default as Link } from "./Link"
 export { default as Bullets } from "./Bullets"
 export { default as Numbers } from "./Numbers"
 export { default as Copy } from "./Copy"
+export { default as Chevron } from "./Chevron"
 // #endregion

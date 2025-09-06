@@ -9,7 +9,7 @@ import {
 import {
     Google,
     Linkedin
-} from "@/Icons"
+} from "@/icons"
 
 import {
     Footer,

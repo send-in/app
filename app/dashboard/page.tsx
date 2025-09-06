@@ -5,7 +5,6 @@ import {
 	DashboardCard,
 	Editor,
 	Navbar,
-	SearchBar as Search,
 } from "@/components"
 
 import {
@@ -19,8 +18,13 @@ import {
 } from "@/components"
 
 import {
-	Button
+	Button,
+	TextField
 } from "@/base"
+
+import {
+	Search
+} from "@/icons"
 // #endregion
 
 const page = () => {
@@ -39,7 +43,14 @@ const page = () => {
 			<section
 				className="w-[45%] h-full flex flex-col items-center gap-4 overflow-clip"
 			>
-				<Search/>
+				<TextField
+					variant="filled"
+					placeholder="Search"
+					fullWidth
+					endIcon={
+						<Search />
+					}
+				/>
 
 				<aside
 					className="space-y-4 my-4 w-full"

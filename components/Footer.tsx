@@ -1,6 +1,6 @@
 // #region Imports
 import Link from "next/link"
-import Logo from "../Icons/Logo"
+import Logo from "../icons/Logo"
 // #endregion
 
 const links = [
@@ -23,7 +23,7 @@ const links = [
 				name: "Timezone intelligence",
 				href: "/blog/timezone-intelligence"
 			},
-			
+
 		],
 	},
 	{
@@ -91,7 +91,7 @@ const Footer = () => {
 	return (
 		<section
 			className="
-                w-full pt-2 text-charcoal-100 bottom-0 
+                w-full pt-2 text-charcoal-100 bottom-0
                 small:relative z-10 p-8 xlarge:p-8 small:pt-0
             "
 			id="footer"
@@ -108,19 +108,19 @@ const Footer = () => {
 					size={50}
 				/>
 
-				<aside 
+				<aside
 					className="
-						flex small:flex-col  justify-between 
+						flex small:flex-col  justify-between
 						p-10 pt-5 small:px-4 w-[60%] small:w-full text-right font-normal
 						small:p-2 small:gap-4 xlarge:w-[50%]
 					"
 				>
 					{links.map((category, index) => (
-						<div 
-							key={index} 
+						<div
+							key={index}
 							className="text-base xlarge:text-base flex flex-col items-start small:w-fit"
 						>
-							<p 
+							<p
 								className="text-2xl small:text-xl xlarge:text-3xl"
 							>
 								{category.title}
@@ -129,7 +129,7 @@ const Footer = () => {
 							{category.items.map((link, idx) => (
 								<Link
 									className="
-										transition-all ease-in-out delay-100 
+										transition-all ease-in-out delay-100
 										cursor-pointer
 									"
                                     target="_blank"
@@ -149,7 +149,7 @@ const Footer = () => {
 				<p>2025 © SendIn.  support@sendin.com</p>
 			</div>
 
-			
+
 		</section>
 	)
 }

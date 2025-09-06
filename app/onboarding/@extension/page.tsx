@@ -5,7 +5,7 @@ import {
 
 import {
     Google
-} from "@/Icons"
+} from "@/icons"
 
 import {
 	Button,

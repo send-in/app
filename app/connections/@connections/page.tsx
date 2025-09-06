@@ -1,28 +1,46 @@
+"use client"
+
 // #region imports
+import { useState } from "react"
 
 import {
 	Filters,
-	SearchBar as Search,
 	Sort,
 	ConnectionCard,
-	PaginationResults
 } from "@/components"
 
 import {
-	Radio,
 	Pagination,
 } from "@mui/material"
 
 import {
-	Button
+	Button,
+	ToggleGroup,
+	TextField,
+	Radio,
 } from "@/base"
+
+import {
+	Search
+} from "@/icons"
 // #endregion
 
 const dividerClass = `
 	bg-grey-100 rounded-full h-[50vh] w-[2px]
 `
 
-const page = () => {
+const ConnectionsPage = () => {
+
+	const [currentPage, setCurrentPage] = useState(1)
+	const [selectAll, setSelectAll] = useState(false)
+	const [results, setResults] = useState("20")
+
+	const resultOptions = [
+		{ label: "20", value: "20" },
+		{ label: "50", value: "50" },
+		{ label: "All", value: "All" },
+	]
+
 	return (
 		<div
 			className="w-full h-full flex items-around gap-4 justify-between"
@@ -39,16 +57,27 @@ const page = () => {
 				<aside
 					className="flex w-full justify-between px-2 items-center"
 				>
-					<div
-						className="space-x-4"
-					>
-						<Radio/>
-						Select all
-					</div>
+					<Radio
+						label="Select all"
+						checked={selectAll}
+						onClick={() => setSelectAll(prev=>!prev)}
+					/>
 
-					<Search size=""/>
+					<TextField
+						variant="filled"
+						placeholder="Search"
+						endIcon={
+							<Search />
+						}
+					/>
 
-					<PaginationResults/>
+					<ToggleGroup
+						variant="neutral"
+						shape="rounded"
+						options={resultOptions}
+						value={results}
+						onChange={setResults}
+					/>
 
 					<Sort
 						options={[]}
@@ -89,9 +118,10 @@ const page = () => {
 					<p>3 Selected</p>
 
 					<Pagination
-						page={2}
+						page={currentPage}
 						count={10}
-						siblingCount={0}
+						// siblingCount={0}
+						onChange={(event, value) => setCurrentPage(value)}
 						size="small"
 					/>
 				</aside>
@@ -101,4 +131,4 @@ const page = () => {
 	)
 }
 
-export default page
+export default ConnectionsPage

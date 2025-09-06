@@ -1,24 +1,41 @@
+"use client"
+
 // #region imports
+import { useState } from "react"
+
 import {
 	DateTime,
 	OptionsCard,
-	PaginationResults,
-	SearchBar as Search,
 	Templates
 } from "@/components"
 
 import {
-	Radio,
 	Pagination,
-	FormControlLabel,
 } from "@mui/material"
 
 import {
-	Button
+	Button,
+	TextField,
+	ToggleGroup,
+	Radio,
 } from "@/base"
+
+import {
+	Search
+} from "@/icons"
 // #endregion
 
-const page = () => {
+const OptionsPage = () => {
+	const [currentPage, setCurrentPage] = useState(1)
+	const [selectAll, setSelectAll] = useState(false)
+	const [results, setResults] = useState("20")
+
+	const resultOptions = [
+		{ label: "20", value: "20" },
+		{ label: "50", value: "50" },
+		{ label: "All", value: "All" },
+	]
+
 	return (
 		<article
 			className="w-full h-full flex flex-col justify-between gap-10"
@@ -27,25 +44,22 @@ const page = () => {
 				className="flex w-full justify-between items-center px-4"
 			>
 				<aside
-					className="flex gap-4 w-[50%]"
+					className="flex gap-4 w-[40%]"
 				>
-					<FormControlLabel
-						value="all"
-						control={
-							<Radio
-								className="text-grey-300 p-1"
-								aria-label="Select all"
-							/>
-						}
-						slotProps={{
-							typography:{
-								className:"font-mada tracking-tighter text-grey-300 font-medium"
-							}
-						}}
+					<Radio
 						label="Select all"
+						checked={selectAll}
+						onClick={() => setSelectAll(prev=>!prev)}
 					/>
 
-					<Search/>
+					<TextField
+						variant="filled"
+						placeholder="Search"
+						fullWidth
+						endIcon={
+							<Search />
+						}
+					/>
 				</aside>
 
 				<aside
@@ -56,7 +70,6 @@ const page = () => {
 					/>
 
 					<DateTime/>
-
 
 				</aside>
 
@@ -115,10 +128,18 @@ const page = () => {
 					siblingCount={0}
 					size="small"
 				/>
-				<PaginationResults/>
+
+				<ToggleGroup
+					variant="neutral"
+					shape="rounded"
+					options={resultOptions}
+					value={results}
+					onChange={setResults}
+				/>
+
 			</section>
 		</article>
 	)
 }
 
-export default page
+export default OptionsPage
