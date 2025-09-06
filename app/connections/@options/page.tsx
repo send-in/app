@@ -9,7 +9,6 @@ import {
 } from "@/components"
 
 import {
-	Pagination,
 } from "@mui/material"
 
 import {
@@ -17,7 +16,8 @@ import {
 	TextField,
 	ToggleGroup,
 	Radio,
-	Select
+	Select,
+	Pagination,
 } from "@/base"
 
 import {
@@ -25,7 +25,7 @@ import {
 } from "@/icons"
 // #endregion
 
-import templates from "@/templates/templates.json"
+import templates from "@/content/templates.json"
 const templateOptions = templates.map((t) => ({
 	label: t.name,
 	value: t.name,
@@ -144,9 +144,8 @@ const OptionsPage = () => {
 				</aside>
 
 				<Pagination
-					page={2}
+					page={1}
 					count={10}
-					siblingCount={0}
 					size="small"
 				/>
 

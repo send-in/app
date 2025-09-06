@@ -24,7 +24,7 @@ import {
 import { useState } from "react"
 // #endregion
 
-import templates from "@/templates/templates.json"
+import templates from "@/content/templates.json"
 const templateOptions = templates.map((t) => ({
 	label: t.name,
 	value: t.name,

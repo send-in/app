@@ -10,10 +10,6 @@ import {
 } from "@/components"
 
 import {
-	Pagination,
-} from "@mui/material"
-
-import {
 	DateTime,
 	TimeZone
 } from "@/components"
@@ -21,7 +17,8 @@ import {
 import {
 	Button,
 	Select,
-	TextField
+	TextField,
+	Pagination
 } from "@/base"
 
 import {
@@ -31,33 +28,15 @@ import {
 import { useState } from "react"
 // #endregion
 
-import templates from "@/templates/templates.json"
+import templates from "@/content/templates.json"
 const templateOptions = templates.map((t) => ({
 	label: t.name,
 	value: t.name,
 }))
 
+
 const DashboardPage = () => {
-
-	const [template, setTemplate] = useState({
-		name: "Networking Template",
-		content: "Networking Template"
-	})
-
-	const resultOptions = [
-		{ label: "20", value: "20" },
-		{ label: "50", value: "50" },
-		{ label: "All", value: "All" },
-	]
-
-	const handleChange = (selectedValue: string) => {
-		const selectedTemplate = templates.find((t) => t.name === selectedValue)
-		if (selectedTemplate) {
-			setTemplate(selectedTemplate)
-		} else {
-			setTemplate({ name: "", content: "" })
-		}
-	}
+	const [template, setTemplate] = useState("Networking Template")
 
 	return (
 		<>
@@ -68,7 +47,6 @@ const DashboardPage = () => {
 					h-screen
 				"
 			>
-
 				<Navbar/>
 
 				<section
@@ -103,9 +81,8 @@ const DashboardPage = () => {
 					</aside>
 
 					<Pagination
-						page={2}
+						page={1}
 						count={10}
-						siblingCount={0}
 						size="small"
 					/>
 				</section>
@@ -139,11 +116,11 @@ const DashboardPage = () => {
 					>
 						<Select
 							options={templateOptions}
-							value={template.name}
+							value={template}
 							placeholder="Select Template"
 							size="md"
 							variant="primary"
-							onChange={handleChange}
+							onChange={(value)=>setTemplate(value)}
 						/>
 
 						<div

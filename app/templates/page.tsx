@@ -6,14 +6,11 @@ import {
 } from "@/components"
 
 import {
+	Button,
 	Pagination,
-} from "@mui/material"
-
-import {
-	Button
 } from "@/base"
 
-import templates from "@/templates/templates.json"
+import templates from "@/content/templates.json"
 // #endregion
 
 const page = () => {
@@ -55,7 +52,6 @@ const page = () => {
 					<Pagination
 						page={2}
 						count={10}
-						siblingCount={0}
 						size="small"
 					/>
 				</div>

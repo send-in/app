@@ -1,5 +1,5 @@
 // #region imports
-import "@/styles/globals.css"
+import "@/globals.css"
 import { StyledEngineProvider } from "@mui/material/styles"
 import { Mada } from "next/font/google"
 import type { Metadata } from "next"
@@ -26,17 +26,17 @@ export default async function RootLayout({
 }>) {
 
 	return (
-		<html 
+		<html
 			lang="en"
 		>
 				<body
 					className={`
-						${mada.className} 
-						antialiased 
+						${mada.className}
+						antialiased
 						max-h-screen
 					`}
 				>
-					<StyledEngineProvider 
+					<StyledEngineProvider
 						enableCssLayer
 					>
 						{children}

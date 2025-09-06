@@ -1,45 +1,28 @@
 "use client"
 
 // #region imports
-import {
-	HTMLAttributes,
-	forwardRef
-} from "react"
-
-import {
-	cn
-} from "@/utils/cn"
-
-import {
-	Chevron
-} from "@/icons"
+import { forwardRef, HTMLAttributes } from "react"
+import { cn } from "@/utils/cn"
+import { Chevron } from "@/icons"
 // #endregion
-
 
 const paginationVariants = {
 	base: `
-		flex items-center gap-2 select-none
+		flex items-center justify-center
+		gap-2 select-none w-full text-charcoal-100
+		font-normal text-base
 	`,
 
 	button: `
-		btn btn-circle btn-sm transition-all ease-in-out duration-200
-		hover:scale-105 active:scale-95 focus:outline-none
-		disabled:opacity-50 disabled:cursor-not-allowed
-		disabled:hover:scale-100
+		btn btn-circle transition-all duration-500 ease-in-out bgb
+		hover:scale-105 active:scale-95 focus:outline-none border-none
+		disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100
 	`,
 
 	variants: {
-		default: `
-			btn-ghost hover:btn-neutral
-		`,
-
-		active: `
-			btn-primary text-primary-content
-		`,
-
-		navigation: `
-			btn-ghost hover:btn-neutral
-		`,
+		default: `btn-ghost hover:btn-neutral`,
+		active: `btn-primary text-primary-content bg-grey-100`,
+		navigation: `btn-ghost hover:btn-neutral`,
 	},
 
 	sizes: {
@@ -48,33 +31,24 @@ const paginationVariants = {
 		large: "btn-md w-12 h-12 text-base",
 	},
 
-	ellipsis: `
-		px-2 text-base-content/60 select-none pointer-events-none
-	`
+	ellipsis: `px-2 text-base-content/60 select-none pointer-events-none transition-all duration-500 ease-in-out`,
 }
 
 export interface PaginationProps
-extends Omit<HTMLAttributes<HTMLElement>, 'onChange'> {
+	extends Omit<HTMLAttributes<HTMLElement>, "onChange"> {
 	page: number
 	count: number
 	siblingCount?: number
 	size?: keyof typeof paginationVariants.sizes
-	variant?: 'default' | 'active' | 'navigation'
 	disabled?: boolean
 	showFirstButton?: boolean
 	showLastButton?: boolean
-
-	onChange?: (
-		event: React.MouseEvent<HTMLButtonElement>,
-		value: number
-	) => void
-
+	onChange?: (value: number) => void
 	className?: string
 }
 
-function range(start: number, end: number): number[] {
-	return Array.from({ length: end - start + 1 }, (_, i) => start + i)
-}
+const range = (start: number, end: number): number[] =>
+	Array.from({ length: end - start + 1 }, (_, i) => start + i)
 
 const Pagination = forwardRef<HTMLElement, PaginationProps>(
 	(
@@ -83,7 +57,6 @@ const Pagination = forwardRef<HTMLElement, PaginationProps>(
 			count,
 			siblingCount = 1,
 			size = "medium",
-			variant = "default", // eslint-disable-line @typescript-eslint/no-unused-vars
 			disabled = false,
 			showFirstButton = false,
 			showLastButton = false,
@@ -93,58 +66,39 @@ const Pagination = forwardRef<HTMLElement, PaginationProps>(
 		},
 		ref
 	) => {
-
-		const handleClick = (value: number) => (
-			event: React.MouseEvent<HTMLButtonElement>
-		) => {
-			if (onChange && !disabled && value !== page) {
-				onChange(event, value)
-			}
+		const handleClick = (value: number) => () => {
+			if (!disabled && value !== page) onChange?.(value)
 		}
 
-		// Build pages array like MUI
-		const totalNumbers = siblingCount * 2 + 5 // first + last + current + 2*siblings + 2 dots
-		const pages: (number | "start-ellipsis" | "end-ellipsis")[] = []
+		const totalNumbers = siblingCount * 2 + 5
+		const pages: (number | "ellipsis")[] =
+			count <= totalNumbers
+				? range(1, count)
+				: (() => {
+					const left = Math.max(page - siblingCount, 2)
+					const right = Math.min(page + siblingCount, count - 1)
+					const arr: (number | "ellipsis")[] = [1]
 
-		if (count <= totalNumbers) {
-			pages.push(...range(1, count))
-		} else {
-			const leftSibling = Math.max(page - siblingCount, 2)
-			const rightSibling = Math.min(page + siblingCount, count - 1)
+					if (left > 2) arr.push("ellipsis")
+					arr.push(...range(left, right))
+					if (right < count - 1) arr.push("ellipsis")
+					arr.push(count)
+					return arr
+				})()
 
-			pages.push(1)
-			if (leftSibling > 2) pages.push("start-ellipsis")
-
-			for (let i = leftSibling; i <= rightSibling; i++) {
-				pages.push(i)
-			}
-
-			if (rightSibling < count - 1) pages.push("end-ellipsis")
-			pages.push(count)
-		}
-
-		const navigationClasses = cn(
+		const containerClasses = cn(paginationVariants.base, className)
+		const navBtnClasses = cn(
 			paginationVariants.button,
 			paginationVariants.variants.navigation,
 			paginationVariants.sizes[size]
 		)
-
-		const pageButtonClasses = (isActive: boolean) => cn(
-			paginationVariants.button,
-			isActive
-				? paginationVariants.variants.active
-				: paginationVariants.variants.default,
-			paginationVariants.sizes[size]
-		)
-
-		const containerClasses = cn(
-			paginationVariants.base,
-			className
-		)
-
-		const ellipsisClasses = cn(
-			paginationVariants.ellipsis
-		)
+		const pageBtnClasses = (active: boolean) =>
+			cn(
+				paginationVariants.button,
+				active ? paginationVariants.variants.active : paginationVariants.variants.default,
+				paginationVariants.sizes[size]
+			)
+		const ellipsisClasses = cn(paginationVariants.ellipsis)
 
 		return (
 			<nav
@@ -154,11 +108,9 @@ const Pagination = forwardRef<HTMLElement, PaginationProps>(
 				aria-label="Pagination"
 				{...props}
 			>
-
-				{/* First Button */}
 				{showFirstButton && (
 					<button
-						className={navigationClasses}
+						className={navBtnClasses}
 						disabled={disabled || page === 1}
 						onClick={handleClick(1)}
 						aria-label="Go to first page"
@@ -168,9 +120,8 @@ const Pagination = forwardRef<HTMLElement, PaginationProps>(
 					</button>
 				)}
 
-				{/* Previous Button */}
 				<button
-					className={navigationClasses}
+					className={navBtnClasses}
 					disabled={disabled || page === 1}
 					onClick={handleClick(page - 1)}
 					aria-label="Go to previous page"
@@ -178,20 +129,15 @@ const Pagination = forwardRef<HTMLElement, PaginationProps>(
 					<Chevron direction="left" size={14} />
 				</button>
 
-				{/* Page Numbers */}
 				{pages.map((p, idx) =>
-					p === "start-ellipsis" || p === "end-ellipsis" ? (
-						<span
-							key={idx}
-							className={ellipsisClasses}
-							aria-hidden="true"
-						>
+					p === "ellipsis" ? (
+						<span key={idx+p} className={ellipsisClasses}>
 							…
 						</span>
 					) : (
 						<button
 							key={p}
-							className={pageButtonClasses(p === page)}
+							className={pageBtnClasses(p === page)}
 							disabled={disabled}
 							onClick={handleClick(p)}
 							aria-label={`Go to page ${p}`}
@@ -202,9 +148,8 @@ const Pagination = forwardRef<HTMLElement, PaginationProps>(
 					)
 				)}
 
-				{/* Next Button */}
 				<button
-					className={navigationClasses}
+					className={navBtnClasses}
 					disabled={disabled || page === count}
 					onClick={handleClick(page + 1)}
 					aria-label="Go to next page"
@@ -212,10 +157,9 @@ const Pagination = forwardRef<HTMLElement, PaginationProps>(
 					<Chevron direction="right" size={14} />
 				</button>
 
-				{/* Last Button */}
 				{showLastButton && (
 					<button
-						className={navigationClasses}
+						className={navBtnClasses}
 						disabled={disabled || page === count}
 						onClick={handleClick(count)}
 						aria-label="Go to last page"
@@ -224,7 +168,6 @@ const Pagination = forwardRef<HTMLElement, PaginationProps>(
 						<Chevron direction="right" size={12} />
 					</button>
 				)}
-
 			</nav>
 		)
 	}

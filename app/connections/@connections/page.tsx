@@ -9,13 +9,10 @@ import {
 } from "@/components"
 
 import {
-	Pagination,
-} from "@mui/material"
-
-import {
 	Button,
 	ToggleGroup,
 	TextField,
+	Pagination,
 	Radio,
 	Select,
 } from "@/base"
@@ -130,14 +127,11 @@ const ConnectionsPage = () => {
 					<p>3 Selected</p>
 
 					<Pagination
-						page={currentPage}
+						page={1}
 						count={10}
-						// siblingCount={0}
-						onChange={(event, value) => setCurrentPage(value)}
 						size="small"
 					/>
 				</aside>
-
 			</section>
 		</div>
 	)
