@@ -41,8 +41,8 @@ const DashboardPage = () => {
 		<>
 			<main
 				className="
-					p-8 px-16 pt-[8%] flex items-start justify-center
-					text-grey-200 text-base gap-8
+					p-8 desktop:px-48 px-16 pt-[8%] flex items-start justify-center
+					text-grey-200 text-base desktop:text-xl gap-8
 					h-screen
 				"
 			>
@@ -52,16 +52,19 @@ const DashboardPage = () => {
 					className="w-[45%] h-full flex flex-col items-center gap-4 overflow-clip"
 				>
 					<TextField
+						className="desktop:!text-xl desktop:!py-2"
 						variant="filled"
 						placeholder="Search"
 						fullWidth
 						endIcon={
-							<Search />
+							<Search
+								className="desktop:scale-120"
+							/>
 						}
 					/>
 
 					<aside
-						className="space-y-4 my-4 w-full"
+						className="space-y-4 my-4 w-full desktop:space-y-6"
 					>
 						{
 							[...new Array(8)].map(
@@ -82,19 +85,18 @@ const DashboardPage = () => {
 					<Pagination
 						page={1}
 						count={10}
-						size="small"
 					/>
 				</section>
 
 
 				<section
-					className="flex flex-col gap-4 w-[50%] h-[90%]"
+					className="flex flex-col gap-4 desktop:gap-4 w-[50%] h-[90%]"
 				>
 					<aside
-						className="flex gap-2 items-center"
+						className="flex gap-2 items-center desktop:gap-4"
 					>
 						<Image
-							className="rounded-full"
+							className="rounded-full desktop:scale-120"
 							alt={"SendIn"}
 							src={"https://media.licdn.com/dms/image/v2/D5603AQH2-Le-GLYQfQ/profile-displayphoto-crop_800_800/B56ZhyEAK4HUAI-/0/1754260309150?e=1759363200&v=beta&t=tSQG_CnXVrLuWg8REMJh1uWrk1NRL7iDLXG_WGKIwYA"}
 							width={50}
@@ -102,7 +104,7 @@ const DashboardPage = () => {
 						/>
 						<div>
 							<h2
-								className="text-2xl text-blue-100"
+								className="text-2xl text-blue-100 desktop:text-3xl"
 							>
 								Vishnu Shon
 							</h2>
@@ -135,7 +137,7 @@ const DashboardPage = () => {
 					/>
 
 					<aside
-						className="mt-2 flex gap-2"
+						className="mt-2 flex gap-2 desktop:gap-4"
 					>
 						<Button
 							disabled

@@ -18,7 +18,7 @@ import {
 const paginationVariants = {
 	base: `
 		flex items-center justify-center
-		gap-2 select-none w-full text-charcoal-100
+		gap-2 select-none w-max text-charcoal-100
 		font-normal text-base
 	`,
 

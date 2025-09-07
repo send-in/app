@@ -30,8 +30,8 @@ const ConnectionCard = ({
 	return (
 		<li
 			className="
-				list-none flex gap-10 text-base items-center w-full
-				p-2 text-grey-200 justify-between
+				list-none flex gap-10 text-base desktop:text-xl items-center w-full
+				p-2 desktop:py-4 text-grey-200 justify-between
 			"
 		>
 			<aside
@@ -56,14 +56,14 @@ const ConnectionCard = ({
 					<aside>
 						<h3
 							className="
-								text-xl text-blue-100 group-hover:text-blue-200
+								text-xl desktop:text-2xl text-blue-100 group-hover:text-blue-200
 								transition-all ease-in-out delay-100
 							"
 						>
 							{name}
 						</h3>
 						<p
-							className="text-base font-medium"
+							className="text-base desktop:text-xl font-medium"
 						>
 							{company}, {country}
 						</p>
@@ -73,19 +73,19 @@ const ConnectionCard = ({
 
 
 			<p
-				className="w-[30%] text-sm font-medium"
+				className="w-[30%] text-sm font-medium desktop:text-lg"
 			>
 				{bio}
 			</p>
 
 			<aside
-				className="text-base text-charcoal-100 flex gap-10"
+				className="text-base desktop:text-xl text-charcoal-100 flex gap-10"
 			>
 				<div
 					className="flex gap-3 items-center fill-blue-100"
 				>
 					<Globe
-                        size={16}
+                        size={18}
                     />
 					IST
 				</div>
@@ -94,7 +94,7 @@ const ConnectionCard = ({
 					className="flex gap-3 items-center fill-orange"
 				>
 					<Clock
-                        size={16}
+                        size={18}
                     />
 					Afternoon
 				</div>

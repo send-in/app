@@ -11,19 +11,19 @@ const page = ({
 }) => {
 	return (
 		<section
-			className="w-[24%] flex flex-col gap-6 ml-[5%]"
+			className="w-[50%] desktop:w-[35%] flex flex-col gap-6 ml-[5%] desktop:ml-[10%]"
 		>
 			<div
 				className="space-y-6 p-2"
 			>
 				<aside>
 					<h1
-						className="text-4xl text-blue-100 font-semibold"
+						className="text-4xl desktop:text-6xl text-blue-100 font-semibold"
 					>
 						Uh oh !
 					</h1>
 					<p
-						className="text-2xl font-semibold leading-7 mt-1"
+						className="text-2xl desktop:text-3xl font-semibold leading-7 mt-1 desktop:mt-4"
 					>
 						Forgot password,
 						<span
@@ -51,7 +51,7 @@ const page = ({
 				</Button>
 
 				<p
-					className="text-grey-200 font-medium text-center mt-2 text-sm"
+					className="text-grey-200 font-medium text-center mt-2 text-sm desktop:text-base"
 				>
 					Already have an account ?{" "}
 					<Link

@@ -65,7 +65,7 @@ const DateTime = ({
 					{properDate}
 				</Button>
 			}
-			className="top-36 right-0"
+			className="top-36 desktop:top-52 right-0 desktop:right-48"
 		>
 			<aside
 				className="flex justify-between"
@@ -125,7 +125,7 @@ const DateTime = ({
 			</aside>
 
 			<aside
-				className="text-base flex justify-between gap-4 items-center text-grey-200 px-2"
+				className="text-base desktop:text-xl flex justify-between gap-4 items-center text-grey-200 px-2"
 			>
 				<p>
 					Custom Date/Time

@@ -13,10 +13,10 @@ const page = ({
 }) => {
 	return (
 		<section
-			className="w-[70%] space-y-8 ml-[5%]"
+			className="w-[70%] space-y-8 ml-[5%] desktop:ml-[10%]"
 		>
 			<h1
-				className="text-5xl text-blue-100 font-semibold"
+				className="text-5xl desktop:text-6xl text-blue-100 font-semibold"
 			>
 				Install our extension
 			</h1>

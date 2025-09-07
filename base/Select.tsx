@@ -30,7 +30,7 @@ export interface SelectProps {
 
 const sizeClasses = {
 	sm: "text-sm px-3",
-	md: "text-base px-4",
+	md: "text-base desktop:text-xl px-4",
 	lg: "text-lg  px-5",
 }
 

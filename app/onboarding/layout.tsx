@@ -20,14 +20,14 @@ const layout = ({
 
 	return (
 		<main
-			className="h-screen flex items-center justify-between p-8"
+			className="h-screen flex items-center justify-between p-8 desktop:px-48 "
 		>
 			<section
 				className="p-8"
 			>
-				{/* {linkedin} */}
+				{linkedin}
 				{/* {extension} */}
-				{template}
+				{/* {template} */}
 				{/* {completed} */}
 			</section>
 

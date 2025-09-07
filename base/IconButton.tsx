@@ -16,7 +16,7 @@ const iconButtonVariants = {
 	base: `
 		inline-flex items-center justify-center rounded-full
 		transition-all ease-in-out duration-200 active:scale-98
-		focus:outline-none focus:ring-2 ring-white
+		focus:outline-none focus:ring-2 ring-white desktop:scale-120
 		cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed
 		[&>svg]:pointer-events-none disabled:[&>svg]:fill-grey-200
 	`,

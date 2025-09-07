@@ -26,7 +26,7 @@ const InformationCard = ({
 			</div>
 
 			<p
-				className="text-purple-200 text-sm"
+				className="text-purple-200 text-sm desktop:text-base"
 			>
 				{description}
 			</p>

@@ -16,7 +16,7 @@ const checkboxVariants = {
 	base: `
 		checkbox checkbox-primary text-white
 		disabled:opacity-50 disabled:cursor-not-allowed
-		transition-all duration-150 text-base bg-none
+		transition-all duration-150 text-base desktop:text-xl bg-none
 		border-2 border-grey-200 checked:border-none
 		checked:bg-blue-100 rounded-full p-1.5
 		focus:ring-2 ring-blue-100 focus:ring-offset-2
@@ -95,7 +95,7 @@ const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(
 						key={opt.value}
 						className="
 							flex items-center gap-2 cursor-pointer select-none
-							text-grey-200 text-base font-medium
+							text-grey-200 text-base desktop:text-xl font-medium
 						"
 					>
 						<input

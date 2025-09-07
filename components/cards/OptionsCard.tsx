@@ -61,12 +61,12 @@ const OptionsCard = ({
 	return (
 		<li
 			className="
-				list-none flex  text-base items-center w-full
-				text-grey-200 justify-between
+				list-none flex  text-base desktop:text-xl items-center w-full
+				text-grey-200 justify-between 
 			"
 		>
 			<aside
-				className="flex items-center gap-2 w-[20%]"
+				className="flex items-center gap-4 w-[40%]"
 			>
 				<Radio/>
 
@@ -94,54 +94,56 @@ const OptionsCard = ({
 						{name}
 					</h3>
 					<p
-						className="text-base font-medium"
+						className="text-base desktop:text-xl font-medium"
 					>
 						{company}, {country}
 					</p>
 				</Link>
+				
+				<aside
+					className="text-base desktop:text-xl text-charcoal-100 flex gap-10 w-fit ml-10"
+				>
+					<p
+						className="flex gap-3 items-center fill-blue-100"
+					>
+						<Globe
+							size={18}
+						/>
+						IST
+					</p>
+
+					<p
+						className="flex gap-3 items-center fill-orange"
+					>
+						<Clock
+							size={18}
+						/>
+						Afternoon
+					</p>
+				</aside>
 			</aside>
 
-			<aside
-				className="text-base text-charcoal-100 flex gap-10 w-[20%]"
-			>
-				<div
-					className="flex gap-3 items-center fill-blue-100"
-				>
-					<Globe
-						size={16}
-					/>
-					IST
-				</div>
-
-				<div
-					className="flex gap-3 items-center fill-orange"
-				>
-					<Clock
-						size={16}
-					/>
-					Afternoon
-				</div>
-			</aside>
 
 
 			<aside
-				className="flex gap-10 w-[40%]"
+				className="flex gap-10"
 			>
 				<Select
 					options={templateOptions}
 					value={template.name}
 					placeholder="Select Template"
 					size="md"
-					variant="primary"
+					variant="neutral"
 					onChange={handleChange}
 				/>
 
-				<DateTime/>
+				<DateTime
+				/>
 
 			</aside>
 
 			<aside
-				className="flex gap-2"
+				className="flex gap-2 w-[10%] justify-end"
 			>
 
 				<IconButton

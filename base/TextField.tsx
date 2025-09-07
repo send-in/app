@@ -14,7 +14,7 @@ import { cn } from "@/utils"
 const textFieldVariants = {
 	base: `
 		font-mada px-6 py-1 rounded-full
-		font-normal text-base h-fit text-base
+		font-normal text-base desktop:text-xl h-fit text-base desktop:text-xl
 		transition-all ease-in-out delay-100
 		disabled:opacity-50 disabled:cursor-not-allowed
 	`,
@@ -36,7 +36,7 @@ const textFieldVariants = {
 	},
 	sizes: {
 		sm: "text-sm py-1 px-2",
-		md: "text-base py-2 px-3",
+		md: "text-base desktop:text-xl py-2 px-3",
 		lg: "text-lg py-3 px-4"
 	},
 	colors: {

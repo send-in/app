@@ -16,7 +16,7 @@ import {
 const buttonVariants = {
 	base: `
 		flex items-center justify-center gap-2 h-fit select-none
-		rounded-full font-mada font-medium text-base normal-case
+		rounded-full font-mada font-medium text-base desktop:text-xl normal-case
 		transition-all ease-in-out duration-200 active:scale-98
 		focus:outline-none focus:ring-2 focus:ring-offset-2 shrink-0
 		disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer

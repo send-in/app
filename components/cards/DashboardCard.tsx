@@ -46,8 +46,8 @@ const DashboardCard = ({
 	return (
 		<li
 			className="
-				list-none flex gap-10 text-base items-center w-full
-				py-2 px-3 rounded-xl text-grey-200 hover:text-white
+				list-none flex gap-10 text-base desktop:text-xl items-center w-full
+				py-2 px-3 desktop:py-4 desktop:px-5 rounded-xl text-grey-200 hover:text-white
 				bg-grey-100 hover:bg-blue-100 active:bg-blue-200 group justify-between
 				transition-all ease-in-out delay-100 cursor-pointer
 			"
@@ -57,7 +57,7 @@ const DashboardCard = ({
 				className="flex items-center gap-5 w-fit"
 			>
 				<Image
-					className="rounded-full"
+					className="rounded-full desktop:scale-120"
 					alt={name ?? "SendIn"}
 					src={picture}
 					width={40}

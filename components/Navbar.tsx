@@ -38,10 +38,10 @@ const Navbar = () => {
 	return (
 		<nav
 			className="
-				pl-4 p-1 min-w-[50%] small:min-w-full xlarge:min-w-[30%]
-				xlarge:text-base mb-4 flex items-center gap-10 small:gap-2
+				pl-4 desktop:pl-8 p-1 desktop:p-2 min-w-[50%] desktop:min-w-[30%]
+				xlarge:text-base mb-4 flex items-center gap-10
 				justify-between rounded-full font-medium text-white
-				max-w-4xl bg-blue-100 fixed top-5 text-base
+				max-w-4xl bg-blue-100 fixed top-5 desktop:top-16 text-base
 			"
 		>
 			<Logo
@@ -49,7 +49,7 @@ const Navbar = () => {
 			/>
 
 			<aside
-				className="flex gap-5 small:hidden text-sm"
+				className="flex gap-5 text-sm desktop:text-lg"
 			>
 				{links.map((
 					{
@@ -83,7 +83,7 @@ const Navbar = () => {
 					className="
 						px-6 py-1 rounded-full cursor-pointer
 						text-blue-100 hover:bg-blue-200 hover:text-white bg-white
-						transition-all ease-in-out delay-100
+						transition-all ease-in-out delay-100 desktop:text-lg
 					"
 				>
 					+ Schedule

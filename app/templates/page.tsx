@@ -17,15 +17,15 @@ const page = () => {
 	return (
 		<main
 			className="
-				p-8 px-16 pt-[8%] flex items-start justify-center
-				text-charcoal-100 text-base gap-8
+				p-8 px-16 desktop:px-48 pt-[8%] flex items-start justify-center
+				text-charcoal-100 text-base desktop:text-xl gap-8
 				h-screen
 			"
 		>
 			<Navbar/>
 
 			<section
-				className="flex flex-col gap-4 w-[45%] h-full"
+				className="flex flex-col gap-4 desktop:gap-6 w-[45%] h-full"
 			>
 				{
 					templates.map(
@@ -52,7 +52,6 @@ const page = () => {
 					<Pagination
 						page={2}
 						count={10}
-						size="small"
 					/>
 				</div>
 			</section>

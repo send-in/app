@@ -21,8 +21,8 @@ const layout = ({
 		 <>
             <main
 				className="
-					flex h-screen p-8 items-center justify-between
-					text-charcoal-100 text-base
+					flex h-screen p-8 desktop:px-48 items-center justify-between
+					text-charcoal-100 text-base desktop:text-xl
 				"
 			>
                 <article
@@ -33,13 +33,13 @@ const layout = ({
 
 				<section
 					className="
-						bg-blue-100 rounded-4xl p-10
+						bg-blue-100 rounded-4xl p-10 desktop:p-2
 						relative h-full w-[50%] flex items-center
-						justify-center
+						justify-center desktop:w-[45%]
 					"
 				>
 					<aside
-						className="relative h-fit pr-12 xlarge:pr-32"
+						className="relative h-fit pr-12 desktop:pr-32 desktop:scale-150"
 					>
 						<Image
 							src="/timezone.svg"
@@ -57,7 +57,7 @@ const layout = ({
 					</aside>
 
 					<Logo
-						className="absolute top-8 right-5 fill-white"
+						className="absolute top-8 right-5 fill-white desktop:scale-150 desktop:top-12 desktop:right-8"
 						size={50}
 					/>
 				</section>

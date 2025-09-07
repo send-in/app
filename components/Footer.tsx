@@ -95,36 +95,36 @@ const Footer = () => {
 		<section
 			className="
                 w-full pt-2 text-charcoal-100 bottom-0
-                small:relative z-10 p-8 xlarge:p-8 small:pt-0
+                small:relative z-10 p-8 small:pt-0 desktop:px-48 
             "
 			id="footer"
 		>
 			<div
 				className="
-					flex flex-col items-center bg-bluewash bg-cover
-					rounded-3xl p-10 gap-12 xlarge:gap-24 relative overflow-hidden
+					flex flex-col items-center bg-bluewash bg-cover desktop:pt-24
+					rounded-3xl p-10 gap-12 desktop:gap-24 relative overflow-hidden
 				"
 			>
 
 				<Logo
-					className="fill-charcoal-100"
+					className="fill-charcoal-100 desktop:scale-150"
 					size={50}
 				/>
 
 				<aside
 					className="
 						flex small:flex-col  justify-between
-						p-10 pt-5 small:px-4 w-[60%] small:w-full text-right font-normal
-						small:p-2 small:gap-4 xlarge:w-[50%]
+						p-10 pt-5 mobile:px-4 w-[60%] mobile:w-full text-right font-normal
+						mobile:p-2 mobile:gap-4 desktop:w-[50%]
 					"
 				>
 					{links.map((category, index) => (
 						<div
 							key={index}
-							className="text-base xlarge:text-base flex flex-col items-start small:w-fit"
+							className="text-base desktop:text-xl flex flex-col items-start mobile:w-fit"
 						>
 							<p
-								className="text-2xl small:text-xl xlarge:text-3xl"
+								className="text-2xl mobile:text-xl desktop:text-3xl"
 							>
 								{category.title}
 							</p>

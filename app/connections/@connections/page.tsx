@@ -42,7 +42,6 @@ const resultOptions = [
 
 const ConnectionsPage = () => {
 
-	const [currentPage, setCurrentPage] = useState(1)
 	const [selectAll, setSelectAll] = useState(false)
 	const [results, setResults] = useState("20")
 	const [sort, setSort] = useState("")
@@ -50,7 +49,7 @@ const ConnectionsPage = () => {
 
 	return (
 		<div
-			className="w-full h-full flex items-around gap-4 justify-between"
+			className="w-full h-full flex items-around gap-4 desktop:gap-18 justify-between desktop:justify-center"
 		>
 			<Filters/>
 
@@ -59,7 +58,7 @@ const ConnectionsPage = () => {
 			/>
 
 			<section
-				className="w-[75%] h-full flex flex-col justify-between"
+				className="w-[75%] h-full flex flex-col justify-between desktop:justify-start desktop:gap-12"
 			>
 				<aside
 					className="flex w-full justify-between px-2 items-center"
@@ -131,7 +130,6 @@ const ConnectionsPage = () => {
 					<Pagination
 						page={1}
 						count={10}
-						size="small"
 					/>
 				</aside>
 			</section>

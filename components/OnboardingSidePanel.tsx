@@ -25,7 +25,7 @@ const OnboardingSidePanel = ({
 		className="
 			bg-blue-100 rounded-3xl p-10
 			relative h-full min-w-[30%] flex items-center
-			justify-center text-white text-base
+			justify-center text-white text-base desktop:text-xl
 		"
 	>
 		<ul

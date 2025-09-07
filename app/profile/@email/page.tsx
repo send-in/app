@@ -18,7 +18,7 @@ const page = ({
 	// logic for steps
 	return (
 		<section
-			className="flex flex-col gap-4 w-[80%] items-start"
+			className="flex flex-col gap-4 w-[80%] desktop:w-[60%] items-start"
 		>
 			<Image
 				className="rounded-full"
@@ -32,7 +32,7 @@ const page = ({
 				className="flex justify-between items-center w-full"
 			>
 				<h1
-					className="text-3xl text-blue-100 font-semibold"
+					className="text-3xl desktop:text-4xl text-blue-100 font-semibold"
 				>
 					Hey, Vishnu !
 				</h1>

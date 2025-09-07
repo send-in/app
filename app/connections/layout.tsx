@@ -14,8 +14,8 @@ const layout = ({
 	return (
 		<main
             className="
-				p-8 px-16 pt-[8%] flex items-start justify-center
-				text-grey-200 text-base gap-12
+				p-8 px-16 desktop:px-48 pt-[8%] flex items-start justify-center
+				text-grey-200 text-base desktop:text-xl gap-12
                 h-screen
 			"
         >

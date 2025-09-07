@@ -38,7 +38,7 @@ const TimeZone = ({
 	onChange,
 }: TimeZoneProps) => (
 	<Select
-		className="dropdown-end text-base"
+		className="dropdown-end text-base desktop:text-xl"
 		onChange={(value)=>value}
 		value={value || currentZone}
 		placeholder="Select Timezone"

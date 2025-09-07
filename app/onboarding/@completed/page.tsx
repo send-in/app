@@ -13,16 +13,16 @@ const page = ({
 }) => {
 	return (
 		<section
-			className="w-fit space-y-2 ml-[5%]"
+			className="w-fit space-y-2 ml-[5%] desktop:ml-[10%]"
 		>
 			<h1
-				className="text-5xl text-blue-100 font-semibold"
+				className="text-5xl desktop:text-6xl text-blue-100 font-semibold"
 			>
 				You&apos;re all set, Vishnu !
 			</h1>
 
 			<p
-				className="text-base leading-6 w-[80%] text-grey-300"
+				className="text-base desktop:text-xl leading-6 w-[80%] text-grey-300"
 			>
 				Now head over to your connections page for bulk scheduling or open linkedIn for manual message !
 			</p>

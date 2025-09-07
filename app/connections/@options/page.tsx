@@ -33,7 +33,11 @@ const templateOptions = templates.map((t) => ({
 const OptionsPage = () => {
 	const [selectAll, setSelectAll] = useState(false)
 	const [results, setResults] = useState("20")
-	const [template, setTemplate] = useState({ name: "", content: "" })
+
+	const [template, setTemplate] = useState({
+		name: "Networking Template",
+		content: "Networking Template"
+	})
 
 	const resultOptions = [
 		{ label: "20", value: "20" },
@@ -52,13 +56,13 @@ const OptionsPage = () => {
 
 	return (
 		<article
-			className="w-full h-full flex flex-col justify-between gap-10"
+			className="w-full h-full flex flex-col justify-between gap-10 desktop:justify-start desktop:gap-16"
 		>
 			<section
-				className="flex w-full justify-between items-center px-4"
+				className="flex w-full justify-between items-center gap-12"
 			>
 				<aside
-					className="flex gap-4 w-[40%]"
+					className="flex gap-24 w-[40%]"
 				>
 					<Radio
 						label="Select all"
@@ -77,14 +81,13 @@ const OptionsPage = () => {
 				</aside>
 
 				<aside
-					className="flex gap-10 w-[40%] ml-4"
+					className="flex gap-10"
 				>
 					<Select
 						options={templateOptions}
 						value={template.content}
 						placeholder="Select Template"
-						size="md"
-						variant="neutral"
+						variant="primary"
 						onChange={handleChange}
 					/>
 
@@ -104,7 +107,7 @@ const OptionsPage = () => {
 
 
 			<ul
-				className="flex flex-col justify-between h-full"
+				className="flex flex-col justify-between desktop:justify-start desktop:gap-8 h-full desktop:h-fit"
 			>
 				{
 					[...new Array(7)].map(
@@ -144,7 +147,6 @@ const OptionsPage = () => {
 				<Pagination
 					page={1}
 					count={10}
-					size="small"
 				/>
 
 				<ToggleGroup

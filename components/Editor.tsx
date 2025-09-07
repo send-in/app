@@ -230,11 +230,11 @@ const Editor = ({
 	}
 
 	return (
-		<div className="flex flex-col h-full gap-4">
+		<div className="flex flex-col h-full desktop:h-2/3 gap-4">
 			{
 				!noTemplate &&
 				<TextField
-					className="!rounded-xl !text-lg"
+					className="!rounded-xl !text-lg desktop:!text-xl desktop:py-4"
 					variant="filled"
 					placeholder="Appreciation & Connection"
 					fullWidth
@@ -253,6 +253,7 @@ const Editor = ({
 					className="
 						flex items-center gap-2 bg-white w-fit
 						px-3 py-2 absolute top-4 left-4 rounded-xl
+						desktop:gap-4 desktop:py-3 desktop:px-4
 					"
 				>
 					<IconButton
@@ -380,7 +381,7 @@ const Editor = ({
 					className="
 						bg-grey-100 rounded-2xl text-grey-200
 						focus:text-charcoal-100 w-full peer break-words whitespace-pre-wrap
-						h-full p-4 pt-20 text-base leading-relaxed outline-none
+						h-full p-4 pt-20 desktop:pt-24 text-base desktop:text-xl leading-relaxed outline-none
 						focus:ring-2 focus:ring-blue-500 focus:ring-inset
 						transition-all ease-in-out delay-100 cursor-pointer
 					"

@@ -23,7 +23,7 @@ const page = ({
 
 	return (
 		<section
-			className="flex flex-col gap-4 w-[80%] items-start"
+			className="flex flex-col gap-4 w-[80%] desktop:w-[60%] items-start"
 		>
 			<Image
 				className="rounded-full"
@@ -37,7 +37,7 @@ const page = ({
 				className="flex justify-between items-center w-full"
 			>
 				<h1
-					className="text-3xl text-blue-100 font-semibold"
+					className="text-3xl desktop:text-4xl text-blue-100 font-semibold"
 				>
 					Hey, Vishnu !
 				</h1>
@@ -71,7 +71,7 @@ const page = ({
 			<LinkedinConnect/>
 
 			<p
-				className="text-sm text-grey-200"
+				className="text-sm desktop:text-lg text-grey-200"
 			>
 				We take your li_at cookie and user agent information,
 				If you have the extension installed you can update your cookie

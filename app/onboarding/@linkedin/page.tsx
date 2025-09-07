@@ -13,10 +13,10 @@ const page = ({
 }) => {
 	return (
 		<section
-			className="w-[70%] space-y-8 ml-[5%]"
+			className="w-[70%] desktop:w-[60%] space-y-8 ml-[5%] desktop:ml-[10%]"
 		>
 			<h1
-				className="text-5xl text-blue-100 font-semibold"
+				className="text-5xl desktop:text-6xl text-blue-100 font-semibold"
 			>
 				Let’s get started...
 			</h1>
@@ -35,7 +35,7 @@ const page = ({
 			/>
 
 			<p
-				className="text-sm text-grey-200"
+				className="text-sm text-grey-200 desktop:text-base"
 			>
 				We take your li_at cookie and user agent information,
 				If you have the extension installed you can update your cookie

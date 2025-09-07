@@ -13,10 +13,10 @@ const page = ({
 }) => {
 	return (
 		<section
-			className="w-[70%] flex flex-col gap-2 ml-[5%] h-full"
+			className="w-[70%] flex flex-col gap-2 ml-[5%] desktop:ml-[10%] h-full"
 		>
 			<h1
-				className="text-5xl text-blue-100 font-semibold mb-6"
+				className="text-5xl desktop:text-6xl text-blue-100 font-semibold mb-6"
 			>
 				Create default template
 			</h1>
@@ -33,7 +33,7 @@ const page = ({
 			/>
 
 			<aside
-                className="w-full h-[30vh] my-5"
+                className="w-full h-[30vh] desktop:h-[35vh] my-5"
             >
                 <Editor
                     noCopy
