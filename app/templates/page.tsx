@@ -10,7 +10,7 @@ import {
 	Pagination,
 } from "@/base"
 
-import templates from "@/content/templates.json"
+import templates from "@/db/templates.json"
 // #endregion
 
 const page = () => {

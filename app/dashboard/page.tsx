@@ -27,7 +27,7 @@ import {
 } from "@/icons"
 // #endregion
 
-import templates from "@/content/templates.json"
+import templates from "@/db/templates.json"
 const templateOptions = templates.map((t) => ({
 	label: t.name,
 	value: t.name,
