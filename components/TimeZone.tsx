@@ -1,142 +1,82 @@
 "use client"
 
 // #region imports
-import { useState } from "react"
+import { useMemo } from "react"
 
-import {
-	Menu,
-	MenuItem,
-} from "@mui/material"
-
-import {
-	Button,
-	TextField
-} from "@/base"
-
-import {
-	Search,
-	Globe,
-} from "@/icons"
-// #endregion
+import { Select, TextField } from "@/base"
+import { Search } from "@/icons"
 
 import zones from "@/content/timezones.json"
-const currentZone: string = Intl.DateTimeFormat().resolvedOptions().timeZone
+// #endregion
 
-const getAbbreviation = (
-	timezone: string
-): string => {
-	try {
-		const date = new Date()
-		const formatter = new Intl.DateTimeFormat("en-US", {
-			timeZone: timezone,
-			timeZoneName: "shortGeneric",
-		})
-		const parts = formatter.formatToParts(date)
-		const abbr = parts.find((p) => p.type === "timeZoneName")?.value
-		return abbr ?? timezone
-	}
-	catch {
-		return timezone
-	}
+const currentZone: string = Intl.DateTimeFormat().resolvedOptions().timeZone
+const getAbbreviation = (timezone: string): string => {
+    try {
+        const date = new Date()
+        const formatter = new Intl.DateTimeFormat("en-US", {
+            timeZone: timezone,
+            timeZoneName: "short",
+        })
+        const parts = formatter.formatToParts(date)
+        const abbr = parts.find((p) => p.type === "timeZoneName")?.value
+        return abbr ?? timezone
+    } catch {
+        return timezone
+    }
 }
 
+const Searchbar = (
+	<div
+		className="sticky -top-2 bg-white pt-2"
+	>
+		<TextField
+			variant="filled"
+			placeholder="Search"
+			endIcon={<Search />}
+		/>
+	</div>
+)
+
 interface TimeZoneProps {
-	value: string
-	onChange: (zone: string) => void
-	unselectLabel?: string
-	inPopUp?: boolean
+    value?: string
+    onChange?: (zone: string) => void
+    inPopUp?: boolean
 }
 
 const TimeZone = ({
-	value,
-	onChange,
-	unselectLabel,
-	inPopUp,
+    value,
+    onChange,
+    inPopUp,
 }: TimeZoneProps) => {
+    const options = useMemo(() => {
+        const list = zones.map((tz) => ({
+            label: `${tz} (${getAbbreviation(tz)})`,
+            value: tz,
+        }))
+        return list
+    }, [])
 
-	const [open, setIsOpen] = useState<boolean>(false)
 
-	const handleClick = () =>
-		setIsOpen(true)
 
-	const handleClose = () =>
-		setIsOpen(false)
-
-	const handleSelect = (zone: string) => {
-		onChange(zone)
-		handleClose()
-	}
-
-	return (
-		<>
-			<Button
-				// loading
-				variant="primary"
-				className={inPopUp ? "!py-1" : ""}
-				onClick={handleClick}
-				startIcon={
-					<Globe
-						// fill="#FFF"
-						size={inPopUp? 16 : 20}
-					/>
-				}
-			>
-				{
-					getAbbreviation(
-						value ||
-						currentZone
-					)
-				}
-			</Button>
-
-			<Menu
-				open={open}
-				onClose={handleClose}
-				slotProps={{
-					paper:{
-						className:"shadow-none rounded-4xl no-scrollbar p-0"
+    return (
+        <div className="flex flex-col gap-2">
+            <Select
+                options={[
+					{
+						value: "search",
+						label: Searchbar
 					},
-					list:{
-						className:"gap-10 p-0"
-					},
-				}}
-			>
-				<div className="sticky top-0 z-10 bg-white p-2 pt-4">
-					<TextField
-						variant="filled"
-						placeholder="Search"
-						fullWidth
-						endIcon={
-							<Search />
-						}
-					/>
-				</div>
-
-
-				{
-					unselectLabel && (
-					<MenuItem
-						className="rounded-full m-2 p-2 px-4"
-						onClick={() => handleSelect("")}
-					>
-						{unselectLabel}
-					</MenuItem>
-				)}
-				{
-					zones.map((tz) => (
-						<MenuItem
-							className="rounded-full m-2 p-2 px-4"
-							key={tz}
-							selected={tz === value}
-							onClick={() => handleSelect(tz)}
-						>
-							{tz} &nbsp; ({getAbbreviation(tz)})
-						</MenuItem>
-					))
-				}
-			</Menu>
-		</>
-	)
+					...options
+				]}
+                value={value || currentZone}
+                placeholder="Select Timezone"
+                size={inPopUp ? "sm" : "md"}
+                variant="primary"
+                className={inPopUp ? "!py-1 w-fit" : "dropdown-end w-fit"}
+                onChange={(value)=>value}
+            />
+        </div>
+    )
 }
 
 export default TimeZone

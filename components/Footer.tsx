@@ -104,7 +104,6 @@ const Footer = () => {
 			>
 
 				<Logo
-                    fill="#2F2F2F"
 					size={50}
 				/>
 

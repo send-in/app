@@ -334,7 +334,7 @@ const Editor = ({
 										key={index}
 										onClick={() => insertEmoji(emoji)}
 										title={emoji}
-										size="small"
+										size="sm"
 										className="text-black"
 									>
 										{emoji}

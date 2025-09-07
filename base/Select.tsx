@@ -1,7 +1,8 @@
 // #region imports
 import {
 	ReactNode,
-	forwardRef
+	forwardRef,
+	isValidElement
 } from "react"
 
 import {
@@ -54,7 +55,7 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(
 		const wrapperClasses = cn("dropdown", className)
 
 		const menuClasses = cn(
-			"dropdown-content menu p-2 mt-2 shadow rounded-xl bg-white w-max space-y-1",
+			"dropdown-content p-2 mt-2 w-max shadow rounded-xl bg-white space-y-1 max-h-[40vh] overflow-y-scroll relative",
 			"z-50"
 		)
 
@@ -93,6 +94,8 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(
 					className={menuClasses}
 				>
 					{options.map((opt) => (
+						isValidElement(opt.label) ?
+						opt.label :
 						<li
 							key={opt.value}
 							className={cn(

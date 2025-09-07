@@ -17,7 +17,6 @@ const Navbar = () => {
 		>
 			<Logo
 				size={35}
-				fill="#FFF"
 			/>
 
 			<aside

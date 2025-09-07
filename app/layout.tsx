@@ -1,6 +1,5 @@
 // #region imports
 import "@/globals.css"
-import { StyledEngineProvider } from "@mui/material/styles"
 import { Mada } from "next/font/google"
 import type { Metadata } from "next"
 // #endregion
@@ -29,19 +28,15 @@ export default async function RootLayout({
 		<html
 			lang="en"
 		>
-				<body
-					className={`
-						${mada.className}
-						antialiased
-						max-h-screen
-					`}
-				>
-					<StyledEngineProvider
-						enableCssLayer
-					>
-						{children}
-			 		</StyledEngineProvider>
-				</body>
+			<body
+				className={`
+					${mada.className}
+					antialiased
+					max-h-screen
+				`}
+			>
+				{children}
+			</body>
 		</html>
 	)
 }
