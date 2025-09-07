@@ -1,10 +1,4 @@
-"use client"
-
 // #region imports
-import {
-	useState
-} from "react"
-
 import {
 	DateTime,
 	OptionsCard,
@@ -30,29 +24,14 @@ const templateOptions = templates.map((t) => ({
 	value: t.name,
 }))
 
+const resultOptions = [
+	{ label: "20", value: "20" },
+	{ label: "50", value: "50" },
+	{ label: "All", value: "All" },
+]
+
 const OptionsPage = () => {
-	const [selectAll, setSelectAll] = useState(false)
-	const [results, setResults] = useState("20")
-
-	const [template, setTemplate] = useState({
-		name: "Networking Template",
-		content: "Networking Template"
-	})
-
-	const resultOptions = [
-		{ label: "20", value: "20" },
-		{ label: "50", value: "50" },
-		{ label: "All", value: "All" },
-	]
-
-	const handleChange = (selectedValue: string) => {
-		const selectedTemplate = templates.find((t) => t.name === selectedValue)
-		if (selectedTemplate) {
-			setTemplate(selectedTemplate)
-		} else {
-			setTemplate({ name: "", content: "" })
-		}
-	}
+	
 
 	return (
 		<article
@@ -66,8 +45,6 @@ const OptionsPage = () => {
 				>
 					<Radio
 						label="Select all"
-						checked={selectAll}
-						onClick={() => setSelectAll(prev=>!prev)}
 					/>
 
 					<TextField
@@ -85,10 +62,8 @@ const OptionsPage = () => {
 				>
 					<Select
 						options={templateOptions}
-						value={template.content}
 						placeholder="Select Template"
 						variant="primary"
-						onChange={handleChange}
 					/>
 
 					<DateTime/>
@@ -153,8 +128,6 @@ const OptionsPage = () => {
 					variant="neutral"
 					shape="rounded"
 					options={resultOptions}
-					value={results}
-					onChange={setResults}
 				/>
 
 			</section>

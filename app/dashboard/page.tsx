@@ -1,11 +1,5 @@
-"use client"
-
 // #region imports
 import Image from "next/image"
-
-import {
-	useState
-} from "react"
 
 import {
 	DateTime,
@@ -35,7 +29,6 @@ const templateOptions = templates.map((t) => ({
 
 
 const DashboardPage = () => {
-	const [template, setTemplate] = useState("Networking Template")
 
 	return (
 		<>
@@ -117,11 +110,9 @@ const DashboardPage = () => {
 					>
 						<Select
 							options={templateOptions}
-							value={template}
 							placeholder="Select Template"
 							size="md"
 							variant="primary"
-							onChange={(value)=>setTemplate(value)}
 						/>
 
 						<div

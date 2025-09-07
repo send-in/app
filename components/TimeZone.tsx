@@ -1,3 +1,5 @@
+"use client"
+
 // #region imports
 import {
 	Select,

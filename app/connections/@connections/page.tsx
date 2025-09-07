@@ -1,10 +1,4 @@
-"use client"
-
 // #region imports
-import {
-	useState
-} from "react"
-
 import {
 	Filters,
 	ConnectionCard,
@@ -42,10 +36,6 @@ const resultOptions = [
 
 const ConnectionsPage = () => {
 
-	const [selectAll, setSelectAll] = useState(false)
-	const [results, setResults] = useState("20")
-	const [sort, setSort] = useState("")
-
 
 	return (
 		<div
@@ -65,8 +55,6 @@ const ConnectionsPage = () => {
 				>
 					<Radio
 						label="Select all"
-						checked={selectAll}
-						onClick={() => setSelectAll(prev=>!prev)}
 					/>
 
 					<TextField
@@ -81,13 +69,9 @@ const ConnectionsPage = () => {
 						variant="neutral"
 						shape="rounded"
 						options={resultOptions}
-						value={results}
-						onChange={setResults}
 					/>
 
 					<Select
-						value={sort}
-						onChange={(val)=>setSort(val)}
 						options={sortOptions}
 						placeholder="Sort"
 						variant="neutral"
