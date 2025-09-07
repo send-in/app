@@ -1,16 +1,14 @@
-"use client"
-
 // #region imports
 import Image from "next/image"
 
 import {
 	Popover,
-	Button
+	Button,
+	Information
 } from "@/base"
 
 import {
 	TimeZone,
-	InformationCard
 } from "@/components"
 
 import {
@@ -87,13 +85,11 @@ const DateTime = ({
 						Aug 13, 8:00 AM
 					</p>
 
-					<TimeZone
-						inPopUp
-					/>
+					<TimeZone/>
 				</div>
 			</aside>
 
-			<InformationCard
+			<Information
 				description="time is displayed  as in receiver's time zone"
 			/>
 

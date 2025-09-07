@@ -6,7 +6,9 @@ import {
 	ReactNode
 } from "react"
 
-import { cn } from "@/utils/cn"
+import {
+	cn
+} from "@/utils"
 // #endregion
 
 const toggleVariants = {
@@ -15,7 +17,7 @@ const toggleVariants = {
 		transition-all duration-150 ease-in-out rounded-full
 		focus:outline-none focus:ring-2 focus:ring-offset-2
 		disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer
-		tracking-tighter font-medium
+		font-medium
 	`,
 	variants: {
 		neutral: {
@@ -68,7 +70,10 @@ const ToggleGroup = forwardRef<HTMLDivElement, ToggleGroupProps>(
 		const handleToggle = (val: string) =>
 			onChange(value === val ? "" : val)
 
-		const wrapperClasses = cn("inline-flex gap-2 flex-wrap shrink-0 my-1", className)
+		const wrapperClasses = cn(
+			"inline-flex gap-2 flex-wrap shrink-0 my-1",
+			className
+		)
 
 		return (
 			<div

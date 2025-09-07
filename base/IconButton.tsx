@@ -9,7 +9,7 @@ import {
 
 import {
 	cn
-} from "@/utils/cn"
+} from "@/utils"
 // #endregion
 
 const iconButtonVariants = {

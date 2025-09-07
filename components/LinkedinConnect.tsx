@@ -1,9 +1,10 @@
 // #region imports
+import Image from "next/image"
+
 import {
 	Button,
 	TextField
 } from "@/base"
-import Image from "next/image"
 // #endregion
 
 const LinkedinConnect = () => {
@@ -11,7 +12,7 @@ const LinkedinConnect = () => {
 		<div
 			className="
 				flex items-center w-full p-2 bg-grey-100
-				rounded-full focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-inset
+				rounded-full focus-within:ring-2 focus-within:ring-blue-100 focus-within:ring-inset
                 transition-all ease-in-out delay-100 cursor-pointer
 			"
 		>
@@ -31,7 +32,6 @@ const LinkedinConnect = () => {
 			/>
 
 			<Button
-				className="!shrink-0"
 				// onClick={handleClick}
 			>
 				Connect with LinkedIn

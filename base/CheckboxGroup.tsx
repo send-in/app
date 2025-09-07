@@ -7,7 +7,9 @@ import {
 	ReactNode
 } from "react"
 
-import { cn } from "@/utils/cn"
+import {
+	cn
+} from "@/utils"
 // #endregion
 
 const checkboxVariants = {
@@ -93,7 +95,7 @@ const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(
 						key={opt.value}
 						className="
 							flex items-center gap-2 cursor-pointer select-none
-							text-grey-200 text-base tracking-tighter font-medium
+							text-grey-200 text-base font-medium
 						"
 					>
 						<input

@@ -27,8 +27,8 @@ const layout = ({
 			>
 				{/* {linkedin} */}
 				{/* {extension} */}
-				{/* {template} */}
-				{completed}
+				{template}
+				{/* {completed} */}
 			</section>
 
 			<OnboardingSidePanel

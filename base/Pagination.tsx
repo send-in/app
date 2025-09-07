@@ -1,9 +1,18 @@
 "use client"
 
 // #region imports
-import { forwardRef, HTMLAttributes } from "react"
-import { cn } from "@/utils/cn"
-import { Chevron } from "@/icons"
+import {
+	forwardRef,
+	HTMLAttributes
+} from "react"
+
+import {
+	cn
+} from "@/utils"
+
+import {
+	Chevron
+} from "@/icons"
 // #endregion
 
 const paginationVariants = {

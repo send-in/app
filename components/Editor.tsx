@@ -310,7 +310,7 @@ const Editor = ({
 						<Strike/>
 					</IconButton>
 
-					<div className="w-[1.5px] h-6 bg-grey-200 mx-2 rounded-full" />
+					<div className="w-[1.5px] h-6 bg-grey-200 mx-2" />
 
 					<div className="relative">
 						<IconButton
@@ -347,13 +347,12 @@ const Editor = ({
 					<IconButton
 						variant="neutral"
 						onClick={handleLinkInsert}
-						// className="p-2 rounded hover:bg-grey-200 transition-colors text-grey-600"
 						title="Insert Link"
 					>
 						<Link/>
 					</IconButton>
 
-					<div className="w-[1.5px] h-6 bg-grey-200 mx-2 rounded-full" />
+					<div className="w-[1.5px] h-6 bg-grey-200 mx-2" />
 
 					<IconButton
 						variant="neutral"
@@ -379,17 +378,13 @@ const Editor = ({
 					onKeyDown={handleKeyDown}
 					onInput={saveToHistory}
 					className="
-						bg-grey-100 rounded-2xl tracking-tighter text-grey-200
-						focus:text-charcoal-100 w-full peer
+						bg-grey-100 rounded-2xl text-grey-200
+						focus:text-charcoal-100 w-full peer break-words whitespace-pre-wrap
 						h-full p-4 pt-20 text-base leading-relaxed outline-none
 						focus:ring-2 focus:ring-blue-500 focus:ring-inset
 						transition-all ease-in-out delay-100 cursor-pointer
 					"
 					data-placeholder="Hi {{username}}, I really admire the work you’re doing at {{company}}. I’d love to connect and stay updated on your journey!"
-					style={{
-						whiteSpace: 'pre-wrap',
-						wordWrap: 'break-word'
-					}}
 				/>
 
 				{showEmojis && (

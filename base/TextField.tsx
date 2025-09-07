@@ -7,14 +7,14 @@ import {
 	forwardRef
 } from "react"
 
-import { cn } from "@/utils/cn"
+import { cn } from "@/utils"
 // #endregion
 
 
 const textFieldVariants = {
 	base: `
 		font-mada px-6 py-1 rounded-full
-		font-normal text-base tracking-tighter h-fit text-base
+		font-normal text-base h-fit text-base
 		transition-all ease-in-out delay-100
 		disabled:opacity-50 disabled:cursor-not-allowed
 	`,
@@ -87,7 +87,7 @@ const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
 		},
 		ref
 	) => {
-		// Wrapper styles (takes focus)
+
 		const wrapperClasses = cn(
 			"flex flex-col gap-1 relative",
 			textFieldVariants.base,
@@ -98,7 +98,6 @@ const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
 			className
 		)
 
-		// Input styles (unstyled except spacing/text)
 		const inputClasses = cn(
 			"flex-1 bg-transparent outline-none",
 			slotProps?.input?.disableUnderline && "border-none",
@@ -108,12 +107,16 @@ const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
 		return (
 			<div className={wrapperClasses}>
 				{label && (
-					<label className="text-sm text-grey-200 font-medium absolute -top-6">
+					<label
+						className="text-sm text-grey-200 font-medium absolute -top-6"
+					>
 						{label}
 					</label>
 				)}
 
-				<div className="flex items-center gap-2">
+				<div
+					className="flex items-center gap-2"
+				>
 					{startIcon && (
 						<span className="flex-shrink-0">{startIcon}</span>
 					)}
@@ -126,12 +129,20 @@ const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
 					/>
 
 					{endIcon && (
-						<span className="flex-shrink-0">{endIcon}</span>
+						<span
+							className="flex-shrink-0"
+						>
+							{endIcon}
+						</span>
 					)}
 				</div>
 
 				{helperText && (
-					<p className="text-xs">{helperText}</p>
+					<p
+						className="text-xs"
+					>
+						{helperText}
+					</p>
 				)}
 			</div>
 		)

@@ -2,6 +2,7 @@
 
 // #region imports
 import { useState } from "react"
+
 import {
 	Button,
 	CheckboxGroup,
@@ -34,7 +35,6 @@ const Filter = () => {
                 text-charcoal-100
             "
         >
-			{/* Connections */}
 			<aside>
 				<h3>Connections</h3>
 				<ToggleGroup
@@ -43,16 +43,6 @@ const Filter = () => {
 					options={connectionList}
 					value={connection}
 					onChange={setConnection}
-				/>
-			</aside>
-
-			{/* Locations */}
-			<aside>
-				<h3>Locations</h3>
-				<CheckboxGroup
-					options={locationsList}
-					value={locations}
-					onChange={setLocations}
 				/>
 			</aside>
 

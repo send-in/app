@@ -32,7 +32,7 @@ const page = ({
 				className="flex justify-between items-center w-full"
 			>
 				<h1
-					className="text-3xl text-blue-100 font-semibold tracking-tighter"
+					className="text-3xl text-blue-100 font-semibold"
 				>
 					Hey, Vishnu !
 				</h1>

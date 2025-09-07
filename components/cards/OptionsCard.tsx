@@ -62,7 +62,7 @@ const OptionsCard = ({
 		<li
 			className="
 				list-none flex  text-base items-center w-full
-				tracking-tighter text-grey-200 justify-between
+				text-grey-200 justify-between
 			"
 		>
 			<aside

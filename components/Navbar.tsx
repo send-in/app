@@ -1,10 +1,39 @@
+"use client"
+
 // #region Imports
 import Image from "next/image"
-import Logo from "../icons/Logo"
 import Link from "next/link"
+
+import {
+	cn
+} from "@/utils"
+
+import {
+	usePathname
+} from "next/navigation"
+
+import {
+	Logo
+} from "@/icons"
 // #endregion
 
+const links = [
+	{
+		href: "/dashboard",
+		label: "Dashboard"
+	},
+	{
+		href: "/connections",
+		label: "Connections"
+	},
+	{
+		href: "/templates",
+		label: "Templates"
+	},
+]
+
 const Navbar = () => {
+	const pathname = usePathname()
 
 	return (
 		<nav
@@ -22,36 +51,28 @@ const Navbar = () => {
 			<aside
 				className="flex gap-5 small:hidden text-sm"
 			>
-				<Link
-					href="/dashboard"
-					className="
-						opacity-70 hover:opacity-100
-						transition-all ease-in-out delay-100
-						cursor-pointer
-					"
-				>
-					Dashboard
-				</Link>
-				<Link
-					href="/connections"
-					className="
-						opacity-70 hover:opacity-100
-						transition-all ease-in-out delay-100
-						cursor-pointer
-					"
-				>
-					Connections
-				</Link>
-				<Link
-					href="/templates"
-					className="
-						opacity-70 hover:opacity-100
-						transition-all ease-in-out delay-100
-						cursor-pointer
-					"
-				>
-					Templates
-				</Link>
+				{links.map((
+					{
+						href,
+						label
+					}) => (
+                    <Link
+                        key={href}
+                        href={href}
+                        className={
+							cn(
+								`
+									opacity-70 hover:opacity-100
+									transition-all ease-in-out delay-100
+									cursor-pointer
+								`,
+								pathname === href && "opacity-100"
+                        	)
+						}
+                    >
+                        {label}
+                    </Link>
+                ))}
 			</aside>
 
 			<aside

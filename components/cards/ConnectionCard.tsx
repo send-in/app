@@ -1,5 +1,6 @@
 // #region imports
 import Image from "next/image"
+import Link from "next/link"
 
 import {
 	Radio,
@@ -9,8 +10,6 @@ import {
 	Globe,
 	Clock
 } from "@/icons"
-
-import Link from "next/link"
 // #endregion
 
 const ConnectionCard = ({
@@ -32,7 +31,7 @@ const ConnectionCard = ({
 		<li
 			className="
 				list-none flex gap-10 text-base items-center w-full
-				p-2 tracking-tighter text-grey-200 justify-between
+				p-2 text-grey-200 justify-between
 			"
 		>
 			<aside

@@ -1,7 +1,9 @@
 "use client"
 
 // #region imports
-import { useState } from "react"
+import {
+	useState
+} from "react"
 
 import {
 	Filters,

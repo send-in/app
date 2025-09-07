@@ -1,25 +1,18 @@
 // #region imports
-import Image from "next/image"
+import { Logo } from "@/icons"
 // #endregion
 
 export default function Loading() {
 
 	return (
-		<main 
-			className="w-screen h-screen bg-mint flex flex-col items-center justify-center"
+		<main
+			className="w-screen h-screen bg-mint flex flex-col items-center justify-center bg-white p-10"
 		>
+			<Logo
+				className="fill-blue-100"
+				size={100}
+			/>
 
-			<section
-				className="flex flex-col items-start justify-center gap-3"
-			>
-				{/* <Image
-					src="/others/logo_bottom.svg"
-					alt="boardly.io"
-					height={200}
-					width={200}
-				/> */}
-			</section>
-			
 		</main>
 	)
 }

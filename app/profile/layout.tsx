@@ -3,8 +3,15 @@ import { ReactNode } from "react"
 
 import {
     Navbar,
-	ProfileSidePanel
 } from "@/components"
+
+import {
+	Button
+} from "@/base"
+
+import {
+	Logo
+} from "@/icons"
 // #endregion
 
 const layout = ({
@@ -20,7 +27,7 @@ const layout = ({
 		<main
 			className="
 				p-8 flex items-center justify-center h-screen
-				tracking-tighter text-charcoal-100 text-base
+				text-charcoal-100 text-base
 			"
 		>
             <Navbar/>
@@ -32,7 +39,25 @@ const layout = ({
 				{oauth}
 			</section>
 
-			<ProfileSidePanel/>
+			<section
+				className="
+					bg-blue-100 rounded-3xl p-6
+					relative h-[90%] w-[50%] flex items-end
+					justify-end self-end
+				"
+			>
+				<Button
+					variant="ghost"
+					className="!text-white hover:!text-charcoal-100"
+				>
+					Log out ?
+				</Button>
+
+				<Logo
+					className="absolute top-8 right-5 fill-white"
+					size={40}
+				/>
+			</section>
 		</main>
 	)
 }

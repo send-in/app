@@ -13,7 +13,6 @@ import {
 import {
 	TimeProgress
 } from "@/components"
-
 // #endregion
 
 const DashboardCard = ({
@@ -48,7 +47,7 @@ const DashboardCard = ({
 		<li
 			className="
 				list-none flex gap-10 text-base items-center w-full
-				py-2 px-3 rounded-xl tracking-tighter text-grey-200 hover:text-white
+				py-2 px-3 rounded-xl text-grey-200 hover:text-white
 				bg-grey-100 hover:bg-blue-100 active:bg-blue-200 group justify-between
 				transition-all ease-in-out delay-100 cursor-pointer
 			"

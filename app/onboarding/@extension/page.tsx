@@ -1,14 +1,11 @@
 // #region imports
 import {
-    InformationCard
-} from "@/components"
-
-import {
-    Google
+	Google
 } from "@/icons"
 
 import {
 	Button,
+	Information
 } from "@/base"
 // #endregion
 
@@ -16,7 +13,7 @@ const page = ({
 }) => {
 	return (
 		<section
-			className="w-[70%] space-y-8 tracking-tighter ml-[5%]"
+			className="w-[70%] space-y-8 ml-[5%]"
 		>
 			<h1
 				className="text-5xl text-blue-100 font-semibold"
@@ -24,7 +21,7 @@ const page = ({
 				Install our extension
 			</h1>
 
-			<InformationCard
+			<Information
 				description="
 					If you don’t wish to use bulk sending we highly recommend you to
 					install our chrome extension ! Bulk scheduling is only accessible

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server"
 import type { NextRequest } from "next/server"
- 
+
 export function middleware(
 	request: NextRequest
 ) {
@@ -8,6 +8,9 @@ export function middleware(
 	const {
 		pathname
 	} = request.nextUrl
+
+    const response = NextResponse.next()
+    response.headers.set("x-pathname", pathname)
 
 
 	if (pathname==="/" || pathname==="/board"){

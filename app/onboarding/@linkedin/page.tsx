@@ -1,11 +1,11 @@
 // #region imports
 import {
-    InformationCard,
-    LinkedinConnect
+	LinkedinConnect
 } from "@/components"
 
 import {
 	Button,
+	Information,
 } from "@/base"
 // #endregion
 
@@ -13,7 +13,7 @@ const page = ({
 }) => {
 	return (
 		<section
-			className="w-[70%] space-y-8 tracking-tighter ml-[5%]"
+			className="w-[70%] space-y-8 ml-[5%]"
 		>
 			<h1
 				className="text-5xl text-blue-100 font-semibold"
@@ -21,7 +21,7 @@ const page = ({
 				Let’s get started...
 			</h1>
 
-			<InformationCard
+			<Information
 				description="
 					To connect your LinkedIn account, we’ll need your session token.
 					This token lets Send In securely send your messages automatically.

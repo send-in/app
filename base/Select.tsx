@@ -1,3 +1,5 @@
+"use client"
+
 // #region imports
 import {
 	ReactNode,
@@ -7,7 +9,7 @@ import {
 
 import {
 	cn
-} from "@/utils/cn"
+} from "@/utils"
 // #endregion
 
 export interface SelectOption {
@@ -50,19 +52,20 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(
 		},
 		ref
 	) => {
-		const selectedOption = options.find((opt) => opt.value === value)
 
-		const wrapperClasses = cn("dropdown", className)
+		const selectedOption = options.find(
+			(opt) => opt.value === value
+		)
 
-		const menuClasses = cn(
-			"dropdown-content p-2 mt-2 w-max shadow rounded-xl bg-white space-y-1 max-h-[40vh] overflow-y-scroll relative",
-			"z-50"
+		const wrapperClasses = cn(
+			"dropdown",
+			className
 		)
 
 		const buttonClasses = cn(
 			`
-				btn rounded-full font-medium tracking-tighter transition-all duration-200
-				border-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-100
+				btn rounded-full font-medium transition-all duration-200
+				border-none focus:ring-2 focus:ring-inset focus:ring-blue-100
 			`,
 			sizeClasses[size],
 			selectedOption
@@ -91,7 +94,10 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(
 
 				<ul
 					tabIndex={0}
-					className={menuClasses}
+					className="
+						dropdown-content p-2 mt-2 w-max shadow rounded-xl bg-white
+						space-y-1 max-h-[40vh] overflow-y-scroll relative z-50
+					"
 				>
 					{options.map((opt) => (
 						isValidElement(opt.label) ?

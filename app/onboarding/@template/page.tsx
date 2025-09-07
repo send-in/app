@@ -1,11 +1,11 @@
 // #region imports
 import {
     Editor,
-    InformationCard
 } from "@/components"
 
 import {
 	Button,
+	Information
 } from "@/base"
 // #endregion
 
@@ -13,7 +13,7 @@ const page = ({
 }) => {
 	return (
 		<section
-			className="w-[70%] flex flex-col gap-2 tracking-tighter ml-[5%] h-full"
+			className="w-[70%] flex flex-col gap-2 ml-[5%] h-full"
 		>
 			<h1
 				className="text-5xl text-blue-100 font-semibold mb-6"
@@ -21,7 +21,7 @@ const page = ({
 				Create default template
 			</h1>
 
-			<InformationCard
+			<Information
 				description="
                     If you are not bulk scheduling,
                     you are all set and can skip onboarding !
@@ -33,7 +33,7 @@ const page = ({
 			/>
 
 			<aside
-                className="w-full h-[30vh] my-5 mb-[15%]"
+                className="w-full h-[30vh] my-5"
             >
                 <Editor
                     noCopy

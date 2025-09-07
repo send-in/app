@@ -4,14 +4,15 @@
 import Image from "next/image"
 
 import {
-	DashboardCard,
-	Editor,
-	Navbar,
-} from "@/components"
+	useState
+} from "react"
 
 import {
 	DateTime,
-	TimeZone
+	TimeZone,
+	DashboardCard,
+	Editor,
+	Navbar,
 } from "@/components"
 
 import {
@@ -24,8 +25,6 @@ import {
 import {
 	Search
 } from "@/icons"
-
-import { useState } from "react"
 // #endregion
 
 import templates from "@/content/templates.json"
@@ -43,7 +42,7 @@ const DashboardPage = () => {
 			<main
 				className="
 					p-8 px-16 pt-[8%] flex items-start justify-center
-					tracking-tighter text-grey-200 text-base gap-8
+					text-grey-200 text-base gap-8
 					h-screen
 				"
 			>
@@ -103,7 +102,7 @@ const DashboardPage = () => {
 						/>
 						<div>
 							<h2
-								className="text-2xl text-blue-100 tracking-tighter"
+								className="text-2xl text-blue-100"
 							>
 								Vishnu Shon
 							</h2>

@@ -7,7 +7,9 @@ import {
 	ReactNode
 } from "react"
 
-import { cn } from "@/utils/cn"
+import {
+	cn
+} from "@/utils"
 // #endregion
 
 const radioVariants = {
@@ -51,7 +53,7 @@ const Radio = forwardRef<HTMLInputElement, RadioProps>(
 		)
 
 		const labelClasses = cn(
-			"font-mada whitespace-nowrap tracking-tighter text-grey-300 font-medium flex items-center gap-2 cursor-pointer",
+			"font-mada whitespace-nowrap text-grey-300 font-medium flex items-center gap-2 cursor-pointer",
 			labelClassName
 		)
 

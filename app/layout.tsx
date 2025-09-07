@@ -33,6 +33,7 @@ export default async function RootLayout({
 					${mada.className}
 					antialiased
 					max-h-screen
+					tracking-tighter
 				`}
 			>
 				{children}

@@ -1,6 +1,9 @@
 // #region Imports
 import Link from "next/link"
-import Logo from "../icons/Logo"
+
+import {
+	Logo
+} from "@/icons"
 // #endregion
 
 const links = [
@@ -104,6 +107,7 @@ const Footer = () => {
 			>
 
 				<Logo
+					className="fill-charcoal-100"
 					size={50}
 				/>
 

@@ -18,7 +18,7 @@ const page = () => {
 		<main
 			className="
 				p-8 px-16 pt-[8%] flex items-start justify-center
-				tracking-tighter text-charcoal-100 text-base gap-8
+				text-charcoal-100 text-base gap-8
 				h-screen
 			"
 		>
