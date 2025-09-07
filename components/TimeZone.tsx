@@ -53,6 +53,7 @@ const TimeZone = ({
 						className="sticky -top-2 bg-white pt-2"
 					>
 						<TextField
+							key="search"
 							variant="filled"
 							placeholder="Search"
 							endIcon={<Search />}
