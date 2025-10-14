@@ -15,11 +15,9 @@ import {
 // #endregion
 
 const layout = ({
-	email,
-	oauth,
+	children,
 }: Readonly<{
-	email: ReactNode,
-	oauth: ReactNode,
+	children: ReactNode,
 }>) => {
 
 	// logic for steps
@@ -35,8 +33,7 @@ const layout = ({
 			<section
                 className="ml-[5%] mt-10"
             >
-				{/* {email} */}
-				{oauth}
+				{children}
 			</section>
 
 			<section

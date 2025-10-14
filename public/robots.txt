@@ -3,4 +3,4 @@ User-agent: AdsBot-Google
 User-agent: Googlebot-Image
 User-agent: *
 Allow: /
-Sitemap: https://boardly.io/sitemap.xml
+Sitemap: https://SendIn.io/sitemap.xml

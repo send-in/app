@@ -6,8 +6,8 @@ import { Logo } from "@/icons"
 // #endregion
 
 export const metadata: Metadata = {
-	title: "boardly",
-	description: "boardly.io collaborative meet",
+	title: "SendIn",
+	description: "SendIn.io collaborative meet",
 	icons:{
 		icon: "/favicon.ico",
 		shortcut: "/icon192.png",

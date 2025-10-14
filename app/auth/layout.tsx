@@ -25,40 +25,41 @@ const layout = ({
 					text-charcoal-100 text-base desktop:text-xl
 				"
 			>
-                <article
-					className="flex-1"
-				>
-					{children}
-				</article>
 
 				<section
 					className="
-						bg-blue-100 rounded-4xl p-10 desktop:p-2
-						relative h-full w-[50%] flex items-center
-						justify-center desktop:w-[45%]
+						bg-blue-100 rounded-3xl p-24 desktop:p-2
+						relative h-full w-full flex items-center
+						justify-center
 					"
 				>
+					<article
+						className="flex-1"
+					>
+						{children}
+					</article>
+
 					<aside
 						className="relative h-fit pr-12 desktop:pr-32 desktop:scale-150"
 					>
 						<Image
 							src="/timezone.svg"
 							alt="timezone"
-							height={350}
-							width={350}
+							height={500}
+							width={500}
 						/>
 						<Image
-							className="absolute -bottom-[20%] left-[48%]"
+							className="absolute -bottom-[20%] left-[50%]"
 							src="/switch.svg"
 							alt="switch"
-							height={250}
-							width={250}
+							height={300}
+							width={300}
 						/>
 					</aside>
 
 					<Logo
 						className="absolute top-8 right-5 fill-white desktop:scale-150 desktop:top-12 desktop:right-8"
-						size={50}
+						size={60}
 					/>
 				</section>
             </main>

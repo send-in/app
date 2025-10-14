@@ -47,6 +47,11 @@ const buttonVariants = {
 			bg-transparent hover:bg-grey-100 active:bg-grey-150
 			text-grey-200 fill-charcoal-100
 		`,
+
+		inverted: `
+			bg-white hover:bg-blue-200 hover:text-white active:brightness-95
+			text-blue-100 fill-white focus:ring-white group
+		`
 	},
 
 	sizes: {

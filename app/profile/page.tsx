@@ -7,15 +7,18 @@ import {
 } from "@/base"
 
 import {
-	TimeZone,
-	LinkedinConnect
+    TimeZone,
+    LinkedinConnect
 } from "@/components"
+
+import {
+    Google
+} from "@/icons"
 // #endregion
 
 const page = ({
 }) => {
 
-	// logic for steps
 	return (
 		<section
 			className="flex flex-col gap-4 w-[80%] desktop:w-[60%] items-start"
@@ -36,9 +39,9 @@ const page = ({
 				>
 					Hey, Vishnu !
 				</h1>
+
 				<TimeZone/>
 			</aside>
-
 
 			<TextField
 				className="!rounded-xl !px-4"
@@ -47,35 +50,19 @@ const page = ({
 				label="Full Name"
 				fullWidth
 			/>
+			
 			<TextField
-				className="!rounded-xl !px-4"
+				className="!rounded-xl !px-4 mb-12"
 				variant="filled"
 				value="vshon447@gmail.com"
 				label="Email"
 				fullWidth
 			/>
-			<TextField
-				className="!rounded-xl !px-4"
-				variant="filled"
-				type="password"
-				value="ananyab4ya"
-				label="Password"
-				fullWidth
-			/>
-			<TextField
-				className="!rounded-xl !px-4 mb-5"
-				variant="filled"
-				type="password"
-				value="ananyab4ya"
-				label="Confirm Password"
-				fullWidth
-			/>
-
 
 			<LinkedinConnect/>
 
 			<p
-				className="text-sm text-grey-200"
+				className="text-sm desktop:text-lg text-grey-200"
 			>
 				We take your li_at cookie and user agent information,
 				If you have the extension installed you can update your cookie
