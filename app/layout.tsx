@@ -1,13 +1,15 @@
 // #region imports
 import "@/globals.css"
-import { Mada } from "next/font/google"
 import type { Metadata } from "next"
+import { Mada } from "next/font/google"
+
 import { Logo } from "@/icons"
+import { Footer } from "@/components"
 // #endregion
 
 export const metadata: Metadata = {
 	title: "SendIn",
-	description: "SendIn.io collaborative meet",
+	description: "Schedule LinkedIn Outreach. At Scale.",
 	icons:{
 		icon: "/favicon.ico",
 		shortcut: "/icon192.png",
@@ -55,6 +57,8 @@ export default async function RootLayout({
 						We are working on a mobile version
 					</p>
 				</div>
+
+				<Footer/>
 			</body>
 		</html>
 	)

@@ -9,9 +9,6 @@ import {
 export interface AccountProps {
 	account: string
 	picture: string
-
-	login: Function
-	logout: Function
 }
 
 export const AccountContext = createContext<AccountProps>(
@@ -29,21 +26,11 @@ export function AuthProvider({
 		"/profile.svg"
 	)
 
-	const login = () => {
-		const account = fetch
-	}
-
-	const logout = () => {
-
-	}
 
     return (
         <AccountContext.Provider value={{
 			account,
 			picture,
-
-			login,
-			logout
         }}>
             {children}
         </AccountContext.Provider>

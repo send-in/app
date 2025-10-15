@@ -41,6 +41,11 @@ const iconButtonVariants = {
 			[&>svg]:fill-charcoal-100
 			active:ring-grey-200
 		`,
+		transparent: `
+			[&>svg]:fill-white
+			active:ring-transparent
+			focus:ring-transparent
+		`,
 	},
 	sizes: {
 		sm: "w-8 h-8",

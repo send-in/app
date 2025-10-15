@@ -34,9 +34,8 @@ const DashboardPage = () => {
 		<>
 			<main
 				className="
-					p-8 desktop:px-48 px-16 pt-[8%] flex items-start justify-center
-					text-grey-200 text-base desktop:text-xl gap-8
-					h-screen
+					p-8 desktop:px-[5%] px-16 pt-[10%] flex items-start justify-center
+					text-grey-200 text-base desktop:text-xl gap-8 desktop:gap-12 h-[95vh]
 				"
 			>
 				<Navbar/>

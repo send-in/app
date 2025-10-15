@@ -1,7 +1,7 @@
 // #region imports
-import { 
-	login 
-} from "@/actions/auth"
+import {
+	login
+} from "@/server/auth"
 
 import {
 	Button,
@@ -17,7 +17,7 @@ const page = ({
 }) => {
 	return (
 		<section
-			className="w-[50%] desktop:w-[35%] flex flex-col gap-6 ml-[5%]"
+			className="w-[50%] desktop:w-[32%] flex flex-col gap-6 ml-[10%]"
 		>
 			<div
 				className="space-y-6 p-4"
@@ -32,13 +32,12 @@ const page = ({
 						className="text-2xl desktop:text-3xl font-semibold mt-1 desktop:mt-4 text-white"
 					>
 						Get started instantly with SendIn
-						<span
-							className="text-blue-200"
-						>
-							{" "}No credit card required{" "}
-						</span>
-						
 					</p>
+					<span
+						className="text-blue-200 text-2xl desktop:text-3xl font-semibold mt-1 desktop:mt-4"
+					>
+						{" "}No credit card required{" "}
+					</span>
 				</aside>
 
 				<form

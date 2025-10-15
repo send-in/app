@@ -1,9 +1,7 @@
 // #region Imports
 import Link from "next/link"
 
-import {
-	Logo
-} from "@/icons"
+import { Logo } from "@/icons"
 // #endregion
 
 const links = [
@@ -95,7 +93,7 @@ const Footer = () => {
 		<section
 			className="
                 w-full pt-2 text-charcoal-100 bottom-0
-                small:relative z-10 p-8 small:pt-0 desktop:px-48 
+                small:relative z-10 p-8 small:pt-0 desktop:px-[5%]
             "
 			id="footer"
 		>

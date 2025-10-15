@@ -5,16 +5,13 @@ import Image from "next/image"
 import Link from "next/link"
 
 import {
-	cn
-} from "@/utils"
-
-import {
+	redirect,
 	usePathname
 } from "next/navigation"
 
-import {
-	Logo
-} from "@/icons"
+import { cn } from "@/utils"
+import { Logo } from "@/icons"
+import { IconButton } from "@/base"
 // #endregion
 
 const links = [
@@ -39,14 +36,19 @@ const Navbar = () => {
 		<nav
 			className="
 				pl-4 desktop:pl-8 p-1 desktop:p-2 min-w-[50%] desktop:min-w-[30%]
-				xlarge:text-base mb-4 flex items-center gap-10
+				xlarge:text-base mb-4 flex items-center gap-10 z-100
 				justify-between rounded-full font-medium text-white
-				max-w-4xl bg-blue-100 fixed top-5 desktop:top-16 text-base
+				max-w-4xl bg-blue-100 absolute top-5 desktop:top-16 text-base
 			"
 		>
-			<Logo
-				size={35}
-			/>
+			<IconButton
+				variant="transparent"
+				onClick={()=>redirect("/dashboard")}
+			>
+				<Logo
+					size={40}
+				/>
+			</IconButton>
 
 			<aside
 				className="flex gap-5 text-sm desktop:text-lg"

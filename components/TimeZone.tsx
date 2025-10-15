@@ -6,14 +6,7 @@ import {
 	TextField
 } from "@/base"
 
-import {
-	Search
-} from "@/icons"
-
-import {
-	getAbbreviation
-} from "@/utils"
-
+import { Search } from "@/icons"
 import zones from "@/timezones.json"
 // #endregion
 
@@ -30,7 +23,7 @@ const currentZone: string =
 
 const options = zones.map(
 	tz => ({
-		label: `${tz} (${getAbbreviation(tz)})`,
+		label: `${tz}`,
 		value: tz,
 	})
 )
@@ -51,6 +44,7 @@ const TimeZone = ({
 				label: (
 					<div
 						className="sticky -top-2 bg-white pt-2"
+						key="search"
 					>
 						<TextField
 							key="search"

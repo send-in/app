@@ -1,14 +1,8 @@
 // #region imports
-import { ReactNode } from "react"
 import Image from "next/image"
+import { ReactNode } from "react"
 
-import {
-	Footer,
-} from "@/components"
-
-import {
-	Logo
- } from "@/icons"
+import { Logo } from "@/icons"
 // #endregion
 
 const layout = ({
@@ -18,54 +12,50 @@ const layout = ({
 }>) => {
 
 	return (
-		 <>
-            <main
+		<main
+			className="
+				flex h-screen p-8 desktop:px-[5%] items-center justify-between
+				text-charcoal-100 text-base desktop:text-xl
+			"
+		>
+
+			<section
 				className="
-					flex h-screen p-8 desktop:px-48 items-center justify-between
-					text-charcoal-100 text-base desktop:text-xl
+					bg-blue-100 rounded-3xl p-24
+					relative h-full w-full flex items-center
+					justify-center
 				"
 			>
-
-				<section
-					className="
-						bg-blue-100 rounded-3xl p-24 desktop:p-2
-						relative h-full w-full flex items-center
-						justify-center
-					"
+				<article
+					className="flex-1"
 				>
-					<article
-						className="flex-1"
-					>
-						{children}
-					</article>
+					{children}
+				</article>
 
-					<aside
-						className="relative h-fit pr-12 desktop:pr-32 desktop:scale-150"
-					>
-						<Image
-							src="/timezone.svg"
-							alt="timezone"
-							height={500}
-							width={500}
-						/>
-						<Image
-							className="absolute -bottom-[20%] left-[50%]"
-							src="/switch.svg"
-							alt="switch"
-							height={300}
-							width={300}
-						/>
-					</aside>
-
-					<Logo
-						className="absolute top-8 right-5 fill-white desktop:scale-150 desktop:top-12 desktop:right-8"
-						size={60}
+				<aside
+					className="relative h-fit pr-12 desktop:pr-[10%] desktop:scale-120"
+				>
+					<Image
+						src="/timezone.svg"
+						alt="timezone"
+						height={500}
+						width={500}
 					/>
-				</section>
-            </main>
+					<Image
+						className="absolute -bottom-[20%] left-[50%] desktop:left-[40%]"
+						src="/switch.svg"
+						alt="switch"
+						height={300}
+						width={300}
+					/>
+				</aside>
 
-            <Footer />
-        </>
+				<Logo
+					className="absolute top-8 right-5 fill-white desktop:scale-110 desktop:top-12 desktop:right-8"
+					size={60}
+				/>
+			</section>
+		</main>
 	)
 }
 
