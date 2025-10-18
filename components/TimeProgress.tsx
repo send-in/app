@@ -1,22 +1,22 @@
 "use client"
 
 // #region imports
-import { 
-	useEffect, 
-	useState 
+import {
+	useEffect,
+	useState
 } from "react"
 // #endregion
 
 type TimeProgressProps = {
-	startTime: Date | string
+	createdAt: Date | string
 	scheduledTime: Date | string
 	size?: number
 }
 
 const TimeProgress = ({
-	startTime,
+	createdAt,
 	scheduledTime,
-	size = 18
+	size = 20
 }: TimeProgressProps) => {
 
 	const [progress, setProgress] = useState<number>(0)
@@ -36,9 +36,9 @@ const TimeProgress = ({
 
 	useEffect(() => {
 		const start =
-			typeof startTime === "string"
-				? new Date(startTime).getTime()
-				: startTime.getTime()
+			typeof createdAt === "string"
+				? new Date(createdAt).getTime()
+				: createdAt.getTime()
 
 		const target =
 			typeof scheduledTime === "string"
@@ -64,16 +64,16 @@ const TimeProgress = ({
 
 		return () => clearInterval(interval)
 	}, [
-		startTime, 
+		createdAt,
 		scheduledTime
 	])
 
 	return (
-		<svg 
+		<svg
 			height={size}
 			width={size}
 			className="
-				transition-colors 
+				transition-colors
 				fill-white
 				group-hover:fill-blue-100
 				group-active:fill-blue-200
@@ -86,17 +86,17 @@ const TimeProgress = ({
 				r={radius - 1}
 				strokeWidth={2}
 				className="
-					transition-colors 
+					transition-colors
 					stroke-blue-100
 					group-hover:stroke-white
 					ease-in-out delay-100
 				"
 			/>
 			{progress > 0 && (
-				<path 
-					d={pathData} 
+				<path
+					d={pathData}
 					className="
-						transition-colors 
+						transition-colors
 						fill-blue-100
 						group-hover:fill-white
 						ease-in-out delay-100

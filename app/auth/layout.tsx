@@ -14,7 +14,7 @@ const layout = ({
 	return (
 		<main
 			className="
-				flex h-screen p-8 desktop:px-[5%] items-center justify-between
+				flex h-screen p-16 desktop:px-[5%] items-center justify-between
 				text-charcoal-100 text-base desktop:text-xl
 			"
 		>

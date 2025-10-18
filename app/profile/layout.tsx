@@ -1,17 +1,10 @@
 // #region imports
 import { ReactNode } from "react"
 
-import {
-    Navbar,
-} from "@/components"
-
-import {
-	Button
-} from "@/base"
-
-import {
-	Logo
-} from "@/icons"
+import { Navbar } from "@/components"
+import { Button } from "@/base"
+import { Logo } from "@/icons"
+import { logout } from "@/server"
 // #endregion
 
 const layout = ({
@@ -24,14 +17,14 @@ const layout = ({
 	return (
 		<main
 			className="
-				p-8 desktop:pl-16 flex items-center justify-center h-screen
-				text-charcoal-100 text-base desktop:text-xl
+				p-8 desktop:px-[5%] flex items-center justify-center h-screen
+				text-charcoal-100 text-base desktop:text-xl gap-8 desktop:gap-12
 			"
 		>
             <Navbar/>
 
 			<section
-                className="ml-[5%] mt-10"
+                className="mt-10 w-[45%]"
             >
 				{children}
 			</section>
@@ -39,13 +32,15 @@ const layout = ({
 			<section
 				className="
 					bg-blue-100 rounded-3xl p-6 desktop:mt-[5%]
-					relative h-[90%] w-[50%] desktop:w-[30%] flex items-end
+					relative h-[90%] w-[45%] flex items-end
 					justify-end self-end desktop:self-center desktop:h-[85%]
 				"
 			>
+				
 				<Button
 					variant="ghost"
 					className="!text-white hover:!text-charcoal-100"
+					onClick={logout}
 				>
 					Log out ?
 				</Button>

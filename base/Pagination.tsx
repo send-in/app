@@ -124,8 +124,7 @@ const Pagination = forwardRef<HTMLElement, PaginationProps>(
 						onClick={handleClick(1)}
 						aria-label="Go to first page"
 					>
-						<Chevron direction="left" size={12} />
-						<Chevron direction="left" size={12} />
+						<Chevron direction="left" size={24} />
 					</button>
 				)}
 
@@ -135,7 +134,7 @@ const Pagination = forwardRef<HTMLElement, PaginationProps>(
 					onClick={handleClick(page - 1)}
 					aria-label="Go to previous page"
 				>
-					<Chevron direction="left" size={14} />
+					<Chevron direction="left" size={24} />
 				</button>
 
 				{pages.map((p, idx) =>
@@ -163,7 +162,7 @@ const Pagination = forwardRef<HTMLElement, PaginationProps>(
 					onClick={handleClick(page + 1)}
 					aria-label="Go to next page"
 				>
-					<Chevron direction="right" size={14} />
+					<Chevron direction="right" size={24} />
 				</button>
 
 				{showLastButton && (
@@ -173,8 +172,7 @@ const Pagination = forwardRef<HTMLElement, PaginationProps>(
 						onClick={handleClick(count)}
 						aria-label="Go to last page"
 					>
-						<Chevron direction="right" size={12} />
-						<Chevron direction="right" size={12} />
+						<Chevron direction="right" size={24} />
 					</button>
 				)}
 			</nav>

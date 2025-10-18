@@ -5,9 +5,21 @@ import {
 	Button,
 	TextField
 } from "@/base"
+
+import {
+	useAccount
+} from "@/providers"
 // #endregion
 
 const LinkedinConnect = () => {
+
+	const { data } = useAccount()
+
+	const {
+		li_at,
+		picture
+	} = data || {}
+
 	return (
 		<div
 			className="
@@ -19,7 +31,7 @@ const LinkedinConnect = () => {
 			<Image
 				className="rounded-full desktop:scale-120"
 				alt={"SendIn"}
-				src={"https://media.licdn.com/dms/image/v2/D5603AQH2-Le-GLYQfQ/profile-displayphoto-crop_800_800/B56ZhyEAK4HUAI-/0/1754260309150?e=1759363200&v=beta&t=tSQG_CnXVrLuWg8REMJh1uWrk1NRL7iDLXG_WGKIwYA"}
+				src={picture || "/proifle.svg"}
 				width={40}
 				height={40}
 			/>
@@ -27,7 +39,7 @@ const LinkedinConnect = () => {
 			<TextField
 				className="!text-xl text-gradient-end desktop:!text-2xl"
 				variant="standard"
-				value="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMj"
+				value={li_at}
 				fullWidth
 			/>
 

@@ -17,13 +17,6 @@ import {
 	Search
 } from "@/icons"
 // #endregion
-
-import templates from "@/db/templates.json"
-const templateOptions = templates.map((t) => ({
-	label: t.name,
-	value: t.name,
-}))
-
 const resultOptions = [
 	{ label: "20", value: "20" },
 	{ label: "50", value: "50" },
@@ -31,7 +24,7 @@ const resultOptions = [
 ]
 
 const OptionsPage = () => {
-	
+
 
 	return (
 		<article

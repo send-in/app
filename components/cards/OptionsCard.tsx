@@ -24,12 +24,6 @@ import {
 import { useState } from "react"
 // #endregion
 
-import templates from "@/db/templates.json"
-const templateOptions = templates.map((t) => ({
-	label: t.name,
-	value: t.name,
-}))
-
 const OptionsCard = ({
 	name,
 	picture,
@@ -62,7 +56,7 @@ const OptionsCard = ({
 		<li
 			className="
 				list-none flex  text-base desktop:text-xl items-center w-full
-				text-grey-200 justify-between 
+				text-grey-200 justify-between
 			"
 		>
 			<aside
@@ -99,7 +93,7 @@ const OptionsCard = ({
 						{company}, {country}
 					</p>
 				</Link>
-				
+
 				<aside
 					className="text-base desktop:text-xl text-charcoal-100 flex gap-10 w-fit ml-10"
 				>
@@ -129,7 +123,7 @@ const OptionsCard = ({
 				className="flex gap-10"
 			>
 				<Select
-					options={templateOptions}
+					options={[]}
 					value={template.name}
 					placeholder="Select Template"
 					size="md"

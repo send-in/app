@@ -1,13 +1,9 @@
 "use server"
 
 // #region imports
-import {
-	cookies
-} from "next/headers"
+import { cookies } from "next/headers"
 
-import {
-	redirect
-} from "next/navigation"
+import { redirect} from "next/navigation"
 // #endregion
 
 export async function logout() {

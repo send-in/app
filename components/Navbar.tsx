@@ -12,6 +12,7 @@ import {
 import { cn } from "@/utils"
 import { Logo } from "@/icons"
 import { IconButton } from "@/base"
+import { useAccount } from "@/providers"
 // #endregion
 
 const links = [
@@ -30,12 +31,13 @@ const links = [
 ]
 
 const Navbar = () => {
+	const { data } = useAccount()
 	const pathname = usePathname()
 
 	return (
 		<nav
 			className="
-				pl-4 desktop:pl-8 p-1 desktop:p-2 min-w-[50%] desktop:min-w-[30%]
+				pl-4 desktop:pl-4 p-1 desktop:p-2 min-w-[50%] desktop:min-w-[30%]
 				xlarge:text-base mb-4 flex items-center gap-10 z-100
 				justify-between rounded-full font-medium text-white
 				max-w-4xl bg-blue-100 absolute top-5 desktop:top-16 text-base
@@ -94,12 +96,17 @@ const Navbar = () => {
 
 				<Link
 					href="/profile"
-					className="border-2 border-white rounded-full"
+					className="
+						bg-white border-2 border-white rounded-full
+						transition-all ease-in-out delay-100 desktop:text-lg
+						active:scale-98 focus:outline-none
+						focus:ring-2 hover:ring-2 ring-white
+					"
 				>
 					<Image
 						className="rounded-full"
 						alt={"profile"}
-						src={"https://media.licdn.com/dms/image/v2/D5603AQH2-Le-GLYQfQ/profile-displayphoto-crop_800_800/B56ZhyEAK4HUAI-/0/1754260309150?e=1759363200&v=beta&t=tSQG_CnXVrLuWg8REMJh1uWrk1NRL7iDLXG_WGKIwYA"}
+						src={data?.picture || "/profile.svg"}
 						width={40}
 						height={40}
 					/>

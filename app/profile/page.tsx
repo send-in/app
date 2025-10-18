@@ -1,3 +1,5 @@
+"use client"
+
 // #region imports
 import Image from "next/image"
 
@@ -12,12 +14,21 @@ import {
 } from "@/components"
 
 import {
-    Google
-} from "@/icons"
+	useAccount
+} from "@/providers"
 // #endregion
 
-const page = ({
+const Page = ({
 }) => {
+
+	const { data } = useAccount()
+
+	const {
+		name,
+		picture,
+		email,
+		timezone,
+	} = data || {}
 
 	return (
 		<section
@@ -26,7 +37,7 @@ const page = ({
 			<Image
 				className="rounded-full"
 				alt={"SendIn"}
-				src={"https://media.licdn.com/dms/image/v2/D5603AQH2-Le-GLYQfQ/profile-displayphoto-crop_800_800/B56ZhyEAK4HUAI-/0/1754260309150?e=1759363200&v=beta&t=tSQG_CnXVrLuWg8REMJh1uWrk1NRL7iDLXG_WGKIwYA"}
+				src={picture || "/profile.svg"}
 				width={80}
 				height={80}
 			/>
@@ -40,21 +51,23 @@ const page = ({
 					Hey, Vishnu !
 				</h1>
 
-				<TimeZone/>
+				<TimeZone
+					value={timezone || ""}
+				/>
 			</aside>
 
 			<TextField
 				className="!rounded-xl !px-4"
 				variant="filled"
-				value="Vishnu Shon"
+				value={name || ""}
 				label="Full Name"
 				fullWidth
 			/>
-			
+
 			<TextField
 				className="!rounded-xl !px-4 mb-12"
 				variant="filled"
-				value="vshon447@gmail.com"
+				value={email || ""}
 				label="Email"
 				fullWidth
 			/>
@@ -79,4 +92,4 @@ const page = ({
 	)
 }
 
-export default page
+export default Page

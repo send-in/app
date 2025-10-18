@@ -1,10 +1,16 @@
 // #region imports
 import "@/globals.css"
+
 import type { Metadata } from "next"
 import { Mada } from "next/font/google"
 
+import { getCookie } from "@/server"
 import { Logo } from "@/icons"
 import { Footer } from "@/components"
+import {
+	AccountProvider,
+	AccountRequestProps
+} from "@/providers"
 // #endregion
 
 export const metadata: Metadata = {
@@ -27,6 +33,21 @@ export default async function RootLayout({
 	children: React.ReactNode,
 }>) {
 
+	const cookie = await getCookie("sendin_auth")
+	const response = await fetch(
+		`http://localhost:8000/accounts?name=${cookie?.value}`,
+		{
+			credentials: "include",
+			headers: {
+				"Content-Type": "application/json",
+				"Cookie": `sendin_auth=${cookie}`
+			},
+			cache: "no-store",
+		}
+	)
+
+	const account: AccountRequestProps = await response.json()
+
 	return (
 		<html
 			lang="en"
@@ -39,8 +60,13 @@ export default async function RootLayout({
 					tracking-tighter
 				`}
 			>
-				{children}
-				<div
+				<AccountProvider
+					value={account}
+				>
+					{children}
+				</AccountProvider>
+
+				<aside
 					className="
 						w-screen h-screen fixed z-50 top-0 items-center justify-center bg-white p-10
 						flex flex-col mobile:hidden gap-10
@@ -56,7 +82,7 @@ export default async function RootLayout({
 					>
 						We are working on a mobile version
 					</p>
-				</div>
+				</aside>
 
 				<Footer/>
 			</body>

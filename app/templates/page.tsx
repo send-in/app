@@ -10,7 +10,6 @@ import {
 	Pagination,
 } from "@/base"
 
-import templates from "@/db/templates.json"
 // #endregion
 
 const page = () => {
@@ -27,8 +26,8 @@ const page = () => {
 			<section
 				className="flex flex-col gap-4 desktop:gap-6 w-[45%] h-full"
 			>
-				{
-					templates.map(
+				{/* {
+					templates?.map(
 						({
 							name
 						},index) =>
@@ -37,7 +36,7 @@ const page = () => {
 							name={name}
 						/>
 					)
-				}
+				} */}
 
 				<div
 					className="flex w-full justify-between mt-2 items-center"
