@@ -9,7 +9,10 @@ import {
 } from "@/base"
 // #endregion
 
-const page = ({
+const Template = ({
+	nextStep
+}:{
+	nextStep: Function
 }) => {
 	return (
 		<section
@@ -51,6 +54,7 @@ const page = ({
 
 				<Button
 					variant="ghost"
+					onClick={()=>nextStep()}
 				>
 					Skip this step
 				</Button>
@@ -59,4 +63,5 @@ const page = ({
 	)
 }
 
-export default page
+export default Template
+

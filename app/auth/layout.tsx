@@ -1,7 +1,6 @@
 // #region imports
 import Image from "next/image"
 import { ReactNode } from "react"
-
 import { Logo } from "@/icons"
 // #endregion
 
@@ -14,11 +13,10 @@ const layout = ({
 	return (
 		<main
 			className="
-				flex h-screen p-16 desktop:px-[5%] items-center justify-between
+				flex h-screen p-8 desktop:px-[5%] items-center justify-between
 				text-charcoal-100 text-base desktop:text-xl
 			"
 		>
-
 			<section
 				className="
 					bg-blue-100 rounded-3xl p-24

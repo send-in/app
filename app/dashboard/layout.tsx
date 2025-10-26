@@ -6,28 +6,40 @@ import {
 	MessagesRequestProps,
 	MessagesProvider
 } from "@/providers"
-
 // #endregion
 
+
 const layout = async({
-    children,
+	children,
 }: Readonly<{
-    children: ReactNode,
+	children: ReactNode,
 }>) => {
 
-	const response = await fetch(
-		"http://localhost:8000/messages",
-		{
-			credentials: "include",
-			headers: {
-				"Content-Type": "application/json",
-				"Cookie": `sendin_auth=${await getCookie("sendin_auth")}`
-			},
-  			cache: "no-store",
-		}
-	)
+	let messages: MessagesRequestProps = {
+		data: [],
+		response: "",
+		success: false,
+	}
 
-  	const messages: MessagesRequestProps = await response.json()
+	try {
+		const response = await fetch(
+			"http://localhost:8000/messages",
+			{
+				credentials: "include",
+				headers: {
+					"Content-Type": "application/json",
+					"Cookie": `sendin_auth=${await getCookie("sendin_auth")}`
+				},
+				next: {
+					revalidate: 0,
+				}
+			}
+		)
+		messages = await response.json()
+	}
+	catch(e){
+		console.log("no messages found", e)
+	}
 
 	return (
 		<main>

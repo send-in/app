@@ -7,13 +7,8 @@ import {
 	Information
 } from "@/base"
 
-import {
-	TimeZone,
-} from "@/components"
-
-import {
-	Clock
-} from "@/icons"
+import { TimeZone } from "@/components"
+import { Clock } from "@/icons"
 // #endregion
 
 const DateTime = ({
@@ -28,8 +23,8 @@ const DateTime = ({
 		timezone: string,
 	}
 }) => {
-	const properTime = (
-		scheduledTime ??
+	const properDate = (
+		scheduledTime ||
 		new Date()
 	)?.toLocaleDateString(
 		"en-GB",
@@ -40,7 +35,7 @@ const DateTime = ({
 		}
 	)
 
-	const properDate= (
+	const properTime= (
 		scheduledTime ??
 		new Date()
 	)?.toLocaleTimeString(
@@ -56,13 +51,18 @@ const DateTime = ({
 		<Popover
 			trigger={
 				<Button
+					className="gap-3"
 					variant="primary"
 					startIcon={
 						<Clock/>
 					}
 				>
-					{properTime} {" "}
-					{properDate}
+					<span
+						className="flex items-center justify-between w-fit gap-3 shrink-0"
+					>
+						<span>{properTime}</span>
+						<span>{properDate}</span>
+					</span>
 				</Button>
 			}
 			className="top-36 desktop:top-52 right-0 desktop:right-48"

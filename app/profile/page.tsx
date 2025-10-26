@@ -21,14 +21,16 @@ import {
 const Page = ({
 }) => {
 
-	const { data } = useAccount()
+	const {
+		data
+	} = useAccount()
 
 	const {
 		name,
 		picture,
 		email,
 		timezone,
-	} = data || {}
+	} = data?.account || {}
 
 	return (
 		<section

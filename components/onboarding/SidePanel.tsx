@@ -16,10 +16,12 @@ const items = [
 	"Lets schedule !",
 ]
 
-const OnboardingSidePanel = ({
-	selected = 0
+const SidePanel = ({
+	selected = 0,
+	setSelected
 }:{
-	selected: number
+	selected: number,
+	setSelected: (value: (prev: number) => number) => void
 }) => (
 	<section
 		className="
@@ -59,18 +61,21 @@ const OnboardingSidePanel = ({
 		<aside
 			className="absolute bottom-5 right-5 flex"
 		>
-			<IconButton>
+			<IconButton
+				onClick={()=>selected > 0 && setSelected(prev=>--prev)}
+				disabled={!(selected > 0)}
+			>
 				<Arrow
 					direction="up"
-					active={false}
 				/>
 			</IconButton>
 
-			<IconButton>
+			<IconButton
+				onClick={()=> selected < 3 && setSelected(prev=>++prev)}
+				disabled={!(selected < 3)}
+			>
 				<Arrow
 					direction="down"
-					active={true}
-
 				/>
 			</IconButton>
 		</aside>
@@ -82,4 +87,4 @@ const OnboardingSidePanel = ({
 	</section>
 )
 
-export default OnboardingSidePanel
+export default SidePanel

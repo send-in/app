@@ -13,7 +13,7 @@ const Trash = ({ size = 18 }: TrashProps) => {
 			className="
 					transition-colors
 					group-hover:fill-white
-					ease-in-out delay-100
+					ease-in-out delay-50
 			"
 		>
 			<path

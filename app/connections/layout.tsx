@@ -1,28 +1,64 @@
 // #region imports
-import { Navbar } from "@/components"
 import { ReactNode } from "react"
+import {
+	ConnectionsProvider,
+	ConnectionsRequestProps
+} from "@/providers/ConnectionsProvider"
+import { getCookie } from "@/server"
+import { headers } from "next/headers"
+import { parseQueryParams } from "@/utils"
 // #endregion
 
-const layout = ({
+const layout = async ({
     connections,
 	options,
 }: Readonly<{
-    connections: ReactNode,
-    options: ReactNode,
+    connections: ReactNode
+    options: ReactNode
 }>) => {
 
-	return (
-		<main
-            className="
-				p-8 px-16 desktop:px-48 pt-[8%] flex items-start justify-center
-				text-grey-200 text-base desktop:text-xl gap-12
-                h-screen
-			"
-        >
-            <Navbar/>
+	const headersList = await headers()
 
-			{connections}
-            {/* {options} */}
+	const query = headersList.get("x-search")
+	const search = parseQueryParams(query || "")
+
+	let network: ConnectionsRequestProps = {
+		data: [],
+		response: "",
+		success: false,
+	}
+
+	try {
+		const response = await fetch(
+			"http://localhost:8000/connections",
+			{
+				credentials: "include",
+				headers: {
+					"Content-Type": "application/json",
+					"Cookie": `sendin_auth=${await getCookie("sendin_auth")}`
+				},
+				next: {
+					revalidate: 0,
+				}
+			}
+		)
+		network = await response.json()
+	}
+	catch(e){
+		console.log("no messages found", e)
+	}
+
+	return (
+		<main>
+			<ConnectionsProvider
+				value={network}
+			>
+				{
+					!!search?.ids?.length ?
+					options :
+					connections
+				}
+			</ConnectionsProvider>
 		</main>
 	)
 }

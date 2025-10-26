@@ -2,36 +2,40 @@
 
 // #region imports
 import {
-	ReactNode,
 	forwardRef,
-	isValidElement
+	isValidElement,
+	ReactElement,
+	ReactNode,
+	Ref,
+	useState,
+	useEffect
 } from "react"
 
-import {
-	cn
-} from "@/utils"
+import { cn } from "@/utils"
 // #endregion
 
 export interface SelectOption {
-	label: ReactNode
+	label: string
 	value: string
 	disabled?: boolean
 }
 
-export interface SelectProps {
-	options: SelectOption[]
-	value: string
+export interface SelectProps<T> {
+	options?: T[]
+	selected?: T
 	placeholder?: string
+	disabled?: boolean
 	size?: "sm" | "md" | "lg"
 	variant?: "primary" | "neutral"
 	className?: string
-	onChange: (value: string) => void
+	buttonClassName?: string
+	onChange?: (value: T) => void
 }
 
 const sizeClasses = {
 	sm: "text-sm px-3",
 	md: "text-base desktop:text-xl px-4",
-	lg: "text-lg  px-5",
+	lg: "text-lg px-5",
 }
 
 const variantClasses = {
@@ -39,90 +43,114 @@ const variantClasses = {
 	neutral: "bg-grey-100 text-grey-300 hover:bg-bluewash focus:ring-grey-200",
 }
 
-const Select = forwardRef<HTMLDivElement, SelectProps>(
-	(
-		{
-			options,
-			value,
-			placeholder,
-			size = "md",
-			variant = "primary",
-			className = "",
-			onChange
-		},
-		ref
-	) => {
+const isObject = (val: any): val is { label: string } =>
+	val && typeof val === "object" && "label" in val
 
-		const selectedOption = options.find(
-			(opt) => opt.value === value
-		)
+const Select = <T extends string | SelectOption | ReactNode>(
+	{
+		options,
+		selected,
+		placeholder,
+		size = "md",
+		disabled,
+		variant = "primary",
+		className = "",
+		buttonClassName = "",
+		onChange
+	}: SelectProps<T>,
+	ref: Ref<HTMLDivElement>
+) => {
 
-		const wrapperClasses = cn(
-			"dropdown",
-			className
-		)
+	const [internalSelected, setInternalSelected] = useState<T | undefined>(selected)
 
-		const buttonClasses = cn(
-			`
-				btn rounded-full font-medium transition-all duration-200
-				border-none focus:ring-2 focus:ring-inset focus:ring-blue-100
-			`,
-			sizeClasses[size],
-			selectedOption
-				? variantClasses[variant]
-				: "bg-white text-grey-300 hover:bg-grey-100 "
-		)
+	useEffect(() => {
+		if (selected !== undefined) setInternalSelected(selected)
+	}, [selected])
 
-		return (
-			<div
-				ref={ref}
-				className={wrapperClasses}
+	const handleSelect = (opt: T) => {
+		setInternalSelected(opt)
+		onChange?.(opt)
+	}
+
+	const selectedOption = options?.find(opt =>
+		isObject(opt) && isObject(internalSelected)
+			? opt.label === internalSelected.label
+			: opt === internalSelected
+	)
+
+	const wrapperClasses = cn("dropdown", className)
+
+	const buttonClasses = cn(
+		`
+			btn rounded-full font-medium transition-all duration-200 min-w-26
+			border-none focus:ring-2 focus:ring-inset focus:ring-blue-100 flex justify-between
+		`,
+		sizeClasses[size],
+		selectedOption
+			? variantClasses[variant]
+			: "bg-white text-grey-300 hover:bg-grey-100",
+		buttonClassName
+	)
+
+	return (
+		<div ref={ref} className={wrapperClasses}>
+			<button
+				type="button"
+				tabIndex={0}
+				className={buttonClasses}
+				disabled={disabled}
 			>
-				<button
-					type="button"
-					tabIndex={0}
-					className={buttonClasses}
+				<span
+					className="text-ellipsis truncate"
 				>
-					{
-						selectedOption?.label ||
-						placeholder ||
-						"Select"
-					}
+					{isObject(selectedOption)
+						? selectedOption?.label
+						: selectedOption || (placeholder || "Select")}
+				</span>
+				<span className="ml-2">&#9662;</span>
+			</button>
 
-					<span className="ml-2">&#9662;</span>
-				</button>
+			<ul
+				tabIndex={0}
+				className="
+					dropdown-content p-2 mt-2 w-max max-w-56 shadow rounded-xl bg-white
+					space-y-1 max-h-[40vh] overflow-y-scroll relative z-50
+				"
+			>
+				{options?.map((opt, index) => {
+					if (isValidElement(opt)) return opt
 
-				<ul
-					tabIndex={0}
-					className="
-						dropdown-content p-2 mt-2 w-max shadow rounded-xl bg-white
-						space-y-1 max-h-[40vh] overflow-y-scroll relative z-50
-					"
-				>
-					{options.map((opt) => (
-						isValidElement(opt.label) ?
-						opt.label :
+					const isObj = isObject(opt)
+					const isSelected =
+						isObj && isObject(internalSelected)
+							? opt.label === internalSelected.label
+							: opt === internalSelected
+
+					return (
 						<li
-							key={opt.value}
-							className={cn(
-								"rounded-md px-4 py-1 cursor-pointer text-charcoal-100",
-								opt.value === value ? "bg-grey-100" : "hover:bg-grey-100",
-								opt.disabled && "opacity-50 cursor-not-allowed"
-							)}
+							key={index}
+							className="
+								rounded-md px-4 py-1 cursor-pointer text-charcoal-100
+								data-[selected=true]:bg-grey-100 hover:bg-grey-100 truncate
+								data-[status=false]:opacity-50 data-[status=false]:cursor-not-allowed
+							"
+							data-selected={isSelected}
+							data-status={isObj ? opt.disabled : undefined}
 							onClick={() => {
-								if (!opt.disabled) {
-									onChange(opt.value)
-								}
+								if (!isObj || !opt.disabled) handleSelect(opt)
 							}}
 						>
-							{opt.label}
+							{isObj ? opt.label : opt}
 						</li>
-					))}
-				</ul>
-			</div>
-		)
-	}
-)
+					)
+				})}
+			</ul>
+		</div>
+	)
+}
 
 Select.displayName = "Select"
-export default Select
+
+export default forwardRef(Select) as <T extends string | SelectOption | ReactNode>(
+	props: SelectProps<T> & { ref?: Ref<HTMLDivElement> }
+) => ReactElement

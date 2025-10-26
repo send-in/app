@@ -13,10 +13,17 @@ export function middleware(
 ) {
 
 	const jwt = request.cookies.get("sendin_auth")
-    const response = NextResponse.next()
-	const { pathname } = request.nextUrl
+	const requestHeaders = new Headers(
+		request.headers
+	)
 
-    response.headers.set("x-pathname", pathname)
+	const {
+		pathname,
+		searchParams
+	} = request.nextUrl
+
+    requestHeaders.set("x-pathname", pathname)
+    requestHeaders.set("x-search", searchParams.toString() || "")
 
 	if (
 		pathname === "/auth" && !!jwt
@@ -34,7 +41,11 @@ export function middleware(
 		}
 
 		request.nextUrl.pathname = pathname
-		return NextResponse.next()
+		return NextResponse.next({
+			request: {
+				headers: requestHeaders,
+			},
+		})
 	}
 }
 
@@ -44,7 +55,7 @@ export const config = {
 		"/dashboard",
 		"/profile",
 		"/auth",
-		"/onboarding",
+		"/onboarding/:path",
 		"/templates",
 		"/connections"
 	],

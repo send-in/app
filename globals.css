@@ -75,8 +75,7 @@
 		);
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
-		background-clip: text; /* fallback */
-
+		background-clip: text;
 	}
 }
 
@@ -89,6 +88,10 @@ fieldset{
 	border: none
 }
 
+svg{
+	overflow: visible;
+}
+
 /* Editor placeholder styles */
 [contenteditable][data-placeholder]:empty::before {
 	content: attr(data-placeholder);
@@ -99,4 +102,3 @@ fieldset{
 [contenteditable][data-placeholder]:empty:focus::before {
 	color: var(--color-grey-200);
 }
-

@@ -2,18 +2,24 @@
 
 // #region imports
 import {
+	ReactNode,
+	useState
+} from "react"
+
+import { Search } from "@/icons"
+
+import {
 	Select,
 	TextField
 } from "@/base"
 
-import { Search } from "@/icons"
 import zones from "@/timezones.json"
 // #endregion
 
 
 interface TimeZoneProps {
 	value?: string
-	onChange?: (zone: string) => void
+	onChange: (zone: string) => void
 }
 
 const currentZone: string =
@@ -21,43 +27,41 @@ const currentZone: string =
 	.resolvedOptions()
 	.timeZone
 
-const options = zones.map(
-	tz => ({
-		label: `${tz}`,
-		value: tz,
-	})
-)
 
 const TimeZone = ({
 	value,
 	onChange,
-}: TimeZoneProps) => (
-	<Select
-		className="dropdown-end text-base desktop:text-xl"
-		onChange={(value)=>value}
-		value={value || currentZone}
-		placeholder="Select Timezone"
-		variant="primary"
-		options={[
-			{
-				value: "search",
-				label: (
-					<div
-						className="sticky -top-2 bg-white pt-2"
+}: TimeZoneProps) => {
+	const [search, setSearch] = useState<string>(value || "")
+
+	return (
+		<Select<string | ReactNode>
+			className="dropdown-end text-base desktop:text-xl"
+			onChange={val => {
+				if (typeof val === "string") onChange(val)
+			}}
+			selected={value || currentZone}
+			placeholder="Select Timezone"
+			variant="primary"
+			options={[
+				<div
+					className="sticky -top-2 bg-white py-2"
+					key="search"
+				>
+					<TextField
 						key="search"
-					>
-						<TextField
-							key="search"
-							variant="filled"
-							placeholder="Search"
-							endIcon={<Search />}
-						/>
-					</div>
+						variant="filled"
+						placeholder="Search"
+						onChange={(e)=>setSearch(e.target.value)}
+						endIcon={<Search />}
+					/>
+				</div>,
+				...zones.filter(
+					val => val?.includes(search)
 				)
-			},
-			...options
-		]}
-	/>
-)
+			]}
+		/>
+	)
+}
 
 export default TimeZone

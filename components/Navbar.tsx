@@ -9,7 +9,6 @@ import {
 	usePathname
 } from "next/navigation"
 
-import { cn } from "@/utils"
 import { Logo } from "@/icons"
 import { IconButton } from "@/base"
 import { useAccount } from "@/providers"
@@ -21,12 +20,12 @@ const links = [
 		label: "Dashboard"
 	},
 	{
-		href: "/connections",
-		label: "Connections"
-	},
-	{
 		href: "/templates",
 		label: "Templates"
+	},
+	{
+		href: "/connections",
+		label: "Connections"
 	},
 ]
 
@@ -37,14 +36,14 @@ const Navbar = () => {
 	return (
 		<nav
 			className="
-				pl-4 desktop:pl-4 p-1 desktop:p-2 min-w-[50%] desktop:min-w-[30%]
+				pl-4 desktop:pl-4 p-1 desktop:p-2 w-full
 				xlarge:text-base mb-4 flex items-center gap-10 z-100
-				justify-between rounded-full font-medium text-white
-				max-w-4xl bg-blue-100 absolute top-5 desktop:top-16 text-base
+				justify-between rounded-full font-medium text-charcoal-200
+				max-w-[90%] bg-bluewash absolute top-5 desktop:top-16 text-base
 			"
 		>
 			<IconButton
-				variant="transparent"
+				variant="secondary"
 				onClick={()=>redirect("/dashboard")}
 			>
 				<Logo
@@ -63,16 +62,12 @@ const Navbar = () => {
                     <Link
                         key={href}
                         href={href}
-                        className={
-							cn(
-								`
-									opacity-70 hover:opacity-100
-									transition-all ease-in-out delay-100
-									cursor-pointer
-								`,
-								pathname === href && "opacity-100"
-                        	)
-						}
+						data-selected={pathname === href}
+                        className="
+							hover:text-charcoal-100 text-grey-300
+							transition-all ease-in-out delay-100
+							cursor-pointer data-[selected=true]:text-charcoal-100
+						"
                     >
                         {label}
                     </Link>
@@ -86,7 +81,7 @@ const Navbar = () => {
 					href="/connections"
 					className="
 						px-6 py-1 rounded-full cursor-pointer
-						text-blue-100 hover:bg-blue-200 hover:text-white bg-white
+						text-white hover:bg-blue-200 bg-blue-100
 						transition-all ease-in-out delay-100 desktop:text-lg
 					"
 				>
@@ -106,7 +101,7 @@ const Navbar = () => {
 					<Image
 						className="rounded-full"
 						alt={"profile"}
-						src={data?.picture || "/profile.svg"}
+						src={data?.account?.picture || "/profile.svg"}
 						width={40}
 						height={40}
 					/>

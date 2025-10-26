@@ -4,12 +4,19 @@ import "@/globals.css"
 import type { Metadata } from "next"
 import { Mada } from "next/font/google"
 
-import { getCookie } from "@/server"
 import { Logo } from "@/icons"
 import { Footer } from "@/components"
+
 import {
+	getCookie,
+	logout
+} from "@/server"
+
+import {
+	Account,
 	AccountProvider,
-	AccountRequestProps
+	AccountRequestProps,
+	Template
 } from "@/providers"
 // #endregion
 
@@ -27,26 +34,44 @@ const mada = Mada({
 	subsets: ["latin"],
 })
 
-export default async function RootLayout({
+const RootLayout = async({
 	children,
 }: Readonly<{
 	children: React.ReactNode,
-}>) {
+}>) => {
 
-	const cookie = await getCookie("sendin_auth")
-	const response = await fetch(
-		`http://localhost:8000/accounts?name=${cookie?.value}`,
-		{
-			credentials: "include",
-			headers: {
-				"Content-Type": "application/json",
-				"Cookie": `sendin_auth=${cookie}`
-			},
-			cache: "no-store",
+	let account: AccountRequestProps = {
+		data: {} as {
+			account: Account,
+			templates: Template[]
+		},
+		success: false,
+		response: ""
+	}
+
+	try{
+		const cookie = await getCookie("sendin_auth")
+		const response = await fetch(
+			`http://localhost:8000/accounts`,
+			{
+				credentials: "include",
+				headers: {
+					"Content-Type": "application/json",
+					"Cookie": `sendin_auth=${cookie?.value}`
+				},
+				cache: "no-store",
+			}
+		)
+
+		account = await response.json()
+
+		if (!account.success){
+			// TODO: thinking what to do here
 		}
-	)
-
-	const account: AccountRequestProps = await response.json()
+	}
+	catch(e){
+		console.log(e)
+	}
 
 	return (
 		<html
@@ -89,3 +114,5 @@ export default async function RootLayout({
 		</html>
 	)
 }
+
+export default RootLayout

@@ -13,7 +13,6 @@ const layout = ({
 	children: ReactNode,
 }>) => {
 
-	// logic for steps
 	return (
 		<main
 			className="
@@ -21,7 +20,7 @@ const layout = ({
 				text-charcoal-100 text-base desktop:text-xl gap-8 desktop:gap-12
 			"
 		>
-            <Navbar/>
+			<Navbar/>
 
 			<section
                 className="mt-10 w-[45%]"
@@ -36,7 +35,7 @@ const layout = ({
 					justify-end self-end desktop:self-center desktop:h-[85%]
 				"
 			>
-				
+
 				<Button
 					variant="ghost"
 					className="!text-white hover:!text-charcoal-100"

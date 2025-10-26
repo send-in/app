@@ -18,8 +18,18 @@ export interface Account {
 	ua: string
 }
 
+export interface Template {
+	id: string
+	label: string
+	value: string
+}
+
+
 export interface AccountRequestProps {
-	data: Account
+	data: {
+		account: Account,
+		templates: Template[]
+	}
 
 	response?: string
 	success: boolean

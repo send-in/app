@@ -1,37 +1,34 @@
 // #region imports
 import Image from "next/image"
-import Link from "next/link"
 
-import {
-	IconButton,
-} from "@/base"
-
-import {
-	Trash
-} from "@/icons"
-
-import {
-	TimeProgress
-} from "@/components"
+import { IconButton } from "@/base"
+import { Trash } from "@/icons"
+import { TimeProgress } from "@/components"
+import { Message } from '@/providers'
 // #endregion
 
 const DashboardCard = ({
-	name,
-	picture,
-	template,
-	message,
-	scheduleTime,
-	createdAt,
-	isSent,
+	data,
+	onClick,
+	selected,
 }:{
-	name: string,
-	picture: string,
-	template?: string,
-	message?: string,
-	scheduleTime: Date,
-	createdAt: Date,
-	isSent: boolean
+	data: Message
+	onClick: (message: Message) => void
+	selected: boolean
 }) => {
+
+	const {
+		name,
+		picture,
+		template,
+		message,
+		scheduleTime,
+		createdAt,
+		isSent,
+	} = data
+
+	const parsedScheduleTime = new Date(scheduleTime)
+	const parsedCreatedAt = new Date(createdAt)
 
 	const formatted = new Intl.DateTimeFormat(
 		"en-US",
@@ -41,27 +38,30 @@ const DashboardCard = ({
 			hour12: true,
 			timeZoneName: "shortGeneric"
 		}
-	).format(scheduleTime)
+	).format(parsedScheduleTime)
 
 	return (
 		<li
 			className="
 				list-none flex gap-10 text-base desktop:text-xl items-center w-full
 				py-2 px-3 desktop:py-4 desktop:px-5 rounded-full text-grey-200 hover:text-white
-				bg-grey-100 hover:bg-blue-100 active:bg-blue-200 group justify-between
-				transition-all ease-in-out delay-100 cursor-pointer
+				bg-white hover:bg-blue-100 active:bg-blue-200 group justify-between
+				transition-all ease-in-out delay-50 cursor-pointer
+				data-[selected=true]:border-blue-100 data-[selected=true]:border-2
 			"
+			onClick={()=>onClick(data)}
+			data-selected={selected}
 		>
 
 			<aside
-				className="flex items-center gap-5 w-[65%]"
+				className="flex items-center gap-4 w-[60%] truncate"
 			>
 
 				<div
 					className="
 						text-charcoal-100 group-hover:text-white
-						transition-all ease-in-out delay-100 flex gap-10 items-center
-						w-[40%]
+						transition-all ease-in-out delay-50 flex gap-4 items-center
+						w-[40%] truncate shrink-0
 					"
 				>
 					<Image
@@ -74,28 +74,26 @@ const DashboardCard = ({
 					{name}
 				</div>
 
-				<p
-					className="truncate w-[50%]"
-				>
+				<p className="w-[60%] truncate">
 					{template ?? message}
 				</p>
 			</aside>
 
 
 			<aside
-				className="flex items-center gap-6 w-[30%] justify-between"
+				className="flex items-center gap-6 w-[40%] justify-between"
 			>
 
 				{!isSent ?
-					<div className="flex w-fit items-center gap-4">
+					<div className="flex shrink-0 items-center gap-4">
 						<TimeProgress
-							scheduledTime={scheduleTime}
-							createdAt={createdAt}
+							scheduledTime={parsedScheduleTime}
+							createdAt={parsedCreatedAt}
 						/>
 						<p
 							className="
 								text-blue-100 group-hover:text-white
-								transition-all ease-in-out delay-100 font-medium
+								transition-all ease-in-out delay-50 font-medium
 							"
 						>
 							{formatted}
@@ -103,11 +101,10 @@ const DashboardCard = ({
 					</div>:
 					<p
 						className="
-							group-hover:text-white
-							transition-all ease-in-out delay-100 font-medium
+							transition-all ease-in-out delay-50 font-medium
 						"
 					>
-						&#x2713; Sent
+						&#x2713; &emsp;Sent
 					</p>
 				}
 

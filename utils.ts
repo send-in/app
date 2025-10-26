@@ -24,3 +24,19 @@ export const getAbbreviation = (timezone: string): string => {
         return timezone
     }
 }
+
+export const parseQueryParams = <T extends string = string>(
+	query: string
+): Record <T, string | string[]> => {
+	const params = new URLSearchParams(query)
+	const result: Record<string, string | string[]> = {}
+
+	params.forEach((value, key) => {
+		const decoded = decodeURIComponent(value)
+		decoded.includes(",") ?
+			result[key] = decoded.split(",").filter(Boolean) :
+			result[key] = decoded
+	})
+
+	return result
+}

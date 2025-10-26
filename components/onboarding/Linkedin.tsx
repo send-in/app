@@ -9,7 +9,10 @@ import {
 } from "@/base"
 // #endregion
 
-const page = ({
+const Linkedin = ({
+	nextStep
+}:{
+	nextStep: Function
 }) => {
 	return (
 		<section
@@ -18,12 +21,12 @@ const page = ({
 			<h1
 				className="text-5xl desktop:text-6xl text-blue-100 font-semibold"
 			>
-				Let’s get started...
+				Let's get started...
 			</h1>
 
 			<Information
 				description="
-					To connect your LinkedIn account, we’ll need your session token.
+					To connect your LinkedIn account, we'll need your session token.
 					This token lets Send In securely send your messages automatically.
 					Every time you log out on your browser a new cookie is created for your session,
 					if you log out the cookie expires
@@ -31,8 +34,7 @@ const page = ({
                 styles="py-4"
 			/>
 
-			<LinkedinConnect
-			/>
+			<LinkedinConnect/>
 
 			<p
 				className="text-sm text-grey-200 desktop:text-base"
@@ -44,12 +46,13 @@ const page = ({
 
 			<Button
 				variant="secondary"
+				onClick={()=>nextStep()}
 			>
 				Save
 			</Button>
-
 		</section>
 	)
 }
 
-export default page
+export default Linkedin
+

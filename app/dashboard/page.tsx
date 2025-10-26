@@ -2,6 +2,8 @@
 
 // #region imports
 import Image from "next/image"
+import Link from "next/link"
+
 import {
 	useState,
 	useEffect
@@ -26,31 +28,37 @@ import { Search } from "@/icons"
 
 import {
 	Message,
+	Template,
+
+	useAccount,
 	useMessages
 } from "@/providers"
-import Link from "next/link"
 // #endregion
-
 
 const Page = () => {
 
 	const {
-		response,
 		success,
-
-		data,
+		data:messages,
 	} = useMessages()
 
+	const {
+		data:account,
+	} = useAccount()
 
 	const [search, setSearch] = useState("")
-
 	const [parsed, setParsed] = useState<Message[] | undefined>()
-	const [selected, setSelected] = useState<Message | undefined>()
 
-	console.log(parsed)
+	const [message, setMessage] = useState<Message | undefined>()
+	const [timezone, setTimezone] = useState<string | undefined>(
+		message?.timezone
+	)
+	const [template, setTemplate] = useState<Template | undefined>(
+		account?.templates?.find(t=>t.label===message?.template)
+	)
 
 	useEffect(() => {
-		let updated = [...data.sort(
+		let updated = [...(messages || [])?.sort(
 			(a, b) => Number(a.isSent) - Number(b.isSent)
 		)]
 
@@ -65,68 +73,72 @@ const Page = () => {
 		}
 
 		setParsed(updated)
-		setSelected(updated[0])
-	}, [data, search])
+		setMessage(updated[0])
+	}, [messages, search])
+
+	useEffect(() => {
+		setTemplate(
+			account?.templates?.find(t=>t.label===message?.template)
+		)
+		setTimezone(
+			message?.timezone
+		)
+	}, [messages, message])
 
 	return (
-		<main
+		<section
 			className="
-				p-8 desktop:px-[5%] px-16 pt-[10%] flex items-start justify-center
-				text-grey-200 text-base desktop:text-xl gap-8 desktop:gap-12 h-[95vh]
+				p-8 px-12 desktop:px-[5%] pt-[8%] flex items-start justify-center
+				text-grey-200 text-base desktop:text-xl gap-8 desktop:gap-12 h-[96vh]
 			"
 		>
 			<Navbar/>
 
 			<section
-				className="w-[45%] h-full flex flex-col items-start gap-6 overflow-clip"
+				data-length={messages?.length && success}
+				className="
+					w-[50%] desktop:w-[45%] h-full flex flex-col items-start gap-6 peer
+					data-[length=false]:justify-center data-[length=false]:bg-bluewash
+					data-[length=false]:rounded-4xl data-[length=false]:items-center
+				"
 			>
-				<TextField
-					className="desktop:!text-xl desktop:!py-2"
-					variant="filled"
-					placeholder="Search"
-					value={search}
-					onChange={(e) => setSearch(e.target.value)}
-					endIcon={
-						<Search
-							className="desktop:scale-120"
-						/>
-					}
-				/>
-
 				{
-					!success &&
-					<aside
-						className="space-y-4 my-4 w-full desktop:space-y-6 text-red-600"
-					>
-						An error occured: {response}
-					</aside>
+					success &&
+					<TextField
+						className="desktop:!text-xl desktop:!py-2 w-[40%]"
+						variant="filled"
+						placeholder="Search"
+						value={search}
+						onChange={(e) => setSearch(e.target.value)}
+						endIcon={
+							<Search
+								className="desktop:scale-120"
+							/>
+						}
+					/>
 				}
 
 				{
-					parsed &&
+					!success &&
+					<p
+						className="text-2xl desktop:text-6xl text-blue-100 font-semibold"
+					>
+						No messages found 📭
+					</p>
+				}
+
+				{
+					!!parsed?.length && success &&
 					<PaginationWrapper
 						items={parsed}
 						count={8}
 						component={
-							({
-								id,
-								name,
-								picture,
-								template,
-								message,
-								scheduleTime,
-								createdAt,
-								isSent,
-							})=>(
+							(msg)=>(
 								<DashboardCard
-									key={id}
-									name={name}
-									picture={picture}
-									template={template}
-									message={message}
-									scheduleTime={new Date(scheduleTime)}
-									createdAt={new Date(createdAt)}
-									isSent={isSent}
+									key={msg?.id}
+									data={msg}
+									onClick={setMessage}
+									selected={message===msg}
 								/>
 							)
 						}
@@ -134,20 +146,19 @@ const Page = () => {
 				}
 			</section>
 
-
 			<section
 				className="flex flex-col gap-4 desktop:gap-6 w-[45%] h-full"
 			>
 				<Link
 					className="flex gap-2 items-center desktop:gap-6 w-fit"
-					href={selected?.profile || ""}
+					href={message?.profile || ""}
 					target="_blank"
-					title={selected?.name + " LinkedIn profile"}
+					title={message?.name + " LinkedIn profile"}
 				>
 					<Image
 						className="rounded-full desktop:scale-120 border-3 border-blue-100"
 						alt={"SendIn"}
-						src={selected?.picture || "/profile.svg"}
+						src={message?.picture || "/profile.svg"}
 						width={65}
 						height={65}
 					/>
@@ -155,13 +166,13 @@ const Page = () => {
 						<h2
 							className="text-2xl text-blue-100 desktop:text-3xl"
 						>
-							{selected?.name || ""}
+							{message?.name || "No message selected"}
 						</h2>
 
 						<p>{
-							selected?.company +
-							",‎  ‎" +
-							selected?.timezone
+							(message?.company || "company" )+
+							",\u2002" +
+							(message?.timezone || "timezone")
 						}</p>
 					</div>
 				</Link>
@@ -169,25 +180,29 @@ const Page = () => {
 				<aside
 					className="w-full flex justify-between items-center"
 				>
-					<Select
-						options={[]}
-						placeholder="Select Template"
-						value={selected?.template || ""}
+					<Select<Template>
 						size="md"
 						variant="primary"
+						placeholder="Select Template"
+						options={account?.templates as Template[]}
+						onChange={(value)=>setTemplate(value as Template)}
+						selected={template}
 					/>
 
 					<div
 						className="flex gap-4"
 					>
 						<DateTime
-							scheduledTime={new Date(
-								selected?.scheduleTime||""
-							)}
+							scheduledTime={
+								message?.scheduleTime ?
+								new Date(message?.scheduleTime) :
+								undefined
+							}
 						/>
 
 						<TimeZone
-							value={selected?.timezone}
+							value={timezone}
+							onChange={(value)=>setTimezone(value)}
 						/>
 					</div>
 				</aside>
@@ -197,7 +212,7 @@ const Page = () => {
 				/>
 
 				<aside
-					className="mt-2 flex gap-2 desktop:gap-4"
+					className="mt-2 flex w-full gap-2 desktop:gap-4 justify-end"
 				>
 					<Button
 						disabled
@@ -214,7 +229,7 @@ const Page = () => {
 					</Button>
 				</aside>
 			</section>
-		</main>
+		</section>
 	)
 }
 

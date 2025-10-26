@@ -1,15 +1,13 @@
-const Linkedin = ({ 
-	size = 20, 
-	color = "white", 
+const Linkedin = ({
+	size = 20,
 	className = "fill-blue-100 group-hover:fill-white",
-	...props 
+	...props
 }) => (
 	<svg
 		width={size}
 		height={size}
 		viewBox="0 0 20 20"
 		className={className}
-		fill="none"
 		xmlns="http://www.w3.org/2000/svg"
 		{...props}
 	>

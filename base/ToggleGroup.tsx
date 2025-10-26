@@ -64,9 +64,6 @@ const ToggleGroup = forwardRef<HTMLDivElement, ToggleGroupProps>(
 		ref
 	) => {
 
-		const isActive = (val: string) =>
-			value === val
-
 		const handleToggle = (val: string) =>
 			onChange(value === val ? "" : val)
 
@@ -89,7 +86,7 @@ const ToggleGroup = forwardRef<HTMLDivElement, ToggleGroupProps>(
 						className={cn(
 							toggleVariants.base,
 							toggleVariants.shape[shape],
-							isActive(opt.value)
+							opt.value === value
 								? toggleVariants.variants[variant].active
 								: toggleVariants.variants[variant].inactive,
 						)}

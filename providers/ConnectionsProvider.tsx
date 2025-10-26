@@ -9,13 +9,12 @@ import {
 
 export interface Connection {
 	id: string
-	name: string
+	firstName: string
+	lastName: string
 	picture: string
-
-	profile: string
-	company: string
-	timezone: string
+	publicId: string
 	bio: string
+	timezone?: string
 }
 
 export interface ConnectionsRequestProps {

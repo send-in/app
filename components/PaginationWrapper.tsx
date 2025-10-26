@@ -12,12 +12,14 @@ import Pagination from "@/base/Pagination"
 interface PaginationWrapperProps<T> {
 	items: T[]
 	count?: number
+	grid?:boolean
 	component: (item: T) => ReactNode
 }
 
 export default function PaginationWrapper<T>({
 	items,
 	count = 8,
+	grid = false,
 	component,
 }: PaginationWrapperProps<T>) {
 
@@ -33,9 +35,16 @@ export default function PaginationWrapper<T>({
 
 	return (
 		<div
-			className="w-full h-[85%] justify-between flex flex-col items-start"
+			className="w-full h-full justify-between flex flex-col items-end gap-4"
 		>
-			<div className="w-full flex flex-col gap-6">
+			<div
+				className="
+					w-full h-full flex flex-col gap-3 data-[grid=true]:gap-4
+					data-[grid=true]:grid data-[grid=true]:grid-cols-5
+					data-[grid=true]:mb-3 items-center
+				"
+				data-grid={grid}
+			>
 				{
 					paginatedItems.map(
 						(item) => component(item)

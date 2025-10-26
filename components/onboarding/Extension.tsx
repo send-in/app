@@ -7,9 +7,13 @@ import {
 	Button,
 	Information
 } from "@/base"
+import Link from "next/link"
 // #endregion
 
-const page = ({
+const Extension = ({
+	nextStep
+}:{
+	nextStep: Function
 }) => {
 	return (
 		<section
@@ -23,7 +27,7 @@ const page = ({
 
 			<Information
 				description="
-					If you don’t wish to use bulk sending we highly recommend you to
+					If you don't wish to use bulk sending we highly recommend you to
 					install our chrome extension ! Bulk scheduling is only accessible
 					via the web application. Otherwise feel free to skip this step.
 				"
@@ -31,16 +35,23 @@ const page = ({
 			/>
 
 			<aside
-				className="flex flex-col items-start gap-2"
+				className="flex items- justify-start gap-2"
 			>
-				<Button
-					startIcon={<Google/>}
-					variant="secondary"
+				<Link
+					href="/link-to-chrome-store"
+					title="Install sendin extension"
+					target="_blank"
 				>
-					Install the chrome extension
-				</Button>
+					<Button
+						startIcon={<Google/>}
+						variant="secondary"
+					>
+						Install extension
+					</Button>
+				</Link>
 				<Button
 					variant="ghost"
+					onClick={()=>nextStep()}
 				>
 					Skip this step
 				</Button>
@@ -49,4 +60,5 @@ const page = ({
 	)
 }
 
-export default page
+export default Extension
+

@@ -1,6 +1,8 @@
 "use client"
 
 // #region imports
+import { useState } from "react"
+
 import Link from "next/link"
 import Image from "next/image"
 
@@ -21,7 +23,10 @@ import {
 	Select
 } from "@/base"
 
-import { useState } from "react"
+import {
+	Template,
+	useAccount
+} from "@/providers"
 // #endregion
 
 const OptionsCard = ({
@@ -38,64 +43,65 @@ const OptionsCard = ({
 	country: string,
 	profile: string,
 }) => {
-	const [template, setTemplate] = useState({
-		name: "Networking Template",
-		content: "Networking Template"
-	})
 
-	const handleChange = (selectedValue: string) => {
-		const selectedTemplate = templates.find((t) => t.name === selectedValue)
-		if (selectedTemplate) {
-			setTemplate(selectedTemplate)
-		} else {
-			setTemplate({ name: "", content: "" })
-		}
-	}
+	const {
+		data:account
+	} = useAccount()
+
+	const [template, setTemplate] = useState<Template | undefined>()
 
 	return (
 		<li
+			data-selected={false}
 			className="
-				list-none flex  text-base desktop:text-xl items-center w-full
-				text-grey-200 justify-between
+				list-none flex text-base desktop:text-xl items-center px-3
+				text-grey-200 justify-between w-full select-none
+				cursor-pointer group/card
 			"
 		>
 			<aside
-				className="flex items-center gap-4 w-[40%]"
+				className="
+					flex items-center justify-between gap-4 w-[40%] border-2
+					border-white rounded-full p-1 pr-4 hover:border-blue-100 active:border-blue-200
+					group-data-[selected=true]/card:border-blue-200
+				"
 			>
-				<Radio/>
-
-				<Image
-					className="rounded-full"
-					alt={name ?? "SendIn"}
-					src={picture}
-					width={45}
-					height={45}
-				/>
 
 				<Link
-					className="group"
+					className="group flex gap-2 items-center"
 					href={profile}
 					target="_blank"
 					title={name ?? "SendIn"}
 				>
 
-					<h3
-						className="
-							text-xl text-blue-100 group-hover:text-blue-200
-							transition-all ease-in-out delay-100
-						"
-					>
-						{name}
-					</h3>
-					<p
-						className="text-base desktop:text-xl font-medium"
-					>
-						{company}, {country}
-					</p>
+					<Image
+						className="rounded-full"
+						alt={name ?? "SendIn"}
+						src={picture}
+						width={45}
+						height={45}
+					/>
+
+					<aside>
+						<h3
+							className="
+								text-xl text-blue-100 group-hover:text-blue-200
+								transition-all ease-in-out delay-100
+							"
+						>
+							{name}
+						</h3>
+						<p
+							className="text-base desktop:text-xl font-medium"
+						>
+							{company}, {country}
+						</p>
+					</aside>
+
 				</Link>
 
 				<aside
-					className="text-base desktop:text-xl text-charcoal-100 flex gap-10 w-fit ml-10"
+					className="text-base desktop:text-xl text-charcoal-100 flex gap-10 w-fit"
 				>
 					<p
 						className="flex gap-3 items-center fill-blue-100"
@@ -122,13 +128,15 @@ const OptionsCard = ({
 			<aside
 				className="flex gap-10"
 			>
-				<Select
-					options={[]}
-					value={template.name}
-					placeholder="Select Template"
+				<Select<Template>
+					buttonClassName="w-42"
 					size="md"
-					variant="neutral"
-					onChange={handleChange}
+					variant="primary"
+					placeholder="Select Template"
+					disabled={!account?.templates?.length}
+					options={account?.templates as Template[]}
+					onChange={(value)=>setTemplate(value as Template)}
+					selected={template}
 				/>
 
 				<DateTime
@@ -144,7 +152,7 @@ const OptionsCard = ({
 					variant="primary"
 				>
 					<Logo
-						size={55}
+						size={40}
 					/>
 				</IconButton>
 

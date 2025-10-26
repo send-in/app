@@ -77,7 +77,7 @@ const TimeProgress = ({
 				fill-white
 				group-hover:fill-blue-100
 				group-active:fill-blue-200
-				ease-in-out delay-100
+				ease-in-out delay-50
 			"
 		>
 			<circle
@@ -89,7 +89,7 @@ const TimeProgress = ({
 					transition-colors
 					stroke-blue-100
 					group-hover:stroke-white
-					ease-in-out delay-100
+					ease-in-out delay-50
 				"
 			/>
 			{progress > 0 && (
@@ -99,7 +99,7 @@ const TimeProgress = ({
 						transition-colors
 						fill-blue-100
 						group-hover:fill-white
-						ease-in-out delay-100
+						ease-in-out delay-50
 					"
 				/>
 			)}
