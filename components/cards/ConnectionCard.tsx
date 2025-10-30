@@ -12,12 +12,12 @@ const ConnectionCard = ({
 	selected,
 	setSelected
 }:{
-	name: string,
-	bio: string,
-	profile: string,
-	picture: string,
-	selected: boolean,
-	setSelected: ()=>void,
+	name: string
+	bio: string
+	profile: string
+	picture: string
+	selected: boolean
+	setSelected: ()=>void
 }) => {
 	return (
 		<li

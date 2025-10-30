@@ -1,38 +1,38 @@
 // #region Imports
 
-import { 
-	useEffect 
+import {
+	useEffect
 } from "react"
 
 // #endregion
 
 export type KeyBinding = [
-	combination:string, 
+	combination:string,
 	handler: (
 		event: KeyboardEvent
 	) => void,
 	preventDefault?: boolean,
 ]
 
-function checkPressed( 
-	combination:string , 
+const checkPressed = (
+	combination:string ,
 	event: KeyboardEvent
-): boolean {
+): boolean => {
 
 	const reservedKeys = [
-		"alt", 
-		"ctrl", 
-		"meta", 
-		"shift", 
+		"alt",
+		"ctrl",
+		"meta",
+		"shift",
 		"mod"
 	]
 
-	const { 
-		altKey, 
-		ctrlKey, 
-		metaKey, 
-		shiftKey, 
-		key: pressedKey 
+	const {
+		altKey,
+		ctrlKey,
+		metaKey,
+		shiftKey,
+		key: pressedKey
 	} = event
 
 	const keys = combination
@@ -46,31 +46,31 @@ function checkPressed(
 	const mod =  keys.includes("mod")
 	const shift =  keys.includes("shift")
 
-	// side key with modifier	
+	// side key with modifier
 	const hotkey = keys.find(
 		(key) => !reservedKeys.includes(key)
 	)
-	
+
 	// check if the modifier key is being pressed
-	if (alt !== altKey) 
+	if (alt !== altKey)
 		return false
-	if (shift !== shiftKey) 
+	if (shift !== shiftKey)
 		return false
-	if (mod && (!ctrlKey && !metaKey) ) 
+	if (mod && (!ctrlKey && !metaKey) )
 		return false
 
 	// key pressed case
-	if ( hotkey && pressedKey.toLowerCase() === hotkey.toLowerCase()) 
+	if ( hotkey && pressedKey.toLowerCase() === hotkey.toLowerCase())
 		return true
-  
+
 	//base case
 	return false
 
 }
 
-export function useShortcut( 
-	shortcuts: KeyBinding[] 
-){
+export const useShortcut = (
+	shortcuts: KeyBinding[]
+) => {
 	useEffect(() => {
 
 		const keydownListener = (
@@ -78,12 +78,12 @@ export function useShortcut(
 		) => {
 
 			shortcuts.forEach(([
-				combination, 
-				handler, 
+				combination,
+				handler,
 				preventDefault = true
 			]) => {
 				if(checkPressed(combination, event)){
-					if (preventDefault) 
+					if (preventDefault)
 						event.preventDefault()
 					handler(event)
 				}

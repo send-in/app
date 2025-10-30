@@ -37,13 +37,13 @@ export interface AccountRequestProps {
 
 const AccountContext = createContext<AccountRequestProps | undefined>(undefined)
 
-export function AccountProvider({
+export const AccountProvider = ({
 	value,
 	children,
 }: {
 	value: AccountRequestProps
 	children: React.ReactNode
-}) {
+}) => {
 	return (
 		<AccountContext.Provider
 			value={value}
@@ -53,7 +53,7 @@ export function AccountProvider({
 	)
 }
 
-export function useAccount() {
+export const useAccount = () => {
 	const context = useContext(
 		AccountContext
 	)

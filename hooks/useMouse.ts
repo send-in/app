@@ -1,35 +1,35 @@
 // #region Imports
 
-import { 
-	useEffect 
+import {
+	useEffect
 } from "react"
 
 // #endregion
 
 interface KeyBinding {
-	combination:string, 
+	combination:string,
 	handler: (
 		event: Event
 	) => void,
 }
 
-export function useMouse( 
+export const useMouse = (
 	keybinding: KeyBinding
-){
+) => {
 	useEffect(() => {
 
 		const {
-			combination, 
+			combination,
 			handler
 		} = keybinding
 
 		document.documentElement.addEventListener(
-			combination, 
+			combination,
 			(event) => handler(event)
 		)
 
 		return () => document.documentElement.removeEventListener(
-			"keydown", 
+			"keydown",
 			handler
 		)
 

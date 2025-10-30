@@ -45,7 +45,7 @@ const ConnectionsPage = () => {
 
 	const {
 		success,
-		data,
+		connections:data,
 	} = useConnections()
 
 	const [connections, setConnections] = useState<Connection[]>(data)
@@ -67,7 +67,7 @@ const ConnectionsPage = () => {
 	const handleSelectAll = useCallback(
 		() => setSelected(
 			prev => prev?.length === connections?.length ? [] :
-			connections.map(item=>item.publicId)
+			connections?.map(item=>item.publicId)
 		),
 		[]
 	)
@@ -148,7 +148,10 @@ const ConnectionsPage = () => {
 						className="flex w-full justify-between px-2 items-center mb-8 desktop:mb-12"
 					>
 						<Radio
-							checked={selected?.length === connections?.length}
+							checked={
+								!!selected?.length &&
+								(selected?.length === connections?.length)
+							}
 							label="Select all"
 							onChange={()=>""}
 							onClick={handleSelectAll}

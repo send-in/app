@@ -39,7 +39,7 @@ const Navbar = () => {
 				pl-4 desktop:pl-4 p-1 desktop:p-2 w-full
 				xlarge:text-base mb-4 flex items-center gap-10 z-100
 				justify-between rounded-full font-medium text-charcoal-200
-				max-w-[90%] bg-bluewash absolute top-5 desktop:top-16 text-base
+				max-w-[55%] bg-bluewash absolute top-5 desktop:top-16 text-base
 			"
 		>
 			<IconButton

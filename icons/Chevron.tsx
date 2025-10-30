@@ -5,11 +5,11 @@ export interface ChevronProps extends SVGProps<SVGSVGElement> {
 	size?: number
 }
 
-export default function Chevron({
+const Chevron = ({
 	direction = "right",
 	size = 16,
 	...props
-}: ChevronProps) {
+}: ChevronProps) => {
 	const rotation = direction === "left" ? "rotate(180 12 12)" : undefined
 
 	return (
@@ -27,3 +27,5 @@ export default function Chevron({
 		</svg>
   )
 }
+
+export default Chevron

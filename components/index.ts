@@ -9,6 +9,7 @@ export { default as Filters } from "./Filters"
 export { default as LinkedinConnect } from "./LinkedinConnect"
 export { default as TimeProgress } from "./TimeProgress"
 export { default as PaginationWrapper } from "./PaginationWrapper"
+export { default as ConnectionSearch } from "./ConnectionSearch"
 
 export * from "./onboarding"
 export * from "./cards"

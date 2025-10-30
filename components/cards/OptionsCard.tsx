@@ -1,14 +1,11 @@
 "use client"
 
 // #region imports
+import Image from "next/image"
 import { useState } from "react"
 
-import Link from "next/link"
-import Image from "next/image"
-
-import {
-	DateTime
-} from "@/components"
+import { DateTime } from "@/components"
+import { useTimezone } from "@/hooks"
 
 import {
 	Clock,
@@ -19,7 +16,6 @@ import {
 
 import {
 	IconButton,
-	Radio,
 	Select
 } from "@/base"
 
@@ -35,24 +31,35 @@ const OptionsCard = ({
 	company,
 	country,
 	profile,
-
+	selected,
+	setSelected
 }:{
-	name: string,
-	picture: string,
-	company: string,
-	country: string,
-	profile: string,
+	name: string
+	picture: string
+	profile: string
+	company?: string
+	country?: string
+	selected: boolean
+	setSelected: ()=>void
 }) => {
 
 	const {
 		data:account
 	} = useAccount()
 
-	const [template, setTemplate] = useState<Template | undefined>()
+	const {
+		segment,
+		iso3,
+		name:timezone
+	} = useTimezone(
+		country||"United States"
+	)
+
+	const [template, setTemplate] = useState<Template>()
 
 	return (
 		<li
-			data-selected={false}
+			data-selected={selected}
 			className="
 				list-none flex text-base desktop:text-xl items-center px-3
 				text-grey-200 justify-between w-full select-none
@@ -62,16 +69,15 @@ const OptionsCard = ({
 			<aside
 				className="
 					flex items-center justify-between gap-4 w-[40%] border-2
-					border-white rounded-full p-1 pr-4 hover:border-blue-100 active:border-blue-200
+					border-white rounded-full px-1 pr-4 hover:border-blue-100 active:border-blue-200
 					group-data-[selected=true]/card:border-blue-200
+					transition-all delay-50 ease-in-out
 				"
+				onClick={()=>setSelected()}
 			>
 
-				<Link
+				<div
 					className="group flex gap-2 items-center"
-					href={profile}
-					target="_blank"
-					title={name ?? "SendIn"}
 				>
 
 					<Image
@@ -98,10 +104,10 @@ const OptionsCard = ({
 						</p>
 					</aside>
 
-				</Link>
+				</div>
 
 				<aside
-					className="text-base desktop:text-xl text-charcoal-100 flex gap-10 w-fit"
+					className="text-base desktop:text-xl text-charcoal-100 flex gap-10 w-[40%]"
 				>
 					<p
 						className="flex gap-3 items-center fill-blue-100"
@@ -109,16 +115,16 @@ const OptionsCard = ({
 						<Globe
 							size={18}
 						/>
-						IST
+						{iso3}
 					</p>
 
 					<p
-						className="flex gap-3 items-center fill-orange"
+						className="flex gap-3 items-center fill-orange capitalize"
 					>
 						<Clock
 							size={18}
 						/>
-						Afternoon
+						{segment}
 					</p>
 				</aside>
 			</aside>

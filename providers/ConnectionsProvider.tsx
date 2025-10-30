@@ -5,6 +5,8 @@ import {
 	createContext,
 	useContext
 } from "react"
+
+import { getCookie } from "@/server"
 // #endregion
 
 export interface Connection {
@@ -14,25 +16,27 @@ export interface Connection {
 	picture: string
 	publicId: string
 	bio: string
-	timezone?: string
+
+	country?: string
+	company?: string
 }
 
 export interface ConnectionsRequestProps {
-	data: Connection[]
-
+	connections: Connection[]
+	options?: Connection[]
 	response?: string
 	success: boolean
 }
 
 const ConnectionsContext = createContext<ConnectionsRequestProps | undefined>(undefined)
 
-export function ConnectionsProvider({
+export const ConnectionsProvider = ({
 	value,
 	children,
 }: {
 	value: ConnectionsRequestProps
 	children: React.ReactNode
-}) {
+}) => {
 	return (
 		<ConnectionsContext.Provider
 			value={value}
@@ -42,14 +46,15 @@ export function ConnectionsProvider({
 	)
 }
 
-export function useConnections() {
+export const useConnections = () => {
 	const context = useContext(
 		ConnectionsContext
 	)
 
 	if (context === undefined) {
 		return {
-			data: [],
+			connections: [],
+			options: [],
 			response: "Connections: No context provider found",
 			success: false
 		}

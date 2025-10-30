@@ -113,7 +113,7 @@ const Select = <T extends string | SelectOption | ReactNode>(
 			<ul
 				tabIndex={0}
 				className="
-					dropdown-content p-2 mt-2 w-max max-w-56 shadow rounded-xl bg-white
+					dropdown-content p-2 mt-2 w-max max-w-72 shadow rounded-xl bg-white
 					space-y-1 max-h-[40vh] overflow-y-scroll relative z-50
 				"
 			>

@@ -32,13 +32,13 @@ export interface MessagesRequestProps {
 
 const MessagesContext = createContext<MessagesRequestProps | undefined>(undefined)
 
-export function MessagesProvider({
+export const MessagesProvider = ({
 	value,
 	children,
 }: {
 	value: MessagesRequestProps
 	children: React.ReactNode
-}) {
+}) => {
 	return (
 		<MessagesContext.Provider
 			value={value}
@@ -48,7 +48,7 @@ export function MessagesProvider({
 	)
 }
 
-export function useMessages() {
+export const useMessages = () => {
 	const context = useContext(
 		MessagesContext
 	)

@@ -1,14 +1,14 @@
 // #region Imports
-import { 
-	useEffect, 
-	useState 
+import {
+	useEffect,
+	useState
 } from "react"
 // #endregion
 
-export function useDebounce<T>(
+export const useDebounce = <T>(
 	value: T,
 	delay: number
-): T {
+): T => {
 	const [debouncedValue, setDebouncedValue] = useState<T>(value)
 
 	useEffect(() => {

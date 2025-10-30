@@ -16,12 +16,12 @@ interface PaginationWrapperProps<T> {
 	component: (item: T) => ReactNode
 }
 
-export default function PaginationWrapper<T>({
+const PaginationWrapper = <T extends any>({
 	items,
 	count = 8,
 	grid = false,
 	component,
-}: PaginationWrapperProps<T>) {
+}: PaginationWrapperProps<T>) => {
 
 	const [page, setPage] = useState(1)
 
@@ -62,3 +62,5 @@ export default function PaginationWrapper<T>({
 		</div>
 	)
 }
+
+export default PaginationWrapper
