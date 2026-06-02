@@ -82,8 +82,9 @@ const Select = <T extends string | SelectOption | ReactNode>(
 
 	const buttonClasses = cn(
 		`
-			btn rounded-full font-medium transition-all duration-200 min-w-26
-			border-none focus:ring-2 focus:ring-inset focus:ring-blue-100 flex justify-between
+			btn rounded-full font-medium smooth min-w-26
+			border-none focus:ring-2 focus:ring-inset 
+            focus:ring-blue-100 flex justify-between
 		`,
 		sizeClasses[size],
 		selectedOption

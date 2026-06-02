@@ -14,8 +14,7 @@ import {
 
 const radioVariants = {
 	base: `
-		radio transition-all duration-150 ease-in-out
-		border-2 border-grey-300 checked:text-blue-100
+		radio smooth border-2 border-grey-300 checked:text-blue-100
 		checked:bg-white-100 checked:border-blue-200
 		disabled:opacity-50 disabled:cursor-not-allowed
 		hover:bg-bluewash

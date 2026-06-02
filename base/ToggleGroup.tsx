@@ -14,9 +14,9 @@ import {
 const toggleVariants = {
 	base: `
 		inline-flex items-center justify-center select-none
-		transition-all duration-150 ease-in-out rounded-full
-		focus:outline-none focus:ring-2 focus:ring-offset-2
-		disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer
+		smooth rounded-full focus:outline-none focus:ring-2 
+        focus:ring-offset-2 disabled:opacity-50 
+        disabled:cursor-not-allowed cursor-pointer
 		font-medium desktop:text-lg desktop:px-4
 	`,
 	variants: {

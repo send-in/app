@@ -383,7 +383,7 @@ const Editor = ({
 						focus:text-charcoal-100 w-full peer break-words whitespace-pre-wrap
 						h-full p-4 pt-20 desktop:pt-24 text-base desktop:text-xl leading-relaxed outline-none
 						focus:ring-2 focus:ring-blue-500 focus:ring-inset
-						transition-all ease-in-out delay-100 cursor-pointer
+						smooth cursor-pointer
 					"
 					data-placeholder="Hi {{username}}, I really admire the work you’re doing at {{company}}. I’d love to connect and stay updated on your journey!"
 				/>

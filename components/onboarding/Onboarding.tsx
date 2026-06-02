@@ -72,7 +72,7 @@ const Onboarding = () => {
                                 <li
                                     key={index}
                                     className={`
-                                        transition-all ease-in-out delay-100
+                                        smooth 
                                         flex gap-5 items-center
                                         ${
                                             index===selected ? 
@@ -84,7 +84,7 @@ const Onboarding = () => {
                                     <div
                                         className={`
                                             w-3 h-3 bg-white rounded-full
-                                            transition-all ease-in-out delay-100
+                                            smooth 
                                             ${
                                                 index===selected ? 
                                                 "scale-150" : ""

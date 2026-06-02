@@ -1,12 +1,14 @@
 export interface IRawConnection {
-	id: string
-	publicId: string
-	firstName?: string
-	lastName?: string
-	bio?: string
-	picture?: string
-	company?: string
-	country?: string
+	ID: string
+	PublicID: string
+	FirstName?: string
+	LastName?: string
+	Bio?: string
+	Picture?: string
+	Company?: string
+	Country?: string
+	CreatedAt: string
+	UpdatedAt: string
 }
 
 export interface IConnection {
@@ -19,27 +21,28 @@ export interface IConnection {
 	picture?: string
 	company?: string
 	country?: string
+	createdAt: Date
+	updatedAt: Date
 }
 
 export const serializeConnection = (
 	connection: IRawConnection,
 ): IConnection => {
 
-	const firstName = connection.firstName || ""
-	const lastName = connection.lastName || ""
+	const firstName = connection.FirstName || ""
+	const lastName = connection.LastName || ""
 
 	return {
-		id: connection.id,
-		publicId: connection.publicId,
-		firstName: firstName,
-		lastName: lastName,
-		name:
-			`${firstName} ${lastName}`
-				.trim(),
-
-		bio: connection.bio,
-		picture: connection.picture,
-		company: connection.company,
-		country: connection.country,
+		firstName,
+		lastName,
+		id: connection.ID,
+		bio: connection.Bio,
+		picture: connection.Picture,
+		company: connection.Company,
+		country: connection.Country,
+		publicId: connection.PublicID,
+		name: `${firstName} ${lastName}`.trim(),
+		createdAt: new Date(connection.CreatedAt),
+		updatedAt: new Date(connection.UpdatedAt),
 	}
 }

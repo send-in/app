@@ -44,7 +44,7 @@ const LinkedinConnect = ({
 			className="
 				flex items-center w-full p-2 bg-grey-100 relative
 				rounded-full focus-within:ring-2 focus-within:ring-blue-100 focus-within:ring-inset
-                transition-all ease-in-out delay-100 cursor-pointer
+                smooth cursor-pointer
 			"
 		>
 			<Image

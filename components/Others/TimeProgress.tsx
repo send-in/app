@@ -73,11 +73,10 @@ const TimeProgress = ({
 			height={size}
 			width={size}
 			className="
-				transition-colors
+				smooth !delay-50
 				fill-white
 				group-hover:fill-blue-100
 				group-active:fill-blue-200
-				ease-in-out delay-50
 			"
 		>
 			<circle
@@ -86,20 +85,18 @@ const TimeProgress = ({
 				r={radius - 1}
 				strokeWidth={2}
 				className="
-					transition-colors
+                    smooth !delay-50
 					stroke-blue-100
 					group-hover:stroke-white
-					ease-in-out delay-50
 				"
 			/>
 			{progress > 0 && (
 				<path
 					d={pathData}
 					className="
-						transition-colors
+                        smooth !delay-50
 						fill-blue-100
 						group-hover:fill-white
-						ease-in-out delay-50
 					"
 				/>
 			)}

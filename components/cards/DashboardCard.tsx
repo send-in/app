@@ -43,10 +43,10 @@ const DashboardCard = ({
 		<li
 			className="
 				list-none flex gap-10 text-base desktop:text-xl items-center w-full
-				py-2 px-3 desktop:py-4 desktop:px-5 rounded-full text-grey-200 hover:text-white
-				bg-white hover:bg-blue-100 active:bg-blue-200 group justify-between
-				transition-all ease-in-out delay-50 cursor-pointer
-				data-[selected=true]:border-blue-100 data-[selected=true]:border-2
+				min-h-16 py-2 px-3 desktop:py-4 desktop:px-5 rounded-lg text-grey-200
+                justify-between smooth cursor-pointer border-2 border-white 
+				bg-white hover:border-grey-100 active:border-grey-200 
+                data-[selected=true]:border-blue-100
 			"
 			onClick={()=>onClick(data)}
 			data-selected={selected}
@@ -58,13 +58,12 @@ const DashboardCard = ({
 
 				<div
 					className="
-						text-charcoal-100 group-hover:text-white
-						transition-all ease-in-out delay-50 flex gap-4 items-center
+						text-charcoal-100 smooth flex gap-4 items-center
 						w-[40%] truncate shrink-0
 					"
 				>
 					<Image
-						className="rounded-full desktop:scale-120"
+						className="rounded-full desktop:scale-120 "
 						alt={name ?? "SendIn"}
 						src={picture ?? "/profile.svg"}
 						width={40}
@@ -74,15 +73,15 @@ const DashboardCard = ({
 				</div>
 
 				<p className="w-[60%] truncate">
-					{template?.value ?? message}
+					{!!template?.value ? template.value : message}
 				</p>
 			</aside>
 
 
-			<aside
-				className="flex items-center gap-6 w-[40%] justify-between"
-			>
-
+			<aside className="
+                flex items-center gap-6 w-[40%] 
+                justify-between font-medium
+            ">
 				{!isSent ?
 					<div className="flex shrink-0 items-center gap-4">
 						<TimeProgress
@@ -90,19 +89,12 @@ const DashboardCard = ({
 							createdAt={parsedCreatedAt}
 						/>
 						<p
-							className="
-								text-blue-100 group-hover:text-white
-								transition-all ease-in-out delay-50 font-medium
-							"
+							className="text-blue-100"
 						>
 							{formatted}
 						</p>
 					</div>:
-					<p
-						className="
-							transition-all ease-in-out delay-50 font-medium
-						"
-					>
+					<p>
 						&#x2713; &emsp;Sent
 					</p>
 				}

@@ -8,7 +8,7 @@ const Bullets = ({
         fill="none" 
         className="
             group-hover:fill-charcoal-100 fill-grey-200
-            transition-all ease-in-out delay-100 cursor-pointer
+            smooth cursor-pointer
         "
         xmlns="http://www.w3.org/2000/svg"
     >

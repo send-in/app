@@ -14,7 +14,7 @@ import { IconButton } from "@/base"
 
 const links = [
 	{
-		href: "/dashboard",
+		href: "/",
 		label: "Dashboard"
 	},
 	{
@@ -35,9 +35,12 @@ const links = [
 const Navbar = () => {
     
 	const pathname = usePathname()
+    console.log(pathname)
 
 	return (
+        pathname !== "/auth" &&
 		<nav
+            data-path={pathname}
 			className="
 				px-4 desktop:px-4 p-1 desktop:p-2 w-full
 				xlarge:text-base mb-4 flex items-center 
@@ -45,11 +48,12 @@ const Navbar = () => {
                 font-medium text-charcoal-200 max-w-[55%]
                 bg-bluewash absolute top-8 desktop:top-16 
                 text-base left-1/2 -translate-x-1/2
+                data-[pathname=auth]:hidden
 			"
 		>
 			<IconButton
 				variant="secondary"
-				onClick={()=>redirect("/dashboard")}
+				onClick={()=>redirect("/")}
 			>
 				<Logo
 					size={40}
@@ -70,7 +74,7 @@ const Navbar = () => {
 						data-selected={pathname === href}
                         className="
 							hover:text-charcoal-100 text-grey-300
-							transition-all ease-in-out delay-100
+							smooth 
 							cursor-pointer data-[selected=true]:text-charcoal-100
 						"
                     >
@@ -85,7 +89,7 @@ const Navbar = () => {
                 className="
                     px-6 py-1 rounded-full cursor-pointer
                     text-white hover:bg-blue-200 bg-blue-100
-                    transition-all ease-in-out delay-100 desktop:text-lg
+                    smooth desktop:text-lg
                 "
             >
                 + Schedule

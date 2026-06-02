@@ -34,6 +34,7 @@ import { Search } from "@/icons"
 import {
 	IMessage,
 	ITemplate,
+    SORT_OPTIONS,
 } from "@/lib"
 // #endregion
 
@@ -129,27 +130,50 @@ export const MessageForm = ({
 				{
                     messages && messages.length > 0 ?
                     <>
-                        <TextField
-                            defaultValue={q}
-                            className="
-                                desktop:!text-xl
-                                desktop:!py-2
-                                w-[40%]
-                            "
-                            variant="filled"
-                            placeholder="Search"
-                            onBlur={(e)=>
-                                updateQuery(
-                                    "q",
-                                    e.target.value
-                                )
-                            }
-                            endIcon={
-                                <Search
-                                    className="desktop:scale-120"
-                                />
-                            }
-                        /> 
+                        <section className="
+                            w-full flex items-center 
+                            justify-between gap-24
+                        ">
+                            <TextField
+                                defaultValue={q}
+                                fullWidth
+                                className="
+                                    desktop:!text-xl
+                                    desktop:!py-2
+                                "
+                                variant="filled"
+                                placeholder="Search"
+                                onBlur={(e)=>
+                                    updateQuery(
+                                        "q",
+                                        e.target.value
+                                    )
+                                }
+                                endIcon={
+                                    <Search
+                                        className="desktop:scale-120"
+                                    />
+                                }
+                            /> 
+                             <Select
+                                options={SORT_OPTIONS}
+                                placeholder="Sort"
+                                variant="neutral"
+                                size="md"
+                                selected={
+                                    SORT_OPTIONS.find(
+                                        option =>
+                                            option.value === sort
+                                    )
+                                }
+                                onChange={(value) =>
+                                    updateQuery(
+                                        "sort",
+                                        value?.value
+                                    )
+                                }
+                            />
+                        </section>
                         <section className="
                             w-full h-full justify-between
                             flex flex-col items-end gap-4
@@ -222,8 +246,8 @@ export const MessageForm = ({
 							message?.picture ||
 							"/profile.svg"
 						}
-						width={65}
-						height={65}
+						width={50}
+						height={50}
 					/>
 
 					<div>

@@ -7,7 +7,7 @@ import { Linkedin, Logo } from "@/icons"
 
 const AuthPage = () => (
     <main className="
-        flex h-screen p-8 desktop:px-[5%] 
+        flex h-screen p-4 desktop:px-[5%] 
         items-center justify-between
         text-charcoal-100 text-base 
         desktop:text-xl
@@ -15,11 +15,11 @@ const AuthPage = () => (
         <section className="
                 bg-blue-100 rounded-3xl p-24
                 relative h-full w-full flex items-center
-                justify-center
+                justify-between gap-12
         ">
             <section className="
-                w-[50%] desktop:w-[32%] 
-                flex flex-col gap-6 ml-[10%]
+                w-[32%] 
+                flex flex-col gap-6 
             ">
                 <div
                     className="space-y-6 p-4"

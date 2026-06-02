@@ -130,7 +130,7 @@ const Footer = () => {
 							{category.items.map((link, idx) => (
 								<Link
 									className="
-										transition-all ease-in-out delay-100
+										smooth 
 										cursor-pointer
 									"
                                     target="_blank"

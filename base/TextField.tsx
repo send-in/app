@@ -14,9 +14,10 @@ import { cn } from "@/utils"
 const textFieldVariants = {
 	base: `
 		font-main px-6 py-1 rounded-lg
-		font-normal text-base desktop:text-xl h-fit text-base desktop:text-xl
-		transition-all ease-in-out delay-100
-		disabled:opacity-50 disabled:cursor-not-allowed
+		font-normal text-base desktop:text-xl h-fit 
+        text-base desktop:text-xl
+		smooth disabled:opacity-50 
+        disabled:cursor-not-allowed
 	`,
 	variants: {
 		standard: `
@@ -24,14 +25,17 @@ const textFieldVariants = {
 			focus-within:ring-none text-grey-300 focus:outline-none
 		`,
 		filled: `
-			bg-grey-100 hover:bg-grey-150
+			bg-grey-100 
 			focus-within:bg-white
-			focus-within:ring-1 focus-within:ring-blue-500 focus-within:ring-inset
+			focus-within:ring-2 
+            focus-within:ring-blue-500 
+            focus-within:ring-inset
 		`,
 		outlined: `
 			bg-white border border-grey-100
 			focus-within:border-blue-500
-			focus-within:ring-1 focus-within:ring-blue-500 focus-within:ring-inset
+			focus-within:ring-2 focus-within:ring-blue-500 
+            focus-within:ring-inset
 		`
 	},
 	sizes: {

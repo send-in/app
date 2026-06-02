@@ -66,8 +66,7 @@ const OptionsCard = ({
 				className="
 					flex items-center justify-between gap-4 w-[40%] border-2
 					border-white rounded-full px-1 pr-4 hover:border-blue-100 active:border-blue-200
-					group-data-[selected=true]/card:border-blue-200
-					transition-all delay-50 ease-in-out
+					group-data-[selected=true]/card:border-blue-200 smooth !delay-50
 				"
 				onClick={()=>setSelected()}
 			>
@@ -88,7 +87,7 @@ const OptionsCard = ({
 						<h3
 							className="
 								text-xl text-blue-100 group-hover:text-blue-200
-								transition-all ease-in-out delay-100
+								smooth 
 							"
 						>
 							{name}

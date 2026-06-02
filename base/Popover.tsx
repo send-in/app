@@ -53,7 +53,7 @@ const Popover = forwardRef<HTMLDivElement, PopoverProps>(
                     <div
                         ref={popoverRef}
                         className={cn(
-                            "absolute z-50  w-max rounded-3xl bg-white shadow-lg p-4 space-y-4 transition-all duration-200 ease-in-out origin-top-right",
+                            "absolute z-50  w-max rounded-3xl bg-white shadow-lg p-4 space-y-4 smooth origin-top-right",
                             className
                         )}
                     >

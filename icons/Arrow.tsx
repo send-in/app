@@ -21,7 +21,7 @@ const Arrow = ({
 			viewBox="0 0 20 12"
 			fill="none"
 			xmlns="http://www.w3.org/2000/svg"
-			className={`transition-transform duration-200 ${rotateClass}`}
+			className={`smooth ${rotateClass}`}
 		>
 			<path
 				d="M19 1.00008L10.4146 10.2281C10.0088 10.6644 9.31378 10.6511 8.92486 10.1997L0.999999 1.00008"

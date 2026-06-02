@@ -11,7 +11,7 @@ const GoTo = ({
 }: GoToProps) => {
 	return (
 		<svg
-			className={className + " transition-all ease-in-out duration-200 rounded-full flex justify-center items-center p-2"}
+			className={className + "smooth rounded-full flex justify-center items-center p-2"}
 			width={size}
 			height={size}
 			viewBox="0 0 52 52"

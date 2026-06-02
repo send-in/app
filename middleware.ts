@@ -6,15 +6,19 @@ import {
 import type {
 	NextRequest
 } from "next/server"
+
+import { _AUTH_KEY } from "./constants"
 // #endregion
 
 export function middleware(
 	request: NextRequest
 ) {
-	const jwt = request.cookies.get("sendin_auth")
+	const isAuthenticated = request.cookies.get(_AUTH_KEY)
 	const requestHeaders = new Headers(
 		request.headers
 	)
+
+    console.log(isAuthenticated)
 
 	const {
 		pathname,
@@ -24,34 +28,30 @@ export function middleware(
     requestHeaders.set("x-pathname", pathname)
     requestHeaders.set("x-search", searchParams.toString() || "")
 
-	if (
-		pathname === "/auth" && !!jwt
+    if (
+        (
+            pathname.includes("profile") ||
+            pathname.includes("dashboard") ||
+            pathname.includes("connections") ||
+            pathname.includes("templates")
+        ) &&
+        !isAuthenticated
 	){
-		request.nextUrl.pathname = "/dashboard"
+        request.nextUrl.pathname = "/auth"
 		return NextResponse.redirect(request.nextUrl)
 	}
-
-	if (
-		pathname !== "/auth"
-	){
-		if(!jwt){
-			request.nextUrl.pathname = "/auth"
-			return NextResponse.redirect(request.nextUrl)
+    
+	return NextResponse.next({
+		request: {
+			headers: requestHeaders
 		}
-
-		request.nextUrl.pathname = pathname
-		return NextResponse.next({
-			request: {
-				headers: requestHeaders,
-			},
-		})
-	}
+	})
 }
 
 
 export const config = {
 	matcher: [
-		"/dashboard",
+		"/",
 		"/profile",
 		"/templates",
 		"/auth",

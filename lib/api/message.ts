@@ -16,7 +16,6 @@ import {
 	IRawMessage,
 	serializeMessage,
 } from "@/lib/types"
-
 // #endregion
 
 export const getMessages = async(params?: {
@@ -24,7 +23,6 @@ export const getMessages = async(params?: {
     sort?: string,
     page?: number
 }): Promise<IResponse<IMessage[]>> => {
-
 	const res = await _GET<IRawMessage[]>(
 		_MESSAGES_URL,
         { ...parseFilters(params) },

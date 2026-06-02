@@ -34,7 +34,7 @@ const paginationVariants = {
 	`,
 
 	button: `
-		btn btn-circle transition-all duration-500 ease-in-out bgb
+		btn btn-circle smooth ease-in-out bgb
 		active:scale-95 focus:outline-none border-none
 		disabled:opacity-50 disabled:cursor-not-allowed
 		smooth text-grey-200 btn-neutral

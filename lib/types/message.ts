@@ -7,15 +7,19 @@ import {
 // #endregion
 
 export interface IRawMessage {
-	id: string
-	name: string
-	picture?: string
-	profile: string
-	company?: string
-	timezone?: string
-	message?: string
-	isSent: boolean
-	template?: IRawTemplate
+	ID: string
+	Name: string
+	Picture?: string
+	Profile: string
+	Company?: string
+	Timezone?: string
+	Message?: string
+	IsSent: boolean
+	Template?: IRawTemplate
+    TemplateID?: string
+    ScheduleTime: string
+    UpdatedAt: string
+    CreatedAt: string
 }
 
 export interface IMessage {
@@ -27,26 +31,30 @@ export interface IMessage {
 	timezone?: string
 	isSent: boolean
 	message?: string
+    templateId?: string
 	template?: ITemplate
 
     scheduledAt: Date,
     createdAt: Date,
+    updatedAt: Date,
 }
 
 export const serializeMessage = (
 	message: IRawMessage,
 ): IMessage => ({
-	id: message.id,
-	name: message.name,
-	picture: message.picture,
-	profile: message.profile,
-	company: message.company,
-	timezone: message.timezone,
-	message: message.message,
-	isSent: message.isSent,
-    scheduledAt: new Date(),
-    createdAt: new Date(),
-	template: message.template
-		? serializeTemplate(message.template)
+	id: message.ID,
+	name: message.Name,
+	picture: message.Picture,
+	profile: message.Profile,
+	company: message.Company,
+	timezone: message.Timezone,
+	message: message.Message,
+	isSent: message.IsSent,
+    scheduledAt: new Date(message.ScheduleTime),
+    createdAt: new Date(message.CreatedAt),
+    updatedAt: new Date(message.UpdatedAt),
+    templateId: message.TemplateID,
+	template: message.Template
+		? serializeTemplate(message.Template)
 		: undefined,
 })
