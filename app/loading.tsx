@@ -1,18 +1,25 @@
 // #region imports
+import { Progress } from "@/base"
 import { Logo } from "@/icons"
 // #endregion
 
-export default function Loading() {
+const Loading = () => (
+	<main
+		className="
+			fixed top-0 left-0 w-screen h-screen flex flex-col
+			items-center justify-center bg-paper p-10
+			gap-16 z-9999 bg-white
+		" 
+	>
+		<Logo
+			className="text-red-100"
+			size={80}
+		/>
 
-	return (
-		<main
-			className="w-screen h-screen bg-mint flex flex-col items-center justify-center bg-white p-10"
-		>
-			<Logo
-				className="fill-blue-100"
-				size={100}
-			/>
+		<Progress
+			className="w-[10vw]!"
+		/>
+	</main>
+)
 
-		</main>
-	)
-}
+export default Loading

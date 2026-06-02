@@ -18,11 +18,7 @@ import {
 	IconButton,
 	Select
 } from "@/base"
-
-import {
-	Template,
-	useAccount
-} from "@/providers"
+import { ITemplate } from "@/lib"
 // #endregion
 
 const OptionsCard = ({
@@ -31,6 +27,7 @@ const OptionsCard = ({
 	company,
 	country,
 	profile,
+    templates,
 	selected,
 	setSelected
 }:{
@@ -39,13 +36,11 @@ const OptionsCard = ({
 	profile: string
 	company?: string
 	country?: string
+    templates: ITemplate[]
+
 	selected: boolean
 	setSelected: ()=>void
 }) => {
-
-	const {
-		data:account
-	} = useAccount()
 
 	const {
 		segment,
@@ -55,7 +50,8 @@ const OptionsCard = ({
 		country||"United States"
 	)
 
-	const [template, setTemplate] = useState<Template>()
+	const [template, setTemplate] = 
+        useState<ITemplate | undefined>()
 
 	return (
 		<li
@@ -134,19 +130,18 @@ const OptionsCard = ({
 			<aside
 				className="flex gap-10"
 			>
-				<Select<Template>
+				<Select<ITemplate>
 					buttonClassName="w-42"
 					size="md"
 					variant="primary"
 					placeholder="Select Template"
-					disabled={!account?.templates?.length}
-					options={account?.templates as Template[]}
-					onChange={(value)=>setTemplate(value as Template)}
+					disabled={!templates?.length}
+					options={templates as ITemplate[]}
+					onChange={(value)=>setTemplate(value as ITemplate)}
 					selected={template}
 				/>
 
-				<DateTime
-				/>
+				<DateTime/>
 
 			</aside>
 

@@ -7,6 +7,12 @@ import {
 } from "react"
 
 import {
+	useRouter,
+	usePathname,
+	useSearchParams
+} from "next/navigation"
+
+import {
 	cn
 } from "@/utils"
 
@@ -17,21 +23,27 @@ import {
 
 const paginationVariants = {
 	base: `
-		flex items-center justify-center
-		gap-2 select-none w-max text-charcoal-100
-		font-normal text-base
+		flex items-center gap-2 select-none w-full
+		text-charcoal-100 font-normal text-base
+		justify-center -mt-8
+
+		desktop:text-base
+
+		max-mobile:px-0
+		max-mobile:pt-8
 	`,
 
 	button: `
 		btn btn-circle transition-all duration-500 ease-in-out bgb
-		hover:scale-105 active:scale-95 focus:outline-none border-none
-		disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100
+		active:scale-95 focus:outline-none border-none
+		disabled:opacity-50 disabled:cursor-not-allowed
+		smooth text-grey-200 btn-neutral
 	`,
 
 	variants: {
 		default: `btn-ghost hover:btn-neutral`,
-		active: `btn-primary text-primary-content bg-grey-100`,
-		navigation: `btn-ghost hover:btn-neutral`,
+		active: `text-red-100`,
+		navigation: `btn-neutral hover:text-red-100`,
 	},
 
 	sizes: {
@@ -40,7 +52,11 @@ const paginationVariants = {
 		large: "btn-md w-12 h-12 text-base",
 	},
 
-	ellipsis: `px-2 text-base-content/60 select-none pointer-events-none transition-all duration-500 ease-in-out`,
+	ellipsis: `
+		px-2 text-grey-200 select-none
+		pointer-events-none transition-all
+		duration-500 ease-in-out
+	`,
 }
 
 export interface PaginationProps
@@ -52,7 +68,6 @@ export interface PaginationProps
 	disabled?: boolean
 	showFirstButton?: boolean
 	showLastButton?: boolean
-	onChange?: (value: number) => void
 	className?: string
 }
 
@@ -69,17 +84,24 @@ const Pagination = forwardRef<HTMLElement, PaginationProps>(
 			disabled = false,
 			showFirstButton = false,
 			showLastButton = false,
-			onChange,
 			className = "",
 			...props
 		},
 		ref
 	) => {
+		const router = useRouter()
+		const pathname = usePathname()
+		const searchParams = useSearchParams()
+
 		const handleClick = (value: number) => () => {
-			if (!disabled && value !== page) onChange?.(value)
+			if (!disabled && value !== page){
+				const params = new URLSearchParams(searchParams.toString())
+				params.set("page", String(value))
+				router.push(`${pathname}?${params.toString()}`)
+			}
 		}
 
-		const totalNumbers = siblingCount * 2 + 5
+		const totalNumbers = siblingCount * 2 + 3
 		const pages: (number | "ellipsis")[] =
 			count <= totalNumbers
 				? range(1, count)
@@ -124,7 +146,7 @@ const Pagination = forwardRef<HTMLElement, PaginationProps>(
 						onClick={handleClick(1)}
 						aria-label="Go to first page"
 					>
-						<Chevron direction="left" size={24} />
+						<Chevron direction="left" size={10} />
 					</button>
 				)}
 
@@ -134,7 +156,7 @@ const Pagination = forwardRef<HTMLElement, PaginationProps>(
 					onClick={handleClick(page - 1)}
 					aria-label="Go to previous page"
 				>
-					<Chevron direction="left" size={24} />
+					<Chevron direction="left" size={10} />
 				</button>
 
 				{pages.map((p, idx) =>
@@ -162,7 +184,7 @@ const Pagination = forwardRef<HTMLElement, PaginationProps>(
 					onClick={handleClick(page + 1)}
 					aria-label="Go to next page"
 				>
-					<Chevron direction="right" size={24} />
+					<Chevron direction="right" size={10} />
 				</button>
 
 				{showLastButton && (
@@ -172,7 +194,7 @@ const Pagination = forwardRef<HTMLElement, PaginationProps>(
 						onClick={handleClick(count)}
 						aria-label="Go to last page"
 					>
-						<Chevron direction="right" size={24} />
+						<Chevron direction="right" size={10} />
 					</button>
 				)}
 			</nav>

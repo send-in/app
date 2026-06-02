@@ -1,10 +1,9 @@
 // #region imports
 import Image from "next/image"
-
 import { IconButton } from "@/base"
 import { Trash } from "@/icons"
 import { TimeProgress } from "@/components"
-import { Message } from '@/providers'
+import { IMessage } from "@/lib"
 // #endregion
 
 const DashboardCard = ({
@@ -12,8 +11,8 @@ const DashboardCard = ({
 	onClick,
 	selected,
 }:{
-	data: Message
-	onClick: (message: Message) => void
+	data: IMessage
+	onClick: (message: IMessage) => void
 	selected: boolean
 }) => {
 
@@ -22,12 +21,12 @@ const DashboardCard = ({
 		picture,
 		template,
 		message,
-		scheduleTime,
+		scheduledAt,
 		createdAt,
 		isSent,
 	} = data
 
-	const parsedScheduleTime = new Date(scheduleTime)
+	const parsedScheduleTime = new Date(scheduledAt)
 	const parsedCreatedAt = new Date(createdAt)
 
 	const formatted = new Intl.DateTimeFormat(
@@ -67,7 +66,7 @@ const DashboardCard = ({
 					<Image
 						className="rounded-full desktop:scale-120"
 						alt={name ?? "SendIn"}
-						src={picture}
+						src={picture ?? "/profile.svg"}
 						width={40}
 						height={40}
 					/>
@@ -75,7 +74,7 @@ const DashboardCard = ({
 				</div>
 
 				<p className="w-[60%] truncate">
-					{template ?? message}
+					{template?.value ?? message}
 				</p>
 			</aside>
 

@@ -1,6 +1,7 @@
 // #region imports
-import { Template } from "@/providers"
+import { ITemplate } from "@/lib"
 // #endregion
+
 
 
 const TemplateCard = ({
@@ -8,8 +9,8 @@ const TemplateCard = ({
 	onChange,
 	selected,
 }:{
-	template: Template
-	onChange: (value: Template) => void
+	template: ITemplate
+	onChange: (value: ITemplate) => void
 	selected: boolean
 }) => {
 
