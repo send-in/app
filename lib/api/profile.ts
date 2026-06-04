@@ -42,11 +42,7 @@ Promise<IResponse<IAccount>> => {
 export const updateProfile = async(
 	payload: {
 		name?: string
-		email?: string
-		profile?: string
-		picture?: string
 		timezone?: string
-		userAgent?: string
 	},
 ): Promise<IResponse<boolean>> => {
 
@@ -58,6 +54,7 @@ export const updateProfile = async(
 		},
 	)
 
+    console.log("res", res)
 	if (res.success) {
 		return {
 			success: true,

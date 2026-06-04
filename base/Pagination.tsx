@@ -26,9 +26,7 @@ const paginationVariants = {
 		flex items-center gap-2 select-none w-full
 		text-charcoal-100 font-normal text-base
 		justify-center -mt-8
-
 		desktop:text-base
-
 		max-mobile:px-0
 		max-mobile:pt-8
 	`,
@@ -42,8 +40,8 @@ const paginationVariants = {
 
 	variants: {
 		default: `btn-ghost hover:btn-neutral`,
-		active: `text-red-100`,
-		navigation: `btn-neutral hover:text-red-100`,
+		active: `text-blue-200`,
+		navigation: `btn-neutral hover:text-blue-200`,
 	},
 
 	sizes: {
@@ -146,7 +144,7 @@ const Pagination = forwardRef<HTMLElement, PaginationProps>(
 						onClick={handleClick(1)}
 						aria-label="Go to first page"
 					>
-						<Chevron direction="left" size={10} />
+						<Chevron direction="left" size={20} />
 					</button>
 				)}
 
@@ -156,7 +154,7 @@ const Pagination = forwardRef<HTMLElement, PaginationProps>(
 					onClick={handleClick(page - 1)}
 					aria-label="Go to previous page"
 				>
-					<Chevron direction="left" size={10} />
+					<Chevron direction="left" size={20} />
 				</button>
 
 				{pages.map((p, idx) =>
@@ -184,7 +182,7 @@ const Pagination = forwardRef<HTMLElement, PaginationProps>(
 					onClick={handleClick(page + 1)}
 					aria-label="Go to next page"
 				>
-					<Chevron direction="right" size={10} />
+					<Chevron direction="right" size={20} />
 				</button>
 
 				{showLastButton && (
@@ -194,7 +192,7 @@ const Pagination = forwardRef<HTMLElement, PaginationProps>(
 						onClick={handleClick(count)}
 						aria-label="Go to last page"
 					>
-						<Chevron direction="right" size={10} />
+						<Chevron direction="right" size={20} />
 					</button>
 				)}
 			</nav>

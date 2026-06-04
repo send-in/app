@@ -18,6 +18,7 @@ import zones from "@/timezones.json"
 
 
 interface TimeZoneProps {
+    name?: string
 	value?: string
 	onChange?: (zone: string) => void
 }
@@ -29,13 +30,15 @@ const currentZone: string =
 
 
 const TimeZone = ({
+    name,
 	value,
 	onChange,
 }: TimeZoneProps) => {
-	const [search, setSearch] = useState<string>(value || "")
+	const [search, setSearch] = useState<string>("")
 
 	return (
 		<Select<string | ReactNode>
+            name={name}
 			className="dropdown-end text-base desktop:text-xl"
 			onChange={val => {
 				if (typeof val === "string") 

@@ -28,7 +28,7 @@ const links = [
     {
 		href: "/profile",
 		label: "Account"
-	},
+	}
 ]
 
 
@@ -45,14 +45,14 @@ const Navbar = () => {
 				px-4 desktop:px-4 p-1 desktop:p-2 w-full
 				xlarge:text-base mb-4 flex items-center 
                 gap-10 z-100 justify-between rounded-full 
-                font-medium text-charcoal-200 max-w-[55%]
+                font-medium text-charcoal-200 max-w-[90%]
                 bg-bluewash absolute top-8 desktop:top-16 
                 text-base left-1/2 -translate-x-1/2
                 data-[pathname=auth]:hidden
 			"
 		>
 			<IconButton
-				variant="secondary"
+				variant="primary"
 				onClick={()=>redirect("/")}
 			>
 				<Logo
@@ -71,11 +71,15 @@ const Navbar = () => {
                     <Link
                         key={href}
                         href={href}
-						data-selected={pathname === href}
+						data-selected={
+                           href === "/"
+                            ? pathname === "/"
+                            : pathname.startsWith(href)
+                        }
                         className="
-							hover:text-charcoal-100 text-grey-300
-							smooth 
-							cursor-pointer data-[selected=true]:text-charcoal-100
+							hover:text-charcoal-100 
+                            text-grey-300 smooth cursor-pointer 
+                            data-[selected=true]:text-charcoal-100
 						"
                     >
                         {label}

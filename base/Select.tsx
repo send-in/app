@@ -21,6 +21,7 @@ export interface SelectOption {
 }
 
 export interface SelectProps<T> {
+    name?: string
 	options?: T[]
 	selected?: T
 	placeholder?: string
@@ -28,6 +29,7 @@ export interface SelectProps<T> {
 	size?: "sm" | "md" | "lg"
 	variant?: "primary" | "neutral"
 	className?: string
+    dropdownClassName?: string
 	buttonClassName?: string
 	onChange?: (value: T) => void
 }
@@ -48,6 +50,7 @@ const isObject = (val: any): val is { label: string } =>
 
 const Select = <T extends string | SelectOption | ReactNode>(
 	{
+        name,
 		options,
 		selected,
 		placeholder,
@@ -56,6 +59,7 @@ const Select = <T extends string | SelectOption | ReactNode>(
 		variant = "primary",
 		className = "",
 		buttonClassName = "",
+        dropdownClassName = "",
 		onChange
 	}: SelectProps<T>,
 	ref: Ref<HTMLDivElement>
@@ -71,6 +75,22 @@ const Select = <T extends string | SelectOption | ReactNode>(
 		setInternalSelected(opt)
 		onChange?.(opt)
 	}
+
+    const hiddenValue = (() => {
+        if (!internalSelected) {
+            return ""
+        }
+
+        if (isObject(internalSelected)) {
+            return internalSelected.value
+        }
+
+        if (typeof internalSelected === "string") {
+            return internalSelected
+        }
+
+        return ""
+    })()
 
 	const selectedOption = options?.find(opt =>
 		isObject(opt) && isObject(internalSelected)
@@ -95,6 +115,15 @@ const Select = <T extends string | SelectOption | ReactNode>(
 
 	return (
 		<div ref={ref} className={wrapperClasses}>
+            {
+                name &&
+                <input
+                    type="hidden"
+                    name={name}
+                    value={hiddenValue}
+                />
+            }
+
 			<button
 				type="button"
 				tabIndex={0}
@@ -113,10 +142,12 @@ const Select = <T extends string | SelectOption | ReactNode>(
 
 			<ul
 				tabIndex={0}
-				className="
-					dropdown-content p-2 mt-2 w-max max-w-72 shadow rounded-xl bg-white
-					space-y-1 max-h-[40vh] overflow-y-scroll relative z-50
-				"
+				className={cn(`
+                        dropdown-content p-2 mt-2 w-72 shadow rounded-xl bg-white
+                        space-y-1 max-h-[40vh] overflow-y-scroll relative z-50
+                    `,  
+                    dropdownClassName
+                )}
 			>
 				{options?.map((opt, index) => {
 					if (isValidElement(opt)) return opt

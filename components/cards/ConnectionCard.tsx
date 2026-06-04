@@ -1,3 +1,5 @@
+"use client"
+
 // #region imports
 import { GoTo } from "@/icons"
 import Image from "next/image"

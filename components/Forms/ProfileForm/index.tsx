@@ -2,11 +2,14 @@
 
 // #region imports
 import Image from "next/image"
+import { useActionState, useEffect } from "react"
 
-import { useActionState } from "react"
+import { IFormResponse } from "@/lib"
 
-import { LinkedinConnect } from "@/components"
-import { Logo } from "@/icons"
+import { 
+    LinkedinConnect, 
+    TimeZone 
+} from "@/components"
 
 import {
     Button,
@@ -14,15 +17,14 @@ import {
 } from "@/base"
 
 import {
-    logout,
-    IFormResponse,
-} from "@/lib"
-
-import {
     IProfileForm,
     profileAction,
 } from "./action"
 // #endregion
+
+const flexClass = `
+flex flex-col gap-4 w-full
+`
 
 export const ProfileForm = ({
     name = "",
@@ -37,28 +39,39 @@ export const ProfileForm = ({
 	timezone?: string
 	token?: string
 }) => {
-
     const [state, action, isPending] = 
         useActionState<IFormResponse<IProfileForm>, FormData>(
             profileAction,
             {
                 success: false,
                 errors: {},
+                data: {
+                    name,
+                    timezone
+                }
             }
         )
 
+    useEffect(
+		() => {
+            if(
+                !!state.success && 
+                !isPending && 
+                !!window
+            ){ window.location.reload() }
+        },
+		[state.success,isPending]
+	)
+
     return (
-        <form
+        <form 
             action={action}
             className="
-                flex items-center justify-between
-                gap-8 desktop:gap-12 h-full
+                flex flex-col gap-12
+                pl-10 items-start w-[42%]
             "
         >
-            <section className="
-                flex flex-col gap-4
-                pl-10 items-start w-[42%]
-            ">
+            <section className={flexClass}>
                 <Image
                     className="rounded-full"
                     alt="SendIn"
@@ -83,12 +96,10 @@ export const ProfileForm = ({
                         Hey, {name} !
                     </h1>
 
-                    {/* <TimeZone
+                    <TimeZone
                         name="timezone"
-                        defaultValue={
-                            timezone || ""
-                        }
-                    /> */}
+                        value={timezone || ""}
+                    />
                 </aside>
 
                 <TextField
@@ -97,20 +108,23 @@ export const ProfileForm = ({
                     label="Full Name"
                     variant="filled"
                     defaultValue={name || ""}
-                    className="!rounded-xl !px-4"
+                    placeholder={name || ""}
                     error={!!state.errors?.name}
                     helperText={state.errors?.name}
                 />
 
                 <TextField
-                    className="!rounded-xl !px-4 mb-12"
                     disabled
                     fullWidth
                     label="Email"
                     variant="filled"
                     defaultValue={email || ""}
+                    placeholder={email || ""}
                 />
+            </section>
 
+
+            <section className={flexClass}>
                 <LinkedinConnect 
                     token={token}
                     picture={picture}
@@ -125,6 +139,7 @@ export const ProfileForm = ({
                 </p>
 
                 <Button
+                    className="max-w-max!"
                     type="submit"
                     variant="secondary"
                     loading={isPending}
@@ -132,43 +147,6 @@ export const ProfileForm = ({
                 >
                     Save Changes
                 </Button>
-
-                {
-                    state.success &&
-                    <p className="
-                        text-sm text-green-600
-                    ">
-                        Profile updated successfully
-                    </p>
-                }
-            </section>
-
-            <section
-                className="
-                    bg-blue-100 rounded-3xl
-                    p-6 desktop:mt-[5%]
-                    relative h-[90%] w-[30%]
-                    flex items-end justify-end
-                "
-            >
-                <Button
-                    formAction={logout}
-                    variant="ghost"
-                    className="
-                        !text-white
-                        hover:!text-charcoal-100
-                    "
-                >
-                    Log out ?
-                </Button>
-
-                <Logo
-                    size={50}
-                    className="
-                        absolute top-8 right-5
-                        fill-white
-                    "
-                />
             </section>
         </form>
     )

@@ -23,24 +23,17 @@ import {
 export const getTemplates = async(
     params?: Record<string, unknown>
 ): Promise<IResponse<ITemplate[]>> => {
-	const res = await _GET<{
-        templates: IRawTemplate[],
-        total_pages: number
-    }>(
+	const res = await _GET<IRawTemplate[]>(
 		_TEMPLATES_URL,
 		{ ...parseFilters(params) },
 		{ withAuth: true },
 	)
 
-	if (
-        res.success && 
-        res.data?.templates && 
-        res.data?.total_pages
-    ) {
+	if (res.success && res.data) {
 		return {
 			success: true,
-            total: res?.data.total_pages,
-			data: res.data.templates?.map(
+            total: res?.total ?? 0,
+			data: res.data?.map(
 				serializeTemplate,
 			),
 		}

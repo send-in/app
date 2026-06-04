@@ -1,3 +1,5 @@
+"use client"
+
 // #region imports
 import Image from "next/image"
 import { IconButton } from "@/base"
@@ -69,7 +71,9 @@ const DashboardCard = ({
 						width={40}
 						height={40}
 					/>
-					{name}
+                    <p className="truncate">
+					    {name}
+                    </p>
 				</div>
 
 				<p className="w-[60%] truncate">

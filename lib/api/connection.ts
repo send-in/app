@@ -24,16 +24,23 @@ export const getConnections = async(params?: {
     page?: number
 }): Promise<IResponse<IConnection[]>> => {
 
+    console.log(parseFilters(params))
+
     const res = await _GET<IRawConnection[]>(
         _CONNECTIONS_URL,
         { ...parseFilters(params) },
         { withAuth: true }
     )
 
+    console.log(res)
+
     if (res.success && res.data) {
         return {
             success: true,
-            data: res.data.map(serializeConnection),
+            total: res?.total ?? 0,
+            data: res.data.map(
+                serializeConnection
+            )
         }
     }
 
@@ -41,33 +48,4 @@ export const getConnections = async(params?: {
         success: false,
         error: res.error,
     }
-}
-
-export const enrichConnections = async(
-	ids: string[],
-): Promise<IResponse<IConnection[]>> => {
-
-	const res = await _POST<IRawConnection[]>(
-		_CONNECTIONS_URL,{},
-		{
-			withAuth: true,
-			body: JSON.stringify({
-				ids,
-			}),
-		},
-	)
-
-	if (res.success && res.data) {
-		return {
-			success: true,
-			data: res.data.map(
-				serializeConnection,
-			),
-		}
-	}
-
-	return {
-		success: false,
-		error: res.error,
-	}
 }

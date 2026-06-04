@@ -20,11 +20,6 @@ export interface IProfileForm {
     timezone: string
 }
 
-const _PROFILE_RULES: IValidator<IProfileForm> = {
-    name: requireField("Name is required"),
-    timezone: requireField("Timezone is required"),
-}
-
 export const profileAction = async (
     _prevState: IFormResponse<IProfileForm>,
     formData: FormData,
@@ -37,7 +32,7 @@ export const profileAction = async (
         const errors =
             validateForm(
                 data,
-                _PROFILE_RULES
+                {}
             )
 
         if (errors)
@@ -51,11 +46,10 @@ export const profileAction = async (
             timezone,
         } = data
 
-        const res =
-            await updateProfile({
-                name,
-                timezone,
-            })
+        const res = await updateProfile({
+            name,
+            timezone,
+        })
 
         if (!res.success)
             return {

@@ -22,6 +22,20 @@ const buttonVariants = {
 	`,
 
 	variants: {
+        "blue-100": `
+			bg-blue-100 hover:bg-blue-200 active:brightness-95
+			text-white fill-white focus:ring-blue-300
+		`,
+        "charcoal-200": `
+			bg-charcoal-100 hover:bg-charcoal-200 active:brightness-95
+			text-white fill-white focus:ring-charcoal-300
+		`,
+        "purple-200": `
+			bg-purple-200 hover:bg-purple-300 active:brightness-95
+			text-white fill-white focus:ring-purple-400
+		`,
+
+
 		primary: `
 			bg-blue-100 hover:bg-blue-200 active:brightness-95
 			text-white fill-white focus:ring-blue-300
@@ -44,7 +58,7 @@ const buttonVariants = {
 
 		ghost: `
 			bg-transparent hover:bg-grey-100 active:bg-grey-150
-			text-grey-200 fill-charcoal-100
+			text-grey-200 fill-charcoal-100 focus:ring-white
 		`,
 
 		inverted: `

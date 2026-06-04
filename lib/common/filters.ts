@@ -9,24 +9,32 @@ export const SORT_OPTIONS = [
 ]
 
 export const parseFilters = (
-	params?: Record<string, unknown>
+    params?: {
+        ids?: string[]
+        q?: string
+        sort?: string
+        page?: number
+    }
 ): Record<string, unknown> => {
 
-    if(!params) return {}
+    if (!params)
+        return {}
 
-	const { 
-        sort,
-        ...rest 
-    } = params
+    const query: Record<string, unknown> = {}
 
-	const query: Record<string, unknown> = { 
-        ...rest 
-    }
+    if (params.q)
+        query.q = params.q
 
-	if (isKeyOf(SORT_OPTIONS, sort))
-		query.sort = SORT_OPTIONS[sort]
+    if (params.page)
+        query.page = params.page
 
-	return query
+    if (params.sort)
+        query.sort = params.sort.toLowerCase()
+
+    if (params.ids?.length)
+        query.ids = params.ids
+
+    return query
 }
 
 export const parseQuery = async (

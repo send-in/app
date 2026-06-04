@@ -103,9 +103,7 @@ export const MessageForm = ({
 				)
 			)
 
-			setTimezone(
-				message.timezone
-			)
+			setTimezone(message.timezone)
 		},
 		[message, templates]
 	)

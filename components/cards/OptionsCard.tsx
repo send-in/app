@@ -2,7 +2,7 @@
 
 // #region imports
 import Image from "next/image"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 import { DateTime } from "@/components"
 import { useTimezone } from "@/hooks"
@@ -22,21 +22,25 @@ import { ITemplate } from "@/lib"
 // #endregion
 
 const OptionsCard = ({
+	bio,
 	name,
 	picture,
-	company,
 	country,
-	profile,
     templates,
 	selected,
-	setSelected
+	setSelected,
+
+    templateOverride
 }:{
 	name: string
 	picture: string
 	profile: string
-	company?: string
+	bio?: string
 	country?: string
     templates: ITemplate[]
+
+    templateOverride?: ITemplate
+    timeOverride: string
 
 	selected: boolean
 	setSelected: ()=>void
@@ -45,7 +49,6 @@ const OptionsCard = ({
 	const {
 		segment,
 		iso3,
-		name:timezone
 	} = useTimezone(
 		country||"United States"
 	)
@@ -53,28 +56,33 @@ const OptionsCard = ({
 	const [template, setTemplate] = 
         useState<ITemplate | undefined>()
 
+
+    useEffect(()=>{
+        if(templateOverride && selected){
+            setTemplate(templateOverride)
+        }
+    },[templateOverride])
+
 	return (
 		<li
 			data-selected={selected}
 			className="
-				list-none flex text-base desktop:text-xl items-center px-3
+				list-none flex text-base desktop:text-xl items-center
 				text-grey-200 justify-between w-full select-none
 				cursor-pointer group/card
 			"
 		>
 			<aside
 				className="
-					flex items-center justify-between gap-4 w-[40%] border-2
-					border-white rounded-full px-1 pr-4 hover:border-blue-100 active:border-blue-200
-					group-data-[selected=true]/card:border-blue-200 smooth !delay-50
+					flex items-center justify-between gap-4 w-[52%] border-2
+					border-grey-100 rounded-full px-1 pr-4 smooth !delay-50
+                    hover:border-blue-100 active:border-blue-200
+					group-data-[selected=true]/card:border-blue-200 
 				"
 				onClick={()=>setSelected()}
 			>
 
-				<div
-					className="group flex gap-2 items-center"
-				>
-
+				<div className="group flex gap-2 items-center">
 					<Image
 						className="rounded-full"
 						alt={name ?? "SendIn"}
@@ -86,24 +94,28 @@ const OptionsCard = ({
 					<aside>
 						<h3
 							className="
-								text-xl text-blue-100 group-hover:text-blue-200
+								text-xl text-blue-100 
+                                group-hover:text-blue-200
 								smooth 
 							"
 						>
 							{name}
 						</h3>
-						<p
-							className="text-base desktop:text-xl font-medium"
-						>
-							{company}, {country}
+						<p className="
+                            text-base desktop:text-xl 
+                            font-medium truncate
+                            max-w-[30ch]
+                        ">
+							{bio}
 						</p>
 					</aside>
 
 				</div>
 
-				<aside
-					className="text-base desktop:text-xl text-charcoal-100 flex gap-10 w-[40%]"
-				>
+				<aside className="
+                    text-base desktop:text-xl w-[28%]
+                    text-charcoal-100 flex gap-10
+                ">
 					<p
 						className="flex gap-3 items-center fill-blue-100"
 					>
@@ -143,28 +155,6 @@ const OptionsCard = ({
 				<DateTime/>
 
 			</aside>
-
-			<aside
-				className="flex gap-2 w-[10%] justify-end"
-			>
-
-				<IconButton
-					variant="primary"
-				>
-					<Logo
-						size={40}
-					/>
-				</IconButton>
-
-				<IconButton
-					variant="danger"
-				>
-					<Trash
-						size={25}
-					/>
-				</IconButton>
-			</aside>
-
 		</li>
 	)
 }

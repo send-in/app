@@ -39,10 +39,10 @@ const TemplatesPage = async({ searchParams }:{
 	return (
 		<main
 			className="
-				p-8 px-12 desktop:px-[5%] pt-[8%] 
+				p-8 desktop:px-[5%] pt-[9%]
 				flex items-start justify-center
 				text-grey-200 text-base desktop:text-xl 
-				gap-8 desktop:gap-12 h-[95vh]
+				gap-12 desktop:gap-12 h-[95vh]
 			"
 		>
 			<section
@@ -74,7 +74,6 @@ const TemplatesPage = async({ searchParams }:{
                                         <TemplateCard
                                             key={index}
                                             template={template}
-                                            onChange={()=>""}
                                             selected={false}
                                         />
                                 )
@@ -116,7 +115,7 @@ const TemplatesPage = async({ searchParams }:{
 			</section>
 
 			<section
-				className="flex flex-col w-[50%] h-full gap-6"
+				className="flex flex-col w-[45%] h-full gap-6"
 			>
 				<Editor/>
 

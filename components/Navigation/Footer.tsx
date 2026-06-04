@@ -104,33 +104,32 @@ const Footer = () => {
 				"
 			>
 
-				<Logo
-					className="fill-charcoal-100 desktop:scale-150"
-					size={50}
-				/>
-
 				<aside
 					className="
 						flex small:flex-col  justify-between
-						p-10 pt-5 mobile:px-4 w-[60%] mobile:w-full text-right font-normal
-						mobile:p-2 mobile:gap-4 desktop:w-[50%]
+						p-10 pt-5 mobile:px-4 w-[60%] mobile:w-full 
+                        text-right font-normal mobile:p-2 mobile:gap-4 desktop:w-[50%]
 					"
 				>
 					{links.map((category, index) => (
 						<div
 							key={index}
-							className="text-base desktop:text-xl flex flex-col items-start mobile:w-fit"
+							className="
+                                text-base desktop:text-xl flex
+                                flex-col items-start mobile:w-fit
+                            "
 						>
-							<p
-								className="text-2xl mobile:text-xl desktop:text-3xl"
-							>
+							<p className="
+                                text-2xl mobile:text-xl 
+                                desktop:text-3xl mb-4
+                            ">
 								{category.title}
 							</p>
 
 							{category.items.map((link, idx) => (
 								<Link
 									className="
-										smooth 
+										smooth text-grey-300
 										cursor-pointer
 									"
                                     target="_blank"
@@ -147,7 +146,31 @@ const Footer = () => {
 				</aside>
 
 
-				<p>2025 © SendIn.  support@sendin.com</p>
+                <section className="
+                    w-full flex justify-between
+                    items-end px-4 text-grey-200
+                ">
+                    <aside>
+                        <p>2025 © SendIn</p>
+                        <p></p>
+                        <Link
+                            className="text-grey-300 hover:text-blue-200 smooth" 
+                            href="mailto:support@sendin.com">
+                            support@sendin.com
+                        </Link>
+                    </aside>
+
+
+                    <div>
+                        Made with &thinsp; 💙 &thinsp; by 
+                        <Link
+                            className="text-blue-100 hover:text-blue-200 smooth ml-2" 
+                            href="https://www.opusco.dev">
+                            OpusCo
+                        </Link>
+                    </div>
+                </section>
+
 			</div>
 
 

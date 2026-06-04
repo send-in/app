@@ -29,8 +29,9 @@ const ConnectionsPage = async({ searchParams }:{
 
     return (
         <main className="
-            pt-[8%] h-screen
-            p-8 desktop:px-[5%]
+            pt-[8%] p-8 flex flex-col 
+            items-center h-auto min-h-[52vh] 
+            relative
         ">
             <ConnectionForm
                 q={q}

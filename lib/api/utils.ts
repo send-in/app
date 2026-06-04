@@ -27,22 +27,42 @@ interface IRequestOptions extends RequestInit {
 const _parseParams = (
     params?: Record<string, unknown>
 ): string => {
-    if (!params) return ""
+    if (!params)
+        return ""
 
     const search = new URLSearchParams()
 
     Object.entries(params).forEach(([key, value]) => {
         if (
-            value !== undefined &&
-            value !== null &&
-            value !== ""
+            value === undefined ||
+            value === null ||
+            value === ""
         ) {
-            search.append(key, String(value))
+            return
         }
+
+        if (Array.isArray(value)) {
+            value.forEach(item => {
+                search.append(
+                    key,
+                    String(item)
+                )
+            })
+
+            return
+        }
+
+        search.append(
+            key,
+            String(value)
+        )
     })
 
     const query = search.toString()
-    return query ? `?${query}` : ""
+
+    return query
+        ? `?${query}`
+        : ""
 }
 
 const _request = async <T>(

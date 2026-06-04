@@ -18,8 +18,6 @@ export function middleware(
 		request.headers
 	)
 
-    console.log(isAuthenticated)
-
 	const {
 		pathname,
 		searchParams
@@ -29,13 +27,10 @@ export function middleware(
     requestHeaders.set("x-search", searchParams.toString() || "")
 
     if (
-        (
-            pathname.includes("profile") ||
-            pathname.includes("dashboard") ||
-            pathname.includes("connections") ||
-            pathname.includes("templates")
-        ) &&
-        !isAuthenticated
+        !(
+            pathname.includes("onboarding") ||
+            pathname.includes("auth")
+        ) && !isAuthenticated
 	){
         request.nextUrl.pathname = "/auth"
 		return NextResponse.redirect(request.nextUrl)
@@ -57,6 +52,7 @@ export const config = {
 		"/auth",
 		"/onboarding/:path",
 		"/templates",
-		"/connections"
+		"/connections",
+		"/subscription"
 	],
 }

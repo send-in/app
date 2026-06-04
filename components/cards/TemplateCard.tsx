@@ -1,8 +1,8 @@
+"use client"
+
 // #region imports
 import { ITemplate } from "@/lib"
 // #endregion
-
-
 
 const TemplateCard = ({
 	template,
@@ -10,7 +10,7 @@ const TemplateCard = ({
 	selected,
 }:{
 	template: ITemplate
-	onChange: (value: ITemplate) => void
+	onChange?: (value: ITemplate) => void
 	selected: boolean
 }) => {
 
@@ -23,7 +23,7 @@ const TemplateCard = ({
 				smooth !delay-50 cursor-pointerdata-[selected=true]:outline-blue-100 
                 data-[selected=true]:outline-2
 			"
-			onClick={()=>onChange(template)}
+			onClick={()=>onChange?.(template)}
 			data-selected={selected}
 		>
 			<p>

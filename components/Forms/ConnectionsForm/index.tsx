@@ -46,18 +46,14 @@ export const ConnectionForm = ({
     page,
     total,
 }: IConnectionFormProps) => {
-
     const router = useRouter()
     const searchParams = useSearchParams()
-
-    const [selected, setSelected] =
-        useState<string[]>([])
+    const [selected, setSelected] = useState<string[]>([])
 
     const updateQuery = (
         key: string,
         value?: string
     ) => {
-
         const params =
             new URLSearchParams(searchParams)
 
@@ -65,12 +61,9 @@ export const ConnectionForm = ({
             params.delete(key)
         else
             params.set(key, value)
-
+        
         params.delete("page")
-
-        router.push(
-            `?${params.toString()}`
-        )
+        router.push(`?${params.toString()}`)
     }
 
     const handleSelect = (
@@ -96,21 +89,17 @@ export const ConnectionForm = ({
         )
 
     const handleNavigate = () => {
-
-        if (!selected.length)
-            return
-
-        router.push(
-            `/options?ids=${selected.join(",")}`
-        )
+        const params = new URLSearchParams()
+        selected.forEach(id => params.append("ids", id))
+        router.push(`/connections/options?${params.toString()}`)
+        router.refresh()
     }
 
     return (
         <>
             <aside className="
-                flex w-full justify-between 
-                px-2 items-center mb-8 
-                desktop:mb-12
+                flex w-[92%] justify-between 
+                items-center desktop:mb-12
             ">
                 <Radio
                     checked={
@@ -139,6 +128,8 @@ export const ConnectionForm = ({
 
                 <Select
                     options={SORT_OPTIONS}
+                    dropdownClassName="w-max!"
+                    className="dropdown-end"
                     placeholder="Sort"
                     variant="neutral"
                     size="md"
@@ -158,9 +149,9 @@ export const ConnectionForm = ({
             </aside>
 
             <div className="
-                w-full gap-4
+                gap-4 w-[92%]
                 grid grid-cols-5
-                mb-3
+                my-10
             ">
                 {
                     connections.map(
@@ -196,19 +187,12 @@ export const ConnectionForm = ({
                 }
             </div>
 
-            {!!total && total > 1 && (
-                <Pagination
-                    page={Number(page) ?? 1}
-                    count={Number(total)}
-                />
-            )}
-
             {!!connections.length && (
                 <aside className="
                     flex gap-10 max-w-max
                     rounded-full bg-white
-                    shadow-sm sticky
-                    bottom-10  p-2
+                    shadow-sm sticky self-start
+                    bottom-10 left-[5%] 
                 ">
                     <Button
                         disabled={!selected.length}
@@ -223,6 +207,13 @@ export const ConnectionForm = ({
                         }
                     </Button>
                 </aside>
+            )}
+
+            {!!total && total > 1 && (
+                <Pagination
+                    page={Number(page) ?? 1}
+                    count={Number(total)}
+                />
             )}
         </>
     )
