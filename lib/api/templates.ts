@@ -33,6 +33,7 @@ export const getTemplates = async(
 		return {
 			success: true,
             total: res?.total ?? 0,
+            page: res?.page ?? 1,
 			data: res.data?.map(
 				serializeTemplate,
 			),
@@ -82,8 +83,7 @@ export const deleteTemplate = async(
 ): Promise<IResponse<boolean>> => {
 
 	const res = await _DELETE(
-		`${_TEMPLATES_URL}/${id}`,
-		{},
+		`${_TEMPLATES_URL}/${id}`, {},
 		{
 			withAuth: true,
 		},

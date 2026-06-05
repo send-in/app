@@ -29,6 +29,7 @@ import {
     IConnection,
     SORT_OPTIONS
 } from "@/lib"
+import { useShortcut } from "@/hooks"
 // #endregion
 
 interface IConnectionFormProps {
@@ -117,13 +118,23 @@ export const ConnectionForm = ({
                     className="w-[30%]"
                     variant="filled"
                     placeholder="Search"
+                    endIcon={<Search />}
+                    onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                            e.currentTarget.blur()
+
+                            updateQuery(
+                                "q",
+                                e.currentTarget.value
+                            )
+                        }
+                    }}
                     onBlur={(e) =>
                         updateQuery(
                             "q",
                             e.target.value
                         )
                     }
-                    endIcon={<Search />}
                 />
 
                 <Select

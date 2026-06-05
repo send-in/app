@@ -155,6 +155,7 @@ export const MessageForm = ({
                             /> 
                              <Select
                                 options={SORT_OPTIONS}
+                                dropdownClassName="w-max!"
                                 placeholder="Sort"
                                 variant="neutral"
                                 size="md"
@@ -196,7 +197,7 @@ export const MessageForm = ({
                             </aside>
 
                             {
-                                !!total && total > 1 &&
+                                !!total && total > 11 &&
                                 <Pagination
                                     page={Number(page) || 1}
                                     count={Number(total)}

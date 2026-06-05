@@ -75,7 +75,7 @@ const OptionsCard = ({
 			<aside
 				className="
 					flex items-center justify-between gap-4 w-[52%] border-2
-					border-grey-100 rounded-full px-1 pr-4 smooth !delay-50
+					border-grey-100 rounded-2xl p-1 pr-4 pl-2 smooth !delay-50
                     hover:border-blue-100 active:border-blue-200
 					group-data-[selected=true]/card:border-blue-200 
 				"

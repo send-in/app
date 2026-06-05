@@ -45,7 +45,7 @@ const DashboardCard = ({
 		<li
 			className="
 				list-none flex gap-10 text-base desktop:text-xl items-center w-full
-				min-h-16 py-2 px-3 desktop:py-4 desktop:px-5 rounded-lg text-grey-200
+				min-h-16 py-2 px-3 desktop:py-4 desktop:px-5 rounded-2xl text-grey-200
                 justify-between smooth cursor-pointer border-2 border-white 
 				bg-white hover:border-grey-100 active:border-grey-200 
                 data-[selected=true]:border-blue-100

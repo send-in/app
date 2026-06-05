@@ -23,21 +23,17 @@ export const getConnections = async(params?: {
     sort?: string,
     page?: number
 }): Promise<IResponse<IConnection[]>> => {
-
-    console.log(parseFilters(params))
-
     const res = await _GET<IRawConnection[]>(
         _CONNECTIONS_URL,
         { ...parseFilters(params) },
         { withAuth: true }
     )
 
-    console.log(res)
-
     if (res.success && res.data) {
         return {
             success: true,
             total: res?.total ?? 0,
+            page: res?.page ?? 1,
             data: res.data.map(
                 serializeConnection
             )

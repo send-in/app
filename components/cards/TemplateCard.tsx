@@ -18,10 +18,9 @@ const TemplateCard = ({
 		<li
 			className="
 				list-none flex gap-10 text-base desktop:text-xl items-center w-full
-				p-3 px-6 rounded-full text-charcoal-100 hover:text-white desktop:py-4
-				bg-white hover:bg-blue-100 active:bg-blue-200 group/card justify-between
-				smooth !delay-50 cursor-pointerdata-[selected=true]:outline-blue-100 
-                data-[selected=true]:outline-2
+				py-3 px-6 rounded-xl text-charcoal-100 desktop:py-4 border-2 border-grey-100
+				bg-white hover:border-grey-200 active:border-grey-300 group/card 
+                justify-between smooth cursor-pointer data-[selected=true]:border-blue-100    
 			"
 			onClick={()=>onChange?.(template)}
 			data-selected={selected}
@@ -32,8 +31,8 @@ const TemplateCard = ({
 
 			<p
 				className="
-					smooth !delay-50 w-[60%] text-ellipsis 
-                    truncate text-grey-200 group-hover/card:text-white
+					smooth w-[60%] text-ellipsis 
+                    truncate text-grey-200 
 				"
 			>
 				{template.value}

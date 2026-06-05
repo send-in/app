@@ -35,6 +35,7 @@ export const getMessages = async(params?: {
 		return {
 			success: true,
             total: res?.total ?? 0,
+            page: res.page ?? 1,
 			data: res.data.map(
 				serializeMessage,
 			),

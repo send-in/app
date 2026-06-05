@@ -234,7 +234,7 @@ const Editor = ({
 			{
 				!noTemplate &&
 				<TextField
-					className="!rounded-xl !text-lg desktop:!text-xl desktop:py-4"
+					className="!rounded-xl !text-lg desktop:!text-xl py-3"
 					variant="filled"
 					placeholder="Appreciation & Connection"
 					fullWidth
@@ -383,7 +383,7 @@ const Editor = ({
 						focus:text-charcoal-100 w-full peer break-words whitespace-pre-wrap
 						h-full p-4 pt-20 desktop:pt-24 text-base desktop:text-xl leading-relaxed outline-none
 						focus:ring-2 focus:ring-blue-500 focus:ring-inset
-						smooth cursor-pointer
+						smooth cursor-pointer focus:bg-white
 					"
 					data-placeholder="Hi {{username}}, I really admire the work you’re doing at {{company}}. I’d love to connect and stay updated on your journey!"
 				/>

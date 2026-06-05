@@ -1,4 +1,5 @@
 export * from "./ConnectionsForm"
+export * from "./TemplateForm"
 export * from "./MessageForm"
 export * from "./OptionsForm"
 export * from "./ProfileForm"
