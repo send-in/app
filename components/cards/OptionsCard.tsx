@@ -40,7 +40,7 @@ const OptionsCard = ({
     templates: ITemplate[]
 
     templateOverride?: ITemplate
-    timeOverride: string
+    timeOverride?: Date
 
 	selected: boolean
 	setSelected: ()=>void
@@ -49,8 +49,9 @@ const OptionsCard = ({
 	const {
 		segment,
 		iso3,
+        name: timezone,
 	} = useTimezone(
-		country||"United States"
+		country || "United States"
 	)
 
 	const [template, setTemplate] = 
@@ -152,7 +153,13 @@ const OptionsCard = ({
 					selected={template}
 				/>
 
-				<DateTime/>
+				<DateTime
+                    profile={{
+                        name,
+                        picture,
+                        timezone,
+                    }}
+                />
 
 			</aside>
 		</li>

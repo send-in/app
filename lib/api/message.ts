@@ -29,8 +29,6 @@ export const getMessages = async(params?: {
 		{ withAuth: true },
 	)
 
-    console.log(res.data)
-
 	if (res.success && res.data) {
 		return {
 			success: true,

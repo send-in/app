@@ -227,12 +227,47 @@ export const convertMeasurements = <
     ) as T
 }
 
-export const formatMeasurement = (
-    value?: number,
-    unit?: string
-) => {
+export const formatDateTime = (
+	date: Date
+) => ({
+	date: date.toLocaleDateString(
+		"en-US",
+		{
+            weekday: "short",
+			month: "short",
+			day: "numeric",
+		},
+	),
+	time: date.toLocaleTimeString(
+		"en-US",
+		{
+			hour: "numeric",
+			minute: "2-digit",
+			hour12: true,
+		},
+	),
+})
 
-    return value ?
-        `${value} ${unit}` :
-        "not set"
-}
+export const formatCurrent = (
+	date: Date,
+	timeZone: string,
+) => ({
+	date: date.toLocaleDateString(
+		"en-US",
+		{
+			timeZone,
+			weekday: "short",
+			month: "short",
+			day: "numeric",
+		},
+	),
+	time: date.toLocaleTimeString(
+		"en-US",
+		{
+			timeZone,
+			hour: "numeric",
+			minute: "2-digit",
+			hour12: true,
+		},
+	),
+})

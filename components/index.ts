@@ -1,7 +1,6 @@
 export * from "./Navigation"
 export * from "./OnBoarding"
 export * from "./Selectors"
-export * from "./Buttons"
 export * from "./Others"
 export * from "./Cards"
 export * from "./Forms"

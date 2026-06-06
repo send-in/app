@@ -54,7 +54,6 @@ export const updateProfile = async(
 		},
 	)
 
-    console.log("res", res)
 	if (res.success) {
 		return {
 			success: true,

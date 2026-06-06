@@ -23,10 +23,6 @@ const LinkedinConnect = ({
     picture?: string
 }) => {
 	const [cookie, setCookie] = useState<string>(token || "")
-	const ua = navigator.userAgent || ''
-
-	console.log(ua)
-
 	const handler = useCallback(() => {
 		if(token)
 			return

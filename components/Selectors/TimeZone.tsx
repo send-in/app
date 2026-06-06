@@ -21,6 +21,7 @@ interface TimeZoneProps {
     name?: string
 	value?: string
 	onChange?: (zone: string) => void
+    className?: string
 }
 
 const currentZone: string =
@@ -33,12 +34,14 @@ const TimeZone = ({
     name,
 	value,
 	onChange,
+    className
 }: TimeZoneProps) => {
 	const [search, setSearch] = useState<string>("")
 
 	return (
 		<Select<string | ReactNode>
             name={name}
+            buttonClassName={className}
 			className="dropdown-end text-base desktop:text-xl"
 			onChange={val => {
 				if (typeof val === "string") 
@@ -61,7 +64,9 @@ const TimeZone = ({
 					/>
 				</div>,
 				...zones.filter(
-					val => val?.includes(search)
+					val => val.toLowerCase()?.includes(
+                        search.toLowerCase()
+                    )
 				)
 			]}
 		/>

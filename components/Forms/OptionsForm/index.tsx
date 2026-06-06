@@ -36,6 +36,7 @@ export const OptionsForm = ({
     const router = useRouter()
     const [selected, setSelected] = useState<string[]>([])
     const [template, setTemplate] = useState<ITemplate>()
+    const [schedule, setSchedule] = useState<Date>()
 
     const handleSelect = (
         isSelected: boolean,
@@ -114,7 +115,8 @@ export const OptionsForm = ({
                         }
                     />
 
-                    <DateTime />
+                    <DateTime 
+                    />
                 </aside>
             </section>
 
@@ -148,6 +150,7 @@ export const OptionsForm = ({
                                     templates={templates}
                                     selected={isSelected}
                                     templateOverride={template}
+                                    timeOverride={schedule}
                                     setSelected={() =>
                                         handleSelect(
                                             isSelected,

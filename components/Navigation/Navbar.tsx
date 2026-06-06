@@ -33,9 +33,7 @@ const links = [
 
 
 const Navbar = () => {
-    
 	const pathname = usePathname()
-    console.log(pathname)
 
 	return (
         pathname !== "/auth" &&
