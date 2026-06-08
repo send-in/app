@@ -50,7 +50,9 @@ export const serializeMessage = (
 	timezone: message.Timezone,
 	message: message.Message,
 	isSent: message.IsSent,
+
     scheduledAt: new Date(message.ScheduleTime),
+    
     createdAt: new Date(message.CreatedAt),
     updatedAt: new Date(message.UpdatedAt),
     templateId: message.TemplateID,

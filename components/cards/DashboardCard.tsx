@@ -23,6 +23,7 @@ const DashboardCard = ({
 		picture,
 		template,
 		message,
+        timezone,
 		scheduledAt,
 		createdAt,
 		isSent,
@@ -35,6 +36,7 @@ const DashboardCard = ({
             minute: "numeric",
             hour12: true,
             timeZoneName: "shortGeneric",
+            timeZone: timezone
         },
     ).format(scheduledAt)
 
@@ -86,16 +88,19 @@ const DashboardCard = ({
 			</aside>
 
             {!isSent ?
-                <aside className="flex shrink-0 items-center gap-4">
-                    <TimeProgress
-                        scheduledTime={scheduledAt}
-                        createdAt={createdAt}
-                    />
+                <aside className="
+                    flex justify-between 
+                    items-center gap-4 
+                ">
                     <p
                         className="text-blue-100"
                     >
                         {formatted}
                     </p>
+                    <TimeProgress
+                        scheduledTime={scheduledAt}
+                        createdAt={createdAt}
+                    />
                 </aside>:
                 <p>
                     &#x2713; &emsp;Sent

@@ -1,6 +1,7 @@
 // #region imports
+import { redirect } from "next/navigation"
 import { CurrentPlan, PlanCard } from "@/components"
-import { IPlan } from "@/lib"
+import { getProfile, IPlan } from "@/lib"
 // #endregion
 
 const planData: {
@@ -15,7 +16,7 @@ const planData: {
 }[] = [
     {
         plan: {
-            planId: "free_plan",
+            id: "free",
             title: "Free Plan",
             price: 0,
             messages: 20,
@@ -29,12 +30,11 @@ const planData: {
         },
         buttonText: "Get Started",
         color: "charcoal-200",
-        highlighted: false,
         slider: false
     },
     {
         plan: {
-            planId: "pro_plan",
+            id: "pro",
             title: "Pro Plan",
             price: 25,
             messages: 25,
@@ -51,12 +51,11 @@ const planData: {
         },
         buttonText: "Replenish",
         color: "blue-100",
-        highlighted: true,
         slider: true,
     },
     {
         plan: {
-            planId: "enterprise_plan",
+            id: "enterprise",
             title: "Enterprise Plan",
             features: [
                 "Chrome extension",
@@ -68,12 +67,31 @@ const planData: {
         },
         buttonText: "Connect with us",
         color: "purple-200",
-        highlighted: false,
         slider: false
     }
 ]
 
-const PricingPage = () => {
+const PricingPage = async () => {
+    const {
+        success,
+        data: account
+    } = await getProfile()
+
+    const {
+        plan = "free",
+        planCredits = 0,
+        creditsRemaining = 0,
+        renewAt,
+
+        dailySyncsUsed = 0,
+        dailySchedulesUsed = 0,
+
+        lifetimeSyncsUsed = 0,
+        lifetimeMessagesUsed = 0,
+    } = account || {}
+
+    if(!success)
+        redirect("/")
     return (
         <section
             id="pricing"
@@ -84,10 +102,14 @@ const PricingPage = () => {
             "
         >
             <CurrentPlan
-                planName={"Pro Plan"}
-                usedTokens={25}
-                totalTokens={75}
-                renewsAt={"25-04-2027"}
+                planName={plan}
+                usedTokens={planCredits-creditsRemaining}
+                totalTokens={planCredits}
+                renewsAt={renewAt?.toDateString()}
+                dailySyncsUsed={dailySyncsUsed}
+                dailySchedulesUsed={dailySchedulesUsed}
+                lifetimeSyncsUsed={lifetimeSyncsUsed}
+                lifetimeMessagesUsed={lifetimeMessagesUsed}
             />
             <aside className="
                 flex w-[75%] justify-between
@@ -100,7 +122,7 @@ const PricingPage = () => {
                         plan={data.plan}
                         buttonText={data.buttonText}
                         color={data.color}
-                        highlighted={data.highlighted}
+                        highlighted={data.plan.id === plan}
                         slider={data.slider}
                     />
                 ))}

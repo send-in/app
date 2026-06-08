@@ -1,3 +1,11 @@
+// #region imports
+import {
+	IPayment,
+	IRawPayment,
+	serializePayment,
+} from "./payments"
+// #endregion
+
 export interface IRawAccount {
 	ID: string
 	Name: string
@@ -7,6 +15,16 @@ export interface IRawAccount {
 	Timezone: string
 	Token: string
 	UserAgent: string
+	Plan: string
+	PlanCredits: number
+	CreditsRemaining: number
+	CreditsRenewAt?: string
+	LastDailyResetAt?: string
+	DailySyncsUsed: number
+	DailySchedulesUsed: number
+	LifetimeSyncsUsed: number
+	LifetimeMessagesUsed: number
+	Payments?: IRawPayment[]
 	CreatedAt: string
 	UpdatedAt: string
 }
@@ -20,6 +38,16 @@ export interface IAccount {
 	timezone: string
 	token: string
 	userAgent: string
+	plan: string
+	planCredits: number
+	creditsRemaining: number
+	renewAt?: Date
+	dailyResetAt?: Date
+	dailySyncsUsed: number
+	dailySchedulesUsed: number
+	lifetimeSyncsUsed: number
+	lifetimeMessagesUsed: number
+	payments: IPayment[]
 	createdAt: Date
 	updatedAt: Date
 }
@@ -35,6 +63,26 @@ export const serializeAccount = (
 	timezone: account.Timezone,
 	token: account.Token,
 	userAgent: account.UserAgent,
+	plan: account.Plan,
+	planCredits: account.PlanCredits,
+	creditsRemaining: account.CreditsRemaining,
+	dailySyncsUsed: account.DailySyncsUsed,
+	dailySchedulesUsed: account.DailySchedulesUsed,
+	lifetimeSyncsUsed: account.LifetimeSyncsUsed,
+	lifetimeMessagesUsed: account.LifetimeMessagesUsed,
+
+	renewAt: account.CreditsRenewAt
+		? new Date(account.CreditsRenewAt)
+		: undefined,
+
+	dailyResetAt: account.LastDailyResetAt
+		? new Date(account.LastDailyResetAt)
+		: undefined,
+
+	payments: account.Payments?.map(
+		serializePayment,
+	) ?? [],
+
 	createdAt: new Date(account.CreatedAt),
 	updatedAt: new Date(account.UpdatedAt),
 })

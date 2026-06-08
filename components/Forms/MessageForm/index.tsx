@@ -413,9 +413,14 @@ export const MessageForm = ({
 					/>
 
 					<div className="flex gap-4">
-						<DateTime scheduledAt={
-                            message?.scheduledAt
-                        }/>
+						<DateTime
+                            scheduledAt={message?.scheduledAt}
+                            profile={{
+                                name: message!.name,
+                                picture: message!.picture,
+                                timezone: message!.timezone
+                            }}
+                        />
 
 						<TimeZone
 							value={timezone}

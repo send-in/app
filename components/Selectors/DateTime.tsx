@@ -1,7 +1,7 @@
 "use client"
 
 // #region imports
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Image from "next/image"
 
 import { useTimezone } from "@/hooks"
@@ -25,8 +25,8 @@ const DateTime = ({
     onChange?: (value: Date) => void
 	scheduledAt?: Date
 	profile?:{
-		name: string
-		picture: string
+		name?: string
+		picture?: string
 		timezone?: string
 	}
 }) => {
@@ -48,6 +48,11 @@ const DateTime = ({
 
     const properDate = properClock.date
     const properTime = properClock.time
+
+    useEffect(
+        ()=>setTimezone(profile?.timezone ?? "Asia/Kolkata"),
+        [profile?.timezone]
+    )
 
 	return (
 		<Popover

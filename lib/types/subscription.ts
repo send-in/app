@@ -1,5 +1,5 @@
 export interface IPlan {
-    planId: string
+    id: string
     title: string
     price?: number
     features: string[]
