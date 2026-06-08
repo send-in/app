@@ -60,8 +60,6 @@ export const MessageForm = ({
 	const router = useRouter()
 	const searchParams = useSearchParams()
 
-    console.log(messages)
-
     const [items, setItems] = 
         useState<IMessage[]>(messages)
 	const [message, setMessage] = 
@@ -140,14 +138,22 @@ export const MessageForm = ({
     const handleSave = useCallback(
         async () => {
             if (!message) return
+            
+            const isTemplate = 
+                template?.id && 
+                template.value.trim() === value.trim()
+
             const res = await updateMessage(
                 message.id,
                 {
-                    message: value,
-                    templateId: template?.id,
                     timezone,
                     scheduleTime:
-                    message.scheduledAt.toISOString(),
+                        message.scheduledAt.toISOString(),
+                    ...(
+                        isTemplate ?
+                        { templateId: template?.id } :
+                        { message: value }
+                    ),
                 },
             )
 
@@ -163,6 +169,7 @@ export const MessageForm = ({
             )
 
             setMessage(res.data)
+            setTemplate(res.data.template)
         },
         [
             message,
@@ -174,16 +181,19 @@ export const MessageForm = ({
 
 	useEffect(
 		() => {
-			if (!message) 
-                return
+			if (!message) return
+            setTimezone(message.timezone)
 
-			setTemplate(message.template)
-			setTimezone(message.timezone)
-            setValue(
-                message?.message ?? 
-                message.template?.value ?? 
-                ""
-            )
+            if(message.template){
+                setTemplate(message.template)
+                setValue(message.template.value)
+            }
+
+            else if(message.message){
+                setTemplate(undefined)
+                setValue(message?.message)
+            }
+
 		},
 		[message]
 	)
@@ -195,6 +205,20 @@ export const MessageForm = ({
 		},
 		[messages]
 	)
+
+    const originalValue =
+        message?.message ??
+        message?.template?.value ??
+        ""
+
+    const hasChanges =
+        originalValue !== value ||
+        (message?.templateId ?? undefined) !== template?.id ||
+        (message?.timezone ?? "") !== (timezone ?? "")
+
+    const isValid =
+        Boolean(template?.id) ||
+        Boolean(value.trim())
 
 	return (
 		<main className="
@@ -365,15 +389,17 @@ export const MessageForm = ({
 						justify-between items-center
 					"
 				>
-					<Select<ITemplate>
+					<Select<ITemplate | undefined>
 						size="md"
 						variant="primary"
 						placeholder="Select Template"
 						options={templates}
 						selected={template}
-						onChange={(value)=>
-							setTemplate(value as ITemplate)
-						}
+						onChange={(value) => {
+                            const next = value as ITemplate
+                            setTemplate(next)
+                            setValue(next.value)
+                        }}
 					/>
 
 					<div className="flex gap-4">
@@ -389,15 +415,15 @@ export const MessageForm = ({
 				</aside>
 
 				<Editor
-					noTemplate
+                    noTemplate
                     onValueChange={
-                        (val)=>setValue(val)
+                        (val) => setValue(val)
                     }
                     initialValue={
-                        message?.message ?? 
+                        message?.message ??
                         template?.value
                     }
-				/>
+                />
 
 				<aside
 					className="
@@ -419,11 +445,8 @@ export const MessageForm = ({
                         variant="primary"
                         disabled={
                             !message ||
-                            (
-                                message.message === value &&
-                                message.timezone === timezone &&
-                                message.template?.id === template?.id
-                            )
+                            !isValid ||
+                            !hasChanges
                         }
                     >
                         Reschedule

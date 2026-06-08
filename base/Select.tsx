@@ -68,7 +68,7 @@ const Select = <T extends string | SelectOption | ReactNode>(
 	const [internalSelected, setInternalSelected] = useState<T | undefined>(selected)
 
 	useEffect(() => {
-		if (selected !== undefined) setInternalSelected(selected)
+        setInternalSelected(selected)
 	}, [selected])
 
 	const handleSelect = (opt: T) => {
@@ -102,7 +102,7 @@ const Select = <T extends string | SelectOption | ReactNode>(
 
 	const buttonClasses = cn(
 		`
-			btn rounded-full font-medium smooth min-w-26
+			btn rounded-full font-medium smooth delay-50! min-w-26
 			border-none focus:ring-2 focus:ring-inset 
             focus:ring-blue-100 flex justify-between
 		`,

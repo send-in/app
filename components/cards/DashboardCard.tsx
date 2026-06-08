@@ -3,8 +3,8 @@
 // #region imports
 import Image from "next/image"
 import { Trash } from "@/icons"
-import { IMessage } from "@/lib"
 import { IconButton } from "@/base"
+import { IMessage } from "@/lib"
 import { TimeProgress } from "@/components"
 // #endregion
 
@@ -28,18 +28,15 @@ const DashboardCard = ({
 		isSent,
 	} = data
 
-	const parsedScheduleTime = new Date(scheduledAt)
-	const parsedCreatedAt = new Date(createdAt)
-
 	const formatted = new Intl.DateTimeFormat(
-		"en-US",
-		{
-			hour: "numeric",
-			minute: "numeric",
-			hour12: true,
-			timeZoneName: "shortGeneric"
-		}
-	).format(parsedScheduleTime)
+        "en-US",
+        {
+            hour: "numeric",
+            minute: "numeric",
+            hour12: true,
+            timeZoneName: "shortGeneric",
+        },
+    ).format(scheduledAt)
 
 	return (
 		<li
@@ -96,8 +93,8 @@ const DashboardCard = ({
 				{!isSent ?
 					<div className="flex shrink-0 items-center gap-4">
 						<TimeProgress
-							scheduledTime={parsedScheduleTime}
-							createdAt={parsedCreatedAt}
+							scheduledTime={scheduledAt}
+							createdAt={createdAt}
 						/>
 						<p
 							className="text-blue-100"
