@@ -92,8 +92,8 @@ const Footer = () => {
 	return (
 		<section
 			className="
-                w-full pt-2 text-charcoal-100 bottom-0
-                small:relative z-0 p-8 small:pt-0 desktop:px-[5%]
+                w-full pt-2 text-charcoal-100
+                relative z-0 p-8 small:pt-0 desktop:px-[5%]
             "
 			id="footer"
 		>
@@ -162,7 +162,7 @@ const Footer = () => {
 
 
                     <div>
-                        Made with &thinsp; 💙 &thinsp; by 
+                        Made with &thinsp; 💙 &thinsp; at 
                         <Link
                             className="text-blue-100 hover:text-blue-200 smooth ml-2" 
                             href="https://www.opusco.dev">

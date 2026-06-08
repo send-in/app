@@ -9,15 +9,10 @@ import { useTimezone } from "@/hooks"
 
 import {
 	Clock,
-	Globe,
-	Trash,
-	Logo
+	Globe
 } from "@/icons"
 
-import {
-	IconButton,
-	Select
-} from "@/base"
+import { Select } from "@/base"
 import { ITemplate } from "@/lib"
 // #endregion
 
@@ -49,7 +44,6 @@ const OptionsCard = ({
 	const {
 		segment,
 		iso3,
-        name: timezone,
 	} = useTimezone(
 		country || "United States"
 	)
@@ -157,7 +151,7 @@ const OptionsCard = ({
                     profile={{
                         name,
                         picture,
-                        timezone,
+                        timezone: "America/New_York",
                     }}
                 />
 

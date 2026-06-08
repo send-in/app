@@ -1,3 +1,9 @@
+import { SVGProps } from "react"
+
+export interface IconProps extends SVGProps<SVGSVGElement> {
+	size?: number
+}
+
 // #region Individual Icon Components
 export { default as Arrow } from "./Arrow"
 export { default as Clock } from "./Clock"
@@ -19,4 +25,7 @@ export { default as Numbers } from "./Numbers"
 export { default as Copy } from "./Copy"
 export { default as Chevron } from "./Chevron"
 export { default as GoTo } from "./GoTo"
+export { default as Undo } from "./Undo"
+export { default as Redo } from "./Redo"
+export { default as Refresh } from "./Refresh"
 // #endregion

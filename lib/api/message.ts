@@ -9,6 +9,7 @@ import {
 	_POST,
 	_DELETE,
 	IResponse,
+    _PUT,
 } from "@/lib/api/utils"
 
 import {
@@ -18,11 +19,13 @@ import {
 } from "@/lib/types"
 // #endregion
 
-export const getMessages = async(params?: {
-    q?: string,
-    sort?: string,
-    page?: number
-}): Promise<IResponse<IMessage[]>> => {
+export const getMessages = async(
+    params?: {
+        q?: string,
+        sort?: string,
+        page?: number
+    }
+): Promise<IResponse<IMessage[]>> => {
 	const res = await _GET<IRawMessage[]>(
 		_MESSAGES_URL,
         { ...parseFilters(params) },
@@ -57,7 +60,6 @@ export const createMessage = async(
 		templateId?: string
 	},
 ): Promise<IResponse<boolean>> => {
-
 	const res = await _POST(
 		_MESSAGES_URL,{},
 		{
@@ -70,6 +72,44 @@ export const createMessage = async(
 		return {
 			success: true,
 			data: true,
+		}
+	}
+
+	return {
+		success: false,
+		error: res.error,
+	}
+}
+
+export const updateMessage = async(
+	id: string,
+	payload: {
+		timezone?: string
+		message?: string
+		templateId?: string
+		scheduleTime: string
+	},
+): Promise<IResponse<IMessage>> => {
+	const res = await _PUT<IRawMessage>(
+		`${_MESSAGES_URL}/${id}`,
+		{},
+		{
+			withAuth: true,
+			body: JSON.stringify({
+				timezone: payload.timezone,
+				message: payload.message,
+				templateId: payload.templateId,
+				scheduleTime: payload.scheduleTime,
+			}),
+		},
+	)
+
+	if (res.success && res.data) {
+		return {
+			success: true,
+			data: serializeMessage(
+				res.data,
+			),
 		}
 	}
 

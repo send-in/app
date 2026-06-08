@@ -2,10 +2,10 @@
 
 // #region imports
 import Image from "next/image"
-import { IconButton } from "@/base"
 import { Trash } from "@/icons"
-import { TimeProgress } from "@/components"
 import { IMessage } from "@/lib"
+import { IconButton } from "@/base"
+import { TimeProgress } from "@/components"
 // #endregion
 
 const DashboardCard = ({
@@ -76,8 +76,15 @@ const DashboardCard = ({
                     </p>
 				</div>
 
-				<p className="w-[60%] truncate">
-					{!!template?.value ? template.value : message}
+				<p className="
+                    w-[60%] truncate 
+                    select-none
+                ">
+					{
+                        !!template?.value ? 
+                        template.value : 
+                        message
+                    }
 				</p>
 			</aside>
 

@@ -10,8 +10,10 @@
     "analyze": "cross-env ANALYZE=true next build"
   },
   "dependencies": {
+    "@lexical/react": "^0.45.0",
     "countries-and-timezones": "^3.8.0",
     "country-code-lookup": "^0.1.3",
+    "lexical": "^0.45.0",
     "next": "15.5.0",
     "nodemailer": "^8.0.10",
     "react": "19.1.0",

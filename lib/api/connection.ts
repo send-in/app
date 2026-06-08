@@ -45,3 +45,20 @@ export const getConnections = async(params?: {
         error: res.error,
     }
 }
+
+export const resyncConnections = async(): 
+Promise<IResponse<IConnection[]>> => {
+    const res = await _POST(
+        _CONNECTIONS_URL, {},
+        { withAuth: true }
+    )
+
+    if (res.success) {
+        return { success: true }
+    }
+
+    return {
+        success: false,
+        error: res.error,
+    }
+}

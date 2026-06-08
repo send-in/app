@@ -23,13 +23,15 @@ import {
 import {
     Search,
     GoTo,
+    Redo,
+    Refresh,
 } from "@/icons"
 
 import {
     IConnection,
+    resyncConnections,
     SORT_OPTIONS
 } from "@/lib"
-import { useShortcut } from "@/hooks"
 // #endregion
 
 interface IConnectionFormProps {
@@ -198,27 +200,50 @@ export const ConnectionForm = ({
                 }
             </div>
 
-            {!!connections.length && (
-                <aside className="
-                    flex gap-10 max-w-max
+            <section className="
+                flex w-full
+                bottom-10 sticky
+                justify-between
+            ">
+                {!!connections.length && (
+                    <aside className="
+                        rounded-full bg-white
+                        shadow-sm p-1
+                    ">
+                        <Button
+                            disabled={!selected.length}
+                            onClick={handleNavigate}
+                            endIcon={<GoTo />}
+                            variant="primary"
+                        >
+                            {
+                                selected.length
+                                    ? `${selected.length} Selected`
+                                    : "Select a connect"
+                            }
+                        </Button>
+                    </aside>
+                )}
+
+                 <aside className="
                     rounded-full bg-white
-                    shadow-sm sticky self-start
-                    bottom-10 left-[5%] 
+                    shadow-sm flex items-center
+                    justify-center px-2
                 ">
                     <Button
-                        disabled={!selected.length}
-                        onClick={handleNavigate}
-                        endIcon={<GoTo />}
+                        onClick={resyncConnections}
+                        endIcon={<Refresh />}
                         variant="primary"
+                        disabled={false}
                     >
                         {
-                            selected.length
-                                ? `${selected.length} Selected`
-                                : "Select a connect"
+                            false
+                                ? `Resync Limit Exceeded`
+                                : "Resync"
                         }
                     </Button>
                 </aside>
-            )}
+            </section>
 
             {!!total && total > 1 && (
                 <Pagination

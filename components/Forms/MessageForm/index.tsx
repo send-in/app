@@ -32,9 +32,11 @@ import {
 import { Search } from "@/icons"
 
 import {
+    deleteMessage,
 	IMessage,
 	ITemplate,
     SORT_OPTIONS,
+    updateMessage,
 } from "@/lib"
 // #endregion
 
@@ -58,20 +60,21 @@ export const MessageForm = ({
 	const router = useRouter()
 	const searchParams = useSearchParams()
 
-	const [message, setMessage] = useState<IMessage | undefined>(
-		messages?.[0]
-	)
+    console.log(messages)
 
-	const [timezone, setTimezone] = useState<string | undefined>(
-		messages?.[0]?.timezone
-	)
-
-	const [template, setTemplate] = useState<ITemplate | undefined>(
-		templates.find(
-			t => t.label === 
-			messages?.[0]?.template?.label
-		)
-	)
+    const [items, setItems] = 
+        useState<IMessage[]>(messages)
+	const [message, setMessage] = 
+        useState<IMessage | undefined>(messages?.[0])
+        
+	const [timezone, setTimezone] = 
+        useState<string | undefined>(message?.timezone)
+	const [template, setTemplate] = 
+        useState<ITemplate | undefined>(message?.template)
+    const [value, setValue] = 
+        useState<string>(
+            message?.message ?? template?.value ?? ""
+        )
 
 	const updateQuery = useCallback((
 		key: string,
@@ -91,23 +94,107 @@ export const MessageForm = ({
 
 	}, [searchParams])
 
+    const handleDelete = useCallback(
+        async () => {
+            if (!message) return
+
+            const previousItems = items
+            const previousMessage = message
+
+            const index = items.findIndex(
+                item => item.id === message.id,
+            )
+
+            const nextItems = items.filter(
+                item => item.id !== message.id,
+            )
+
+            setItems(nextItems)
+
+            setMessage(
+                nextItems.length
+                    ? nextItems[
+                        Math.min(
+                            index,
+                            nextItems.length - 1,
+                        )
+                    ]
+                    : undefined,
+            )
+
+            const res = await deleteMessage(
+                message.id,
+            )
+
+            if (!res.success) {
+                setItems(previousItems)
+                setMessage(previousMessage)
+            }
+        },
+        [
+            items,
+            message,
+        ],
+    )
+
+    const handleSave = useCallback(
+        async () => {
+            if (!message) return
+            const res = await updateMessage(
+                message.id,
+                {
+                    message: value,
+                    templateId: template?.id,
+                    timezone,
+                    scheduleTime:
+                    message.scheduledAt.toISOString(),
+                },
+            )
+
+            if (!res.success || !res.data)
+                return
+
+            setItems(prev =>
+                prev.map(item =>
+                    item.id === message.id
+                        ? res.data!
+                        : item,
+                ),
+            )
+
+            setMessage(res.data)
+        },
+        [
+            message,
+            template,
+            timezone,
+            value,
+        ],
+    )
+
 	useEffect(
 		() => {
-			if (!message)
-				return
+			if (!message) 
+                return
 
-			setTemplate(
-				templates.find(
-					t => t.label === 
-					message.template?.label
-				)
-			)
-
+			setTemplate(message.template)
 			setTimezone(message.timezone)
+            setValue(
+                message?.message ?? 
+                message.template?.value ?? 
+                ""
+            )
 		},
-		[message, templates]
+		[message]
 	)
 
+    useEffect(
+		() => {
+			if (!messages) return
+            setItems(messages)
+		},
+		[messages]
+	)
 
 	return (
 		<main className="
@@ -120,17 +207,18 @@ export const MessageForm = ({
 					w-[45%] h-full flex flex-col
 					items-start gap-6 peer rounded-2xl
 					data-[length=false]:bg-bluewash 
+
 					data-[length=false]:justify-center
 					data-[length=false]:items-center
 					data-[length=false]:h-[90%]
 				"
 			>
 				{
-                    messages && messages.length > 0 ?
+                    items && items.length > 0 ?
                     <>
                         <section className="
                             w-full flex items-center 
-                            justify-between gap-24
+                            justify-between gap-48
                         ">
                             <TextField
                                 defaultValue={q}
@@ -138,6 +226,7 @@ export const MessageForm = ({
                                 className="
                                     desktop:!text-xl
                                     desktop:!py-2
+                                    text-black!
                                 "
                                 variant="filled"
                                 placeholder="Search"
@@ -182,7 +271,7 @@ export const MessageForm = ({
                                 gap-3 items-center
                             ">
                                 {
-                                    messages.map(
+                                    items.map(
                                         (item, index) =>
                                             <DashboardCard
                                                 key={index}
@@ -283,9 +372,7 @@ export const MessageForm = ({
 						options={templates}
 						selected={template}
 						onChange={(value)=>
-							setTemplate(
-								value as ITemplate
-							)
+							setTemplate(value as ITemplate)
 						}
 					/>
 
@@ -303,6 +390,13 @@ export const MessageForm = ({
 
 				<Editor
 					noTemplate
+                    onValueChange={
+                        (val)=>setValue(val)
+                    }
+                    initialValue={
+                        message?.message ?? 
+                        template?.value
+                    }
 				/>
 
 				<aside
@@ -313,18 +407,27 @@ export const MessageForm = ({
 					"
 				>
 					<Button
-						disabled
-						variant="secondary"
-					>
-						Delete
-					</Button>
+                        onClick={handleDelete}
+                        variant="secondary"
+                        disabled={!message}
+                    >
+                        Delete
+                    </Button>
 
-					<Button
-						disabled
-						variant="primary"
-					>
-						Reschedule
-					</Button>
+                    <Button
+                        onClick={handleSave}
+                        variant="primary"
+                        disabled={
+                            !message ||
+                            (
+                                message.message === value &&
+                                message.timezone === timezone &&
+                                message.template?.id === template?.id
+                            )
+                        }
+                    >
+                        Reschedule
+                    </Button>
 				</aside>
 			</section>
 		</main>

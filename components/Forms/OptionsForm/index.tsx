@@ -167,7 +167,7 @@ export const OptionsForm = ({
             <aside className="
                 flex gap-4 justify-between items-center
                 w-max rounded-full bg-white shadow-sm
-                sticky bottom-10 left-[5%] p-2 self-start
+                sticky bottom-10 left-[5%] p-1 self-start
             ">
                 <Button
                     disabled={!selected.length}

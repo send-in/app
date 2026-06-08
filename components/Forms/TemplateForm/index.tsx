@@ -1,11 +1,21 @@
 "use client"
 
 // #region imports
-import { useCallback, useEffect, useState } from "react"
-import { deleteTemplate, ITemplate } from "@/lib"
+import {
+    useCallback,
+    useEffect,
+    useState 
+} from "react"
+
+import { 
+    createTemplate,
+    deleteTemplate, 
+    ITemplate,
+    updateTemplate
+} from "@/lib"
 
 import {
-	Editor,
+    Editor,
 	TemplateCard
 } from "@/components"
 
@@ -29,10 +39,13 @@ export const TemplateForm = ({
     page,
     total,
 }: ITemplateForm) => {
-    const [items, setItems] = useState(templates)
+    const [items, setItems] = useState<ITemplate[]>(templates)
     const [selected, setSelected] = useState<ITemplate | undefined>(
         templates?.at(0)
     )
+
+    const [title, setTitle] = useState<string>(selected?.label ?? "")
+    const [value, setValue] = useState<string>(selected?.value ?? "")
 
     const handleCreate = useCallback(
         () => {
@@ -96,9 +109,68 @@ export const TemplateForm = ({
         [items, selected]
     )
 
+    const handleSave = useCallback(
+        async () => {
+            if (!selected)
+                return
+
+            if (selected.id.startsWith("temp-")) {
+                const res = await createTemplate(
+                    title,
+                    value,
+                )
+
+                if (!res.success || !res.data)
+                    return
+
+                setItems(prev =>
+                    prev.map(item =>
+                        item.id === selected.id
+                            ? res.data!
+                            : item,
+                    ),
+                )
+
+                setSelected(res.data)
+                return
+            }
+
+            const res = await updateTemplate(
+                selected.id,
+                title,
+                value,
+            )
+
+            if (!res.success || !res.data)
+                return
+
+            setItems(prev =>
+                prev.map(item =>
+                    item.id === selected.id
+                        ? res.data!
+                        : item,
+                ),
+            )
+
+            setSelected(res.data)
+        },
+        [
+            selected,
+            title,
+            value,
+        ],
+    )
+
     useEffect(
         () => setItems(templates),
         [templates]
+    )
+
+    useEffect(
+        () => {
+            setTitle(selected?.label ?? "")
+            setValue(selected?.value ?? "")
+        },[selected]
     )
 
 	return (
@@ -178,11 +250,17 @@ export const TemplateForm = ({
 
 			</section>
 
-			<section
-				className="flex flex-col w-[45%] h-full gap-6"
-			>
+			<section className="
+                flex flex-col 
+                w-[45%] h-full 
+                gap-6
+            ">
 				<Editor
-
+                    title={title}
+                    key={selected?.id}
+                    initialValue={selected?.value ?? ""}
+                    onTitleChange={(val)=>setTitle(val)}
+                    onValueChange={(val)=>setValue(val)}
                 />
 
 				<aside
@@ -197,8 +275,12 @@ export const TemplateForm = ({
 					</Button>
 
 					<Button
-						disabled
-						variant="primary"
+                        variant="primary"
+                        onClick={handleSave}
+						disabled={
+                            selected?.label === title &&
+                            selected?.value === value
+                        }
 					>
 						Save
 					</Button>

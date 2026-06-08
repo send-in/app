@@ -1,16 +1,9 @@
 "use client"
 
 import { useEffect, useMemo, useState } from "react"
-
 import { formatCurrent, formatDateTime } from "@/utils"
-
-import {
-	getTimezonesForCountry,
-} from "countries-and-timezones"
-
-import {
-	byCountry,
-} from "country-code-lookup"
+import { getTimezonesForCountry } from "countries-and-timezones"
+import { byCountry } from "country-code-lookup"
 
 type Segment =
 	| "morning"
@@ -28,9 +21,7 @@ export const useTimezone = (
 	)
 
 	const code = useMemo(
-		() => byCountry(
-			country || "India",
-		),
+		() => byCountry(country || "India"),
 		[country],
 	)
 
@@ -82,9 +73,9 @@ export const useTimezone = (
 	const hour = Number(parts.hour)
 
 	const segment: Segment =
-		hour >= 5 && hour < 12
+		hour >= 5 && hour < 14
 			? "morning"
-			: hour >= 12 && hour < 17
+			: hour >= 14 && hour < 17
 				? "afternoon"
 				: hour >= 17 && hour < 21
 					? "evening"
