@@ -20,11 +20,7 @@ import {
 // #endregion
 
 export const getMessages = async(
-    params?: {
-        q?: string,
-        sort?: string,
-        page?: number
-    }
+    params?: Record<string, unknown>
 ): Promise<IResponse<IMessage[]>> => {
 	const res = await _GET<IRawMessage[]>(
 		_MESSAGES_URL,

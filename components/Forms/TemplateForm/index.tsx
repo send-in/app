@@ -7,10 +7,16 @@ import {
     useState 
 } from "react"
 
+import {
+	useRouter,
+	useSearchParams,
+} from "next/navigation"
+
 import { 
     createTemplate,
     deleteTemplate, 
     ITemplate,
+    SORT_OPTIONS,
     updateTemplate
 } from "@/lib"
 
@@ -22,8 +28,11 @@ import {
 import { 
 	Button, 
 	IconButton,
-	Pagination
+	Pagination,
+    Select,
+    TextField
 } from "@/base"
+import { Search } from "@/icons"
 // #endregion
 
 const PAGE_SIZE = 11
@@ -32,13 +41,20 @@ interface ITemplateForm {
     templates: ITemplate[]
     page?: number
     total?: number
+	sort?: string
+    q?: string
 }
 
 export const TemplateForm = ({
     templates,
     page,
     total,
+	sort,
+    q,
 }: ITemplateForm) => {
+    const router = useRouter()
+    const searchParams = useSearchParams()
+
     const [items, setItems] = useState<ITemplate[]>(templates)
     const [selected, setSelected] = useState<ITemplate | undefined>(
         templates?.at(0)
@@ -46,6 +62,24 @@ export const TemplateForm = ({
 
     const [title, setTitle] = useState<string>(selected?.label ?? "")
     const [value, setValue] = useState<string>(selected?.value ?? "")
+
+    const updateQuery = useCallback((
+		key: string,
+		value?: string
+	) => {
+		const params =
+			new URLSearchParams(searchParams)
+
+		!value ?
+			params.delete(key) :
+			params.set(key, value)
+
+		if (key !== "page")
+			params.delete("page")
+
+		router.push(`?${params.toString()}`)
+
+	}, [searchParams])
 
     const handleCreate = useCallback(
         () => {
@@ -189,41 +223,99 @@ export const TemplateForm = ({
 			>
                 {
                     items && items?.length > 0 ? 
-                    <section className="
-                        w-full h-full justify-between 
-                        flex flex-col items-end gap-4
-                    ">
-                        <aside className="
-                            w-full h-full flex flex-col 
-                            gap-3 items-center
+                    <>
+                        <section className="
+                            w-full flex items-center 
+                            justify-between gap-48
                         ">
-                            {
-                                !!items?.length &&
-                                items.map(
-                                    (template, index) =>
-                                        <TemplateCard
-                                            key={index}
-                                            template={template}
-                                            selected={
-                                                selected?.id === template.id
-                                            }
-                                            onChange={() =>
-                                                setSelected(template)
-                                            }
-                                        />
-                                )
-                            }
-                        </aside>
+                            <TextField
+                                defaultValue={q}
+                                fullWidth
+                                className="
+                                    desktop:!text-xl
+                                    desktop:!py-2
+                                    text-black!
+                                "
+                                variant="filled"
+                                placeholder="Search"
+                                onKeyDown={(e) => {
+                                    if (e.key === "Enter") {
+                                        e.currentTarget.blur()
 
-                        {
-                            items && 
-                            items?.length > 18 &&
-                            <Pagination
-                                page={Number(page)}
-                                count={Number(total)}
+                                        updateQuery(
+                                            "q",
+                                            e.currentTarget.value
+                                        )
+                                    }
+                                }}
+                                onBlur={(e)=>
+                                    updateQuery(
+                                        "q",
+                                        e.target.value
+                                    )
+                                }
+                                endIcon={
+                                    <Search
+                                        className="desktop:scale-120"
+                                    />
+                                }
+                            /> 
+                             <Select
+                                options={SORT_OPTIONS}
+                                dropdownClassName="w-max!"
+                                placeholder="Sort"
+                                variant="neutral"
+                                size="md"
+                                selected={
+                                    SORT_OPTIONS.find(
+                                        option =>
+                                            option.value === sort
+                                    )
+                                }
+                                onChange={(value) =>
+                                    updateQuery(
+                                        "sort",
+                                        value?.value
+                                    )
+                                }
                             />
-                        }
-                    </section> :
+                        </section>
+                        <section className="
+                            w-full h-full justify-between 
+                            flex flex-col items-end gap-4
+                        ">
+                            <aside className="
+                                w-full h-full flex flex-col 
+                                gap-3 items-center
+                            ">
+                                {
+                                    !!items?.length &&
+                                    items.map(
+                                        (template, index) =>
+                                            <TemplateCard
+                                                key={index}
+                                                template={template}
+                                                selected={
+                                                    selected?.id === template.id
+                                                }
+                                                onChange={() =>
+                                                    setSelected(template)
+                                                }
+                                            />
+                                    )
+                                }
+                            </aside>
+
+                            {
+                                items && 
+                                items?.length > 18 &&
+                                <Pagination
+                                    page={Number(page)}
+                                    count={Number(total)}
+                                />
+                            }
+                        </section>
+                    </> :
                     <p className="
                         text-2xl desktop:text-6xl 
                         text-blue-100 font-semibold

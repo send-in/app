@@ -11,23 +11,22 @@ import {
 
 const TemplatesPage = async({ searchParams }:{
 	searchParams?: Promise<{ 
+        q?: string
 		page?: string
 		sort?: string
 	}>
 }) => {
 
-	const query = await parseQuery(
-		searchParams
-	)
+	const { 
+        q, page, sort 
+    } =  await parseQuery(searchParams)
 
 	const {
 		total,
-        page,
 		data: templates = [],
-	} = await getTemplates({
-		limit: 11,
-		...query,
-	})
+	} = await getTemplates({ 
+        limit: 11, q, page, sort 
+    })
 
 	return (
 		<main
@@ -40,8 +39,10 @@ const TemplatesPage = async({ searchParams }:{
 		>
 			<TemplateForm
                 templates={templates ?? []}
-                page={page}
                 total={total}
+                page={page}
+                sort={sort}
+                q={q}
             />
 		</main>
 	)

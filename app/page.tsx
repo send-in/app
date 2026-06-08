@@ -20,8 +20,11 @@ const DashboardPage = async({ searchParams }:{
     } =  await parseQuery(searchParams)
 
     const {
-        data: messages = [], total
-    } = await getMessages({ q, page, sort })
+        total,
+        data: messages = []
+    } = await getMessages({ 
+        limit: 11, q, page, sort 
+    })
 
     const {
         data: templates = []

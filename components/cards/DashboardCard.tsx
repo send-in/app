@@ -85,36 +85,22 @@ const DashboardCard = ({
 				</p>
 			</aside>
 
-
-			<aside className="
-                flex items-center gap-6 w-[40%] 
-                justify-between font-medium
-            ">
-				{!isSent ?
-					<div className="flex shrink-0 items-center gap-4">
-						<TimeProgress
-							scheduledTime={scheduledAt}
-							createdAt={createdAt}
-						/>
-						<p
-							className="text-blue-100"
-						>
-							{formatted}
-						</p>
-					</div>:
-					<p>
-						&#x2713; &emsp;Sent
-					</p>
-				}
-
-				<IconButton
-					variant="danger"
-					size="sm"
-				>
-					<Trash/>
-				</IconButton>
-			</aside>
-
+            {!isSent ?
+                <aside className="flex shrink-0 items-center gap-4">
+                    <TimeProgress
+                        scheduledTime={scheduledAt}
+                        createdAt={createdAt}
+                    />
+                    <p
+                        className="text-blue-100"
+                    >
+                        {formatted}
+                    </p>
+                </aside>:
+                <p>
+                    &#x2713; &emsp;Sent
+                </p>
+            }
 		</li>
 	)
 }

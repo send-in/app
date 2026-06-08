@@ -45,8 +45,8 @@ interface IMessageFormProps {
 	templates: ITemplate[]
 	total?: number
 	page?: number
-	q?: string
 	sort?: string
+	q?: string
 }
 
 export const MessageForm = ({
@@ -54,8 +54,8 @@ export const MessageForm = ({
 	templates,
 	total,
 	page,
-	q,
 	sort,
+	q,
 }: IMessageFormProps) => {
 	const router = useRouter()
 	const searchParams = useSearchParams()
@@ -254,6 +254,16 @@ export const MessageForm = ({
                                 "
                                 variant="filled"
                                 placeholder="Search"
+                                onKeyDown={(e) => {
+                                    if (e.key === "Enter") {
+                                        e.currentTarget.blur()
+
+                                        updateQuery(
+                                            "q",
+                                            e.currentTarget.value
+                                        )
+                                    }
+                                }}
                                 onBlur={(e)=>
                                     updateQuery(
                                         "q",
