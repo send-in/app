@@ -40,7 +40,7 @@ const Navbar = () => {
 		<nav
             data-path={pathname}
 			className="
-				px-4 desktop:px-4 p-1 desktop:p-2 w-full
+				px-4 desktop:px-4 p-1 desktop:p-2 pr-2 w-full
 				xlarge:text-base mb-4 flex items-center 
                 gap-10 z-100 justify-between rounded-full 
                 font-medium text-charcoal-200 max-w-[90%]

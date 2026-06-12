@@ -1,3 +1,8 @@
+
+// #region imports
+import { ITemplate } from "./template"
+// #endregion
+
 export interface IRawConnection {
 	ID: string
 	PublicID: string
@@ -23,6 +28,13 @@ export interface IConnection {
 	country?: string
 	createdAt: Date
 	updatedAt: Date
+}
+
+export interface IScheduledConnection 
+extends IConnection {
+    template?: ITemplate
+    timezone?: string
+    dateTime?: string
 }
 
 export const serializeConnection = (

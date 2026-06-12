@@ -40,10 +40,13 @@ interface IConnectionFormProps {
     sort?: string
     page?: number
     total?: number
+    syncLimit?: number
 }
 
 export const ConnectionForm = ({
     connections,
+    syncLimit = 0,
+
     q,
     sort,
     page,
@@ -52,6 +55,21 @@ export const ConnectionForm = ({
     const router = useRouter()
     const searchParams = useSearchParams()
     const [selected, setSelected] = useState<string[]>([])
+    const [isSyncing, setIsSyncing] = useState(false)
+
+    const handleResync = async () => {
+        if (isSyncing)
+            return
+
+        setIsSyncing(true)
+
+        try {
+            await resyncConnections()
+            router.refresh()
+        } finally {
+            setIsSyncing(false)
+        }
+    }
 
     const updateQuery = (
         key: string,
@@ -227,21 +245,20 @@ export const ConnectionForm = ({
 
                  <aside className="
                     rounded-full bg-white
-                    shadow-sm flex items-center
-                    justify-center px-2
+                    shadow-sm px-2 flex justify-center
+                    items-center text-grey-300 gap-2
                 ">
                     <Button
-                        onClick={resyncConnections}
+                        onClick={handleResync}
+                        loading={isSyncing}
+                        loadingText="Syncing..."
                         endIcon={<Refresh />}
                         variant="primary"
-                        disabled={false}
+                        disabled={syncLimit >= 5}
                     >
-                        {
-                            false
-                                ? `Resync Limit Exceeded`
-                                : "Resync"
-                        }
+                        Resync
                     </Button>
+                    <p>{`${5-syncLimit} Remaining`} </p>
                 </aside>
             </section>
 

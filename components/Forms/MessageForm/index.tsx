@@ -7,6 +7,7 @@ import Link from "next/link"
 import {
 	useCallback,
 	useEffect,
+	useMemo,
 	useState,
 } from "react"
 
@@ -14,6 +15,11 @@ import {
 	useRouter,
 	useSearchParams,
 } from "next/navigation"
+
+import { 
+    compareLexicalText, 
+    toDateTimeLocal 
+} from "@/utils"
 
 import {
 	DateTime,
@@ -60,19 +66,19 @@ export const MessageForm = ({
 	const router = useRouter()
 	const searchParams = useSearchParams()
 
-    const [items, setItems] = 
-        useState<IMessage[]>(messages)
-	const [message, setMessage] = 
-        useState<IMessage | undefined>(messages?.[0])
-        
-	const [timezone, setTimezone] = 
-        useState<string | undefined>(message?.timezone)
-	const [template, setTemplate] = 
-        useState<ITemplate | undefined>(message?.template)
-    const [value, setValue] = 
-        useState<string>(
-            message?.message ?? template?.value ?? ""
-        )
+    const [items, setItems] = useState<IMessage[]>(messages)
+    const [loading, setLoading] = useState<boolean>(false)
+    const [error, setError] = useState<string>("")
+	const [message, setMessage] = useState<IMessage | undefined>(messages?.[0])
+    const [template, setTemplate] = useState<ITemplate | undefined>(message?.template)
+    const [timezone, setTimezone] = useState<string | undefined>(message?.timezone)
+	const [dateTime, setDateTime] = useState<string>(toDateTimeLocal(
+        message?.scheduledAt,
+        message?.timezone
+    ))
+    const [value, setValue] = useState<string>(
+        message?.message || template?.value || ""
+    )
 
 	const updateQuery = useCallback((
 		key: string,
@@ -138,7 +144,7 @@ export const MessageForm = ({
     const handleSave = useCallback(
         async () => {
             if (!message) return
-            
+            setLoading(true)
             const isTemplate = 
                 template?.id && 
                 template.value.trim() === value.trim()
@@ -147,8 +153,7 @@ export const MessageForm = ({
                 message.id,
                 {
                     timezone,
-                    scheduleTime:
-                        message.scheduledAt.toISOString(),
+                    scheduleTime: dateTime,
                     ...(
                         isTemplate ?
                         { templateId: template?.id } :
@@ -157,8 +162,11 @@ export const MessageForm = ({
                 },
             )
 
-            if (!res.success || !res.data)
+            if (!res.success || !res.data){
+                setError(res?.error || "")
+                setLoading(false)
                 return
+            }
 
             setItems(prev =>
                 prev.map(item =>
@@ -170,10 +178,17 @@ export const MessageForm = ({
 
             setMessage(res.data)
             setTemplate(res.data.template)
+            setDateTime(toDateTimeLocal(
+                res.data.scheduledAt,
+                res.data.timezone
+            ))
+
+            setLoading(false)
         },
         [
             message,
             template,
+            dateTime,
             timezone,
             value,
         ],
@@ -183,6 +198,10 @@ export const MessageForm = ({
 		() => {
 			if (!message) return
             setTimezone(message.timezone)
+            setDateTime(toDateTimeLocal(
+                message.scheduledAt,
+                message.timezone
+            ))
 
             if(message.template){
                 setTemplate(message.template)
@@ -206,15 +225,43 @@ export const MessageForm = ({
 		[messages]
 	)
 
-    const originalValue =
-        message?.message ??
-        message?.template?.value ??
-        ""
+    useEffect(() => {
+        if (!error) return
 
-    const hasChanges =
-        originalValue !== value ||
-        (message?.templateId ?? undefined) !== template?.id ||
-        (message?.timezone ?? "") !== (timezone ?? "")
+        const timer = setTimeout(
+            () => setError(""),
+            3000
+        )
+
+        return () => clearTimeout(timer)
+    }, [error])
+
+    const originalValue = useMemo(
+        ()=>
+            message?.message ||
+            message?.template?.value ||
+            "",
+        [message]
+    )
+
+    const hasChanges = useMemo(
+        ()=>
+            compareLexicalText(originalValue) !== compareLexicalText(value) ||
+            (message?.templateId || undefined) !== template?.id ||
+            (message?.timezone || "") !== (timezone || "") ||
+            toDateTimeLocal(
+                message?.scheduledAt,
+                message?.timezone,
+            ) !== dateTime,
+        [
+            originalValue, 
+            value, 
+            message, 
+            template, 
+            timezone, 
+            dateTime
+        ]
+    )
 
     const isValid =
         Boolean(template?.id) ||
@@ -414,11 +461,13 @@ export const MessageForm = ({
 
 					<div className="flex gap-4">
 						<DateTime
+                            onDateChange={setDateTime}
+                            onTimezoneChange={setTimezone}
                             scheduledAt={message?.scheduledAt}
                             profile={{
                                 name: message!.name,
                                 picture: message!.picture,
-                                timezone: message!.timezone
+                                timezone: timezone
                             }}
                         />
 
@@ -435,7 +484,7 @@ export const MessageForm = ({
                         (val) => setValue(val)
                     }
                     initialValue={
-                        message?.message ??
+                        message?.message ||
                         template?.value
                     }
                 />
@@ -447,6 +496,15 @@ export const MessageForm = ({
 						justify-end
 					"
 				>
+                    {error && 
+                        <p className="
+                            mr-auto animate-fade-in-fast 
+                            text-red-800
+                        ">
+                            Error: {error}
+                        </p>
+                    }
+
 					<Button
                         onClick={handleDelete}
                         variant="secondary"
@@ -456,6 +514,8 @@ export const MessageForm = ({
                     </Button>
 
                     <Button
+                        loading={loading}
+                        loadingText="Rescheduling"
                         onClick={handleSave}
                         variant="primary"
                         disabled={

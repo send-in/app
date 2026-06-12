@@ -83,7 +83,7 @@ export const updateMessage = async(
 		timezone?: string
 		message?: string
 		templateId?: string
-		scheduleTime: string
+		scheduleTime?: string
 	},
 ): Promise<IResponse<IMessage>> => {
 	const res = await _PUT<IRawMessage>(

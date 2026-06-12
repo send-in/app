@@ -2,6 +2,7 @@
 
 // #region imports
 import { ITemplate } from "@/lib"
+import { parseLexicalText } from "@/utils"
 // #endregion
 
 const TemplateCard = ({
@@ -36,7 +37,9 @@ const TemplateCard = ({
                     min-w-0 select-none
 				"
 			>
-				{template.value}
+                {parseLexicalText(
+                    template.value,
+                )}
 			</p>
 		</li>
 	)

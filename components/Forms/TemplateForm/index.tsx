@@ -13,12 +13,18 @@ import {
 } from "next/navigation"
 
 import { 
+    compareLexicalText, 
+} from "@/utils"
+
+import { 
     createTemplate,
     deleteTemplate, 
     ITemplate,
     SORT_OPTIONS,
     updateTemplate
 } from "@/lib"
+
+import { Search } from "@/icons"
 
 import {
     Editor,
@@ -32,7 +38,7 @@ import {
     Select,
     TextField
 } from "@/base"
-import { Search } from "@/icons"
+
 // #endregion
 
 const PAGE_SIZE = 11
@@ -60,8 +66,8 @@ export const TemplateForm = ({
         templates?.at(0)
     )
 
-    const [title, setTitle] = useState<string>(selected?.label ?? "")
-    const [value, setValue] = useState<string>(selected?.value ?? "")
+    const [title, setTitle] = useState<string>(selected?.label || "")
+    const [value, setValue] = useState<string>(selected?.value || "")
 
     const updateQuery = useCallback((
 		key: string,
@@ -202,8 +208,8 @@ export const TemplateForm = ({
 
     useEffect(
         () => {
-            setTitle(selected?.label ?? "")
-            setValue(selected?.value ?? "")
+            setTitle(selected?.label || "")
+            setValue(selected?.value || "")
         },[selected]
     )
 
@@ -350,7 +356,7 @@ export const TemplateForm = ({
 				<Editor
                     title={title}
                     key={selected?.id}
-                    initialValue={selected?.value ?? ""}
+                    initialValue={selected?.value || ""}
                     onTitleChange={(val)=>setTitle(val)}
                     onValueChange={(val)=>setValue(val)}
                 />
@@ -371,7 +377,8 @@ export const TemplateForm = ({
                         onClick={handleSave}
 						disabled={
                             selected?.label === title &&
-                            selected?.value === value
+                            compareLexicalText(selected?.value) === 
+                            compareLexicalText(value)
                         }
 					>
 						Save

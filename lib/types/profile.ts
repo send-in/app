@@ -60,7 +60,7 @@ export const serializeAccount = (
 	email: account.Email,
 	profile: account.Profile,
 	picture: account.Picture,
-	timezone: account.Timezone,
+	timezone: account.Timezone ?? "Asia/Kolkata",
 	token: account.Token,
 	userAgent: account.UserAgent,
 	plan: account.Plan,

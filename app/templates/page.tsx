@@ -19,7 +19,7 @@ const TemplatesPage = async({ searchParams }:{
 
 	const { 
         q, page, sort 
-    } =  await parseQuery(searchParams)
+    } = await parseQuery(searchParams)
 
 	const {
 		total,

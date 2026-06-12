@@ -92,8 +92,8 @@ const Footer = () => {
 	return (
 		<section
 			className="
-                w-full pt-2 text-charcoal-100
-                relative z-0 p-8 small:pt-0 desktop:px-[5%]
+                w-full pt-2 text-charcoal-100 bottom-0
+                small:relative z-0 p-8 small:pt-0 desktop:px-[5%]
             "
 			id="footer"
 		>

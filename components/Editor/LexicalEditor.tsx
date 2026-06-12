@@ -34,17 +34,27 @@ export const LexicalEditor = ({
 	const [editor] = useLexicalComposerContext()
 
     useEffect(() => {
-        editor.update(() => {
-            const root = $getRoot()
-            root.clear()
+        if (!initialValue) return
 
-            const paragraph = $createParagraphNode()
-            paragraph.append(
-                $createTextNode(initialValue ?? ""),
-            )
-            root.append(paragraph)
-        })
-    }, [editor,initialValue])
+        try {
+            const editorState =
+                editor.parseEditorState(initialValue)
+            editor.setEditorState(editorState)
+        } catch {
+            editor.update(() => {
+                const root = $getRoot()
+                root.clear()
+                const paragraph = $createParagraphNode()
+                paragraph.append(
+                    $createTextNode(initialValue),
+                )
+                root.append(paragraph)
+            })
+        }
+    }, [
+        editor,
+        initialValue,
+    ])
 
 	return (
 		<section className="
@@ -98,18 +108,16 @@ export const LexicalEditor = ({
             <ListPlugin />
 			<HistoryPlugin />
 			<OnChangePlugin
-				onChange={(
-					editorState: EditorState,
-				) => {
-					editorState.read(
-						() => {
-							onChange?.(
-								$getRoot().getTextContent(),
-							)
-						},
-					)
-				}}
-			/>
+                onChange={(
+                    editorState: EditorState,
+                ) => {
+                    onChange?.(
+                        JSON.stringify(
+                            editorState.toJSON(),
+                        ),
+                    )
+                }}
+            />
 		</section>
 	)
 }

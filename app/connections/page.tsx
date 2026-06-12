@@ -1,10 +1,12 @@
 // #region imports
 import { 
-    ConnectionForm 
+    ConnectionForm, 
+    ErrorComponent
 } from "@/components"
 
 import { 
     getConnections,
+    getProfile,
     parseQuery 
 } from "@/lib"
 // #endregion
@@ -18,19 +20,18 @@ const ConnectionsPage = async({ searchParams }:{
     const { q, sort, page } =
     await parseQuery(searchParams)
 
-    const {
-        data: connections = [],
-        total,
-    } = await getConnections({
+    const { data: account } = await getProfile()
+    const { data: connections = [], total } = await getConnections({
         q,
         sort,
         page,
     })
 
     return (
+        account ?
         <main className="
             pt-[8%] p-8 flex flex-col 
-            items-center h-auto min-h-[52vh] 
+            items-center h-auto min-h-[55vh] 
             relative
         ">
             <ConnectionForm
@@ -39,8 +40,10 @@ const ConnectionsPage = async({ searchParams }:{
                 page={page}
                 total={total}
                 connections={connections}
+                syncLimit={account.dailySyncsUsed}
             />
-        </main>
+        </main>:
+        <ErrorComponent/>
     )
 }
 export default ConnectionsPage

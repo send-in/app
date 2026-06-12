@@ -33,8 +33,8 @@ export const useTimezone = (
 	)
 
 	const timeZone =
-		zone ??
-		internalTimezone?.name ??
+		zone ||
+		internalTimezone?.name ||
 		"Asia/Kolkata"
 
 	const parts = useMemo(
@@ -42,7 +42,7 @@ export const useTimezone = (
 			new Intl.DateTimeFormat(
 				"en-US",
 				{
-					timeZone,
+					timeZone: timeZone,
 					year: "numeric",
 					month: "numeric",
 					day: "numeric",

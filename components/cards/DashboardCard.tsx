@@ -6,6 +6,7 @@ import { Trash } from "@/icons"
 import { IconButton } from "@/base"
 import { IMessage } from "@/lib"
 import { TimeProgress } from "@/components"
+import { parseLexicalText } from "@/utils"
 // #endregion
 
 const DashboardCard = ({
@@ -35,7 +36,7 @@ const DashboardCard = ({
             hour: "numeric",
             minute: "numeric",
             hour12: true,
-            timeZoneName: "shortGeneric",
+            timeZoneName: "longGeneric",
             timeZone: timezone
         },
     ).format(scheduledAt)
@@ -81,8 +82,8 @@ const DashboardCard = ({
                 ">
 					{
                         !!template?.value ? 
-                        template.value : 
-                        message
+                        parseLexicalText(template.value): 
+                        parseLexicalText(message)
                     }
 				</p>
 			</aside>
@@ -90,10 +91,11 @@ const DashboardCard = ({
             {!isSent ?
                 <aside className="
                     flex justify-between 
-                    items-center gap-4 
+                    items-center gap-4
+                    min-w-max
                 ">
                     <p
-                        className="text-blue-100"
+                        className="text-blue-100 text-nowrap"
                     >
                         {formatted}
                     </p>

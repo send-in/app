@@ -1,17 +1,13 @@
 // #region imports
-import { redirect } from "next/navigation"
 import { getProfile, logout } from "@/lib"
-import { ProfileForm } from "@/components"
+import { ErrorComponent, ProfileForm } from "@/components"
 import { Button } from "@/base"
 import { Logo } from "@/icons"
 import Link from "next/link"
 // #endregion
 
 const ProfilePage = async () => {
-	const {
-        success,
-		data: account
-	} = await getProfile()
+	const { data: account } = await getProfile()
 
 	const {
 		name,
@@ -21,10 +17,8 @@ const ProfilePage = async () => {
         token,
 	} = account || {}
 
-    if(!success)
-        redirect("/")
-
 	return (
+        account ?
         <main className="
             p-8 desktop:px-[5%] pt-[5%] pb-0
             text-charcoal-100 text-base 
@@ -80,7 +74,8 @@ const ProfilePage = async () => {
                     "
                 />
             </section>
-		</main>
+		</main>:
+        <ErrorComponent/>
 	)
 }
 

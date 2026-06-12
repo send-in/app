@@ -134,23 +134,6 @@ export const injectImages = <
 	return result
 }
 
-export const formatPrice = (
-    amount: number | null | undefined,
-    currency: ICurrency
-): string => {
-    const CURRENCY_SYMBOL_MAP: Record<ICurrency, string> = {
-        USD: "$",
-        INR: "₹",
-        EUR: "€",
-        GBP: "£",
-        AED: "د.إ",
-    }
-    
-    if (amount == null) return "-"
-    const symbol = CURRENCY_SYMBOL_MAP[currency] ?? currency
-    return `${symbol}${amount.toLocaleString()}`
-}
-
 export const isObjectComplete = (
   obj: Record<string, any>,
   allowZero?: boolean
@@ -187,7 +170,6 @@ export const isObjectComplete = (
 
 export const parseDate = (value: string) => {
     const [day, month, year] = value.split("/")
-
     return new Date(
         Number(year),
         Number(month) - 1,
@@ -195,42 +177,11 @@ export const parseDate = (value: string) => {
     )
 }
 
-export const convertMeasurements = <
-    T extends object
->(
-    values: T,
-    from: "cm" | "in",
-    to: "cm" | "in"
-): T => {
-
-    if(from === to)
-        return values
-
-    const ratio =
-        from === "cm"
-            ? 1 / 2.54
-            : 2.54
-
-    return Object.fromEntries(
-        Object.entries(values).map(
-            ([key, value]) => [
-                key,
-                typeof value === "number"
-                    ? Number(
-                        (
-                            value * ratio
-                        ).toFixed(1)
-                    )
-                    : value
-            ]
-        )
-    ) as T
-}
-
 export const formatDateTime = (
 	date: Date
 ) => ({
-	date: date.toLocaleDateString(
+    value: date,
+	date: date?.toLocaleDateString(
 		"en-US",
 		{
             weekday: "short",
@@ -238,7 +189,7 @@ export const formatDateTime = (
 			day: "numeric",
 		},
 	),
-	time: date.toLocaleTimeString(
+	time: date?.toLocaleTimeString(
 		"en-US",
 		{
 			hour: "numeric",
@@ -252,7 +203,7 @@ export const formatCurrent = (
 	date: Date,
 	timeZone: string,
 ) => ({
-	date: date.toLocaleDateString(
+	date: date?.toLocaleDateString(
 		"en-US",
 		{
 			timeZone,
@@ -261,7 +212,7 @@ export const formatCurrent = (
 			day: "numeric",
 		},
 	),
-	time: date.toLocaleTimeString(
+	time: date?.toLocaleTimeString(
 		"en-US",
 		{
 			timeZone,
@@ -271,3 +222,187 @@ export const formatCurrent = (
 		},
 	),
 })
+
+export const toDateTimeLocal = (
+	date?: Date,
+	timezone?: string,
+) => {
+	const formatter =
+		new Intl.DateTimeFormat(
+			"sv-SE",
+			{
+				timeZone: timezone,
+				year: "numeric",
+				month: "2-digit",
+				day: "2-digit",
+				hour: "2-digit",
+				minute: "2-digit",
+				hourCycle: "h23",
+			},
+		)
+
+	const parts = Object.fromEntries(
+		formatter
+			.formatToParts(date)
+			.filter(
+				part =>
+					part.type !==
+					"literal",
+			)
+			.map(part => [
+				part.type,
+				part.value,
+			]),
+	)
+
+	return (
+		`${parts.year}-${parts.month}-${parts.day}` +
+		`T${parts.hour}:${parts.minute}`
+	)
+}
+
+export const formatDateTimeLocal = (
+	value?: string,
+) => {
+	if (!value)
+		return {
+			date: "",
+			time: "",
+		}
+
+	const [datePart, timePart] =
+		value.split("T")
+
+	const [year, month, day] =
+		datePart
+			.split("-").
+			map(Number)
+
+	const date = new Date(
+		year,
+		month - 1,
+		day,
+	)
+
+	const time = new Date(
+		`2000-01-01T${timePart}`,
+	)
+
+	return {
+		date: date.toLocaleDateString(
+			"en-US",
+			{
+				weekday: "short",
+				month: "short",
+				day: "numeric",
+			},
+		),
+
+		time: time.toLocaleTimeString(
+			"en-US",
+			{
+				hour: "numeric",
+				minute: "2-digit",
+				hour12: true,
+			},
+		),
+	}
+}
+
+export const parseLexicalText = (
+	value?: string,
+) => {
+	if (!value)
+		return ""
+
+	try {
+		const json = JSON.parse(value)
+
+		return json.root.children
+			.flatMap(
+				(node: any) =>
+					node.children ?? [],
+			)
+			.map(
+				(node: any) =>
+					node.text ?? "",
+			)
+			.join(" ")
+	} catch {
+		return value
+	}
+}
+
+export const compareLexicalText = (
+	value?: string,
+): string => {
+	if (!value)
+		return ""
+
+	try {
+		const json = JSON.parse(value)
+
+		const parseNode = (
+			node: any,
+		): string => {
+			switch (node.type) {
+				case "text": {
+					let text =
+						node.text ?? ""
+
+					if (node.format & 1)
+						text = `B:${text}`
+
+					if (node.format & 2)
+						text = `I:${text}`
+
+					if (node.format & 4)
+						text = `S:${text}`
+
+					if (node.format & 8)
+						text = `U:${text}`
+
+					return text
+				}
+
+				case "list":
+					return (
+						`L:${node.listType}\n` +
+						(node.children ?? [])
+							.map(parseNode)
+							.join("\n")
+					)
+
+				case "listitem":
+					return (
+						"LI:" +
+						(node.children ?? [])
+							.map(parseNode)
+							.join("")
+					)
+
+				case "paragraph":
+					return (
+						(node.children ?? [])
+							.map(parseNode)
+							.join("") +
+						"\n"
+					)
+
+				default:
+					return (
+						(node.children ?? [])
+							.map(parseNode)
+							.join("")
+					)
+			}
+		}
+
+		return parseNode(
+			json.root,
+		)
+			.trim()
+	} catch {
+		return value.trim()
+	}
+}

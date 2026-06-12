@@ -11,6 +11,7 @@ export interface IPlanCard {
     slider: boolean
     buttonText: string
     highlighted?: boolean
+    planCredits: number
     color?: 
         | "blue-100" 
         | "charcoal-200"
@@ -20,24 +21,22 @@ export interface IPlanCard {
 const PlanCard = ({
     plan: {
         step,
+        id,
         title,
         price,
-        planId,
         messages,
         features,
         minMessages,
         maxMessages
     },
+    planCredits,
     slider,
     buttonText,
     highlighted = false,
     color = "charcoal-200",
 }: IPlanCard) => {
 
-    const [sliderValue, setSliderValue] = useState(
-        messages ?? minMessages ?? 0
-    )
-
+    const [sliderValue, setSliderValue] = useState(planCredits)
     const displayPrice = Math.round(
         (sliderValue / (messages ?? 1)) * 
         (price ?? 1)
@@ -128,12 +127,20 @@ const PlanCard = ({
                 )
             }
 
-            <Button 
-                variant={color} 
-                className="mt-4"
-            >
-                {buttonText}
-            </Button>
+            {
+                (
+                    id !== "pro" || (
+                        planCredits === maxMessages &&
+                        sliderValue !== maxMessages
+                    )
+                ) &&
+                <Button 
+                    variant={color} 
+                    className="mt-4"
+                >
+                    {buttonText}
+                </Button>
+            }
 
             <div className="
                 w-full border-t border-grey-100 

@@ -19,15 +19,17 @@ export interface PopoverProps {
     trigger: ReactNode
     children: ReactNode
     className?: string
+    modalOpen?: boolean
 }
 
 const Popover = forwardRef<HTMLDivElement, PopoverProps>(
     ({
 		trigger,
 		children,
+        modalOpen = false,
 		className = ""
 	}, ref) => {
-        const [open, setOpen] = useState(false)
+        const [open, setOpen] = useState<boolean>(modalOpen)
         const popoverRef = useRef<HTMLDivElement>(null)
 
         const handleClickOutside = (event: MouseEvent) => {
@@ -43,6 +45,11 @@ const Popover = forwardRef<HTMLDivElement, PopoverProps>(
             document.addEventListener("mousedown", handleClickOutside)
             return () => document.removeEventListener("mousedown", handleClickOutside)
         }, [])
+
+        useEffect(
+            () => setOpen(modalOpen), 
+            [modalOpen]
+        )
 
         return (
             <div ref={ref} className="relative inline-block">
