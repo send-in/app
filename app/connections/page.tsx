@@ -40,7 +40,15 @@ const ConnectionsPage = async({ searchParams }:{
                 page={page}
                 total={total}
                 connections={connections}
-                syncLimit={account.dailySyncsUsed}
+                syncUsed={
+                    account.plan === "free" ?
+                    account.lifetimeSyncsUsed :
+                    account.dailySyncsUsed
+                }
+                syncLimit={
+                    account.plan === "free" ?
+                    1 : 5
+                }
             />
         </main>:
         <ErrorComponent/>

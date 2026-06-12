@@ -40,12 +40,15 @@ interface IConnectionFormProps {
     sort?: string
     page?: number
     total?: number
+
     syncLimit?: number
+    syncUsed?: number
 }
 
 export const ConnectionForm = ({
     connections,
     syncLimit = 0,
+    syncUsed = 0,
 
     q,
     sort,
@@ -244,9 +247,10 @@ export const ConnectionForm = ({
                 )}
 
                  <aside className="
-                    rounded-full bg-white
-                    shadow-sm px-2 flex justify-center
+                    rounded-full bg-white max-h-max
+                    shadow-sm p-1 pr-2 flex justify-center
                     items-center text-grey-300 gap-2
+                    ml-auto
                 ">
                     <Button
                         onClick={handleResync}
@@ -254,11 +258,11 @@ export const ConnectionForm = ({
                         loadingText="Syncing..."
                         endIcon={<Refresh />}
                         variant="primary"
-                        disabled={syncLimit >= 5}
+                        disabled={syncUsed >= syncLimit}
                     >
                         Resync
                     </Button>
-                    <p>{`${5-syncLimit} Remaining`} </p>
+                    <p>{`${syncLimit-syncUsed} Remaining`} </p>
                 </aside>
             </section>
 

@@ -465,8 +465,8 @@ export const MessageForm = ({
                             onTimezoneChange={setTimezone}
                             scheduledAt={message?.scheduledAt}
                             profile={{
-                                name: message!.name,
-                                picture: message!.picture,
+                                name: message?.name,
+                                picture: message?.picture,
                                 timezone: timezone
                             }}
                         />
