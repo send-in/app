@@ -5,7 +5,6 @@ import { redirect } from "next/navigation"
 import { _POST } from "@/lib/api/utils"
 
 import {
-    _ACCESS_KEY,
 	_AUTH_KEY,
 	_AUTH_URL,
     _COOKIE_SECURE,

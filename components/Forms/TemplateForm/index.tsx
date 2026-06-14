@@ -61,6 +61,7 @@ export const TemplateForm = ({
     const router = useRouter()
     const searchParams = useSearchParams()
 
+    const [error, setError] = useState<string | undefined>("")
     const [items, setItems] = useState<ITemplate[]>(templates)
     const [selected, setSelected] = useState<ITemplate | undefined>(
         templates?.at(0)
@@ -142,6 +143,7 @@ export const TemplateForm = ({
             )
 
             if (!res.success) {
+                setError(res?.error)
                 setItems(prevItems)
                 setSelected(prevSelected)
             }
@@ -160,8 +162,10 @@ export const TemplateForm = ({
                     value,
                 )
 
-                if (!res.success || !res.data)
+                if (!res.success || !res.data){
+                    setError(res?.error)
                     return
+                }
 
                 setItems(prev =>
                     prev.map(item =>
@@ -181,8 +185,10 @@ export const TemplateForm = ({
                 value,
             )
 
-            if (!res.success || !res.data)
+            if (!res.success || !res.data){
+                setError(res?.error)
                 return
+            }
 
             setItems(prev =>
                 prev.map(item =>
@@ -212,6 +218,17 @@ export const TemplateForm = ({
             setValue(selected?.value || "")
         },[selected]
     )
+
+    useEffect(() => {
+        if (!error) return
+
+        const timer = setTimeout(
+            () => setError(undefined),
+            3000
+        )
+
+        return () => clearTimeout(timer)
+    }, [error])
 
 	return (
 		<>
@@ -322,12 +339,21 @@ export const TemplateForm = ({
                             }
                         </section>
                     </> :
-                    <p className="
-                        text-2xl desktop:text-6xl 
-                        text-blue-100 font-semibold
-                    ">
-                        Create your first template 📜
-                    </p>
+                    <section className="flex flex-col items-center gap-2">
+                        <p className="
+                            text-2xl desktop:text-6xl 
+                            text-blue-100 font-semibold
+                        ">
+                            Create your first template 📜
+                        </p>
+
+                        <Button
+                            variant="primary"
+                            onClick={handleCreate}
+                        >
+                            + Add Template
+                        </Button>
+                    </section>
                 }
 
 				{
@@ -361,9 +387,19 @@ export const TemplateForm = ({
                     onValueChange={(val)=>setValue(val)}
                 />
 
-				<aside
-					className="flex gap-2 w-full justify-end"
-				>
+				<aside className="
+                    flex gap-2 w-full 
+                    justify-end
+                ">
+                    {error && 
+                        <p className="
+                            mr-auto animate-fade-in-fast 
+                            text-red-800
+                        ">
+                            {error}
+                        </p>
+                    }
+
 					<Button
 						disabled={!selected}
                         variant="secondary"

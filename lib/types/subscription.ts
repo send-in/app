@@ -4,6 +4,7 @@ export interface IPlan {
     price?: number
     features: string[]
     messages?: number
+    description?: string
     minMessages?: number
     maxMessages?: number
     step?: number

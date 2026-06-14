@@ -12,7 +12,7 @@ const Loading = () => (
 		" 
 	>
 		<Logo
-			className="text-red-100"
+            className="text-black"
 			size={80}
 		/>
 

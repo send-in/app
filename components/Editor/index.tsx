@@ -81,6 +81,7 @@ export const Editor = ({
 					fullWidth
 					value={title}
 					variant="filled"
+                    placeholder="Write Title"
 					onChange={(e) =>
 						onTitleChange?.(
 							e.target.value,

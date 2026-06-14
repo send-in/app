@@ -4,6 +4,7 @@
 import { _PAYMENTS_URL } from "@/constants"
 
 import { 
+    _DELETE,
     _GET, 
     _POST 
 } from "@/lib/api"
@@ -42,10 +43,9 @@ export const createPayment = async (
                 currency: res.data.currency,
                 order_id: res.data.orderId,
                 name: "SendIn",
+                image: "/logo.svg",
                 description: `${body.credits} Credits`,
-                theme: {
-                    color: "#4285F4",
-                },
+                theme: { color: "#4285F4" },
             },
         }
     }
@@ -82,5 +82,24 @@ export const pollPayment = async (
     return {
         success: false,
         error: "Payment processing timed out",
+    }
+}
+
+export const cancelSubscription = async () => {
+    const res = await _DELETE(
+        `${_PAYMENTS_URL}`, {},
+        { withAuth: true },
+    )
+
+    if (res.success) {
+        return {
+            success: true,
+            data: res.data,
+        }
+    }
+
+    return {
+        success: false,
+        error: res.error,
     }
 }

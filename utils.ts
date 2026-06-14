@@ -177,96 +177,95 @@ export const parseDate = (value: string) => {
     )
 }
 
-export const formatDateTime = (
-	date: Date
-) => ({
-    value: date,
-	date: date?.toLocaleDateString(
-		"en-US",
-		{
-            weekday: "short",
-			month: "short",
-			day: "numeric",
-		},
-	),
-	time: date?.toLocaleTimeString(
-		"en-US",
-		{
-			hour: "numeric",
-			minute: "2-digit",
-			hour12: true,
-		},
-	),
-})
-
-export const formatCurrent = (
-	date: Date,
-	timeZone: string,
-) => ({
-	date: date?.toLocaleDateString(
-		"en-US",
-		{
-			timeZone,
-			weekday: "short",
-			month: "short",
-			day: "numeric",
-		},
-	),
-	time: date?.toLocaleTimeString(
-		"en-US",
-		{
-			timeZone,
-			hour: "numeric",
-			minute: "2-digit",
-			hour12: true,
-		},
-	),
-})
-
-export const toDateTimeLocal = (
-	date?: Date,
-	timezone?: string,
-) => {
-	const formatter =
-		new Intl.DateTimeFormat(
-			"sv-SE",
-			{
-				timeZone: timezone,
-				year: "numeric",
-				month: "2-digit",
-				day: "2-digit",
-				hour: "2-digit",
-				minute: "2-digit",
-				hourCycle: "h23",
-			},
-		)
-
-	const parts = Object.fromEntries(
-		formatter
-			.formatToParts(date)
-			.filter(
-				part =>
-					part.type !==
-					"literal",
-			)
-			.map(part => [
-				part.type,
-				part.value,
-			]),
-	)
-
-	return (
-		`${parts.year}-${parts.month}-${parts.day}` +
-		`T${parts.hour}:${parts.minute}`
-	)
+export const createDateInTimezone = (
+    year: number,
+    month: number,
+    day: number,
+    hour: number,
+    timezone: string,
+    minute: number = 0,
+): Date => {
+    const approxMs = Date.UTC(year, month - 1, day, hour, minute, 0)
+ 
+    const parts = Object.fromEntries(
+        new Intl.DateTimeFormat("en-US", {
+            timeZone: timezone,
+            year: "numeric",
+            month: "numeric",
+            day: "numeric",
+            hour: "numeric",
+            minute: "numeric",
+            second: "numeric",
+            hour12: false,
+        })
+            .formatToParts(new Date(approxMs))
+            .filter(p => p.type !== "literal")
+            .map(p => [p.type, p.value]),
+    )
+ 
+    const tzMs = Date.UTC(
+        Number(parts.year),
+        Number(parts.month) - 1,
+        Number(parts.day),
+        Number(parts.hour),
+        Number(parts.minute),
+        Number(parts.second),
+    )
+ 
+    return new Date(2 * approxMs - tzMs)
 }
 
-export const formatDateTimeLocal = (
-	value?: string,
+export const toDateTimeLocal = (
+    date?: Date,
+    timezone?: string,
 ) => {
-	if (!value)
+    const formatter = new Intl.DateTimeFormat("sv-SE", {
+        timeZone: timezone,
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+        hourCycle: "h23",
+    })
+ 
+    const parts = Object.fromEntries(
+        formatter
+            .formatToParts(date)
+            .filter(part => part.type !== "literal")
+            .map(part => [part.type, part.value]),
+    )
+ 
+    return (
+        `${parts.year}-${parts.month}-${parts.day}` +
+        `T${parts.hour}:${parts.minute}`
+    )
+}
+
+export const formatInTimezone = (
+    date: Date,
+    timezone: string,
+) => ({
+    date: date.toLocaleDateString("en-US", {
+        timeZone: timezone,
+        weekday: "short",
+        month: "short",
+        day: "numeric",
+    }),
+    time: date.toLocaleTimeString("en-US", {
+        timeZone: timezone,
+        hour: "numeric",
+        minute: "2-digit",
+        hour12: true,
+    }),
+})
+
+export const formatDateTimeLocal = (
+    value?: string,
+) => {
+    if (!value)
 		return {
-			date: "",
+    date: "",
 			time: "",
 		}
 

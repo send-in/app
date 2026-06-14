@@ -23,14 +23,14 @@ const ConnectionCard = ({
 }) => {
 	return (
 		<li
+            onClick={()=>setSelected()}
 			data-selected={selected}
 			className="
 				list-none flex flex-col gap-4 text-base desktop:text-xl items-start w-full
-				desktop:py-4 text-grey-200 justify-between border-2 border-grey-100 rounded-2xl p-3
-				smooth active:scale-98 shrink-0 select-none cursor-pointer
-				hover:border-blue-200 data-[selected=true]:border-blue-100 relative min-h-[25vh]
+				desktop:py-4 text-grey-200 justify-between border-2 border-grey-100 min-h-max
+                rounded-2xl p-3 smooth active:scale-98 shrink-0 select-none cursor-pointer
+				hover:border-blue-200 data-[selected=true]:border-blue-100 relative 
 			"
-			onClick={()=>setSelected()}
 		>
 			<aside
 				className="flex flex-col gap-4 items-start group"

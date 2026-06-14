@@ -35,6 +35,7 @@ const PricingPage = async () => {
                 title: "Free Plan",
                 price: 0,
                 messages: 20,
+                description: "Free",
                 features: [
                     "Chrome extension",
                     "Inbox dashboard",
@@ -47,7 +48,7 @@ const PricingPage = async () => {
                 "Cancel Subscription" :
                 "Get Started",
             color: "charcoal-200",
-            slider: false
+            slider: false,
         },
         {
             plan: {
@@ -62,7 +63,7 @@ const PricingPage = async () => {
                     "Chrome extension",
                     "Inbox dashboard",
                     "Timezone intelligence",
-                    "5 Custom templates",
+                    "∞ Custom templates",
                     "Bulk scheduling from connection",
                 ]
             },
@@ -74,11 +75,12 @@ const PricingPage = async () => {
             plan: {
                 id: "enterprise",
                 title: "Enterprise Plan",
+                description: "Custom",
                 features: [
                     "Chrome extension",
                     "Inbox dashboard",
                     "Timezone intelligence",
-                    "∞ Custom templates",
+                    "∞ Scheduled messages",
                     "Bulk scheduling from connection",
                 ],
             },
@@ -87,6 +89,7 @@ const PricingPage = async () => {
             slider: false
         }
     ]
+
     return (
         account ?
         <section
@@ -107,6 +110,7 @@ const PricingPage = async () => {
                 lifetimeSyncsUsed={lifetimeSyncsUsed}
                 lifetimeMessagesUsed={lifetimeMessagesUsed}
             />
+            
             <aside className="
                 flex w-[75%] justify-between
                 max-mobile::flex-col gap-4
@@ -116,11 +120,14 @@ const PricingPage = async () => {
                     <PlanCard
                         key={index}
                         plan={data.plan}
-                        planCredits={planCredits}
-                        buttonText={data.buttonText}
                         color={data.color}
-                        highlighted={data.plan.id === plan}
                         slider={data.slider}
+                        buttonText={data.buttonText}
+                        highlighted={data.plan.id === plan}
+                        planCredits={
+                            plan === "pro" ? 
+                            planCredits : 25
+                        }
                     />
                 ))}
             </aside>

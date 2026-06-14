@@ -17,8 +17,7 @@ import {
 } from "next/navigation"
 
 import { 
-    compareLexicalText, 
-    toDateTimeLocal 
+    compareLexicalText
 } from "@/utils"
 
 import {
@@ -68,14 +67,13 @@ export const MessageForm = ({
 
     const [items, setItems] = useState<IMessage[]>(messages)
     const [loading, setLoading] = useState<boolean>(false)
-    const [error, setError] = useState<string>("")
+    const [error, setError] = useState<string | undefined>("")
 	const [message, setMessage] = useState<IMessage | undefined>(messages?.[0])
     const [template, setTemplate] = useState<ITemplate | undefined>(message?.template)
     const [timezone, setTimezone] = useState<string | undefined>(message?.timezone)
-	const [dateTime, setDateTime] = useState<string>(toDateTimeLocal(
-        message?.scheduledAt,
-        message?.timezone
-    ))
+	const [dateTime, setDateTime] = useState<string>(
+        message?.scheduledAt || ""
+    )
     const [value, setValue] = useState<string>(
         message?.message || template?.value || ""
     )
@@ -178,10 +176,7 @@ export const MessageForm = ({
 
             setMessage(res.data)
             setTemplate(res.data.template)
-            setDateTime(toDateTimeLocal(
-                res.data.scheduledAt,
-                res.data.timezone
-            ))
+            setDateTime(res.data.scheduledAt)
 
             setLoading(false)
         },
@@ -198,10 +193,7 @@ export const MessageForm = ({
 		() => {
 			if (!message) return
             setTimezone(message.timezone)
-            setDateTime(toDateTimeLocal(
-                message.scheduledAt,
-                message.timezone
-            ))
+            setDateTime(message.scheduledAt)
 
             if(message.template){
                 setTemplate(message.template)
@@ -229,7 +221,7 @@ export const MessageForm = ({
         if (!error) return
 
         const timer = setTimeout(
-            () => setError(""),
+            () => setError(undefined),
             3000
         )
 
@@ -249,10 +241,7 @@ export const MessageForm = ({
             compareLexicalText(originalValue) !== compareLexicalText(value) ||
             (message?.templateId || undefined) !== template?.id ||
             (message?.timezone || "") !== (timezone || "") ||
-            toDateTimeLocal(
-                message?.scheduledAt,
-                message?.timezone,
-            ) !== dateTime,
+            (message?.scheduledAt || "") !== dateTime,
         [
             originalValue, 
             value, 
@@ -375,12 +364,22 @@ export const MessageForm = ({
                             }
                         </section> 
                     </>:
-                    <p className="
-						text-2xl desktop:text-6xl
-						text-blue-100 font-semibold
-					">
-						No messages found 📭
-					</p>
+                    <section className="flex flex-col items-center gap-2">
+                        <p className="
+                            text-2xl desktop:text-6xl
+                            text-blue-100 font-semibold
+                        ">
+                            No messages found 📭
+                        </p>
+
+                        <Link href="/connections">
+                            <Button
+                                variant="primary"
+                            >
+                                Schedule Message
+                            </Button>
+                        </Link>
+                    </section>
 				}
 			</section>
 
@@ -459,15 +458,15 @@ export const MessageForm = ({
                         }}
 					/>
 
-					<div className="flex gap-4">
+					<div className="flex gap-2">
 						<DateTime
+                            dateTime={dateTime}
+                            timezone={timezone}
                             onDateChange={setDateTime}
                             onTimezoneChange={setTimezone}
-                            scheduledAt={message?.scheduledAt}
                             profile={{
                                 name: message?.name,
-                                picture: message?.picture,
-                                timezone: timezone
+                                picture: message?.picture
                             }}
                         />
 
@@ -501,7 +500,7 @@ export const MessageForm = ({
                             mr-auto animate-fade-in-fast 
                             text-red-800
                         ">
-                            Error: {error}
+                            {error}
                         </p>
                     }
 

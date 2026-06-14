@@ -12,6 +12,7 @@ export interface IRawConnection {
 	Picture?: string
 	Company?: string
 	Country?: string
+    Timezone?: string
 	CreatedAt: string
 	UpdatedAt: string
 }
@@ -26,6 +27,7 @@ export interface IConnection {
 	picture?: string
 	company?: string
 	country?: string
+    timezone?: string
 	createdAt: Date
 	updatedAt: Date
 }
@@ -33,7 +35,6 @@ export interface IConnection {
 export interface IScheduledConnection 
 extends IConnection {
     template?: ITemplate
-    timezone?: string
     dateTime?: string
 }
 
@@ -52,6 +53,7 @@ export const serializeConnection = (
 		picture: connection.Picture,
 		company: connection.Company,
 		country: connection.Country,
+        timezone: connection.Timezone,
 		publicId: connection.PublicID,
 		name: `${firstName} ${lastName}`.trim(),
 		createdAt: new Date(connection.CreatedAt),

@@ -1,7 +1,7 @@
 "use client"
 
 // #region imports
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 import {
     useRouter,
@@ -23,7 +23,6 @@ import {
 import {
     Search,
     GoTo,
-    Redo,
     Refresh,
 } from "@/icons"
 
@@ -57,6 +56,8 @@ export const ConnectionForm = ({
 }: IConnectionFormProps) => {
     const router = useRouter()
     const searchParams = useSearchParams()
+
+    const [error, setError] = useState<string | undefined>("")
     const [selected, setSelected] = useState<string[]>([])
     const [isSyncing, setIsSyncing] = useState(false)
 
@@ -67,7 +68,14 @@ export const ConnectionForm = ({
         setIsSyncing(true)
 
         try {
-            await resyncConnections()
+            const res = await resyncConnections()
+            if (!res.success) {
+                setError(
+                    res.error ??
+                    "Failed to create messages",
+                )
+                return
+            }
             router.refresh()
         } finally {
             setIsSyncing(false)
@@ -118,6 +126,17 @@ export const ConnectionForm = ({
         router.push(`/connections/options?${params.toString()}`)
         router.refresh()
     }
+
+    useEffect(() => {
+        if (!error) return
+
+        const timer = setTimeout(
+            () => setError(undefined),
+            3000
+        )
+
+        return () => clearTimeout(timer)
+    }, [error])
 
     return (
         <>
@@ -185,7 +204,9 @@ export const ConnectionForm = ({
             <div className="
                 gap-4 w-[92%]
                 grid grid-cols-5
-                my-10
+                my-10 min-h-[55vh] 
+                auto-rows-min
+                content-start
             ">
                 {
                     connections.map(
@@ -225,6 +246,7 @@ export const ConnectionForm = ({
                 flex w-full
                 bottom-10 sticky
                 justify-between
+                items-center
             ">
                 {!!connections.length && (
                     <aside className="
@@ -246,6 +268,7 @@ export const ConnectionForm = ({
                     </aside>
                 )}
 
+
                  <aside className="
                     rounded-full bg-white max-h-max
                     shadow-sm p-1 pr-2 flex justify-center
@@ -262,7 +285,18 @@ export const ConnectionForm = ({
                     >
                         Resync
                     </Button>
-                    <p>{`${syncLimit-syncUsed} Remaining`} </p>
+                    {   
+                        error ? 
+                        <p className="
+                            mr-auto animate-fade-in-fast 
+                            text-red-800
+                        ">
+                            {error}
+                        </p> :
+                        <p>
+                            {`${syncLimit-syncUsed} Remaining`} 
+                        </p>
+                    }
                 </aside>
             </section>
 

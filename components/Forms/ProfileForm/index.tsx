@@ -23,7 +23,7 @@ import {
 // #endregion
 
 const flexClass = `
-flex flex-col gap-4 w-full
+    flex flex-col gap-4 w-full
 `
 
 export const ProfileForm = ({
@@ -73,12 +73,9 @@ export const ProfileForm = ({
         >
             <section className={flexClass}>
                 <Image
+                    src={picture || "/profile.svg"}
                     className="rounded-full"
                     alt="SendIn"
-                    src={
-                        picture ||
-                        "/profile.svg"
-                    }
                     width={80}
                     height={80}
                 />

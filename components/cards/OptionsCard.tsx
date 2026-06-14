@@ -10,7 +10,6 @@ import {
 
 import { Select } from "@/base"
 import { DateTime } from "@/components"
-import { toDateTimeLocal } from "@/utils"
 import { useTimezone } from "@/hooks"
 
 import {
@@ -60,15 +59,9 @@ const OptionsCard = ({
 	const {
 		segment,
 		iso3,
-        timeZone
 	} = useTimezone(
 		country || "India"
 	)
-
-    const template = templateOverride
-    const timezone = timezoneOverride || timeZone
-
-    console.log(timezoneOverride, timeZone)
 
 	return (
 		<li
@@ -155,7 +148,7 @@ const OptionsCard = ({
                     placeholder="Select Template"
                     disabled={!templates?.length}
                     options={templates}
-                    selected={template}
+                    selected={templateOverride}
                     onChange={(value)=>
                         handleUpdate(
                             profile,
@@ -165,27 +158,23 @@ const OptionsCard = ({
                 />
 
 				<DateTime
-                    scheduledAt={new Date()}
-                    onDateChange={(value)=>
+                    dateTime={timeOverride}
+                    timezone={timezoneOverride}
+                    onDateChange={value =>
                         handleUpdate(
                             profile,
-                            {
-                                dateTime: value
-                            }
+                            { dateTime: value },
                         )
                     }
-
-                    onTimezoneChange={(value)=>
+                    onTimezoneChange={value =>
                         handleUpdate(
                             profile,
-                            { timezone: value }
+                            { timezone: value },
                         )
                     }
-
                     profile={{
-                        name,
-                        picture,
-                        timezone,
+                        name: name,
+                        picture: picture
                     }}
                 />
 

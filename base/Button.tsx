@@ -31,7 +31,7 @@ const buttonVariants = {
 			text-white fill-white focus:ring-charcoal-300
 		`,
         "purple-200": `
-			bg-purple-200 hover:bg-purple-300 active:brightness-95
+			bg-purple-200 hover:bg-purple-400 active:brightness-95
 			text-white fill-white focus:ring-purple-400
 		`,
 

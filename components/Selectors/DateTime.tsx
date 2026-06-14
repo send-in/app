@@ -1,13 +1,13 @@
 "use client"
 
 // #region imports
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import Image from "next/image"
 
 import { 
-    formatCurrent, 
-    toDateTimeLocal,
-    formatDateTimeLocal, 
+    createDateInTimezone,
+    formatInTimezone,
+    toDateTimeLocal
 } from "@/utils"
 
 import { useTimezone } from "@/hooks"
@@ -18,67 +18,71 @@ import {
 	Popover,
 	Button,
 	Information,
-    DateTimeField
+    DateTimeField,
 } from "@/base"
 // #endregion
 
 const DateTime = ({
+    timezone,
+    dateTime,
+
     onTimezoneChange,
     onDateChange,
-	scheduledAt,
-	profile,
+
+    profile,
 }:{
+    timezone?: string
+    dateTime?: string
+
     onTimezoneChange?: (value: string) => void
     onDateChange?: (value: string) => void
-	scheduledAt?: Date
-	profile?:{
-		name?: string
-		picture?: string
-		timezone?: string
-	}
+
+    profile?: {
+        name?: string
+        picture?: string
+    }
 }) => {
     const [open, setOpen] = useState<boolean>(false)
-    const [loading, setLoading] = useState<boolean>(false)
 
-    const [internalDateTime, setDateTime] = useState<string>("")
-    const [internalTimezone, setTimezone] =  useState<string>(
-        profile?.timezone || "Asia/Kolkata"
-    )
-    
+    const activeTimezone = timezone || "Asia/Kolkata"
+
     const {
         current,
         morning,
         afternoon,
         evening,
-    } = useTimezone("", internalTimezone)
+    } = useTimezone("", activeTimezone)
 
-    const properClock = formatCurrent(scheduledAt!, internalTimezone)
-    const {date, time} = internalDateTime ? 
-    formatDateTimeLocal(internalDateTime) : properClock
-    
-    useEffect(() => {
-        if(profile?.timezone)
-            setTimezone(profile?.timezone)
-    }, [profile?.timezone])
+    const selected = {
+        morning:   dateTime === morning.scheduledAt,
+        afternoon: dateTime === afternoon.scheduledAt,
+        evening:   dateTime === evening.scheduledAt,
+    }
 
-    useEffect(() => {
-        if (
-            scheduledAt &&
-            internalTimezone
-        ) {
-            setDateTime(
-                toDateTimeLocal(
-                    scheduledAt,
-                    internalTimezone,
-                ),
-            )
-        }
-    }, [
-        scheduledAt,
-        internalTimezone,
-    ])
+    const { date, time } = dateTime
+        ? formatInTimezone(
+            new Date(dateTime), activeTimezone
+        )
+        : current
 
-    if(open) console.log(scheduledAt, internalTimezone)
+    const customValue = toDateTimeLocal(
+        dateTime ? new Date(dateTime) : new Date(),
+        activeTimezone,
+    )
+
+    const handleCustomDate = (localValue: string) => {
+        if (!localValue) return
+ 
+        const [datePart, timePart] = localValue.split("T")
+        const [year, month, day]   = datePart.split("-").map(Number)
+        const [hour, minute]       = timePart.split(":").map(Number)
+ 
+        const date = createDateInTimezone(
+            year, month, day, hour, activeTimezone, minute,
+        )
+ 
+        onDateChange?.(date.toISOString())
+    }
 
 	return (
 		<Popover
@@ -92,7 +96,7 @@ const DateTime = ({
 			trigger={
 				<Button
 					className="gap-3 min-w-58!"
-					variant="primary"
+					variant={dateTime ? "primary" : "neutral"}
                     onClick={()=>setOpen(true)}
 					startIcon={<Clock/>}
 				>
@@ -114,8 +118,8 @@ const DateTime = ({
                     profile ?
                     <Image
                         className="rounded-full h-14 w-14 mt-2 ml-2"
-                        alt={profile?.name ?? "SendIn"}
-                        src={profile?.picture ?? "/profile.svg"}
+                        alt={profile?.name || "SendIn"}
+                        src={profile?.picture || "/profile.svg"}
                         width={50}
                         height={50}
                     /> :
@@ -133,10 +137,10 @@ const DateTime = ({
                         {`${current.date}, ${current.time}`}
                     </p>
 
-					<TimeZone 
-                        value={internalTimezone}
-                        onChange={setTimezone}
-                        className="min-w-full!"
+					<TimeZone
+                        className="w-full!"
+                        value={activeTimezone}
+                        onChange={onTimezoneChange}
                     />
 				</aside>
 			</section>
@@ -152,16 +156,12 @@ const DateTime = ({
 				className="flex flex-col gap-2"
 			>
 				<Button
-					variant="primary"
 					className="!py-1"
 					textClassName="justify-between w-full !flex"
+                    variant={selected.morning ? "primary" : "neutral"}
                     onClick={() =>
-                        morning?.value &&
-                        setDateTime(
-                            toDateTimeLocal(
-                                morning.value,
-                                internalTimezone,
-                            ),
+                        onDateChange?.(
+                            morning.scheduledAt
                         )
                     }
 				>
@@ -171,15 +171,11 @@ const DateTime = ({
 
 				<Button
 					textClassName="justify-between w-full !flex"
-					variant="neutral"
+					variant={selected.afternoon ? "primary" : "neutral"}
 					className="!py-1"
                     onClick={() =>
-                        afternoon?.value &&
-                        setDateTime(
-                            toDateTimeLocal(
-                                afternoon.value,
-                                internalTimezone,
-                            ),
+                        onDateChange?.(
+                            afternoon.scheduledAt
                         )
                     }
 				>
@@ -189,15 +185,11 @@ const DateTime = ({
 
 				<Button
                     textClassName="justify-between w-full !flex"
-					variant="neutral"
+                    variant={selected.evening ? "primary" : "neutral"}
 					className="!py-1"
                     onClick={() =>
-                        evening?.value &&
-                        setDateTime(
-                            toDateTimeLocal(
-                                evening.value,
-                                internalTimezone,
-                            ),
+                        onDateChange?.(
+                            evening.scheduledAt
                         )
                     }
 				>
@@ -218,9 +210,9 @@ const DateTime = ({
 				</p>
 
                 <DateTimeField
-                    value={internalDateTime}
-                    onChange={setDateTime}
                     startIcon={<Clock size={18}/>}
+                    value={customValue}
+                    onChange={handleCustomDate}
                 />
 			</section>
 
@@ -231,41 +223,14 @@ const DateTime = ({
                 "
             >
                 <Button
-                    variant="neutral"
                     size="auto"
-                    onClick={() => {
-                        if (scheduledAt) {
-                            setDateTime(
-                                toDateTimeLocal(
-                                    scheduledAt,
-                                    internalTimezone,
-                                ),
-                            )
-                        }
-
-                        setOpen(false)
-                    }}
-                >
-                    Cancel
-                </Button>
-
-                <Button
-                    size="auto"
-                    loading={loading}
                     loadingText="Saving"
-                    onClick={() => {
-                        if (internalDateTime) {
-                            setLoading(true)
-
-                            onTimezoneChange?.(internalTimezone)
-                            onDateChange?.(internalDateTime)
-
-                            setOpen(false)
-                            setLoading(false)
-                        }
-                    }}
+                    variant="secondary"
+                    onClick={
+                        () => setOpen(false)
+                    }
                 >
-                    Save
+                    Done
                 </Button>
             </section>
 		</Popover>

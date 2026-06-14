@@ -52,8 +52,7 @@ export const createTemplate = async(
 ): Promise<IResponse<ITemplate>> => {
 
 	const res = await _POST<IRawTemplate>(
-		_TEMPLATES_URL,
-		{},
+		_TEMPLATES_URL, {},
 		{
 			withAuth: true,
 			body: JSON.stringify({

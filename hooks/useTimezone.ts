@@ -1,16 +1,31 @@
 "use client"
 
-import { useEffect, useMemo, useState } from "react"
-import { formatCurrent, formatDateTime } from "@/utils"
-import { getTimezonesForCountry } from "countries-and-timezones"
-import { byCountry } from "country-code-lookup"
+// #region imports
+import { 
+    useEffect, 
+    useMemo, 
+    useState 
+} from "react"
+
+import { 
+    formatInTimezone, 
+    createDateInTimezone 
+} from "@/utils"
+
+import { 
+    getTimezonesForCountry 
+} from "countries-and-timezones"
+
+import { 
+    byCountry 
+} from "country-code-lookup"
+// #endregion
 
 type Segment =
 	| "morning"
 	| "afternoon"
 	| "evening"
 	| "night"
-    
 
 export const useTimezone = (
 	country: string,
@@ -42,7 +57,7 @@ export const useTimezone = (
 			new Intl.DateTimeFormat(
 				"en-US",
 				{
-					timeZone: timeZone,
+					timeZone,
 					year: "numeric",
 					month: "numeric",
 					day: "numeric",
@@ -53,24 +68,16 @@ export const useTimezone = (
 				},
 			)
 				.formatToParts(now)
-				.filter(
-					part =>
-						part.type !== "literal",
-				)
-				.map(
-					part => [
-						part.type,
-						part.value,
-					],
-				),
+				.filter(part => part.type !== "literal")
+				.map(part => [part.type, part.value]),
 		),
 		[now, timeZone],
 	)
 
-	const year = Number(parts.year)
+	const year  = Number(parts.year)
 	const month = Number(parts.month)
-	const day = Number(parts.day)
-	const hour = Number(parts.hour)
+	const day   = Number(parts.day)
+	const hour  = Number(parts.hour)
 
 	const segment: Segment =
 		hour >= 5 && hour < 14
@@ -81,160 +88,66 @@ export const useTimezone = (
 					? "evening"
 					: "night"
 
-	const createDate = (
+	const createScheduled = (
 		dayOffset: number,
-		hour: number,
-	) => new Date(
-		year,
-		month - 1,
-		day + dayOffset,
-		hour,
-		0,
-		0,
-		0,
-	)
+		targetHour: number,
+		label: string,
+	) => {
+		const date = createDateInTimezone(
+			year, month, day + dayOffset, targetHour, timeZone,
+		)
+		return {
+			label,
+			...formatInTimezone(date, timeZone),
+			scheduledAt: date.toISOString(),
+		}
+	}
 
 	let morning
 	let afternoon
 	let evening
 
 	switch (segment) {
-		case "morning":
-			morning = {
-                label:
-                    hour < 8
-                        ? "This morning"
-                        : "Tomorrow morning",
-                ...formatDateTime(
-                    createDate(
-                        hour < 8 ? 0 : 1,
-                        8,
-                    ),
-                ),
-            }
+		case "morning": {
+			morning   = createScheduled(
+                hour < 8 ? 0 : 1, 8,
+                hour < 8 ? "This morning" : "Tomorrow morning"
+            )
 
-            afternoon = {
-                label: "This afternoon",
-                ...formatDateTime(
-                    createDate(0, 14),
-                ),
-            }
-
-            evening = {
-                label: "This evening",
-                ...formatDateTime(
-                    createDate(0, 18),
-                ),
-            }
-
-            break
-
-		case "afternoon":
-			morning = {
-				label: "Tomorrow morning",
-				...formatDateTime(
-					createDate(1, 8)
-				),
-			}
-
-			afternoon = {
-				label: "Tomorrow afternoon",
-				...formatDateTime(
-					createDate(1, 14)
-				),
-			}
-
-			evening = {
-				label: "This evening",
-				...formatDateTime(
-					createDate(0, 18)
-				),
-			}
-
+			afternoon = createScheduled(0, 14, "This afternoon")
+			evening   = createScheduled(0, 18, "This evening")
 			break
-        
-        case "night":
-            morning = {
-                label: "Later this morning",
-                ...formatDateTime(
-                    createDate(0, 8),
-                ),
-            }
+		}
 
-            afternoon = {
-                label: "This afternoon",
-                ...formatDateTime(
-                    createDate(0, 14),
-                ),
-            }
+		case "afternoon": {
+			morning   = createScheduled(1, 8,  "Tomorrow morning")
+			afternoon = createScheduled(1, 14, "Tomorrow afternoon")
+			evening   = createScheduled(0, 18, "This evening")
+			break
+		}
 
-            evening = {
-                label: "This evening",
-                ...formatDateTime(
-                    createDate(0, 18),
-                ),
-            }
+		case "night": {
+			morning   = createScheduled(0, 8,  "Later this morning")
+			afternoon = createScheduled(0, 14, "This afternoon")
+			evening   = createScheduled(0, 18, "This evening")
+			break
+		}
 
-            break
-
-        case "evening":
-            morning = {
-                label: "Tomorrow morning",
-                ...formatDateTime(
-                    createDate(1, 8),
-                ),
-            }
-
-            afternoon = {
-                label: "Tomorrow afternoon",
-                ...formatDateTime(
-                    createDate(1, 14),
-                ),
-            }
-
-            evening = {
-                label: "Tomorrow evening",
-                ...formatDateTime(
-                    createDate(1, 18),
-                ),
-            }
-
-        break
-
-		default:
-			morning = {
-				label: "Tomorrow morning",
-				...formatDateTime(
-					createDate(1, 8)
-				),
-			}
-
-			afternoon = {
-				label: "Tomorrow afternoon",
-				...formatDateTime(
-					createDate(1, 14)
-				),
-			}
-
-			evening = {
-				label: "Tomorrow evening",
-				...formatDateTime(
-					createDate(1, 18)
-				),
-			}
+		case "evening":
+		default: {
+			morning   = createScheduled(1, 8,  "Tomorrow morning")
+			afternoon = createScheduled(1, 14, "Tomorrow afternoon")
+			evening   = createScheduled(1, 18, "Tomorrow evening")
+			break
+		}
 	}
 
 	useEffect(() => {
 		const interval = setInterval(
-			() => setNow(
-				new Date(),
-			),
+			() => setNow(new Date()),
 			30_000,
 		)
-
-		return () => clearInterval(
-			interval,
-		)
+		return () => clearInterval(interval)
 	}, [])
 
 	return {
@@ -242,10 +155,7 @@ export const useTimezone = (
 		segment,
 		timeZone,
 
-		current: formatCurrent(
-            now,
-            timeZone
-        ),
+		current: formatInTimezone(now, timeZone),
 
 		morning,
 		afternoon,

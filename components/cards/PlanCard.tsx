@@ -1,9 +1,13 @@
 "use client"
 
 // #region imports
-import { useState } from "react"
+import { useCallback, useState } from "react"
+
+import { Subscription } from "@/components"
 import { IPlan } from "@/lib/types"
 import { Button } from "@/base"
+import Link from "next/link"
+import Unsubscribe from "../Buttons/Unsubscribe"
 // #endregion
 
 export interface IPlanCard {
@@ -12,6 +16,7 @@ export interface IPlanCard {
     buttonText: string
     highlighted?: boolean
     planCredits: number
+    onClick?: ()=>void
     color?: 
         | "blue-100" 
         | "charcoal-200"
@@ -26,13 +31,14 @@ const PlanCard = ({
         price,
         messages,
         features,
+        description,
         minMessages,
         maxMessages
     },
-    planCredits,
     slider,
     buttonText,
     highlighted = false,
+    planCredits,
     color = "charcoal-200",
 }: IPlanCard) => {
 
@@ -42,67 +48,79 @@ const PlanCard = ({
         (price ?? 1)
     )
 
+    const getButton = () => {
+        switch(id){
+            case "free":
+                return (
+                    !highlighted &&
+                    <Unsubscribe/>
+                )
+            case "pro":
+                return (
+                    <Subscription 
+                        credits={sliderValue}
+                    />
+                )
+            case "enterprise":
+                return (
+                    <Link href="mailto:sendin@gmai.com">
+                        <Button 
+                            variant={color} 
+                            className="mt-2"
+                        >
+                            {buttonText}
+                        </Button>
+                    </Link>
+                )
+        }
+    }
+
     return (
-        <div className={`
+        <article className={`
             bg-white rounded-xl p-4 w-full
             flex flex-col items-center text-center
             transition font-normal tracking-tighter
-            desktop:p-6 border-2
-            ${ price !== undefined ? 
-                "justify-between" : 
-                "h-fit" 
-            }
-            ${
+            desktop:p-6 border-2 min-h-104 ${
                 highlighted ? 
                 `border-${color}` : 
                 "border-grey-100"
             }
         `}>
             <h3 className={`
-                text-xl font-medium
+                text-xl font-semibold
                 text-${color}
                 desktop:text-3xl
             `}>
                 {title}
             </h3>
 
-            {
-                price !== undefined &&
-                <div className="
-                    w-full border-t border-grey-100 
-                    my-2 desktop:my-4
-                "/>
-            }
+            <aside className="
+                w-full border-t border-grey-100
+                my-3 desktop:my-6
+            "/>
 
-            {
-                price !== undefined &&
-                <div className={`
-                    text-3xl desktop:text-4xl
-                    font-semibold flex flex-col 
-                    items-center text-${color}
-                `}>
-                    <p>${displayPrice}</p>
-                    <span className="
-                        text-xl font-normal 
-                        desktop:text-2xl
-                    ">
-                        /month
-                    </span>
-                </div>
-            }
+            <p className={`
+                text-3xl font-medium mt-4
+                items-center text-${color}
+            `}>
+                {
+                    description ? description :  
+                    `$${displayPrice} / mo`
+                }
+            </p>
 
-            {
-                messages !== undefined &&
-                <p className="
-                    text-md text-grey-200 
-                    desktop:text-lg  mb-auto
-                ">
-                    <span className="text-charcoal-100">
-                        {sliderValue}
-                    </span>{" "}
-                    scheduled messages / month
-                </p>
-            }
+            <p className="
+                text-md text-grey-300 
+                desktop:text-lg mt-2
+            ">
+                <span className="text-charcoal-100">
+                    { messages !== undefined ?
+                        sliderValue :
+                        "∞"
+                    }
+                </span>{" "}
+                scheduled messages / month
+            </p>
 
             {
                 slider &&
@@ -119,7 +137,7 @@ const PlanCard = ({
                             setSliderValue(Number(e.target.value))
                         }
                         className=" 
-                            w-[90%] my-4  mb-auto
+                            w-[90%] my-2
                             accent-blue-100
                             cursor-pointer
                         "
@@ -127,29 +145,18 @@ const PlanCard = ({
                 )
             }
 
-            {
-                (
-                    id !== "pro" || (
-                        planCredits === maxMessages &&
-                        sliderValue !== maxMessages
-                    )
-                ) &&
-                <Button 
-                    variant={color} 
-                    className="mt-4"
-                >
-                    {buttonText}
-                </Button>
-            }
+            <aside className="mt-auto">
+                { getButton() }
+            </aside>
 
-            <div className="
-                w-full border-t border-grey-100 
+            <aside className="
+                w-full border-t border-grey-100
                 my-4 desktop:my-6
             "/>
 
             <ul
                 className="
-                    space-y-3 text-grey-200
+                    space-y-3 text-grey-300
                     text-left w-full text-sm
                 "
             >
@@ -161,12 +168,12 @@ const PlanCard = ({
                                 flex items-start gap-2
                             "
                         >
-                            ✔ {feature}
+                            •{" "}{feature}
                         </li>
                     )
                 )}
             </ul>
-        </div>
+        </article>
     )
 }
 

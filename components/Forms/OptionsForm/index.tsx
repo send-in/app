@@ -27,31 +27,28 @@ import {
 } from "@/base"
 
 import {
-    IConnection,
-    IScheduledConnection,
     ITemplate,
+    IConnection,
+    createMessage,
+    IScheduledConnection,
 } from "@/lib"
-import { toDateTimeLocal } from "@/utils"
 // #endregion
-
 
 interface IOptionsFormProps {
     templates: ITemplate[]
     options: IConnection[]
-    timezone: string
 }
 
 export const OptionsForm = ({
     templates,
-    options,
-    timezone
+    options
 }: IOptionsFormProps) => {
 
     const router = useRouter()
 
     const [items, setItems] = useState<IScheduledConnection[]>([])
     const [loading, setLoading] = useState<boolean>(false)
-    const [error, setError] = useState<string>("")
+    const [error, setError] = useState<string | undefined>("")
 
     const [selected, setSelected] = useState<string[]>([])
     const [template, setTemplate] = useState<ITemplate>()
@@ -102,31 +99,51 @@ export const OptionsForm = ({
     const handleSave = useCallback(
         async () => {
             if (!selected.length) return
+
             setLoading(true)
 
             try {
                 const payload = items
-                .filter(item => selected.includes(
-                    item.publicId,
-                ))
-                .map(item => ({
-                    profile: item.publicId,
-                    templateId: item.template?.id,
-                    timezone: item.timezone,
-                    scheduleTime: item.dateTime,
-                }))
-                console.log(payload)
-                // await createMessages(payload)
+                    .filter(item =>
+                        selected.includes(
+                            item.publicId,
+                        ),
+                    )
+                    .map(item => ({
+                        name: item.name,
+                        company: item.company,
+                        picture: item.picture,
+                        profile: item.publicId,
+                        timezone: item.timezone,
+                        scheduleTime: item.dateTime,
+                        templateId: item.template?.id,
+                    }))
 
-            } finally {
+                const res = await createMessage(
+                    payload,
+                )
+
+                if (!res.success) {
+                    setError(
+                        res.error ??
+                        "Failed to create messages",
+                    )
+                    return
+                }
+
+                router.push(
+                    "/",
+                )
+            } 
+            finally {
                 setLoading(false)
             }
         },
         [
             items,
             selected,
-            router
-        ]
+            router,
+        ],
     )
 
     const isScheduleDisabled = useMemo(
@@ -208,6 +225,17 @@ export const OptionsForm = ({
         ()=>setItems(options),
         [options]
     )
+
+    useEffect(() => {
+        if (!error) return
+
+        const timer = setTimeout(
+            () => setError(undefined),
+            3000
+        )
+
+        return () => clearTimeout(timer)
+    }, [error])
     
     return (
         <>
@@ -244,7 +272,7 @@ export const OptionsForm = ({
                             mr-auto animate-fade-in-fast 
                             text-red-800
                         ">
-                            Error: {error}
+                            {error}
                         </p>
                     }
                 </aside>
@@ -261,11 +289,9 @@ export const OptionsForm = ({
                         onChange={handleTemplate}
                     />
 
-                    <DateTime 
+                    <DateTime
                         onDateChange={handleDate}
                         onTimezoneChange={handleTimezone}
-                        scheduledAt={new Date()}
-                        profile={{timezone}}
                     />
                 </aside>
             </section>

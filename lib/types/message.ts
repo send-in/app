@@ -34,7 +34,7 @@ export interface IMessage {
     templateId?: string
 	template?: ITemplate
 
-    scheduledAt: Date,
+    scheduledAt: string,
     createdAt: Date,
     updatedAt: Date,
 }
@@ -51,11 +51,11 @@ export const serializeMessage = (
 	message: message.Message,
 	isSent: message.IsSent,
 
-    scheduledAt: new Date(message.ScheduleTime),
+    templateId: message.TemplateID,
+    scheduledAt: message.ScheduleTime,
     
     createdAt: new Date(message.CreatedAt),
     updatedAt: new Date(message.UpdatedAt),
-    templateId: message.TemplateID,
 	template: message.Template
 		? serializeTemplate(message.Template)
 		: undefined,

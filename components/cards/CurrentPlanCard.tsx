@@ -1,5 +1,4 @@
 // #region imports
-import { Button } from "@/base"
 import { capitalize } from "@/utils"
 // #endregion
 
@@ -40,9 +39,8 @@ const CurrentPlan = ({
 	return (
 		<article
 			className="
-				bg-white border-grey-100
-				rounded-xl p-6 w-[75%]
-				border-2 flex flex-col
+				bg-white flex flex-col
+				rounded-xl p-3 w-[75%]
 				gap-4 text-grey-200
 			"
 		>

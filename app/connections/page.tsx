@@ -31,8 +31,7 @@ const ConnectionsPage = async({ searchParams }:{
         account ?
         <main className="
             pt-[8%] p-8 flex flex-col 
-            items-center h-auto min-h-[55vh] 
-            relative
+            items-center h-auto relative
         ">
             <ConnectionForm
                 q={q}

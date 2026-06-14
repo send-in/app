@@ -52,7 +52,6 @@ const AuthPage = () => (
                         startIcon={<Linkedin/>}
                         variant="inverted"
                         textClassName="font-semibold"
-                        size="full"
                         onClick={login}
                     >
                         Continue with LinkedIn

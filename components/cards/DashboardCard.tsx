@@ -37,9 +37,11 @@ const DashboardCard = ({
             minute: "numeric",
             hour12: true,
             timeZoneName: "longGeneric",
-            timeZone: timezone
+            timeZone: timezone || "Asia/Kolkata",
         },
-    ).format(scheduledAt)
+    ).format(
+        new Date(scheduledAt),
+    )
 
 	return (
 		<li
@@ -67,7 +69,10 @@ const DashboardCard = ({
 					<Image
 						className="rounded-full desktop:scale-120 "
 						alt={name ?? "SendIn"}
-						src={picture ?? "/profile.svg"}
+						src={
+							picture ||
+							"/profile.svg"
+						}
 						width={40}
 						height={40}
 					/>

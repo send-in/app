@@ -1,6 +1,6 @@
 const Linkedin = ({
 	size = 20,
-	className = "fill-blue-100 group-hover:fill-white",
+	className = "fill-blue-100 group-hover:fill-white smooth",
 	...props
 }) => (
 	<svg

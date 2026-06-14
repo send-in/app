@@ -29,7 +29,6 @@ const OptionsPage = async({ searchParams }:{
             <OptionsForm
                 templates={templates ?? []}
                 options={options ?? []}
-                timezone={account.timezone}
             />
 		</main> :
         <ErrorComponent/>

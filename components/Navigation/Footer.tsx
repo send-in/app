@@ -151,7 +151,10 @@ const Footer = () => {
                     items-end px-4 text-grey-200
                 ">
                     <aside>
-                        <p>2025 © SendIn</p>
+                        <p>
+                            {new Date().getFullYear()}{" "} 
+                            © SendIn
+                        </p>
                         <p></p>
                         <Link
                             className="text-grey-300 hover:text-blue-200 smooth" 

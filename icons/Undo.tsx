@@ -9,8 +9,7 @@ const Undo = ({
         xmlns="http://www.w3.org/2000/svg"
         className="
             group-hover:fill-charcoal-100 group-hover:stroke-charcoal-100 
-            fill-grey-200 stroke-grey-200
-            smooth 
+            fill-grey-200 stroke-grey-200 smooth 
         "
     >
         <path

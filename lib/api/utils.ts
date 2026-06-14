@@ -4,7 +4,6 @@
 import { cookies } from "next/headers"
 
 import {
-	_ACCESS_KEY,
 	_AUTH_KEY,
 	_AUTH_URL,
 } from "@/constants"
@@ -86,17 +85,7 @@ const _request = async <T>(
 
         if(withAuth){
             const store = await cookies()
-            const access = store.get(_ACCESS_KEY)
             headers["Cookie"] = store.toString()
-
-            if(
-                !headers.Authorization &&
-                !isRefresh &&
-                access
-            ){
-                headers.Authorization =
-                    `Bearer ${access.value}`
-            }
         }
 
         const request = await fetch(

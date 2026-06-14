@@ -23,7 +23,9 @@ const LinkedinConnect = ({
     picture?: string
 }) => {
 	const [cookie, setCookie] = useState<string>(token || "")
+
 	const handler = useCallback(() => {
+        
 		if(token)
 			return
 	},[token])
@@ -38,13 +40,15 @@ const LinkedinConnect = ({
 	return (
 		<div
 			className="
-				flex items-center w-full p-2 bg-grey-100 relative
-				rounded-full focus-within:ring-2 focus-within:ring-blue-100 focus-within:ring-inset
+				flex items-center w-full p-2 bg-grey-100 
+                relative rounded-full focus-within:ring-2 
+                focus-within:ring-blue-100 
                 smooth cursor-pointer
+                focus-within:ring-inset
 			"
 		>
 			<Image
-				className="rounded-full desktop:scale-120"
+				className="rounded-full"
 				alt={"SendIn"}
 				src={picture || "/profile.svg"}
 				width={50}
@@ -52,10 +56,13 @@ const LinkedinConnect = ({
 			/>
 
 			<TextField
-				className="!text-xl text-gradient-end desktop:!text-2xl"
-				variant="standard"
+				className="
+                    !text-xl text-gradient-end 
+                    desktop:!text-2xl
+                "
 				fullWidth
 				value={cookie}
+				variant="standard"
 				disabled={!!token}
 				onChange={
 					(e)=>setCookie(e.target.value)
