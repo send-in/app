@@ -7,6 +7,7 @@ import { parseFilters } from "@/lib/common"
 import {
     _GET,
 	_POST,
+	_PUT,
 	IResponse,
 } from "@/lib/api"
 
@@ -46,11 +47,31 @@ export const getConnections = async(params?: {
     }
 }
 
-export const resyncConnections = async(): 
+export const syncConnections = async(): 
 Promise<IResponse<IConnection[]>> => {
     const res = await _POST(
         _CONNECTIONS_URL, {},
         { withAuth: true }
+    )
+
+    if (res.success) {
+        return { success: true }
+    }
+
+    return {
+        success: false,
+        error: res.error,
+    }
+}
+
+export const enrichConnections = async(ids: string[]): 
+Promise<IResponse<IConnection[]>> => {
+    const res = await _PUT(
+        _CONNECTIONS_URL, {},
+        { 
+            withAuth: true,
+            body: JSON.stringify({ids})
+        }
     )
 
     if (res.success) {

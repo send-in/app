@@ -431,9 +431,12 @@ export const MessageForm = ({
 
 						<p>
 							{
-								(message?.company || "company") +
-								",\u2002" +
-								(message?.timezone || "timezone")
+                                [
+                                    message?.company, 
+                                    message?.timezone
+                                ]
+                                .filter(Boolean)
+                                .join(", ")
 							}
 						</p>
 					</div>

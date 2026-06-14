@@ -28,7 +28,7 @@ import {
 
 import {
     IConnection,
-    resyncConnections,
+    syncConnections,
     SORT_OPTIONS
 } from "@/lib"
 // #endregion
@@ -68,7 +68,7 @@ export const ConnectionForm = ({
         setIsSyncing(true)
 
         try {
-            const res = await resyncConnections()
+            const res = await syncConnections()
             if (!res.success) {
                 setError(
                     res.error ??
