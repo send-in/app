@@ -51,7 +51,9 @@ const DateTime = ({
         morning,
         afternoon,
         evening,
-    } = useTimezone("", activeTimezone)
+    } = useTimezone({
+        zone: activeTimezone
+    })
 
     const selected = {
         morning:   dateTime === morning.scheduledAt,

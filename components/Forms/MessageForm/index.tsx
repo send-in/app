@@ -274,7 +274,7 @@ export const MessageForm = ({
 				"
 			>
 				{
-                    items && items.length > 0 ?
+                    items && items.length > 0?
                     <>
                         <section className="
                             w-full flex items-center 
@@ -356,7 +356,7 @@ export const MessageForm = ({
                             </aside>
 
                             {
-                                !!total && total > 11 &&
+                                !!total && total > 1 &&
                                 <Pagination
                                     page={Number(page) || 1}
                                     count={Number(total)}

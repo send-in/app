@@ -56,7 +56,6 @@ export const createMessage = async(
 		templateId?: string
 	}[],
 ): Promise<IResponse<boolean>> => {
-    console.log(payload)
 	const res = await _POST(
 		_MESSAGES_URL,{},
 		{

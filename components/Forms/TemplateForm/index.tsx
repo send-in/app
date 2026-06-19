@@ -330,8 +330,7 @@ export const TemplateForm = ({
                             </aside>
 
                             {
-                                items && 
-                                items?.length > 18 &&
+                                total!! && total > 1 &&
                                 <Pagination
                                     page={Number(page)}
                                     count={Number(total)}

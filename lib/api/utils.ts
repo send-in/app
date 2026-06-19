@@ -2,11 +2,6 @@
 
 // #region imports
 import { cookies } from "next/headers"
-
-import {
-	_AUTH_KEY,
-	_AUTH_URL,
-} from "@/constants"
 // #endregion
 
 export interface IResponse<T> {
@@ -18,9 +13,7 @@ export interface IResponse<T> {
 }
 
 interface IRequestOptions extends RequestInit {
-    isRefresh?: boolean
     withAuth?: boolean
-    retry?: boolean
 }
 
 const _parseParams = (
@@ -70,9 +63,7 @@ const _request = async <T>(
 ): Promise<IResponse<T>> => {
     try {
         const {
-            isRefresh,
             withAuth,
-            retry,
             ...rest
         } = options || {}
 

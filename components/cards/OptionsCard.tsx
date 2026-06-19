@@ -59,9 +59,9 @@ const OptionsCard = ({
 	const {
 		segment,
 		iso3,
-	} = useTimezone(
-		country || "India"
-	)
+	} = useTimezone({
+        country
+    })
 
 	return (
 		<li
