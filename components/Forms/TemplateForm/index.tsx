@@ -332,6 +332,7 @@ export const TemplateForm = ({
                             {
                                 total!! && total > 1 &&
                                 <Pagination
+                                    className="max-w-max!"
                                     page={Number(page)}
                                     count={Number(total)}
                                 />

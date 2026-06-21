@@ -54,6 +54,7 @@ export const createMessage = async(
 		timezone?: string
 		message?: string
 		templateId?: string
+        scheduleTime?: string
 	}[],
 ): Promise<IResponse<boolean>> => {
 	const res = await _POST(

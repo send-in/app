@@ -16,7 +16,7 @@ const InformationCard = ({
 			className={`
                 rounded-2xl bg-purple-100 p-2 px-4
                 flex items-start gap-4 font-medium
-                justify-center max-w-full ${styles}
+                justify-between max-w-full ${styles}
             `}
 		>
 			<div

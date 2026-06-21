@@ -25,7 +25,7 @@ const TemplatesPage = async({ searchParams }:{
 		total,
 		data: templates = [],
 	} = await getTemplates({ 
-        limit: 11, q, page, sort 
+        limit: 7, q, page, sort 
     })
 
 	return (

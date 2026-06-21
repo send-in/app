@@ -25,10 +25,8 @@ const paginationVariants = {
 	base: `
 		flex items-center gap-2 select-none w-full
 		text-charcoal-100 font-normal text-base
-		justify-center -mt-8
-		desktop:text-base
-		max-mobile:px-0
-		max-mobile:pt-8
+		justify-center -mt-8 desktop:text-base
+		max-mobile:px-0 max-mobile:pt-8
 	`,
 
 	button: `

@@ -23,7 +23,7 @@ const DashboardPage = async({ searchParams }:{
         total,
         data: messages = []
     } = await getMessages({ 
-        limit: 11, q, page, sort 
+        limit: 7, q, page, sort 
     })
 
     const {

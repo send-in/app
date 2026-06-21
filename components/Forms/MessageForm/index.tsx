@@ -358,6 +358,7 @@ export const MessageForm = ({
                             {
                                 !!total && total > 1 &&
                                 <Pagination
+                                    className="max-w-max!"
                                     page={Number(page) || 1}
                                     count={Number(total)}
                                 />
