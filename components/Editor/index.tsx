@@ -18,6 +18,7 @@ import { Copy } from "@/icons"
 
 import { LexicalEditor } from "./LexicalEditor"
 import { LexicalToolbar } from "./LexicalToolbar"
+import { parseLexical } from "@/utils"
 // #endregion
 
 
@@ -138,7 +139,7 @@ export const Editor = ({
 						onClick={() =>
 							navigator
 								.clipboard
-								.writeText(initialValue)
+								.writeText(parseLexical(initialValue))
 						}
 					>
 						<Copy />

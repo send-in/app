@@ -8,6 +8,7 @@ export const _BASE_URL =
 
 
 export const _AUTH_KEY = process.env.NEXT_PUBLIC_AUTH_KEY ?? "sendin_auth"
+export const _ACCESS_KEY = process.env.NEXT_PUBLIC_ACCESS_KEY ?? "sendin_access"
 export const _NODE_ENV = process.env.NEXT_PUBLIC_NODE_ENV ?? "local"
 export const _COOKIE_SECURE =
     process.env.NODE_ENV === "production" ||

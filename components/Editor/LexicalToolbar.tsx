@@ -46,7 +46,8 @@ const buttonClass = `
 `
 
 const EMOJI_OPTIONS = [
-	"😊",
+    "😊",
+	"🦶🏻",
 	"😂",
 	"❤️",
 	"👍",
@@ -59,7 +60,6 @@ const EMOJI_OPTIONS = [
 	"🚀",
 	"💡",
 	"⭐",
-	"👑",
 	"🎯",
 	"💯",
 	"🤝",
