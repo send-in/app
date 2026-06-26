@@ -2,47 +2,42 @@
 
 // #region imports
 import { useState } from "react"
-import { IconButton } from "@/base"
-
-import {
-	Logo,
-	Arrow
-} from "@/icons"
-
 
 import {
 	Linkedin,
-	Extension,
 	Template,
 	Completed
 } from "."
+
+import { IAccount } from "@/lib"
 // #endregion
 
 const items = [
 	"Connect with Linked In",
-	"Integrate chrome extension",
 	"Create message template ",
 	"Lets schedule !",
 ]
 
 
-const Onboarding = () => {
-    const [selected, setSelected] = useState(0)
+const Onboarding = ({ profile }:{
+    profile: IAccount
+}) => {
+    const initial = profile?.token ? 1 : 0
+    const [selected, setSelected] = useState(initial)
+
     const steps = () =>{
         switch (selected) {
             case 0:
                 return <Linkedin
+                    token={profile.token}
+                    picture={profile.picture}
                     nextStep={()=>setSelected(1)}
                 />
             case 1:
-                return <Extension
+                return <Template
                     nextStep={()=>setSelected(2)}
                 />
             case 2:
-                return <Template
-                    nextStep={()=>setSelected(3)}
-                />
-            case 3:
                 return <Completed/>
         }
     }
@@ -58,13 +53,13 @@ const Onboarding = () => {
                 className="
                     flex items-center
                     bg-blue-100 rounded-3xl p-10
-                    relative h-full min-w-[30%] 
+                    relative h-full min-w-[20%] 
                     justify-center text-white 
                     text-base desktop:text-xl
                 "
             >
                 <ul className="
-                    space-y-20
+                    space-y-12
                 ">
                     {
                         items.map(
@@ -72,8 +67,7 @@ const Onboarding = () => {
                                 <li
                                     key={index}
                                     className={`
-                                        smooth 
-                                        flex gap-5 items-center
+                                        smooth flex gap-5 items-center
                                         ${
                                             index===selected ? 
                                             "text-white" : 
@@ -96,45 +90,6 @@ const Onboarding = () => {
                         )
                     }
                 </ul>
-
-                <aside className="
-                    absolute bottom-5 
-                    right-5 flex
-                ">
-                    <IconButton
-                        disabled={!(selected > 0)}
-                        onClick={
-                            ()=>
-                                selected > 0 && 
-                                setSelected(prev=>--prev)
-                        }
-                    >
-                        <Arrow
-                            direction="up"
-                        />
-                    </IconButton>
-
-                    <IconButton
-                        disabled={!(selected < 3)}
-                        onClick={
-                            ()=> 
-                                selected < 3 && 
-                                setSelected(prev=>++prev)
-                        }
-                    >
-                        <Arrow
-                            direction="down"
-                        />
-                    </IconButton>
-                </aside>
-
-                <Logo
-                    size={40}
-                    className="
-                        absolute top-8 right-5 
-                        fill-white
-                    "
-                />
             </section>
         </>
     )

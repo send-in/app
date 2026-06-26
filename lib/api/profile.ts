@@ -43,6 +43,7 @@ export const updateProfile = async(
 	payload: {
 		name?: string
 		timezone?: string
+        onboarding?: boolean
 	},
 ): Promise<IResponse<boolean>> => {
 

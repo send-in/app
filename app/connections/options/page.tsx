@@ -2,6 +2,7 @@
 import { ErrorComponent, OptionsForm } from "@/components"
 
 import {
+    enrichConnections,
     getConnections,
     getProfile,
     getTemplates,
@@ -13,12 +14,12 @@ const OptionsPage = async({ searchParams }:{
 	searchParams?: Promise<{ ids?: string[]}>
 }) => {
     const { ids } = await parseQuery(searchParams)
-    // await enrichConnections(ids)
+    await enrichConnections(ids)
 
     const { data: options } = await getConnections({ids})
     const { data: templates } = await getTemplates()
     const { data: account } = await getProfile()
-
+    
 	return (
         account ?
 		<main className="

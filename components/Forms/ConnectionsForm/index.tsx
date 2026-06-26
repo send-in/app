@@ -243,15 +243,15 @@ export const ConnectionForm = ({
             </div>
 
             <section className="
-                flex w-full
-                bottom-10 sticky
-                justify-between
-                items-center
+                rounded-full flex w-[80%] z-10
+                bottom-10 sticky justify-between
+                items-center bg-white 
+                shadow-sm pr-4 p-1
             ">
                 {!!connections.length && (
                     <aside className="
                         rounded-full bg-white
-                        shadow-sm p-1
+                        p-1
                     ">
                         <Button
                             disabled={!selected.length}
@@ -269,11 +269,18 @@ export const ConnectionForm = ({
                 )}
 
 
+                {!!total && total > 1 && (
+                    <Pagination
+                        className="max-w-max mt-1"
+                        page={Number(page) ?? 1}
+                        count={Number(total)}
+                    />
+                )}
+
                  <aside className="
                     rounded-full bg-white max-h-max
-                    shadow-sm p-1 pr-2 flex justify-center
+                    p-1 pr-2 flex justify-center
                     items-center text-grey-300 gap-2
-                    ml-auto
                 ">
                     <Button
                         onClick={handleResync}
@@ -300,12 +307,6 @@ export const ConnectionForm = ({
                 </aside>
             </section>
 
-            {!!total && total > 1 && (
-                <Pagination
-                    page={Number(page) ?? 1}
-                    count={Number(total)}
-                />
-            )}
         </>
     )
 }

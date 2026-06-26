@@ -2,9 +2,13 @@
 
 // #region imports
 import { redirect } from "next/navigation"
-import { _POST } from "@/lib/api/utils"
-import {_AUTH_URL} from "@/constants"
+import { cookies } from "next/headers"
+
+import { _POST } from "@/lib/api"
+import {_AUTH_URL, _ONBOARDING_KEY} from "@/constants"
 // #endregion
+
+
 export const login = async () => {
     redirect(`${_AUTH_URL}/linkedin`)
 }
@@ -15,4 +19,17 @@ export const logout = async () => {
         { withAuth: true},
     )
     redirect("/")
+}
+
+export const onboarded = async () => {
+    const store = await cookies()
+    store.set(
+        _ONBOARDING_KEY,
+        "true",
+        {
+            path: "/",
+            httpOnly: false,
+            sameSite: "lax"
+        }
+    )
 }

@@ -1,7 +1,7 @@
+"use client"
+
 // #region imports
-import {
-	LinkedinConnect
-} from "@/components"
+import { LinkedinConnect } from "@/components"
 
 import {
 	Button,
@@ -9,14 +9,20 @@ import {
 } from "@/base"
 // #endregion
 
-const Linkedin = ({
-	nextStep
-}:{
+interface ILinkedin {
 	nextStep: Function
-}) => {
+    token: string
+    picture: string
+}
+
+const Linkedin = ({ 
+    nextStep, 
+    token, 
+    picture 
+}: ILinkedin) => {
 	return (
 		<section
-			className="w-[70%] desktop:w-[60%] space-y-8 ml-[5%] desktop:ml-[10%]"
+			className="w-[70%] desktop:w-[60%] space-y-8"
 		>
 			<h1
 				className="text-5xl desktop:text-6xl text-blue-100 font-semibold"
@@ -34,18 +40,21 @@ const Linkedin = ({
                 styles="py-4"
 			/>
 
-			<LinkedinConnect/>
+			<LinkedinConnect 
+                picture={picture}
+                token={token}
+            />
 
 			<p
 				className="text-sm text-grey-200 desktop:text-base"
 			>
 				We take your li_at cookie and user agent information,
-				If you have the extension installed you can update your cookie
-				for it too. You can manually enter your cookie using chrome dev tools
+				You will have to install our extension to sync cookie.
 			</p>
 
 			<Button
 				variant="secondary"
+                disabled={!token}
 				onClick={()=>nextStep()}
 			>
 				Save

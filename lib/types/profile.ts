@@ -24,6 +24,7 @@ export interface IRawAccount {
 	DailySchedulesUsed: number
 	LifetimeSyncsUsed: number
 	LifetimeMessagesUsed: number
+    Onboarding: boolean
 	Payments?: IRawPayment[]
 	CreatedAt: string
 	UpdatedAt: string
@@ -47,6 +48,7 @@ export interface IAccount {
 	dailySchedulesUsed: number
 	lifetimeSyncsUsed: number
 	lifetimeMessagesUsed: number
+	onboarding: boolean
 	payments: IPayment[]
 	createdAt: Date
 	updatedAt: Date
@@ -70,6 +72,7 @@ export const serializeAccount = (
 	dailySchedulesUsed: account.DailySchedulesUsed,
 	lifetimeSyncsUsed: account.LifetimeSyncsUsed,
 	lifetimeMessagesUsed: account.LifetimeMessagesUsed,
+    onboarding: account.Onboarding,
 
 	renewAt: account.CreditsRenewAt
 		? new Date(account.CreditsRenewAt)

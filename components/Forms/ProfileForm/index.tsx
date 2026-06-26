@@ -122,7 +122,7 @@ export const ProfileForm = ({
 
 
             <section className={flexClass}>
-                <LinkedinConnect 
+                <LinkedinConnect
                     token={token}
                     picture={picture}
                 />

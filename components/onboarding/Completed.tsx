@@ -1,64 +1,75 @@
 // #region imports
-import Link from "next/link"
+import { redirect } from "next/navigation"
 
-import {
-    Linkedin
-} from "@/icons"
+import { Linkedin } from "@/icons"
+import { Button } from "@/base"
 
-import {
-	Button,
-} from "@/base"
+import { 
+    onboarded, 
+    updateProfile 
+} from "@/lib"
 // #endregion
 
 const Completed = () => {
+
+    const handleComplete = async (url: string) => {
+        const {success} = await updateProfile({ 
+            onboarding: true 
+        })
+
+        if(success){
+            await onboarded()
+            redirect(url)
+        }
+    }
+
 	return (
 		<section
-			className="w-fit space-y-2 ml-[5%] desktop:ml-[10%]"
+			className="w-fit space-y-2"
 		>
-			<h1
-				className="text-5xl desktop:text-6xl text-blue-100 font-semibold"
-			>
+			<h1 className="
+                text-5xl desktop:text-6xl 
+                text-blue-100 font-semibold
+            ">
 				You&apos;re all set, Vishnu !
 			</h1>
 
-			<p
-				className="text-base desktop:text-xl leading-6 w-[80%] text-grey-300"
-			>
-				Now head over to your connections page for bulk scheduling or open linkedIn for manual message !
+			<p className="
+                text-base desktop:text-xl 
+                w-[80%] text-grey-300
+            ">
+				Now head over to your connections page for bulk scheduling or 
+                open linkedIn for manual message !
 			</p>
 
 			<aside
-				className="flex flex-col items-start gap-2 mt-8 w-[40%]"
+				className="
+                    flex items-start 
+                    gap-2 mt-8 w-[40%]
+                "
 			>
-				<Link
-					href="https://www.linkedin.com/in/williamhgates/"
-					target="_blank"
-					title="linkedin"
-				>
-					<Button
-						variant="primary"
-						size="full"
-						startIcon={
-							<Linkedin
-								className = "fill-white-100"
-							/>
-						}
-					>
-						Continue on LinkedIn
-					</Button>
-				</Link>
+				<Button
+                    variant="primary"
+                    size="full"
+                    onClick={
+                        ()=>handleComplete("https://www.linkedin.com/in/williamhgates/")
+                    }
+                    startIcon={
+                        <Linkedin
+                            className="fill-white-100"
+                        />
+                    }
+                >
+                    Continue on LinkedIn
+                </Button>
 
-				<Link
-					href="/connections"
-					title="connections"
-				>
-					<Button
-						size="full"
-						variant="secondary"
-					>
-						Bulk Schedule
-					</Button>
-				</Link>
+                <Button
+                    size="full"
+                    variant="secondary"
+                    onClick={()=>handleComplete("/connections")}
+                >
+                    Bulk Schedule
+                </Button>
 			</aside>
 		</section>
 	)
